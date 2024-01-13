@@ -5,19 +5,19 @@
   window.onscroll = function () {
     const ud_header = document.querySelector(".ud-header");
     const sticky = ud_header.offsetTop;
-    const logo = document.querySelector(".navbar-brand img");
+    const navbar_text = document.getElementById("navbar-brand-text");
 
-    if (window.pageYOffset > sticky) {
+    if (window.scrollY > sticky) {
       ud_header.classList.add("sticky");
     } else {
       ud_header.classList.remove("sticky");
     }
 
-    // === logo change
+    // === navbar_text change
     if (ud_header.classList.contains("sticky")) {
-      logo.src = "/images/logo/logo-2.svg";
+      navbar_text.style.color = "#212b36";
     } else {
-      logo.src = "/images/logo/logo.svg";
+      navbar_text.style.color = "#ffffff";
     }
 
     // show or hide the back-top-top button

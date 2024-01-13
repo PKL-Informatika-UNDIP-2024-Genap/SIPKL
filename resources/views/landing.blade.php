@@ -4,38 +4,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Play | Free Startup and SaaS Landing Page Template by UIdeck</title>
+    <title>SIPKL</title>
 
     <!-- Primary Meta Tags -->
-<meta name="title" content="Play - Free Open Source HTML Bootstrap Template by UIdeck">
-<meta name="description" content="Play - Free Open Source HTML Bootstrap Template by UIdeck Team">
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://uideck.com/play/">
-<meta property="og:title" content="Play - Free Open Source HTML Bootstrap Template by UIdeck">
-<meta property="og:description" content="Play - Free Open Source HTML Bootstrap Template by UIdeck Team">
-<meta property="og:image" content="https://uideck.com/wp-content/uploads/2021/09/play-meta-bs.jpg">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://uideck.com/play/">
-<meta property="twitter:title" content="Play - Free Open Source HTML Bootstrap Template by UIdeck">
-<meta property="twitter:description" content="Play - Free Open Source HTML Bootstrap Template by UIdeck Team">
-<meta property="twitter:image" content="https://uideck.com/wp-content/uploads/2021/09/play-meta-bs.jpg">
+    <meta name="title" content="SIPKL">
 
     <!--====== Favicon Icon ======-->
     <link
       rel="shortcut icon"
-      href="/images/favicon.svg"
-      type="image/svg"
+      href="/images/logo_if.png"
     />
 
     <!-- ===== All CSS files ===== -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="/css/bootstrap.min.css" /> --}}
     <link rel="stylesheet" href="/css/animate.css" />
     <link rel="stylesheet" href="/css/lineicons.css" />
     <link rel="stylesheet" href="/css/ud-styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   </head>
   <body>
     <!-- ====== Header Start ====== -->
@@ -45,7 +31,10 @@
           <div class="col-lg-12">
             <nav class="navbar navbar-expand-lg">
               <a class="navbar-brand" href="index.html">
-                <img src="/images/logo/logo.svg" alt="Logo" />
+                <div style="display: flex; align-items: center;">
+                  <img src="/images/logo_if.png" alt="Logo" style="height: 55px"/>
+                  <h3 class="d-inline" id="navbar-brand-text" style="margin-left: 10px; color:white">SIPKL</h3>
+                </div>
               </a>
               <button class="navbar-toggler">
                 <span class="toggler-icon"> </span>
@@ -71,53 +60,12 @@
                   <li class="nav-item">
                     <a class="ud-menu-scroll" href="#contact">Contact</a>
                   </li>
-                  <li class="nav-item nav-item-has-children">
-                    <a href="javascript:void(0)"> Pages </a>
-                    <ul class="ud-submenu">
-                      <li class="ud-submenu-item">
-                        <a href="about.html" class="ud-submenu-link">
-                          About Page
-                        </a>
-                      </li>
-                      <li class="ud-submenu-item">
-                        <a href="pricing.html" class="ud-submenu-link">
-                          Pricing Page
-                        </a>
-                      </li>
-                      <li class="ud-submenu-item">
-                        <a href="contact.html" class="ud-submenu-link">
-                          Contact Page
-                        </a>
-                      </li>
-                      <li class="ud-submenu-item">
-                        <a href="blog.html" class="ud-submenu-link">
-                          Blog Grid Page
-                        </a>
-                      </li>
-                      <li class="ud-submenu-item">
-                        <a href="blog-details.html" class="ud-submenu-link">
-                          Blog Details Page
-                        </a>
-                      </li>
-                      <li class="ud-submenu-item">
-                        <a href="login.html" class="ud-submenu-link">
-                          Sign In Page
-                        </a>
-                      </li>
-                      <li class="ud-submenu-item">
-                        <a href="404.html" class="ud-submenu-link">404 Page</a>
-                      </li>
-                    </ul>
-                  </li>
                 </ul>
               </div>
 
               <div class="navbar-btn d-none d-sm-inline-block">
-                <a href="login.html" class="ud-main-btn ud-login-btn">
-                  Sign In
-                </a>
-                <a class="ud-main-btn ud-white-btn" href="javascript:void(0)">
-                  Sign Up
+                <a class="ud-main-btn ud-white-btn" data-bs-toggle="modal" data-bs-target="#modal_login">
+                  Login
                 </a>
               </div>
             </nav>
@@ -126,6 +74,8 @@
       </div>
     </header>
     <!-- ====== Header End ====== -->
+
+    @include('login_modal')
 
     <!-- ====== Hero Start ====== -->
     <section class="ud-hero" id="home">
@@ -1231,7 +1181,8 @@
     <!-- ====== Back To Top End ====== -->
 
     <!-- ====== All Javascript Files ====== -->
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    {{-- <script src="/js/bootstrap.bundle.min.js"></script> --}}
     <script src="/js/wow.min.js"></script>
     <script src="/js/main.js"></script>
     <script>
