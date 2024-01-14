@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pengumuman', function (Blueprint $table) {
             $table->string('id', 15)->primary();
             $table->string('deskripsi');
+            $table->string('lampiran')->nullable();
             $table->timestamps();
         });
     }

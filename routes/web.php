@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,10 @@ route::middleware('guest')->group(function () {
 });
 
 Route::get('/', function () {
-    return view('landing');
+    $data_pengumuman = DB::table('pengumuman')->get();
+    $data_dokumen = DB::table('dokumen')->get();
+    return view('landing',[
+        'data_pengumuman' => $data_pengumuman,
+        'data_dokumen' => $data_dokumen,
+    ]);
 });
