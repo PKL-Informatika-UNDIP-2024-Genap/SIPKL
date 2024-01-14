@@ -50,16 +50,16 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#about">About</a>
+                    <a class="ud-menu-scroll" href="#pengumuman">Pengumuman</a>
                   </li>
                   <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#pricing">Pricing</a>
+                    <a class="ud-menu-scroll" href="#dokumen">Dokumen</a>
                   </li>
                   <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#team">Team</a>
+                    <a class="ud-menu-scroll" href="#grupwa">Grup WA</a>
                   </li>
                   <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#contact">Contact</a>
+                    <a class="ud-menu-scroll" href="#contact">Jadwal Seminar</a>
                   </li>
                 </ul>
               </div>
@@ -85,13 +85,12 @@
           <div class="col-lg-12">
             <div class="ud-hero-content wow fadeInUp" data-wow-delay=".2s">
               <h1 class="ud-hero-title">
-                Open-Source Web Template for SaaS, Startup, Apps, and More
+                Sistem Informasi PKL Informatika Undip
               </h1>
               <p class="ud-hero-desc">
-                Multidisciplinary Web Template Built with Your Favourite
-                Technology - HTML Bootstrap, Tailwind and React NextJS.
+                Praktik Kerja Lapangan (PKL) adalah bentuk penyelenggaraan kegiatan pendidikan dan pelatihan dengan bekerja secara langsung, secara sistematik dan terarah dengan supervisi yang kompeten.
               </p>
-              <ul class="ud-hero-buttons">
+              {{-- <ul class="ud-hero-buttons">
                 <li>
                   <a href="https://links.uideck.com/play-bootstrap-download" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-white-btn">
                     Download Now
@@ -102,16 +101,16 @@
                     Learn More <i class="lni lni-arrow-right"></i>
                   </a>
                 </li>
-              </ul>
+              </ul> --}}
             </div>
-            <div
+            {{-- <div
               class="ud-hero-brands-wrapper wow fadeInUp"
               data-wow-delay=".3s"
             >
               <img src="/images/hero/brand.svg" alt="brand" />
-            </div>
+            </div> --}}
             <div class="ud-hero-image wow fadeInUp" data-wow-delay=".25s">
-              <img src="/images/hero/hero-image.svg" alt="hero-image" />
+              <img src="/images/hero/office-pana.svg" alt="hero-image" />
               <img
                 src="/images/hero/dotted-shape.svg"
                 alt="shape"
@@ -129,8 +128,89 @@
     </section>
     <!-- ====== Hero End ====== -->
 
+    <!-- ====== Pengumuman Start ====== -->
+    <section id="pengumuman" class="ud-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-section-title">
+              {{-- <span>Features</span> --}}
+              <h2>Pengumuman</h2>
+              {{-- <p>
+                There are many variations of passages of Lorem Ipsum available
+                but the majority have suffered alteration in some form.
+              </p> --}}
+            </div>
+          </div>
+        </div>
+        <div class="row table-responsive">
+
+          <table class="table table-stripped table-bordered m-0 text-center wow fadeInUp" data-wow-delay=".2s" id="tabel-pengumuman">
+            <tr>
+              <th>Tanggal</th>
+              <th>Deskripsi</th>
+              <th>Lampiran</th>
+            </tr>
+
+            @php
+              $i = 0;
+            @endphp
+            @foreach ($data_pengumuman as $pengumuman)
+              <tr>
+                <td>{{ date('d M Y', strtotime($pengumuman->updated_at)) }}</td>
+                <td>{{ $pengumuman->deskripsi }}</td>
+                <td>
+                  <a class="btn btn-primary btn-sm mb-1" href="javascript:void(0)">Download</a>
+                </td>
+              </tr>
+            @endforeach
+          </table>
+
+        </div>
+      </div>
+    </section>
+    <!-- ====== Pengumuman End ====== -->
+
+    <!-- ====== Dokumen Start ====== -->
+    <section id="dokumen" class="ud-about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-section-title">
+              <h2>Dokumen</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row table-responsive">
+
+          <table class="table table-stripped table-bordered m-0 text-center wow fadeInUp" data-wow-delay=".2s" id="tabel-dokumen">
+            <tr>
+              <th>Tanggal</th>
+              <th>Deskripsi</th>
+              <th>Lampiran</th>
+            </tr>
+
+            @php
+              $i = 0;
+            @endphp
+            @foreach ($data_dokumen as $dokumen)
+              <tr>
+                <td>{{ date('d M Y', strtotime($dokumen->updated_at)) }}</td>
+                <td>{{ $dokumen->deskripsi }}</td>
+                <td>
+                  <a class="btn btn-primary btn-sm mb-1" href="javascript:void(0)">Download</a>
+                </td>
+              </tr>
+            @endforeach
+          </table>
+
+        </div>
+      </div>
+    </section>
+    <!-- ====== dokumen End ====== -->
+
     <!-- ====== Features Start ====== -->
-    <section id="features" class="ud-features">
+    {{-- <section id="features" class="ud-features">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -211,30 +291,21 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> --}}
     <!-- ====== Features End ====== -->
 
     <!-- ====== About Start ====== -->
-    <section id="about" class="ud-about">
+    <section id="grupwa" class="ud-about">
       <div class="container">
         <div class="ud-about-wrapper wow fadeInUp" data-wow-delay=".2s">
           <div class="ud-about-content-wrapper">
             <div class="ud-about-content">
-              <span class="tag">About Us</span>
-              <h2>Brilliant Toolkit to Build Nextgen Website Faster.</h2>
+              <span class="tag">Penting</span>
+              <h2>Grup WA</h2>
               <p>
-                The main 'thrust' is to focus on educating attendees on how to
-                best protect highly vulnerable business applications with
-                interactive panel discussions and roundtables led by subject
-                matter experts.
+                Gabung grup What's app berikut untuk mendapatkan informasi terbaru seputar PKL Informatika Undip!
               </p>
-
-              <p>
-                The main 'thrust' is to focus on educating attendees on how to
-                best protect highly vulnerable business applications with
-                interactive panel.
-              </p>
-              <a href="javascript:void(0)" class="ud-main-btn">Learn More</a>
+              <a href="javascript:void(0)" class="ud-main-btn">Gabung</a>
             </div>
           </div>
           <div class="ud-about-image">
@@ -246,7 +317,7 @@
     <!-- ====== About End ====== -->
 
     <!-- ====== Pricing Start ====== -->
-    <section id="pricing" class="ud-pricing">
+    {{-- <section id="pricing" class="ud-pricing">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -343,7 +414,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> --}}
     <!-- ====== Pricing End ====== -->
 
     <!-- ====== FAQ Start ====== -->
