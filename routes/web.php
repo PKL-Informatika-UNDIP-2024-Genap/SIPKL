@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -15,16 +16,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        $data_pengumuman = DB::table('pengumuman')->get();
+        $data_dokumen = DB::table('dokumen')->get();
+        return view('landing',[
+            'data_pengumuman' => $data_pengumuman,
+            'data_dokumen' => $data_dokumen,
+        ]);
+    })->name('landing');
     Route::get('/login', function () {
         return view('login');
     })->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate']);
 });
 
-Route::get('/', function () {
-    $data_pengumuman = DB::table('pengumuman')->get();
-    $data_dokumen = DB::table('dokumen')->get();
-    return view('landing',[
-        'data_pengumuman' => $data_pengumuman,
-        'data_dokumen' => $data_dokumen,
-    ]);
+route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [LoginController::class, 'dashboard']);
+    Route::get('/logout', [LoginController::class, 'logout']);
 });
