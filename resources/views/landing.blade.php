@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   </head>
   <body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- ====== Header Start ====== -->
     <header class="ud-header">
       <div class="container">
@@ -222,14 +223,14 @@
               <span class="tag">About Us</span>
               <h2>Brilliant Toolkit to Build Nextgen Website Faster.</h2>
               <p>
-                The main ‘thrust’ is to focus on educating attendees on how to
+                The main 'thrust' is to focus on educating attendees on how to
                 best protect highly vulnerable business applications with
                 interactive panel discussions and roundtables led by subject
                 matter experts.
               </p>
 
               <p>
-                The main ‘thrust’ is to focus on educating attendees on how to
+                The main 'thrust' is to focus on educating attendees on how to
                 best protect highly vulnerable business applications with
                 interactive panel.
               </p>

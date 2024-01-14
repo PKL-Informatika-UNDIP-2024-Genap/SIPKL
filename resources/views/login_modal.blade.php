@@ -6,6 +6,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <div class="mb-3">
+          @if (session()->has('loginError'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ session('loginError') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          @endif
+        </div>
+
         <div class="row d-flex justify-content-center">
           <img src="/images/logo_undip.png" style="width: 100px;">
           <img src="/images/logo_if.png" style="width: 100px;">
@@ -14,8 +23,8 @@
           <h3>SIPKL Informatika</h3>
         </div>
         <form action="/login" method="post">
+          @csrf
           <div class="row mt-4">
-            @csrf
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
               <input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="username">
@@ -61,3 +70,12 @@
     }
   });
 </script>
+
+@if ($errors->any() || session()->has('loginError'))
+  <script>
+    $(document).ready(function () {
+      // $("#nim-edit").val("{{ old('nim_edit') }}");
+      $('#modal_login').modal('show');
+    });
+  </script>
+@endif
