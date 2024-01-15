@@ -15,4 +15,10 @@ class SeminarPKL extends Model
     public $incrementing = false;
     public $timestamps = true;
     protected $guarded = [];
+
+    // Relasi antar tabel
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class,'nim','nim');
+    }
 }
