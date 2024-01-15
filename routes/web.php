@@ -24,9 +24,6 @@ route::middleware('guest')->group(function () {
             'data_dokumen' => $data_dokumen,
         ]);
     })->name('landing');
-    Route::get('/login', function () {
-        return view('login');
-    })->name('login');
     Route::post('/login', [LoginController::class, 'authenticate']);
 });
 

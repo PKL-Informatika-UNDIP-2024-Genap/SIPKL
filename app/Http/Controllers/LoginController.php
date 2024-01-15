@@ -28,22 +28,21 @@ class LoginController extends Controller
 
     public function dashboard(){
         // dd(auth()->user()->username);
-        // if(auth()->user()->is_admin == 1){
-        //     return view('koordinator.dashboard');
-        // }else{
-        //     return view('mahasiswa.dashboard');
-        // }
-        return view('koordinator.dashboard');
+        if(auth()->user()->is_admin == 1){
+            return view('koordinator.dashboard');
+        }else{
+            return view('mahasiswa.dashboard');
+        }
     }
 
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
-    
+
         $request->session()->invalidate();
-    
+
         $request->session()->regenerateToken();
-    
+
         return redirect('/');
     }
 
