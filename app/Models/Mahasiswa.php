@@ -15,4 +15,9 @@ class Mahasiswa extends Model
     public $incrementing = false;
     public $timestamps = false;
     protected $guarded = [];
+
+    // Relasi antar tabel
+    public function dosen_pembimbing(){
+        return $this->hasOne(DosenPembimbing::class,'nip','nip_dospem');
+    }
 }

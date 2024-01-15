@@ -22,8 +22,11 @@ return new class extends Migration
             $table->string('keywords3',50)->nullable();
             $table->string('keywords4',50)->nullable();
             $table->string('keywords5',50)->nullable();
+            $table->string('link_laporan')->nullable();
+            $table->dateTime('tgl_laporan')->nullable();
+            $table->string('pesan')->nullable();
             $table->char('nilai',1)->nullable();
-            $table->string('nim',20);
+            $table->string('nim',14);
         });
     }
 

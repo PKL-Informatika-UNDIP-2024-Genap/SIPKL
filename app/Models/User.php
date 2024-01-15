@@ -42,4 +42,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Relasi antar tabel
+    public function koordinator()
+    {
+        return $this->hasOne(Koordinator::class,'id','username');
+    }
+
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class,'nim','username');
+    }
 }
