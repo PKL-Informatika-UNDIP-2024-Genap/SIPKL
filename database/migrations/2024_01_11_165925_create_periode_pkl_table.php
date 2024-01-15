@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('periode_pkl', function (Blueprint $table) {
             $table->string('id_periode', 15)->primary();
-            $table->date('periode_mulai');
-            $table->date('periode_berakhir');
+            $table->date('tgl_mulai');
+            $table->date('tgl_selesai');
             $table->string('status',10)->nullable();
         });
     }
