@@ -66,14 +66,29 @@
             </li>
           </ul>
         </li>
-
+        
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas bi bi-person-fill"></i>
             <p>
-              Kelola Mahasiswa
+              Mahasiswa
+              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="./index.html" class="nav-link">
+                <i class="far nav-icon bi bi-circle"></i>
+                <p>Kelola Mahasiswa</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./index2.html" class="nav-link">
+                <i class="far nav-icon bi bi-circle"></i>
+                <p>Assign Dosbing</p>
+              </a>
+            </li>
+          </ul>
         </li>
 
         <li class="nav-item">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Koordinator\DosenPembimbingController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +31,12 @@ route::middleware('guest')->group(function () {
 route::middleware('auth')->group(function () {
     Route::get('/dashboard', [LoginController::class, 'dashboard']);
     Route::get('/logout', [LoginController::class, 'logout']);
+});
+
+Route::middleware(['auth', 'is.admin:1'])->group(function () {
+    Route::get('/dashboard/dosbing/kelola_dosen/', [DosenPembimbingController::class, 'index']);
+});
+
+Route::middleware(['auth', 'is.admin:0'])->group(function () {
+    
 });
