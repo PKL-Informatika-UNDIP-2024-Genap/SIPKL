@@ -34,6 +34,9 @@ class DatabaseSeeder extends Seeder
             KoordinatorSeeder::class,
             PengumumanSeeder::class,
             DokumenSeeder::class,
+            DosenPembimbingSeeder::class,
+            MahasiswaSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

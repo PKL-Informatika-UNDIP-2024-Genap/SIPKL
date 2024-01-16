@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Koordinator;
 
+use App\Http\Controllers\Controller;
 use App\Models\DosenPembimbing;
 use App\Http\Requests\StoreDosenPembimbingRequest;
 use App\Http\Requests\UpdateDosenPembimbingRequest;
