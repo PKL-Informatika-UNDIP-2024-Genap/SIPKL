@@ -72,6 +72,8 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="/lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="/lte/plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <!-- overlayScrollbars -->
 <script src="/lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
