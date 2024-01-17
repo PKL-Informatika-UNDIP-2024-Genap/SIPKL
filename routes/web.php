@@ -36,7 +36,9 @@ route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'is.admin:1'])->group(function () {
-    Route::get('/dashboard/dosbing/kelola_dosen/', [DosenPembimbingController::class, 'index']);
+    Route::get('/dosbing/kelola_dosbing/', [DosenPembimbingController::class, 'index']);
+    Route::post('/dosbing/kelola_dosbing/tambah', [DosenPembimbingController::class, 'store']);
+    Route::get('/dosbing/update_tabel_dosbing', [DosenPembimbingController::class, 'update_tabel_dosbing']);
 });
 
 Route::middleware(['auth', 'is.admin:0'])->group(function () {

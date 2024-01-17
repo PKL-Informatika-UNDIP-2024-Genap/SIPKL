@@ -13,7 +13,11 @@
         <img src="/images/default.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">{{ auth()->user()->koordinator->nama }}</a>
+        @if (auth()->user()->is_admin == 1)
+          <a href="#" class="d-block">{{ auth()->user()->koordinator->nama }}</a>
+        @else
+          <a href="#" class="d-block">{{ auth()->user()->mahasiswa->nama }}</a>  
+        @endif
       </div>
     </div>
 
@@ -35,7 +39,7 @@
         <!-- Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="/dashboard" class="nav-link">
+          <a href="/dashboard" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
             <i class="nav-icon fas bi bi-speedometer"></i>
             <p>
               Dashboard
@@ -43,8 +47,8 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+        <li class="nav-item {{ Request::is('dosbing*') ? 'menu-open' : '' }}">
+          <a href="/" class="nav-link {{ Request::is('dosbing*') ? 'active' : '' }}">
             <i class="nav-icon fas bi bi-people-fill"></i>
             <p>
               Dosen Pembimbing
@@ -53,13 +57,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="./index.html" class="nav-link">
+              <a href="/dosbing/kelola_dosbing" class="nav-link {{ Request::is('dosbing/kelola_dosbing') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
-                <p>Kelola Dosen</p>
+                <p>Kelola Dosbing</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index2.html" class="nav-link">
+              <a href="/dosbing/kelola_bimbingan" class="nav-link {{ Request::is('dosbing/kelola_bimbingan') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
                 <p>Kelola Bimbingan</p>
               </a>
