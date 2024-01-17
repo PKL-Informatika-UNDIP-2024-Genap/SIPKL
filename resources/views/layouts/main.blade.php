@@ -35,7 +35,11 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @include('layouts.sidebar')
+  @if (auth()->user()->is_admin == 1)
+    @include('layouts.sidebar')
+  @else
+    @include('layouts.sidebar_mhs')
+  @endif
   <!-- /.Main Sidebar Container -->
 
   <!-- Content Wrapper. Contains page content -->
