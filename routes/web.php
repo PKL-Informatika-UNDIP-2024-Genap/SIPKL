@@ -29,7 +29,9 @@ route::middleware('guest')->group(function () {
 });
 
 route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [LoginController::class, 'dashboard']);
+    Route::middleware('data.updated')->group(function () {
+        Route::get('/dashboard', [LoginController::class, 'dashboard']);
+    });
     Route::get('/logout', [LoginController::class, 'logout']);
 });
 
@@ -38,5 +40,6 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
 });
 
 Route::middleware(['auth', 'is.admin:0'])->group(function () {
-    
+    Route::get('/update-data', [LoginController::class, 'editData'])->name('update-data');
+    Route::put('/update-data', [LoginController::class, 'updateDataMahasiswa']);
 });

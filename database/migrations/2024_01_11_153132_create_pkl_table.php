@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('judul');
             $table->tinyInteger('status')->unsigned()->default(0);
             $table->text('abstrak')->nullable();
-            $table->string('keywords1',50)->nullable();
-            $table->string('keywords2',50)->nullable();
-            $table->string('keywords3',50)->nullable();
-            $table->string('keywords4',50)->nullable();
-            $table->string('keywords5',50)->nullable();
+            $table->string('keyword1',50)->nullable();
+            $table->string('keyword2',50)->nullable();
+            $table->string('keyword3',50)->nullable();
+            $table->string('keyword4',50)->nullable();
+            $table->string('keyword5',50)->nullable();
             $table->string('link_laporan')->nullable();
             $table->dateTime('tgl_laporan')->nullable();
             $table->string('pesan')->nullable();

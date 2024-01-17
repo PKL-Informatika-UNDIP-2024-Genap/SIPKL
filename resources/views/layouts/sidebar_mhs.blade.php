@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/dashboard" class="brand-link">
-      <img src="/images/logo_if.png" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8">
+      <img src="/images/logo_if.png" alt="Logo IF" class="brand-image elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">SIPKL Informatika</span>
     </a>
 
