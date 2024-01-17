@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DosenPembimbing;
 use App\Http\Requests\StoreDosenPembimbingRequest;
 use App\Http\Requests\UpdateDosenPembimbingRequest;
+use Illuminate\Http\Request;
 
 class DosenPembimbingController extends Controller
 {
@@ -14,23 +15,37 @@ class DosenPembimbingController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('koordinator.dosbing.kelola_dosbing', [
+            'dosbing' => DosenPembimbing::all()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDosenPembimbingRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'nip' => 'required|unique:dosen_pembimbing',
+            'golongan' => 'required',
+            'jabatan' => 'required',
+        ],
+        [
+            'nama.required' => 'Nama tidak boleh kosong',
+            'nip.required' => 'NIP tidak boleh kosong',
+            'nip.unique' => 'NIP sudah terdaftar',
+            'golongan.required' => 'Golongan tidak boleh kosong',
+            'jabatan.required' => 'Jabatan tidak boleh kosong',
+        ]);
+
+        DosenPembimbing::create($validatedData);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Request successful',
+        ], 200);
+        
     }
 
     /**
