@@ -38,6 +38,10 @@ class LoginController extends Controller
     }
 
     public function editData(){
+        // middleware 'DataNotUpdated' in disguise
+        if (auth()->user()->mahasiswa->email != null){
+            return redirect('/dashboard');
+        }
         return view('mahasiswa.update_data');
     }
 
