@@ -1,11 +1,5 @@
 @extends('layouts.main')
-@push('styles')
-    @livewireStyles
-@endpush
 
-@push('scripts')
-    @livewireScripts
-@endpush
 @section('container')
 <div class="content-header">
   <div class="container-fluid">
@@ -36,7 +30,7 @@
     <div class="row">
       <div class="col">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body" id="tabel-dosbing">
             <table class="table" id="myTable">
               <thead>
                   <tr class="table-primary">
@@ -57,12 +51,12 @@
                           <td>{{ $dos->golongan }}</td>
                           <td>{{ $dos->jabatan }}</td>
                           <td>
-                              <a href="/koordinator/kelola_dosbing/{{ $dos->nip }}" class="btn btn-primary">Edit</a>
-                              <form action="/koordinator/kelola_dosbing/{{ $dos->id }}" method="post" class="d-inline">
-                                  @method('delete')
-                                  @csrf
-                                  <button class="btn btn-danger">Delete</button>
-                              </form>
+                              <div class="btn btn-primary btn-edit-dosbing" data-bs-toggle="modal" data-bs-target="#modal_edit_dosbing" 
+                              data-nip="{{ $dos->nip }}" data-nama="{{ $dos->nama }}" data-nip="{{ $dos->nip }}" 
+                              data-golongan="{{ $dos->golongan }}" data-jabatan="{{ $dos->jabatan }}">Edit</div>
+                              <div class="btn btn-danger btn-delete-dosbing" data-nip="{{ $dos->nip }}">
+                                Delete
+                              </div>
                           </td>
                       </tr>
                   @endforeach
@@ -82,5 +76,14 @@
 @include('koordinator.dosbing.modal_add_dosbing')
 {{-- end modal add dosbing --}}
 
+{{-- modal edit dosbing --}}
+@include('koordinator.dosbing.modal_edit_dosbing')
+{{-- end modal edit dosbing --}}
+<script src="/js/ajax-dosbing.js"></script>
+
 <script src="/js/datatables-jquery.js"></script>
+<script>
+  simpleDatatable();
+</script>
+
 @endsection

@@ -7,6 +7,7 @@ use App\Models\DosenPembimbing;
 use App\Http\Requests\StoreDosenPembimbingRequest;
 use App\Http\Requests\UpdateDosenPembimbingRequest;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DosenPembimbingController extends Controller
 {
@@ -49,27 +50,30 @@ class DosenPembimbingController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(DosenPembimbing $dosenPembimbing)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(DosenPembimbing $dosenPembimbing)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDosenPembimbingRequest $request, DosenPembimbing $dosenPembimbing)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'nip' => ['required', Rule::unique('dosen_pembimbing')->ignore($request->nip, 'nip')],
+            'golongan' => 'required',
+            'jabatan' => 'required',
+        ],
+        [
+            'nama.required' => 'Nama tidak boleh kosong',
+            'nip.required' => 'NIP tidak boleh kosong',
+            'nip.unique' => 'NIP sudah terdaftar',
+            'golongan.required' => 'Golongan tidak boleh kosong',
+            'jabatan.required' => 'Jabatan tidak boleh kosong',
+        ]);
+
+        DosenPembimbing::where('nip', $request->nip)->update($validatedData);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Request successful',
+        ], 200);
     }
 
     /**
@@ -77,6 +81,24 @@ class DosenPembimbingController extends Controller
      */
     public function destroy(DosenPembimbing $dosenPembimbing)
     {
-        //
+        $dosenPembimbing->delete();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Request successful',
+        ], 200);
+    }
+
+    public function update_tabel_dosbing()
+    {
+        $dosbing = DosenPembimbing::all();
+        $view = view('koordinator.dosbing.update_tabel_dosbing', [
+            'dosbing' => $dosbing
+        ])->render();
+
+        return response()->json([
+            'status' => 200,
+            'view' => $view,
+        ]);
     }
 }

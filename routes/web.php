@@ -39,6 +39,8 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/dosbing/kelola_dosbing/', [DosenPembimbingController::class, 'index']);
     Route::post('/dosbing/kelola_dosbing/tambah', [DosenPembimbingController::class, 'store']);
     Route::get('/dosbing/update_tabel_dosbing', [DosenPembimbingController::class, 'update_tabel_dosbing']);
+    Route::put('/dosbing/kelola_dosbing/update', [DosenPembimbingController::class, 'update']);
+    Route::delete('/dosbing/kelola_dosbing/{dosenPembimbing}/delete', [DosenPembimbingController::class, 'destroy']);
 });
 
 Route::middleware(['auth', 'is.admin:0'])->group(function () {
