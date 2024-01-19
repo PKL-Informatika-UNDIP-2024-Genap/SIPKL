@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="hiddenscroll">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,6 +17,38 @@
   <!-- BS Stepper -->
   <link rel="stylesheet" href="/lte/plugins/bs-stepper/css/bs-stepper.min.css">
 
+  <style>
+    .showscroll {
+      scrollbar-width: thin; /* Firefox */
+      -ms-overflow-style: none; /* IE 10+ */
+      ::-webkit-scrollbar-track {
+        -webkit-box-shadow: none !important;
+        background-color: transparent !important;
+      }
+      ::-webkit-scrollbar {
+        width: .6rem !important;
+        background-color: transparent;
+      }
+        ::-webkit-scrollbar-thumb {
+        background-color: #acacac;
+      }
+    }
+    .hiddenscroll {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE 10+ */
+      ::-webkit-scrollbar-track {
+        -webkit-box-shadow: none !important;
+        background-color: transparent;
+      }
+      ::-webkit-scrollbar {
+        width: .6rem !important;
+        background-color: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: transparent;
+      }
+    }
+  </style>
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
@@ -266,6 +298,26 @@
     form.submit();
   }
 
+  // Scrollbar
+  var html = document.documentElement;
+  startTime = Date.now();
+  function showScrollbar() {
+    html.classList.add('showscroll');
+    html.classList.remove('hiddenscroll');
+    startTime = Date.now();
+  }
+  var interval = setInterval(() => {
+    if (Date.now() > startTime+500){
+      html.classList.remove('showscroll');
+      html.classList.add('hiddenscroll');
+    }
+  }, 600);
+  window.addEventListener('scroll', () => {
+    showScrollbar();
+  });
+  window.addEventListener('click', () => {
+    showScrollbar();
+  });
 </script>
 </body>
 </html>
