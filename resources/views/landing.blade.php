@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="hiddenscroll">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,6 +22,39 @@
     <link rel="stylesheet" href="/css/lineicons.css" />
     <link rel="stylesheet" href="/css/ud-styles.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+      .showscroll {
+        scrollbar-width: thin; /* Firefox */
+        -ms-overflow-style: none; /* IE 10+ */
+        ::-webkit-scrollbar-track {
+          -webkit-box-shadow: none !important;
+          background-color: transparent !important;
+        }
+        ::-webkit-scrollbar {
+          width: .6rem !important;
+          background-color: transparent;
+        }
+          ::-webkit-scrollbar-thumb {
+          background-color: #acacac;
+        }
+      }
+      .hiddenscroll {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE 10+ */
+        ::-webkit-scrollbar-track {
+          -webkit-box-shadow: none !important;
+          background-color: transparent;
+        }
+        ::-webkit-scrollbar {
+          width: .6rem !important;
+          background-color: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+          background-color: transparent;
+        }
+      }
+    </style>
   </head>
   <body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1299,6 +1332,27 @@
       }
 
       window.document.addEventListener("scroll", onScroll);
+
+      // Scrollbar
+      var html = document.documentElement;
+      startTime = Date.now();
+      function showScrollbar() {
+        html.classList.add('showscroll');
+        html.classList.remove('hiddenscroll');
+        startTime = Date.now();
+      }
+      var interval = setInterval(() => {
+        if (Date.now() > startTime+500){
+          html.classList.remove('showscroll');
+          html.classList.add('hiddenscroll');
+        }
+      }, 600);
+      window.addEventListener('scroll', () => {
+        showScrollbar();
+      });
+      window.addEventListener('click', () => {
+        showScrollbar();
+      });
     </script>
   </body>
 </html>
