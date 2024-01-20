@@ -4,8 +4,8 @@ function simpleDatatable() {
 				{
 						searchable: false,
 						orderable: false,
-						targets: 0
-				}
+						targets: [0,"action","lampiran"]
+				},
 		],
 		order: [[1, 'asc']],
 		lengthMenu: [5, 10, 25, 50],

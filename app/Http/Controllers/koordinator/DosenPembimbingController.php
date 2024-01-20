@@ -28,7 +28,7 @@ class DosenPembimbingController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required',
-            'nip' => 'required|unique:dosen_pembimbing',
+            'nip' => 'required|unique:dosen_pembimbing|max:25',
             'golongan' => 'required',
             'jabatan' => 'required',
         ],
@@ -36,6 +36,7 @@ class DosenPembimbingController extends Controller
             'nama.required' => 'Nama tidak boleh kosong',
             'nip.required' => 'NIP tidak boleh kosong',
             'nip.unique' => 'NIP sudah terdaftar',
+            'nip.max' => 'NIP maksimal 25 karakter',
             'golongan.required' => 'Golongan tidak boleh kosong',
             'jabatan.required' => 'Jabatan tidak boleh kosong',
         ]);

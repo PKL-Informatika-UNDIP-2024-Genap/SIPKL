@@ -11,8 +11,8 @@ class Pengumuman extends Model
 
     protected $table = 'pengumuman';
     protected $primaryKey = 'id';
-    protected $keyType = 'string';
-    public $incrementing = false;
+    // protected $keyType = 'string';
+    // public $incrementing = false;
     public $timestamps = true;
     protected $guarded = [];
 }

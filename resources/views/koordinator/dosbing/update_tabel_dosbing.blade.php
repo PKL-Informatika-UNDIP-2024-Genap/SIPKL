@@ -6,7 +6,7 @@
           <th>NIP</th>
           <th>Golongan</th>
           <th>Jabatan</th>
-          <th>Action</th>
+          <th class="action">Action</th>
       </tr>
   </thead>
   <tbody>

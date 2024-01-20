@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Koordinator\DokumenController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Koordinator\PengumumanController;
 use App\Http\Controllers\Koordinator\DosenPembimbingController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +43,18 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/dosbing/update_tabel_dosbing', [DosenPembimbingController::class, 'update_tabel_dosbing']);
     Route::put('/dosbing/kelola_dosbing/update', [DosenPembimbingController::class, 'update']);
     Route::delete('/dosbing/kelola_dosbing/{dosenPembimbing}/delete', [DosenPembimbingController::class, 'destroy']);
+    
+    Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
+    Route::post('/informasi/kelola_pengumuman/tambah', [PengumumanController::class, 'store']);
+    Route::get('/informasi/update_tabel_pengumuman', [PengumumanController::class, 'update_tabel_pengumuman']);
+    Route::put('/informasi/kelola_pengumuman/{pengumuman}/update', [PengumumanController::class, 'update']);
+    Route::delete('/informasi/kelola_pengumuman/{pengumuman}/delete', [PengumumanController::class, 'destroy']);
+    
+    Route::get('/informasi/kelola_dokumen', [DokumenController::class, 'index']);
+    Route::post('/informasi/kelola_dokumen/tambah', [DokumenController::class, 'store']);
+    Route::get('/informasi/update_tabel_dokumen', [DokumenController::class, 'update_tabel_dokumen']);
+    Route::put('/informasi/kelola_dokumen/{dokumen}/update', [DokumenController::class, 'update']);
+    Route::delete('/informasi/kelola_dokumen/{dokumen}/delete', [DokumenController::class, 'destroy']);
 });
 
 Route::middleware(['auth', 'is.admin:0'])->group(function () {
