@@ -11,8 +11,8 @@ class Dokumen extends Model
 
     protected $table = 'dokumen';
     protected $primaryKey = 'id';
-    protected $keyType = 'string';
-    public $incrementing = false;
+    // protected $keyType = 'string';
+    // public $incrementing = false;
     public $timestamps = true;
     protected $guarded = [];
 }

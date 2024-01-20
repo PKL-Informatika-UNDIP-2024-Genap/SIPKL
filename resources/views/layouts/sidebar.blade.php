@@ -170,13 +170,28 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+        <li class="nav-item {{ Request::is('informasi*') ? 'menu-open' : '' }}">
+          <a href="#" class="nav-link {{ Request::is('informasi*') ? 'active' : '' }}">
             <i class="nav-icon fas bi bi-newspaper"></i>
             <p>
               Kelola Informasi
+              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/informasi/kelola_pengumuman" class="nav-link {{ Request::is('informasi/kelola_pengumuman') ? 'active' : '' }}">
+                <i class="far nav-icon bi bi-circle"></i>
+                <p>Pengumuman</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/informasi/kelola_dokumen" class="nav-link {{ Request::is('informasi/kelola_dokumen') ? 'active' : '' }}">
+                <i class="far nav-icon bi bi-circle"></i>
+                <p>Dokumen</p>
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
     </nav>
