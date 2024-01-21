@@ -13,6 +13,7 @@ body {
   font-style: normal;
   color: var(--body-color);
   overflow-x: hidden;
+  padding-right: 0px !important; /*prevent content shift to left when open modal*/
 }
 
 * {
@@ -240,6 +241,7 @@ p {
 
 .navbar-toggler {
   padding: 0;
+  border: none;
 }
 
 .navbar-toggler .toggler-icon {

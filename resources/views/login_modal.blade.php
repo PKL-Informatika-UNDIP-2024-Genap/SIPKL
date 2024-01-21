@@ -16,7 +16,7 @@
         </div>
 
         <div class="row d-flex justify-content-center">
-          <img src="/images/logo_undip.png" style="width: 100px;">
+          {{-- <img src="/images/logo_undip.png" style="width: 100px;"> --}}
           <img src="/images/logo_if.png" style="width: 100px;">
         </div>
         <div class="row text-center mt-2">
@@ -49,7 +49,7 @@
           </div>
         </form>
       </div>
-      
+
     </div>
   </div>
 </div>
