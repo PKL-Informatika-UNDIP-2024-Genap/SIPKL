@@ -20,4 +20,8 @@ class Mahasiswa extends Model
     public function dosen_pembimbing(){
         return $this->hasOne(DosenPembimbing::class,'nip','nip_dospem');
     }
+
+    public function pkl(){
+        return $this->hasOne(PKL::class,'nim','nim');
+    }
 }

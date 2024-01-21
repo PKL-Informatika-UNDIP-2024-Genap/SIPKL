@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             DosenPembimbingSeeder::class,
             MahasiswaSeeder::class,
             UserSeeder::class,
+            PeriodePKLSeeder::class,
         ]);
     }
 }
