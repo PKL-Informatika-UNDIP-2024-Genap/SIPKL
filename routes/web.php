@@ -4,6 +4,7 @@ use App\Http\Controllers\Koordinator\DokumenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Koordinator\PengumumanController;
 use App\Http\Controllers\Koordinator\DosenPembimbingController;
+use App\Http\Controllers\PKLController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -60,4 +61,8 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
 Route::middleware(['auth', 'is.admin:0'])->group(function () {
     Route::get('/update-data', [LoginController::class, 'editData'])->name('update-data');
     Route::put('/update-data', [LoginController::class, 'updateDataMahasiswa']);
+
+    Route::get('/registrasi', function () {
+        return view('mahasiswa.registrasi_pkl');
+    })->name('registrasi');
 });
