@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('periode_pkl', function (Blueprint $table) {
-            $table->string('id_periode', 15)->primary();
+            $table->string('id_periode', 16)->primary();
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
             $table->string('status',10)->nullable();

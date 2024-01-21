@@ -7,6 +7,7 @@ use App\Http\Controllers\Koordinator\DosenPembimbingController;
 use App\Http\Controllers\PKLController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +34,10 @@ route::middleware('guest')->group(function () {
 
 route::middleware('auth')->group(function () {
     Route::middleware('data.updated')->group(function () {
-        Route::get('/dashboard', [LoginController::class, 'dashboard']);
+        Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
     });
     Route::get('/logout', [LoginController::class, 'logout']);
+    Route::get('/preview/{filename}', [FileController::class, 'preview'])->where('filename', '.*');
 });
 
 Route::middleware(['auth', 'is.admin:1'])->group(function () {
@@ -44,13 +46,13 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/dosbing/update_tabel_dosbing', [DosenPembimbingController::class, 'update_tabel_dosbing']);
     Route::put('/dosbing/kelola_dosbing/update', [DosenPembimbingController::class, 'update']);
     Route::delete('/dosbing/kelola_dosbing/{dosenPembimbing}/delete', [DosenPembimbingController::class, 'destroy']);
-    
+
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
     Route::post('/informasi/kelola_pengumuman/tambah', [PengumumanController::class, 'store']);
     Route::get('/informasi/update_tabel_pengumuman', [PengumumanController::class, 'update_tabel_pengumuman']);
     Route::put('/informasi/kelola_pengumuman/{pengumuman}/update', [PengumumanController::class, 'update']);
     Route::delete('/informasi/kelola_pengumuman/{pengumuman}/delete', [PengumumanController::class, 'destroy']);
-    
+
     Route::get('/informasi/kelola_dokumen', [DokumenController::class, 'index']);
     Route::post('/informasi/kelola_dokumen/tambah', [DokumenController::class, 'store']);
     Route::get('/informasi/update_tabel_dokumen', [DokumenController::class, 'update_tabel_dokumen']);
@@ -62,7 +64,12 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
     Route::get('/update-data', [LoginController::class, 'editData'])->name('update-data');
     Route::put('/update-data', [LoginController::class, 'updateDataMahasiswa']);
 
-    Route::get('/registrasi', function () {
-        return view('mahasiswa.registrasi_pkl');
-    })->name('registrasi');
+    Route::get('/registrasi', [PKLController::class, 'registrasi'])->name('registrasi');
+    Route::put('/registrasi', [PKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
+
+    Route::get('/pkl', [PKLController::class, 'index'])->name('pkl.index');
+    Route::get('/seminar', function(){
+        return view('mahasiswa.seminar.index');
+    })->name('seminar.index');
+
 });

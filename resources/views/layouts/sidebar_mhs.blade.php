@@ -35,7 +35,7 @@
           <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/dashboard" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
+            <a href="/dashboard" class="nav-link {{ Request::is('dashboard')?'active':'' }}">
               <i class="nav-icon bi bi-speedometer"></i>
               <p>
                 Dashboard
@@ -44,7 +44,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="/registrasi" class="nav-link {{ Request::is('registrasi') ? 'active' : '' }}">
+            <a href="/registrasi" class="nav-link {{ Request::is('registrasi')?'active':'' }}">
               <i class="nav-icon bi bi-people-fill"></i>
               <p>
                 Registrasi PKL
@@ -68,7 +68,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link">
+            <a href="/pkl" class="nav-link {{ Request::is('pkl')?'active':'' }}">
               <i class="nav-icon bi bi-briefcase-fill"></i>
               <p>
                 PKL
@@ -77,7 +77,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link">
+            <a href="/seminar" class="nav-link {{ Request::is('seminar')?'active':'' }}">
               <i class="nav-icon bi bi-calendar2-week"></i>
               <p>
                 Seminar PKL

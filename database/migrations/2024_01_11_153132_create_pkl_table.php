@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('id',20)->primary();
             $table->string('instansi',100);
             $table->string('judul');
+            $table->string('scan_irs')->nullable();
             $table->tinyInteger('status')->unsigned()->default(0);
             $table->text('abstrak')->nullable();
             $table->string('keyword1',50)->nullable();
