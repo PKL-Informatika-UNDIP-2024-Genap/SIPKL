@@ -8,6 +8,8 @@ use App\Http\Controllers\PKLController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\RiwayatPKLController;
+use App\Http\Controllers\SeminarPKLController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,15 +63,14 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
 });
 
 Route::middleware(['auth', 'is.admin:0'])->group(function () {
-    Route::get('/update-data', [LoginController::class, 'editData'])->name('update-data');
-    Route::put('/update-data', [LoginController::class, 'updateDataMahasiswa']);
+    Route::get('/update_data', [LoginController::class, 'editData'])->name('update_data');
+    Route::put('/update_data', [LoginController::class, 'updateDataMahasiswa']);
 
-    Route::get('/registrasi', [PKLController::class, 'registrasi'])->name('registrasi');
+    Route::get('/registrasi', [PKLController::class, 'registrasi'])->middleware('status.mhs:Nonaktif')->name('registrasi');
     Route::put('/registrasi', [PKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
 
-    Route::get('/pkl', [PKLController::class, 'index'])->name('pkl.index');
-    Route::get('/seminar', function(){
-        return view('mahasiswa.seminar.index');
-    })->name('seminar.index');
+    Route::get('/pkl', [PKLController::class, 'index'])->middleware('data.updated');
+    Route::get('/seminar', [SeminarPKLController::class, 'index'])->middleware('status.mhs:Aktif');
 
+    Route::get('/riwayat', [RiwayatPKLController::class, 'index'])->middleware('data.updated');
 });

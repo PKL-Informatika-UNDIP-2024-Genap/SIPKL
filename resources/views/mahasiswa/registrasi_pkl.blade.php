@@ -19,16 +19,14 @@
   </div>
   <!-- /.content-header -->
 
-  @if ($mahasiswa->periode_pkl != $periode_sekarang)
-
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
       <!-- /.row (main row) -->
       <!-- general form elements -->
-      <div class="card card-primary">
+      <div class="card card-primary card-outline">
         <div class="card-header">
-          <h3 class="card-title">Registrasi Sekarang! Isi data berikut untuk menyatakan bahwa Anda mengikuti PKL pada semester ini.</h3>
+          <h3 class="card-title">Isi data berikut untuk menyatakan bahwa Anda mengikuti PKL pada semester ini.</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -134,7 +132,6 @@
     </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
-  @endif
 @endsection
 
 @push('scripts')
@@ -151,6 +148,16 @@
       const [file] = this.files
       if (file) {
         preview.src = URL.createObjectURL(file)
+      } else {
+        preview.style.display = 'none';
+      }
+    });
+    $("#checkbox1").change(function() {
+      if(this.checked) {
+        this.classList.remove('is-invalid');
+        this.classList.add('is-valid');
+      } else {
+        this.classList.remove('is-valid');
       }
     });
   </script>

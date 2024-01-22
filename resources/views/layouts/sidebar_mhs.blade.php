@@ -43,29 +43,18 @@
             </a>
           </li>
 
+          @if (auth()->user()->mahasiswa->status == "Nonaktif" && auth()->user()->mahasiswa->pkl->scan_irs == null)
+
           <li class="nav-item">
             <a href="/registrasi" class="nav-link {{ Request::is('registrasi')?'active':'' }}">
               <i class="nav-icon bi bi-people-fill"></i>
               <p>
                 Registrasi PKL
-                {{-- <i class="right fas fa-angle-left"></i> --}}
               </p>
             </a>
-            {{-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link">
-                  <i class="far nav-icon bi bi-circle"></i>
-                  <p>Kelola Dosen</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far nav-icon bi bi-circle"></i>
-                  <p>Kelola Bimbingan</p>
-                </a>
-              </li>
-            </ul> --}}
           </li>
+
+          @endif
 
           <li class="nav-item">
             <a href="/pkl" class="nav-link {{ Request::is('pkl')?'active':'' }}">
@@ -75,6 +64,8 @@
               </p>
             </a>
           </li>
+
+          @if (auth()->user()->mahasiswa->status == "Aktif")
 
           <li class="nav-item">
             <a href="/seminar" class="nav-link {{ Request::is('seminar')?'active':'' }}">
@@ -94,8 +85,10 @@
             </a>
           </li>
 
+          @endif
+
           <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link">
+            <a href="/riwayat" class="nav-link">
               <i class="nav-icon bi bi-clock-history"></i>
               <p>
                 Riwayat PKL

@@ -46,24 +46,35 @@
           <div class="timeline">
             <!-- timeline time label -->
             <div class="time-label">
-              <span class="bg-red">21 Jan 2024</span>
+              <span class="bg-red">1 Jan 2024</span>
             </div>
             <!-- /.timeline-label -->
+            <!-- timeline item -->
+            <div>
+              <i class="fas bi bi-people-fill bg-green"></i>
+              <div class="timeline-item">
+                <span class="time"><i class="fas bi bi-clock"></i> 5 mins ago</span>
+                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Koordinator</a> telah membagikan Dosen Pembimbing</h3>
+                <div class="timeline-body">
+                  Dosen Pembimbing Anda: {{ $mahasiswa->nama_dospem }}
+                </div>
+                <div class="timeline-footer">
+                  <a href="/profile" class="btn btn-primary btn-sm">Periksa</a>
+                </div>
+              </div>
+            </div>
+            <!-- END timeline item -->
             <!-- timeline item -->
             <div>
               <i class="fas bi bi-envelope-fill bg-blue"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> 12:05</span>
-                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
+                <h3 class="timeline-header"><a href="javascript:void(0)">Registrasi PKL</a></h3>
                 <div class="timeline-body">
-                  Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                  weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                  jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                  quora plaxo ideeli hulu weebly balihoo...
+                  Lakukan registrasi PKL segera setelah Anda mengambil IRS, dan serahkan bukti bahwa Anda telah mengambil PKL.
                 </div>
                 <div class="timeline-footer">
-                  <a class="btn btn-primary btn-sm">Read more</a>
+                  <a href="/registrasi" class="btn btn-primary btn-sm">Registrasi Sekarang</a>
                   <a class="btn btn-danger btn-sm">Delete</a>
                 </div>
               </div>
@@ -74,7 +85,7 @@
               <i class="fas bi bi-person-fill bg-green"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> 5 mins ago</span>
-                <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
+                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Koordinator</a> menerima Registrasi PKL Anda</h3>
               </div>
             </div>
             <!-- END timeline item -->
@@ -83,14 +94,12 @@
               <i class="fas bi bi-chat-fill bg-yellow"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> 27 mins ago</span>
-                <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Seminar PKL</a></h3>
                 <div class="timeline-body">
-                  Take me to your leader!
-                  Switzerland is small and neutral!
-                  We are more like Germany, ambitious and misunderstood!
+                  Perhatikan jadwal Seminar PKL. Jika Anda ingin mengajukan Seminar PKL Tak Terjadwal, lakukan pendaftaran terlebih dahulu.
                 </div>
                 <div class="timeline-footer">
-                  <a class="btn btn-warning btn-sm">View comment</a>
+                  <a class="btn btn-warning btn-sm">Lihat</a>
                 </div>
               </div>
             </div>
@@ -105,13 +114,12 @@
               <i class="fa bi bi-camera-fill bg-purple"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> 2 days ago</span>
-                <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Laporan PKL</a></h3>
                 <div class="timeline-body">
-                  <img src="https://placehold.it/150x100" alt="...">
-                  <img src="https://placehold.it/150x100" alt="...">
-                  <img src="https://placehold.it/150x100" alt="...">
-                  <img src="https://placehold.it/150x100" alt="...">
-                  <img src="https://placehold.it/150x100" alt="...">
+                  Kirim laporan PKL Anda pada halaman yang telah disediakan.
+                </div>
+                <div class="timeline-footer">
+                  <a href="javascript:void(0)" class="btn btn-sm bg-maroon">Lihat</a>
                 </div>
               </div>
             </div>
@@ -119,12 +127,9 @@
             <!-- timeline item -->
             <div>
               <i class="fas bi bi-camera-video-fill bg-maroon"></i>
-
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> 5 days ago</span>
-
-                <h3 class="timeline-header"><a href="#">Mr. Doe</a> shared a video</h3>
-
+                <h3 class="timeline-header"><a href="#">Tutorial</a></h3>
                 <div class="timeline-body">
                   <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tMWkeBIohBs" allowfullscreen></iframe>

@@ -13,7 +13,7 @@ class RiwayatPKLController extends Controller
      */
     public function index()
     {
-        //
+        return view('mahasiswa.riwayat_pkl');
     }
 
     /**
