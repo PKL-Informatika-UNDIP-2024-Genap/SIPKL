@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('instansi',100);
             $table->string('judul');
             $table->string('scan_irs')->nullable();
-            $table->tinyInteger('status')->unsigned()->default(0);
             $table->text('abstrak')->nullable();
             $table->string('keyword1',50)->nullable();
             $table->string('keyword2',50)->nullable();
@@ -26,6 +25,7 @@ return new class extends Migration
             $table->string('link_laporan')->nullable();
             $table->dateTime('tgl_laporan')->nullable();
             $table->string('pesan')->nullable();
+            $table->tinyInteger('status')->unsigned()->default(0);
             $table->char('nilai',1)->nullable();
             $table->string('nim',14);
         });

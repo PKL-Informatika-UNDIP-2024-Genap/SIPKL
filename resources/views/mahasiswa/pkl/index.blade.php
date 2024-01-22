@@ -31,14 +31,18 @@
 
       <!-- /.row (main row) -->
       <!-- data pkl -->
-      @if ($pkl->status == 1)
+      @if ($mahasiswa->status == "Aktif")
       <div class="card card-success">
         <div class="card-header">
           <h3 class="card-title">Selamat! Anda sudah berstatus Aktif mengikuti PKL pada semester ini.</h3>
-      @else
+      @elseif ($pkl->scan_irs != null)
       <div class="card card-primary">
         <div class="card-header">
           <h3 class="card-title">Menunggu diterima.</h3>
+      @else
+      <div class="card card-danger">
+        <div class="card-header">
+          <h3 class="card-title">Anda belum registrasi PKL.</h3>
       @endif
         </div>
         <!-- /.card-header -->
@@ -71,7 +75,6 @@
             </div>
           </div>
           <div class="callout callout-info text-secondary">
-            {{-- <p>Follow the steps to continue to payment.</p> --}}
             <p>*Anda dapat mengubah isian Instansi dan Judul lagi nanti.<br>Harap segera sesuaikan lagi dengan rencana PKL Anda.</p>
           </div>
           <div class="form-group">
@@ -95,7 +98,13 @@
           <div class="form-group">
             <label for="scan_irs">Scan IRS</label>
             <div class="input-group">
+              @if ($pkl->scan_irs != null)
               <a href="/preview/{{ $pkl->scan_irs }}" class="btn btn-info" >Preview</a>
+              @else
+              <div>
+                  Anda belum registrasi PKL ... <br><a href="/registrasi" class="btn btn-primary" >Registrasi Sekarang</a>
+              </div>
+              @endif
             </div>
           </div>
         </div>
@@ -109,13 +118,3 @@
   </section>
   <!-- /.content -->
 @endsection
-
-@push('scripts')
-  <!-- bs-custom-file-input -->
-  <script src="/lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-  <script>
-    $(function () {
-      bsCustomFileInput.init();
-    });
-  </script>
-@endpush

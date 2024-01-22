@@ -8,8 +8,6 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="/lte/plugins/fontawesome-free/css/all.min.css">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- Theme style -->
@@ -75,9 +73,9 @@
                 {{-- <h3 class="card-title">Pra Registrasi</h3> --}}
                 <h5 class="m-0 text-bold">Pra Registrasi</h5>
               </div>
-              <div class="card-body p-0">
+              <div class="card-body">
                 <div class="bs-stepper">
-                  <div class="bs-stepper-header" role="tablist">
+                  <div class="bs-stepper-header flex-wrap" role="tablist">
                     <!-- your steps here -->
                     <div class="step" data-target="#datapribadi-part">
                       <button type="button" class="step-trigger" role="tab" aria-controls="datapribadi-part" id="datapribadi-part-trigger">

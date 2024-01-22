@@ -33,7 +33,10 @@ class LoginController extends Controller
         if(auth()->user()->is_admin == 1){
             return view('koordinator.dashboard');
         }else{
-            return view('mahasiswa.dashboard');
+            return view('mahasiswa.dashboard', [
+                'mahasiswa' => auth()->user()->mahasiswa,
+                // 'pkl' => auth()->user()->mahasiswa->pkl,
+            ]);
         }
     }
 
@@ -49,16 +52,17 @@ class LoginController extends Controller
         $user = auth()->user();
         $mahasiswa = $user->mahasiswa;
         request()->no_wa = str_replace(['+', ' ', '_'], '', $request->no_wa);
+        $request->merge(['no_wa' => request()->no_wa]);
         $validatedData = $request->validate([
             'email' => 'required|unique:mahasiswa|regex:/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/',
             // 'no_wa' => 'required|max:20|regex:/^[0-9]{1,20}$/',
+            'no_wa' => 'required|unique:mahasiswa',
             'password' => 'required|min:8|max:32|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/',
             'konfirmasi_password' => 'required|same:password',
         ], [
             'password.regex' => 'Password must contain at least one letter and one number',
             'konfirmasi_password.same' => 'Konfirmasi Password field must match Password Baru',
         ]);
-        $validatedData['no_wa'] = request()->no_wa;
 
         $validatedDataPKL = $request->validate([
             'instansi' => 'required',
@@ -73,10 +77,13 @@ class LoginController extends Controller
         unset($validatedData['password']);
         unset($validatedData['konfirmasi_password']);
 
-        // dd($validatedData,$validatedDataPKL);
-        $mahasiswa->update($validatedData);
+        // dd($validatedData+['status' => 'Nonaktif']);
+        $mahasiswa->update($validatedData+['status' => 'Nonaktif']);
         PKL::create($validatedDataPKL);
-        $user->update(['password' => $new_password]);
+        $user->update([
+            'email' => $validatedData['email'],
+            'password' => $new_password,
+        ]);
 
         return redirect('/dashboard')->with('success', 'Data updated successfully');
     }

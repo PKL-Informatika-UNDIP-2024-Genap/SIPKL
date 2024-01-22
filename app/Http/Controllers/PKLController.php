@@ -70,6 +70,9 @@ class PKLController extends Controller
 
     public function registrasi()
     {
+        if (auth()->user()->mahasiswa->pkl->scan_irs != null) {
+            return redirect('/pkl');
+        }
         $periode_sekarang = PeriodePKL::where('tgl_selesai', '>=', date('Y-m-d'))->where('tgl_mulai', '<', date('Y-m-d'))->orderBy('tgl_mulai', 'desc')->first();
         return view('mahasiswa.registrasi_pkl', [
             'periode_sekarang' => $periode_sekarang->id_periode,
