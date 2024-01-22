@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="m-0">Tambah Dosen Pembimbing</h5>
+        <h5 class="m-0">Edit Dosen Pembimbing</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -52,7 +52,7 @@
           </div>
           <div class="row d-flex justify-content-center">
             <div class="col-auto">
-              <button id="update-dosbing" class="btn btn-primary">Submit</button>
+              <button id="update-dosbing" class="btn btn-primary">Update</button>
             </div>
           </div>
         </form>

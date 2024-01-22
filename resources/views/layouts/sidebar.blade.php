@@ -71,8 +71,8 @@
           </ul>
         </li>
 
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+        <li class="nav-item {{ Request::is('mhs*') ? 'menu-open' : '' }}">
+          <a href="#" class="nav-link {{ Request::is('mhs*') ? 'active' : '' }}">
             <i class="nav-icon fas bi bi-person-fill"></i>
             <p>
               Mahasiswa
@@ -81,13 +81,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="./index.html" class="nav-link">
+              <a href="/mhs/kelola_mhs" class="nav-link {{ Request::is('mhs/kelola_mhs') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
                 <p>Kelola Mahasiswa</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index2.html" class="nav-link">
+              <a href="/mhs/assign_dosbing" class="nav-link {{ Request::is('mhs/assign_dosbing') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
                 <p>Assign Dosbing</p>
               </a>

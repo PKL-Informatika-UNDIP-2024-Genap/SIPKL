@@ -11,6 +11,8 @@ function simpleDatatable() {
 		lengthMenu: [5, 10, 25, 50],
 		pageLength: 10
 	});
+
+	$('#myTable_filter input').css('width', '210px');
 	
 	table
 			.on('order.dt search.dt', function () {

@@ -16,7 +16,7 @@ class DosenPembimbingController extends Controller
      */
     public function index()
     {
-        return view('koordinator.dosbing.kelola_dosbing', [
+        return view('koordinator.dosbing.kelola_dosbing.index', [
             'dosbing' => DosenPembimbing::all()
         ]);
     }
@@ -101,5 +101,10 @@ class DosenPembimbingController extends Controller
             'status' => 200,
             'view' => $view,
         ]);
+    }
+
+    public function bebang_bimbingan()
+    {
+        
     }
 }

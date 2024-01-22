@@ -4,6 +4,7 @@ use App\Http\Controllers\Koordinator\DokumenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Koordinator\PengumumanController;
 use App\Http\Controllers\Koordinator\DosenPembimbingController;
+use App\Http\Controllers\Koordinator\MahasiswaController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,19 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::put('/dosbing/kelola_dosbing/update', [DosenPembimbingController::class, 'update']);
     Route::delete('/dosbing/kelola_dosbing/{dosenPembimbing}/delete', [DosenPembimbingController::class, 'destroy']);
     
+    Route::get('/dosbing/beban_bimbingan/', [DosenPembimbingController::class, 'index']);
+    
+
+    Route::get('/mhs/kelola_mhs/', [MahasiswaController::class, 'index']);
+    Route::post('/mhs/kelola_mhs/tambah', [MahasiswaController::class, 'store']);
+    Route::get('/mhs/update_tabel_mhs', [MahasiswaController::class, 'update_tabel_mhs']);
+    Route::put('/mhs/kelola_mhs/update', [MahasiswaController::class, 'update']);
+    Route::delete('/mhs/kelola_mhs/{mahasiswa}/delete', [MahasiswaController::class, 'destroy']);
+    Route::put('/mhs/kelola_mhs/{nim}/reset_pass', [MahasiswaController::class, 'reset_password']);
+    Route::get('/mhs/kelola_mhs/{nim}/get_data_pkl', [MahasiswaController::class, 'get_data_pkl']);
+
+
+
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
     Route::post('/informasi/kelola_pengumuman/tambah', [PengumumanController::class, 'store']);
     Route::get('/informasi/update_tabel_pengumuman', [PengumumanController::class, 'update_tabel_pengumuman']);

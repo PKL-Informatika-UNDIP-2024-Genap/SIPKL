@@ -73,11 +73,11 @@
 <!-- /.content -->
 
 {{-- modal add dosbing --}}
-@include('koordinator.dosbing.modal_add_dosbing')
+@include('koordinator.dosbing.kelola_dosbing.modal_add_dosbing')
 {{-- end modal add dosbing --}}
 
 {{-- modal edit dosbing --}}
-@include('koordinator.dosbing.modal_edit_dosbing')
+@include('koordinator.dosbing.kelola_dosbing.modal_edit_dosbing')
 {{-- end modal edit dosbing --}}
 <script src="/js/ajax-dosbing.js"></script>
 

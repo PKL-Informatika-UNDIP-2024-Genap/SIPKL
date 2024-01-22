@@ -1,0 +1,5 @@
+.col-fixed-400 {
+  flex: 0 0 300px;
+  max-width: 300px;
+  min-width: 300px;
+}
