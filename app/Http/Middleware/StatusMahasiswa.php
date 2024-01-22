@@ -6,20 +6,18 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class EnsureDataUpdated
+class StatusMahasiswa
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, $Status): Response
     {
-        if (auth()->user()->is_admin == 0){
-            if (auth()->user()->mahasiswa->email == null) {
-                return redirect()->route('update_data');
-            }
+        if (auth()->user()->mahasiswa->status == $Status) {
+            return $next($request);
         }
-        return $next($request);
+        return redirect("/");
     }
 }

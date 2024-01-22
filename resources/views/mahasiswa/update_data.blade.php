@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="hiddenscroll">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>SIPKL</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="/lte/plugins/fontawesome-free/css/all.min.css">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- Theme style -->
@@ -18,7 +17,8 @@
   <link rel="stylesheet" href="/lte/plugins/bs-stepper/css/bs-stepper.min.css">
 
   <style>
-    .showscroll {
+    html {
+      scrollbar-gutter: stable;
       scrollbar-width: thin; /* Firefox */
       -ms-overflow-style: none; /* IE 10+ */
       ::-webkit-scrollbar-track {
@@ -31,21 +31,6 @@
       }
         ::-webkit-scrollbar-thumb {
         background-color: #acacac;
-      }
-    }
-    .hiddenscroll {
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE 10+ */
-      ::-webkit-scrollbar-track {
-        -webkit-box-shadow: none !important;
-        background-color: transparent;
-      }
-      ::-webkit-scrollbar {
-        width: .6rem !important;
-        background-color: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background-color: transparent;
       }
     }
   </style>
@@ -75,13 +60,6 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="container">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0"> Pra Registrasi</h1>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
@@ -92,11 +70,12 @@
           <div class="col-md-12">
             <div class="card card-default">
               <div class="card-header">
-                <h3 class="card-title">Pra Registrasi</h3>
+                {{-- <h3 class="card-title">Pra Registrasi</h3> --}}
+                <h5 class="m-0 text-bold">Pra Registrasi</h5>
               </div>
-              <div class="card-body p-0">
+              <div class="card-body">
                 <div class="bs-stepper">
-                  <div class="bs-stepper-header" role="tablist">
+                  <div class="bs-stepper-header flex-wrap" role="tablist">
                     <!-- your steps here -->
                     <div class="step" data-target="#datapribadi-part">
                       <button type="button" class="step-trigger" role="tab" aria-controls="datapribadi-part" id="datapribadi-part-trigger">
@@ -171,6 +150,9 @@
                               <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
                             </div>
                             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Masukkan password baru..." value="{{ old('password') }}">
+                            <div class="input-group-append">
+                              <button class="input-group-text btn btn-outline-primary" type="button" id="passwordTgBtn"><i class="bi bi-eye"></i></button>
+                            </div>
                             @error('password')
                               <div class="invalid-feedback">
                                 {{ $message }}
@@ -185,6 +167,9 @@
                               <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
                             </div>
                             <input type="password" class="form-control @error('konfirmasi_password') is-invalid @enderror" id="konfirmasi_password" name="konfirmasi_password" placeholder="Masukkan ulang password..." value="{{ old('konfirmasi_password') }}">
+                            <div class="input-group-append">
+                              <button class="input-group-text btn btn-outline-primary" type="button" id="konfirmasiPasswordTgBtn"><i class="bi bi-eye"></i></button>
+                            </div>
                             @error('konfirmasi_password')
                               <div class="invalid-feedback">
                                 {{ $message }}
@@ -298,25 +283,29 @@
     form.submit();
   }
 
-  // Scrollbar
-  var html = document.documentElement;
-  startTime = Date.now();
-  function showScrollbar() {
-    html.classList.add('showscroll');
-    html.classList.remove('hiddenscroll');
-    startTime = Date.now();
-  }
-  var interval = setInterval(() => {
-    if (Date.now() > startTime+500){
-      html.classList.remove('showscroll');
-      html.classList.add('hiddenscroll');
+  // Toggle password visibility
+  const passwordInput = document.getElementById('password');
+  const konfirmasiPasswordInput = document.getElementById('konfirmasi_password');
+  const passwordTgBtn = document.getElementById('passwordTgBtn');
+  const konfirmasiPasswordTgBtn = document.getElementById('konfirmasiPasswordTgBtn');
+
+  passwordTgBtn.addEventListener('click', function () {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    if (type === 'password') {
+      passwordTgBtn.innerHTML = '<i class="bi bi-eye"></i>';
+    } else {
+      passwordTgBtn.innerHTML = '<i class="bi bi-eye-slash"></i>';
     }
-  }, 600);
-  window.addEventListener('scroll', () => {
-    showScrollbar();
   });
-  window.addEventListener('click', () => {
-    showScrollbar();
+  konfirmasiPasswordTgBtn.addEventListener('click', function () {
+    const type2 = konfirmasiPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    konfirmasiPasswordInput.setAttribute('type', type2);
+    if (type2 === 'password') {
+      konfirmasiPasswordTgBtn.innerHTML = '<i class="bi bi-eye"></i>';
+    } else {
+      konfirmasiPasswordTgBtn.innerHTML = '<i class="bi bi-eye-slash"></i>';
+    }
   });
 </script>
 </body>

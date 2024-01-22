@@ -23,7 +23,7 @@
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
             <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
+              <i class="bi bi-search"></i>
             </button>
           </div>
         </div>
@@ -35,50 +35,41 @@
           <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/dashboard" class="nav-link">
-              <i class="nav-icon fas bi bi-speedometer"></i>
+            <a href="/dashboard" class="nav-link {{ Request::is('dashboard')?'active':'' }}">
+              <i class="nav-icon bi bi-speedometer"></i>
               <p>
                 Dashboard
               </p>
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link">
-              <i class="nav-icon fas bi bi-people-fill"></i>
-              <p>
-                Registrasi PKL
-                {{-- <i class="right fas fa-angle-left"></i> --}}
-              </p>
-            </a>
-            {{-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link">
-                  <i class="far nav-icon bi bi-circle"></i>
-                  <p>Kelola Dosen</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far nav-icon bi bi-circle"></i>
-                  <p>Kelola Bimbingan</p>
-                </a>
-              </li>
-            </ul> --}}
-          </li>
+          @if (auth()->user()->mahasiswa->status == "Nonaktif" && auth()->user()->mahasiswa->pkl->scan_irs == null)
 
           <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link">
-              <i class="nav-icon fas bi bi-briefcase-fill"></i>
+            <a href="/registrasi" class="nav-link {{ Request::is('registrasi')?'active':'' }}">
+              <i class="nav-icon bi bi-people-fill"></i>
+              <p>
+                Registrasi PKL
+              </p>
+            </a>
+          </li>
+
+          @endif
+
+          <li class="nav-item">
+            <a href="/pkl" class="nav-link {{ Request::is('pkl')?'active':'' }}">
+              <i class="nav-icon bi bi-briefcase-fill"></i>
               <p>
                 PKL
               </p>
             </a>
           </li>
 
+          @if (auth()->user()->mahasiswa->status == "Aktif")
+
           <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link">
-              <i class="nav-icon fas bi bi-calendar2-week"></i>
+            <a href="/seminar" class="nav-link {{ Request::is('seminar')?'active':'' }}">
+              <i class="nav-icon bi bi-calendar2-week"></i>
               <p>
                 Seminar PKL
               </p>
@@ -87,16 +78,18 @@
 
           <li class="nav-item">
             <a href="javascript:void(0)" class="nav-link">
-              <i class="nav-icon fas bi bi-journal-text"></i>
+              <i class="nav-icon bi bi-journal-text"></i>
               <p>
                 Pengumpulan Laporan
               </p>
             </a>
           </li>
 
+          @endif
+
           <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link">
-              <i class="nav-icon fas bi bi-clock-history"></i>
+            <a href="/riwayat" class="nav-link">
+              <i class="nav-icon bi bi-clock-history"></i>
               <p>
                 Riwayat PKL
               </p>

@@ -16,7 +16,7 @@
         @if (auth()->user()->is_admin == 1)
           <a href="#" class="d-block">{{ auth()->user()->koordinator->nama }}</a>
         @else
-          <a href="#" class="d-block">{{ auth()->user()->mahasiswa->nama }}</a>  
+          <a href="#" class="d-block">{{ auth()->user()->mahasiswa->nama }}</a>
         @endif
       </div>
     </div>
@@ -193,6 +193,8 @@
             </li>
           </ul>
         </li>
+
+        <br>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
