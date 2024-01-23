@@ -73,17 +73,20 @@
 <!-- /.content -->
 
 {{-- modal add dosbing --}}
-@include('koordinator.dosbing.modal_add_dosbing')
+@include('koordinator.dosbing.kelola_dosbing.modal_add_dosbing')
 {{-- end modal add dosbing --}}
 
 {{-- modal edit dosbing --}}
-@include('koordinator.dosbing.modal_edit_dosbing')
+@include('koordinator.dosbing.kelola_dosbing.modal_edit_dosbing')
 {{-- end modal edit dosbing --}}
+
+@endsection
+
+@push('scripts')
 <script src="/js/ajax-dosbing.js"></script>
 
 <script src="/js/datatables-jquery.js"></script>
 <script>
   simpleDatatable();
 </script>
-
-@endsection
+@endpush

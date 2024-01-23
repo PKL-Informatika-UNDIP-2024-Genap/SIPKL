@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Koordinator\PengumumanController;
 use App\Http\Controllers\Koordinator\DosenPembimbingController;
 use App\Http\Controllers\PKLController;
+use App\Http\Controllers\Koordinator\MahasiswaController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
@@ -48,6 +49,19 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/dosbing/update_tabel_dosbing', [DosenPembimbingController::class, 'update_tabel_dosbing']);
     Route::put('/dosbing/kelola_dosbing/update', [DosenPembimbingController::class, 'update']);
     Route::delete('/dosbing/kelola_dosbing/{dosenPembimbing}/delete', [DosenPembimbingController::class, 'destroy']);
+    
+    Route::get('/dosbing/beban_bimbingan/', [DosenPembimbingController::class, 'index']);
+    
+
+    Route::get('/mhs/kelola_mhs/', [MahasiswaController::class, 'index']);
+    Route::post('/mhs/kelola_mhs/tambah', [MahasiswaController::class, 'store']);
+    Route::get('/mhs/update_tabel_mhs', [MahasiswaController::class, 'update_tabel_mhs']);
+    Route::put('/mhs/kelola_mhs/update', [MahasiswaController::class, 'update']);
+    Route::delete('/mhs/kelola_mhs/{mahasiswa}/delete', [MahasiswaController::class, 'destroy']);
+    Route::put('/mhs/kelola_mhs/{nim}/reset_pass', [MahasiswaController::class, 'reset_password']);
+    Route::get('/mhs/kelola_mhs/{nim}/get_data_pkl', [MahasiswaController::class, 'get_data_pkl']);
+
+
 
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
     Route::post('/informasi/kelola_pengumuman/tambah', [PengumumanController::class, 'store']);
@@ -69,7 +83,7 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
     Route::get('/registrasi', [PKLController::class, 'registrasi'])->middleware('status.mhs:Nonaktif')->name('registrasi');
     Route::put('/registrasi', [PKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
 
-    Route::get('/pkl', [PKLController::class, 'index'])->middleware('data.updated');
+    Route::get('/pkl', [PKLController::class, 'index'])->middleware('data.updated')->name('pkl.index');
     Route::get('/seminar', [SeminarPKLController::class, 'index'])->middleware('status.mhs:Aktif');
 
     Route::get('/riwayat', [RiwayatPKLController::class, 'index'])->middleware('data.updated');

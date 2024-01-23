@@ -78,11 +78,12 @@
 {{-- modal edit dokumen --}}
 @include('koordinator.informasi.dokumen.modal_edit_dokumen')
 {{-- end modal edit dokumen --}}
+@endsection
 
+@push('scripts')
 <script src="/js/datatables-jquery.js"></script>
 <script>
   simpleDatatable();
 </script>
 <script src="/js/ajax-dokumen.js"></script>
-
-@endsection
+@endpush

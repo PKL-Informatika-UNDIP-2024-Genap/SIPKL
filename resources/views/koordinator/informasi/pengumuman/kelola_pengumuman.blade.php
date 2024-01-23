@@ -78,11 +78,12 @@
 {{-- modal edit pengumuman --}}
 @include('koordinator.informasi.pengumuman.modal_edit_pengumuman')
 {{-- end modal edit pengumuman --}}
+@endsection
 
+@push('scripts')
 <script src="/js/datatables-jquery.js"></script>
 <script>
   simpleDatatable();
 </script>
 <script src="/js/ajax-pengumuman.js"></script>
-
-@endsection
+@endpush
