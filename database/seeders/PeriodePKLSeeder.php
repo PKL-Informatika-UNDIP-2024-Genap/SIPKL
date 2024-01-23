@@ -15,34 +15,29 @@ class PeriodePKLSeeder extends Seeder
     public function run(): void
     {
         PeriodePKL::create([
-            'id' => 1,
-            'tgl_mulai' => '2022-01-01',
-            'tgl_selesai' => '2022-08-15',
-            'status' => 'aktif',
+            'id_periode' => "2021/2022 Genap",
+            'tgl_mulai' => Carbon::parse('2022-01-01'),
+            'tgl_selesai' => Carbon::parse('2022-08-15'),
         ]);
         PeriodePKL::create([
-            'id' => 2,
-            'tgl_mulai' => '2022-08-01',
-            'tgl_selesai' => '2023-01-15',
-            'status' => 'aktif',
+            'id_periode' => "2022/2023 Ganjil",
+            'tgl_mulai' => Carbon::parse('2022-08-01'),
+            'tgl_selesai' => Carbon::parse('2023-01-15'),
         ]);
         PeriodePKL::create([
-            'id' => 3,
-            'tgl_mulai' => '2023-01-01',
-            'tgl_selesai' => '2023-08-15',
-            'status' => 'aktif',
+            'id_periode' => "2022/2023 Genap",
+            'tgl_mulai' => Carbon::parse('2023-01-01'),
+            'tgl_selesai' => Carbon::parse('2023-08-15'),
         ]);
         PeriodePKL::create([
-            'id' => 4,
-            'tgl_mulai' => '2023-08-01',
-            'tgl_selesai' => '2024-01-15',
-            'status' => 'aktif',
+            'id_periode' => "2023/2024 Ganjil",
+            'tgl_mulai' => Carbon::parse('2023-08-01'),
+            'tgl_selesai' => Carbon::parse('2024-01-15'),
         ]);
         PeriodePKL::create([
-            'id' => 5,
-            'tgl_mulai' => '2024-01-01',
-            'tgl_selesai' => '2024-08-15',
-            'status' => 'aktif',
+            'id_periode' => "2023/2024 Genap",
+            'tgl_mulai' => Carbon::parse('2024-01-01'),
+            'tgl_selesai' => Carbon::parse('2024-08-15'),
         ]);
     }
 }

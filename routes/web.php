@@ -83,7 +83,7 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
     Route::get('/registrasi', [PKLController::class, 'registrasi'])->middleware('status.mhs:Nonaktif')->name('registrasi');
     Route::put('/registrasi', [PKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
 
-    Route::get('/pkl', [PKLController::class, 'index'])->middleware('data.updated');
+    Route::get('/pkl', [PKLController::class, 'index'])->middleware('data.updated')->name('pkl.index');
     Route::get('/seminar', [SeminarPKLController::class, 'index'])->middleware('status.mhs:Aktif');
 
     Route::get('/riwayat', [RiwayatPKLController::class, 'index'])->middleware('data.updated');

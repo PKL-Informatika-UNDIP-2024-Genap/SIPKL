@@ -93,7 +93,7 @@ class DosenPembimbingController extends Controller
     public function update_tabel_dosbing()
     {
         $dosbing = DosenPembimbing::all();
-        $view = view('koordinator.dosbing.update_tabel_dosbing', [
+        $view = view('koordinator.dosbing.kelola_dosbing.update_tabel_dosbing', [
             'dosbing' => $dosbing
         ])->render();
 

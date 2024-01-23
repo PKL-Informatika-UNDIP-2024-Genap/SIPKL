@@ -26,78 +26,78 @@
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+      </ul>
 
-<div class="wrapper">
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-    </ul>
+      <!-- Right navbar links -->
+      <div class="navbar-nav ml-auto">
+        <a href="/logout" class="btn btn-primary ">Logout</a>
+      </div>
+    </nav>
+    <!-- /.navbar -->
 
-    <!-- Right navbar links -->
-    <div class="navbar-nav ml-auto">
-      <a href="/logout" class="btn btn-primary ">Logout</a>
+    <!-- Main Sidebar Container -->
+    @if (auth()->user()->is_admin == 1)
+      @include('layouts.sidebar')
+    @else
+      @include('layouts.sidebar_mhs')
+    @endif
+    <!-- /.Main Sidebar Container -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      @yield('container')
     </div>
-  </nav>
-  <!-- /.navbar -->
+    <!-- /.content-wrapper -->
 
-  <!-- Main Sidebar Container -->
-  @if (auth()->user()->is_admin == 1)
-    @include('layouts.sidebar')
-  @else
-    @include('layouts.sidebar_mhs')
-  @endif
-  <!-- /.Main Sidebar Container -->
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2024 <a href="javascript:void(0)">Under development</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 1.0.0
+      </div>
+    </footer>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    @yield('container')
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
-  <!-- /.content-wrapper -->
+  <!-- ./wrapper -->
 
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="javascript:void(0)">Under development</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0.0
-    </div>
-  </footer>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
+  <!-- jQuery -->
+  <script src="/lte/plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="/lte/plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  {{-- <script src="/lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
+  <!-- Bootstrap 5 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script><!-- SweetAlert2 -->
 
-<!-- jQuery -->
-<script src="/lte/plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="/lte/plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-{{-- <script src="/lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
-<!-- Bootstrap 5 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script><!-- SweetAlert2 -->
+  <script src="/lte/plugins/sweetalert2/sweetalert2.min.js"></script>
 
-<script src="/lte/plugins/sweetalert2/sweetalert2.min.js"></script>
-
-<!-- overlayScrollbars -->
-<script src="/lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/lte/dist/js/adminlte.js"></script>
-@stack('scripts')
+  <!-- overlayScrollbars -->
+  <script src="/lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/lte/dist/js/adminlte.js"></script>
+  @stack('scripts')
 
 </body>
 </html>

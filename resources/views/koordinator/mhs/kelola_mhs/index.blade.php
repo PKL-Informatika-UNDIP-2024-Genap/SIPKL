@@ -122,12 +122,12 @@
 {{-- end modal edit mhs --}}
 
 @include('koordinator.mhs.kelola_mhs.modal_detail_mhs')
+@endsection
 
+@push('scripts')
 <script src="/js/ajax-mhs.js"></script>
-
 <script src="/js/datatables-jquery.js"></script>
 <script>
   simpleDatatable();
 </script>
-
-@endsection
+@endpush
