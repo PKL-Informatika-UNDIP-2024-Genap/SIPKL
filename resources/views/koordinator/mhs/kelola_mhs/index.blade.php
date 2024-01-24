@@ -33,7 +33,7 @@
             </button>
           </div>
           <div class="col-auto">
-            <button type="button" id="btn-import" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal_add">
+            <button type="button" id="btn-import" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal_import_mhs">
               Import Data
             </button>
           </div>
@@ -87,7 +87,7 @@
                       <td>
                           <div class="btn btn-primary btn-detail-mhs" data-bs-toggle="modal" data-bs-target="#modal_detail_mhs"
                             data-nim="{{ $mhs->nim }}" data-nama="{{ $mhs->nama }}" data-status="{{ $mhs->status }}" 
-                            data-no-wa="{{ $mhs->no_wa }}" data-email="{{ $mhs->email }}" data-nip-dospem="{{ $mhs->nip_dospem }}"
+                            data-no-wa="{{ $mhs->no_wa }}" data-email="{{ $mhs->email }}" data-nip-dosbing="{{ $mhs->nip_dospem }}"
                             data-periode-pkl="{{ $mhs->periode_pkl }}">
                             Detail
                           </div>
@@ -122,6 +122,8 @@
 {{-- end modal edit mhs --}}
 
 @include('koordinator.mhs.kelola_mhs.modal_detail_mhs')
+
+@include('koordinator.mhs.kelola_mhs.modal_import_mhs')
 @endsection
 
 @push('scripts')

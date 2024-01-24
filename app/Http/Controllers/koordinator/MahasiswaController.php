@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Koordinator;
 
 use App\Http\Controllers\Controller;
+use App\Imports\MahasiswaImport;
+use App\Imports\UsersImport;
+use App\Models\DosenPembimbing;
 use App\Models\Mahasiswa;
 use App\Models\PKL;
 use App\Models\User;
@@ -55,6 +58,47 @@ class MahasiswaController extends Controller
             'message' => 'Request successful',
         ], 200);
     }
+
+    public function import(Request $request)
+    {
+        $validatedData = $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
+        ],
+        [
+            'file.required' => 'File tidak boleh kosong',
+            'file.mimes' => 'File harus berupa file excel',
+        ]);
+
+        try {
+            $file = $request->file('file');
+
+            $import = new MahasiswaImport;
+            $import->import($file);
+            $importUsers = new UsersImport(Hash::make("12345"));
+            $importUsers->import($file);
+
+            $error_row = [];
+            $error_message = [];
+            foreach ($importUsers->failures() as $failure) {
+                array_push($error_row, $failure->row());
+                array_push($error_message, $failure->errors());
+            }
+        } catch (\PDOException $e) {
+            return response()->json([
+                'status' => 500,
+                'message' => 'Request failed',
+                'errors' => $e->getMessage(),
+            ], 500);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Request successful',
+            'error_row' => $error_row,
+            'error_message' => $error_message,
+        ], 200);
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -126,7 +170,18 @@ class MahasiswaController extends Controller
 
         return response()->json([
             'status' => 200,
-            'pkl' => $pkl,
+            'judul_pkl' => $pkl->judul,
+            'instansi' => $pkl->instansi,
+        ]);
+    }
+
+    public function get_data_dosbing($nip)
+    {
+        $dosbing = DosenPembimbing::where('nip', $nip)->first();
+
+        return response()->json([
+            'status' => 200,
+            'nama_dosbing' => $dosbing->nama,
         ]);
     }
 }
