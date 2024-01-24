@@ -55,6 +55,18 @@
 </div>
 
 <script>
+  // disable submit button
+  $('form').submit(function() {
+    // show spinner on button
+    $('button[type=submit]').html(`
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Memuat...
+    `);
+    $('button[type=submit]').attr('disabled', true);
+  });
+</script>
+
+<script>
   const passwordInput = document.getElementById('password');
   const togglePasswordButton = document.getElementById('togglePassword');
 
