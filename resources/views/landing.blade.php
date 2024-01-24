@@ -33,7 +33,7 @@
           background-color: transparent !important;
         }
         ::-webkit-scrollbar {
-          width: .6rem !important;
+          /* width: .6rem !important; */
           background-color: transparent;
         }
         ::-webkit-scrollbar-thumb {

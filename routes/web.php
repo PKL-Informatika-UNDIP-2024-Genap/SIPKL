@@ -41,6 +41,9 @@ route::middleware('auth')->group(function () {
     });
     Route::get('/logout', [LoginController::class, 'logout']);
     Route::get('/preview/{filename}', [FileController::class, 'preview'])->where('filename', '.*');
+
+    Route::post('/tmp_upload', [PKLController::class, 'tmpUpload']);
+    Route::delete('/tmp_delete', [PKLController::class, 'tmpDelete']);
 });
 
 Route::middleware(['auth', 'is.admin:1'])->group(function () {
@@ -49,9 +52,9 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/dosbing/update_tabel_dosbing', [DosenPembimbingController::class, 'update_tabel_dosbing']);
     Route::put('/dosbing/kelola_dosbing/update', [DosenPembimbingController::class, 'update']);
     Route::delete('/dosbing/kelola_dosbing/{dosenPembimbing}/delete', [DosenPembimbingController::class, 'destroy']);
-    
+
     Route::get('/dosbing/beban_bimbingan/', [DosenPembimbingController::class, 'index']);
-    
+
 
     Route::get('/mhs/kelola_mhs/', [MahasiswaController::class, 'index']);
     Route::post('/mhs/kelola_mhs/tambah', [MahasiswaController::class, 'store']);
@@ -81,10 +84,11 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
     Route::put('/update_data', [LoginController::class, 'updateDataMahasiswa']);
 
     Route::get('/registrasi', [PKLController::class, 'registrasi'])->middleware('status.mhs:Nonaktif')->name('registrasi');
-    Route::put('/registrasi', [PKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
+    Route::post('/registrasi', [PKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
 
     Route::get('/pkl', [PKLController::class, 'index'])->middleware('data.updated')->name('pkl.index');
-    Route::get('/seminar', [SeminarPKLController::class, 'index'])->middleware('status.mhs:Aktif');
+
+    Route::get('/seminar', [SeminarPKLController::class, 'index'])->middleware('status.mhs:Aktif')->name('seminar.index');
 
     Route::get('/riwayat', [RiwayatPKLController::class, 'index'])->middleware('data.updated');
 });

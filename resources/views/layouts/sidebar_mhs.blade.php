@@ -88,7 +88,7 @@
           @endif
 
           <li class="nav-item">
-            <a href="/riwayat" class="nav-link">
+            <a href="/riwayat" class="nav-link {{ Request::is('riwayat')?'active':'' }}">
               <i class="nav-icon bi bi-clock-history"></i>
               <p>
                 Riwayat PKL
