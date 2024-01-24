@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\PKL;
+use App\Models\PeriodePKL;
+use Illuminate\Http\Request;
+use App\Models\TemporaryFile;
 use App\Http\Requests\StorePKLRequest;
 use App\Http\Requests\UpdatePKLRequest;
-use App\Models\PeriodePKL;
+use Illuminate\Support\Facades\Storage;
 
 class PKLController extends Controller
 {
@@ -81,26 +84,77 @@ class PKLController extends Controller
         ]);
     }
 
+    /**
+     * Upload a file to temporary storage.
+     */
+    public function tmpUpload(Request $request)
+    {
+        if ($request->hasFile('scan_irs')) {
+            $file = $request->file('scan_irs');
+            $filename = $file->getClientOriginalName();
+            $folder = uniqid() . '-' . now()->timestamp;
+            $file->storeAs('private/scan_irs/tmp/' . $folder, $filename);
+            TemporaryFile::create([
+                'folder' => $folder,
+                'filename' => $filename,
+            ]);
+            return $folder;
+        }
+        return '';
+    }
+
+    public function tmpDelete(Request $request) {
+        $tmp_file = TemporaryFile::where('folder', request()->getContent())->first();
+        if ($tmp_file) {
+            Storage::deleteDirectory('private/scan_irs/tmp/'.$tmp_file->folder);
+            $tmp_file->delete();
+        }
+        return response('');
+    }
+
     public function submitRegistrasi(UpdatePKLRequest $request)
     {
         $pkl = auth()->user()->mahasiswa->pkl;
-        $validatedData = $request->validate([
+        $validator = validator()->make($request->all(), [
             'periode' => 'required',
             'instansi' => 'required',
             'judul' => 'required',
-            'scan_irs' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'scan_irs' => 'required',
             'checkbox1' => 'required',
         ]);
-        $validatedData['scan_irs'] = $request->file('scan_irs')->storeAs('private/scan_irs', $pkl->nim . '.' . $request->file('scan_irs')->extension());
 
-        $pkl->update([
-            'instansi' => $validatedData['instansi'],
-            'judul' => $validatedData['judul'],
-            'scan_irs' => $validatedData['scan_irs'],
-        ]);
-        auth()->user()->mahasiswa->update([
-            'periode_pkl' => $validatedData['periode'],
-        ]);
-        return redirect()->route('pkl.index')->with('success', 'Berhasil mengubah data PKL');
+        $tmp_file = TemporaryFile::where('folder', $request->scan_irs)->first();
+        if ($validator->fails() || !$tmp_file) {
+            if ($tmp_file) {
+                Storage::deleteDirectory('private/scan_irs/tmp/'.$tmp_file->folder);
+                $tmp_file->delete();
+            }
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        // $validatedData = $request->validate([
+        //     'periode' => 'required',
+        //     'instansi' => 'required',
+        //     'judul' => 'required',
+        //     'checkbox1' => 'required',
+        // ]);
+
+        if ($tmp_file) {
+            $extension = pathinfo(storage_path('/private/scan_irs/tmp/'.$tmp_file->folder.'/'.$tmp_file->filename), PATHINFO_EXTENSION);
+            $new_filename = auth()->user()->username.'-'.now()->timestamp.'-'.uniqid().'.'.$extension;
+            Storage::move('private/scan_irs/tmp/'.$tmp_file->folder.'/'.$tmp_file->filename, 'private/scan_irs/'.$new_filename);
+
+            $pkl->update([
+                'instansi' => $request->instansi,
+                'judul' => $request->judul,
+                'scan_irs' => 'private/scan_irs/'.$new_filename,
+            ]);
+            auth()->user()->mahasiswa->update([
+                'periode_pkl' => $request->periode,
+            ]);
+            Storage::deleteDirectory('private/scan_irs/tmp/'.$tmp_file->folder);
+            $tmp_file->delete();
+            return redirect()->route('pkl.index')->with('success', 'Berhasil mengubah data PKL');
+        }
+        return redirect()->back()->with('danger', 'Tolong upload scan IRS.');
     }
 }
