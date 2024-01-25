@@ -58,11 +58,13 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
 
     Route::get('/mhs/kelola_mhs/', [MahasiswaController::class, 'index']);
     Route::post('/mhs/kelola_mhs/tambah', [MahasiswaController::class, 'store']);
+    Route::post('/mhs/kelola_mhs/import', [MahasiswaController::class, 'import']);
     Route::get('/mhs/update_tabel_mhs', [MahasiswaController::class, 'update_tabel_mhs']);
     Route::put('/mhs/kelola_mhs/update', [MahasiswaController::class, 'update']);
     Route::delete('/mhs/kelola_mhs/{mahasiswa}/delete', [MahasiswaController::class, 'destroy']);
     Route::put('/mhs/kelola_mhs/{nim}/reset_pass', [MahasiswaController::class, 'reset_password']);
     Route::get('/mhs/kelola_mhs/{nim}/get_data_pkl', [MahasiswaController::class, 'get_data_pkl']);
+    Route::get('/mhs/kelola_mhs/{nip}/get_data_dosbing', [MahasiswaController::class, 'get_data_dosbing']);
 
 
 

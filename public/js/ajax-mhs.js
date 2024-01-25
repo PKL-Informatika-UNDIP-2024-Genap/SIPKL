@@ -245,3 +245,130 @@ $(document).on("click", ".btn-reset-pass", function(e){
 });
 
 
+$(document).on("click", ".btn-detail-mhs", function(e){
+  e.preventDefault();
+  let nim = $(this).data("nim");
+  let nama = $(this).data("nama");
+  let status = $(this).data("status");
+  let no_wa = $(this).data("no-wa") || "-";
+  let email = $(this).data("email") || "-";
+  let nip_dosbing = $(this).data("nip-dosbing") || "-";
+  let periode_pkl = $(this).data("periode-pkl") || "-";
+
+  let dosbing = "-";
+  let judul_pkl = "-";
+  let instansi = "-";
+
+  $("#data-nama").html(": " + nama);
+  $("#data-nim").html(": " + nim);
+  $("#data-status").html(": " + status);
+  $("#data-no-wa").html(": " + no_wa);
+  $("#data-email").html(": " + email);
+  $("#data-periode-pkl").html(": " + periode_pkl);
+  $("#data-instansi").html(": " + instansi);
+  $("#data-judul").html(": " + judul_pkl);
+  $("#data-dosbing").html(": " + dosbing);
+
+  if(status != "Baru"){
+    $.ajax({
+      url: '/mhs/kelola_mhs/'+ nim +'/get_data_pkl',
+      type: 'GET',
+      success: function (response) {
+        judul_pkl = response.judul_pkl;
+        instansi = response.instansi;
+        $("#data-instansi").html(": " + instansi);
+        $("#data-judul").html(": " + judul_pkl);
+      },
+      error: function (error) {
+        console.error('Error:', error);
+        Swal.fire({
+          title: 'Error!',
+          text: 'Terjadi kesalahan saat mengambil data.',
+          icon: 'error',
+        });
+      }
+    });
+  }
+
+  if(nip_dosbing != "-"){
+    $.ajax({
+      url: '/mhs/kelola_mhs/'+ nip_dosbing +'/get_data_dosbing',
+      type: 'GET',
+      success: function (response) {
+        dosbing = response.nama_dosbing;
+        $("#data-dosbing").html(": " + dosbing);
+      },
+      error: function (error) {
+        console.error('Error:', error);
+        Swal.fire({
+          title: 'Error!',
+          text: 'Terjadi kesalahan saat mengambil data.',
+          icon: 'error',
+        });
+      }
+    });
+  }
+});
+
+$(document).on("click", "#btn-import", function(e){
+  e.preventDefault();
+  $("#file").val("");
+  $("#file").removeClass("is-invalid");
+  $("#file-err").html("");
+});
+
+$(document).on("click", "#btn-import-mhs", function(e){
+  e.preventDefault();
+
+  let file_input = $('#form-import')[0];
+
+  let file = new FormData(file_input);
+
+  $.ajax({
+    url: "/mhs/kelola_mhs/import",
+    type: 'POST',
+    data: file,
+    processData: false,
+    contentType: false,
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    success: function (response) {
+      $("#modal_import_mhs").modal("hide");
+      if(response.error_row.length == 0){
+        Swal.fire({
+          title: "Success",
+          text: "Semua Data Mahasiswa Berhasil Diimport",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }else{
+        var error = "<ul style='text-align: left; list-style-position: inside;'>";
+        for (var i = 0; i < response.error_row.length; i++) {
+          error += "<li>Baris " + response.error_row[i] + " error : " + response.error_message[i] + "</li>";
+        }
+        error += "</ul>";
+
+        Swal.fire({
+          title: "Warning",
+          html: "Berhasil melakukan import data mahasiswa. Namun terdapat beberapa baris data yang tidak dapat diimport, yaitu :" + error,
+          icon: "warning",
+        });
+      }
+
+      update_tabel_mhs();
+    },
+    error: function (response) {
+      var errorResponse = $.parseJSON(response.responseText);
+      console.log(errorResponse.errors);
+      if (errorResponse.errors && errorResponse.errors.file) {
+        $("#file").addClass("is-invalid");
+        $("#file-err").html(errorResponse.errors.file);
+      }else if(errorResponse.errors){
+        $("#file").addClass("is-invalid");
+        $("#file-err").html(errorResponse.errors);
+      }
+    }
+});
+});

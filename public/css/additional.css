@@ -3,3 +3,10 @@
   max-width: 300px;
   min-width: 300px;
 }
+
+.my-popup-class {
+  text-align: left !important;
+  left: 0 !important;         
+  top: 0 !important;          
+  transform: none !important; 
+}
