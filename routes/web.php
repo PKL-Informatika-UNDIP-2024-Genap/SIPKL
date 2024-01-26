@@ -56,8 +56,11 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::delete('/dospem/kelola_dospem/{dosenPembimbing}/delete', [DosenPembimbingController::class, 'destroy']);
 
     Route::get('/dospem/assign_mhs_bimbingan/', [AssignMhsBimbinganController::class, 'index']);
+    Route::get('/dospem/assign_mhs_bimbingan/update_tabel_dospem', [AssignMhsBimbinganController::class, 'update_tabel_dospem']);
     Route::get('/dospem/assign_mhs_bimbingan/{nip}/get_data_mhs', [AssignMhsBimbinganController::class, 'get_data_mhs']);
     Route::get('/dospem/assign_mhs_bimbingan/{nim}/get_data_pkl', [AssignMhsBimbinganController::class, 'get_data_pkl']);
+    Route::post('/dospem/assign_mhs_bimbingan/{nip}/update_mhs_bimbingan', [AssignMhsBimbinganController::class, 'update_mhs_bimbingan']);
+
 
 
     Route::get('/mhs/kelola_mhs/', [MahasiswaController::class, 'index']);
