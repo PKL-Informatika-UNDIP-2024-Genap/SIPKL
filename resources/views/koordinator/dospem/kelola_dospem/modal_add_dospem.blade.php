@@ -23,15 +23,15 @@
               <label for="golongan" class="form-label">Golongan</label>
               <select name="golongan" class="form-control" id="golongan">
                 <option value="" disabled selected>Pilih Golongan</option>
-                <option value="IIIa">IIIa</option>
-                <option value="IIIb">IIIb</option>
-                <option value="IIIc">IIIc</option>
-                <option value="IIId">IIId</option>
-                <option value="IVa">IVa</option>
-                <option value="IVb">IVb</option>
-                <option value="IVc">IVc</option>
-                <option value="IVd">IVd</option>
-                <option value="IVe">IVe</option>
+                <option value="III/a">III/a</option>
+                <option value="III/b">III/b</option>
+                <option value="III/c">III/c</option>
+                <option value="III/d">III/d</option>
+                <option value="IV/a">IV/a</option>
+                <option value="IV/b">IV/b</option>
+                <option value="IV/c">IV/c</option>
+                <option value="IV/d">IV/d</option>
+                <option value="IV/e">IV/e</option>
               </select>
               <div id="golongan-err" class="invalid-feedback"></div>
             </div>

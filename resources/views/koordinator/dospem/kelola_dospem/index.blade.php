@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col">
         <div class="card">
-          <div class="card-body" id="tabel-dosbing">
+          <div class="card-body" id="tabel-dospem">
             <table class="table" id="myTable">
               <thead>
                   <tr class="table-primary">
@@ -43,7 +43,7 @@
                   </tr>
               </thead>
               <tbody>
-                  @foreach ($dosbing as $index => $dos)
+                  @foreach ($dospem as $index => $dos)
                       <tr>
                           <td></td>
                           <td>{{ $dos->nama }}</td>
@@ -51,10 +51,10 @@
                           <td>{{ $dos->golongan }}</td>
                           <td>{{ $dos->jabatan }}</td>
                           <td>
-                              <div class="btn btn-primary btn-edit-dosbing" data-bs-toggle="modal" data-bs-target="#modal_edit_dosbing" 
+                              <div class="btn btn-primary btn-edit-dospem" data-bs-toggle="modal" data-bs-target="#modal_edit_dospem" 
                               data-nip="{{ $dos->nip }}" data-nama="{{ $dos->nama }}" data-nip="{{ $dos->nip }}" 
                               data-golongan="{{ $dos->golongan }}" data-jabatan="{{ $dos->jabatan }}">Edit</div>
-                              <div class="btn btn-danger btn-delete-dosbing" data-nip="{{ $dos->nip }}">
+                              <div class="btn btn-danger btn-delete-dospem" data-nip="{{ $dos->nip }}">
                                 Delete
                               </div>
                           </td>
@@ -72,18 +72,18 @@
 </section>
 <!-- /.content -->
 
-{{-- modal add dosbing --}}
-@include('koordinator.dosbing.kelola_dosbing.modal_add_dosbing')
-{{-- end modal add dosbing --}}
+{{-- modal add dospem --}}
+@include('koordinator.dospem.kelola_dospem.modal_add_dospem')
+{{-- end modal add dospem --}}
 
-{{-- modal edit dosbing --}}
-@include('koordinator.dosbing.kelola_dosbing.modal_edit_dosbing')
-{{-- end modal edit dosbing --}}
+{{-- modal edit dospem --}}
+@include('koordinator.dospem.kelola_dospem.modal_edit_dospem')
+{{-- end modal edit dospem --}}
 
 @endsection
 
 @push('scripts')
-<script src="/js/ajax-dosbing.js"></script>
+<script src="/js/ajax-dospem.js"></script>
 
 <script src="/js/datatables-jquery.js"></script>
 <script>

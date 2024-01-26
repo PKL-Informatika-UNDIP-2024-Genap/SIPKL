@@ -1,9 +1,9 @@
-function update_tabel_dosbing() {
+function update_tabel_dospem() {
   $.ajax({
     type: 'GET',
-    url: '/dosbing/update_tabel_dosbing',
+    url: '/dospem/update_tabel_dospem',
     success: function(response) {
-      $('#tabel-dosbing').html(response.view);
+      $('#tabel-dospem').html(response.view);
       simpleDatatable();
     },
     error: function(response) {
@@ -37,7 +37,7 @@ $("#submit").click(function (e) {
 
   $.ajax({
     type: "post",
-    url: "/dosbing/kelola_dosbing/tambah",
+    url: "/dospem/kelola_dospem/tambah",
     data: {
       nama: nama,
       nip: nip,
@@ -54,7 +54,7 @@ $("#submit").click(function (e) {
         showConfirmButton: false,
         timer: 1500
       });
-      update_tabel_dosbing();
+      update_tabel_dospem();
     },
     error: function (response) {
       // console.log(xhr.responseText);
@@ -95,10 +95,12 @@ $("#submit").click(function (e) {
 });
 
 $(document).ready(function() {
-  $(document).on("click", ".btn-edit-dosbing", function(e){
-    $("#form-edit-dosbing :input").each(function () {
+  $(document).on("click", ".btn-edit-dospem", function(e){
+    $("#form-edit-dospem :input").each(function () {
       $(this).removeClass("is-invalid");
       $(this).siblings(".invalid-feedback").html("");
+      $("#jabatan-edit").find("option").removeAttr('selected');
+      $("#golongan-edit").find("option").removeAttr('selected');
     });
   
     var nama = $(this).data('nama');
@@ -114,7 +116,7 @@ $(document).ready(function() {
     $("#jabatan-edit").find("option[value='"+jabatan+"']").attr('selected', true);
   });
 
-  $("#update-dosbing").click(function (e) { 
+  $("#update-dospem").click(function (e) { 
     e.preventDefault();
     let nama = $("#nama-edit").val();
     let nip = $("#nip-edit").val();
@@ -129,7 +131,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: "put",
-      url: "/dosbing/kelola_dosbing/update",
+      url: "/dospem/kelola_dospem/update",
       data: {
         nama: nama,
         nip: nip,
@@ -138,7 +140,7 @@ $(document).ready(function() {
       },
       dataType: "json",
       success: function (response) {
-        $("#modal_edit_dosbing").modal("hide");
+        $("#modal_edit_dospem").modal("hide");
         Swal.fire({
           title: "Success",
           text: "Data Dosen Pembimbing dengan nip " + nip + " Berhasil Diupdate",
@@ -146,7 +148,7 @@ $(document).ready(function() {
           showConfirmButton: false,
           timer: 1500
         });
-        update_tabel_dosbing();
+        update_tabel_dospem();
       },
       error: function (response) {
         // console.log(xhr.responseText);
@@ -188,7 +190,7 @@ $(document).ready(function() {
   });
 });
 
-$(document).on("click", ".btn-delete-dosbing", function(e){
+$(document).on("click", ".btn-delete-dospem", function(e){
   e.preventDefault();
   let nip = $(this).data("nip");
   
@@ -204,14 +206,14 @@ $(document).on("click", ".btn-delete-dosbing", function(e){
     if (result.isConfirmed) {
       // Kirim permintaan DELETE ke server menggunakan AJAX
       $.ajax({
-        url: '/dosbing/kelola_dosbing/'+ nip +'/delete',
+        url: '/dospem/kelola_dospem/'+ nip +'/delete',
         type: 'DELETE',
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
           // Navigasi ke rute lain setelah berhasil menghapus
-          // window.location.href = '/dosbing/kelola_dosbing';
+          // window.location.href = '/dospem/kelola_dospem';
           Swal.fire({
             title: "Success",
             text: "Data Dosen Pembimbing dengan nip " + nip + " Berhasil Dihapus",
@@ -219,7 +221,7 @@ $(document).on("click", ".btn-delete-dosbing", function(e){
             showConfirmButton: false,
             timer: 1500
           });
-          update_tabel_dosbing();
+          update_tabel_dospem();
         },
         error: function (error) {
           console.error('Error:', error);

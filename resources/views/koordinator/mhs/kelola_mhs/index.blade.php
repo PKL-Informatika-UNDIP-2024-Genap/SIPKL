@@ -87,7 +87,7 @@
                       <td>
                           <div class="btn btn-primary btn-detail-mhs" data-bs-toggle="modal" data-bs-target="#modal_detail_mhs"
                             data-nim="{{ $mhs->nim }}" data-nama="{{ $mhs->nama }}" data-status="{{ $mhs->status }}" 
-                            data-no-wa="{{ $mhs->no_wa }}" data-email="{{ $mhs->email }}" data-nip-dosbing="{{ $mhs->nip_dospem }}"
+                            data-no-wa="{{ $mhs->no_wa }}" data-email="{{ $mhs->email }}" data-nip-dospem="{{ $mhs->nip_dospem }}"
                             data-periode-pkl="{{ $mhs->periode_pkl }}">
                             Detail
                           </div>

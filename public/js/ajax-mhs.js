@@ -79,12 +79,13 @@ $(document).ready(function() {
     $("#form-edit-mhs :input").each(function () {
       $(this).removeClass("is-invalid");
       $(this).siblings(".invalid-feedback").html("");
+      $("#status-edit").find("option").removeAttr('selected');
     });
   
     var nama = $(this).data('nama');
     var nim = $(this).data('nim');
     var status = $(this).data('status');
-    // console.log(status);
+    console.log(status);
     $("#nama-edit").val(nama);
     $("#nim-edit").val(nim);
     $("#status-edit").find("option[value='"+status+"']").attr('selected', true);
@@ -252,10 +253,10 @@ $(document).on("click", ".btn-detail-mhs", function(e){
   let status = $(this).data("status");
   let no_wa = $(this).data("no-wa") || "-";
   let email = $(this).data("email") || "-";
-  let nip_dosbing = $(this).data("nip-dosbing") || "-";
+  let nip_dospem = $(this).data("nip-dospem") || "-";
   let periode_pkl = $(this).data("periode-pkl") || "-";
 
-  let dosbing = "-";
+  let dospem = "-";
   let judul_pkl = "-";
   let instansi = "-";
 
@@ -267,7 +268,7 @@ $(document).on("click", ".btn-detail-mhs", function(e){
   $("#data-periode-pkl").html(": " + periode_pkl);
   $("#data-instansi").html(": " + instansi);
   $("#data-judul").html(": " + judul_pkl);
-  $("#data-dosbing").html(": " + dosbing);
+  $("#data-dospem").html(": " + dospem);
 
   if(status != "Baru"){
     $.ajax({
@@ -290,13 +291,13 @@ $(document).on("click", ".btn-detail-mhs", function(e){
     });
   }
 
-  if(nip_dosbing != "-"){
+  if(nip_dospem != "-"){
     $.ajax({
-      url: '/mhs/kelola_mhs/'+ nip_dosbing +'/get_data_dosbing',
+      url: '/mhs/kelola_mhs/'+ nip_dospem +'/get_data_dospem',
       type: 'GET',
       success: function (response) {
-        dosbing = response.nama_dosbing;
-        $("#data-dosbing").html(": " + dosbing);
+        dospem = response.nama_dospem;
+        $("#data-dospem").html(": " + dospem);
       },
       error: function (error) {
         console.error('Error:', error);
@@ -319,6 +320,9 @@ $(document).on("click", "#btn-import", function(e){
 
 $(document).on("click", "#btn-import-mhs", function(e){
   e.preventDefault();
+
+  $(this).prop("disabled", true);
+  $(this).html(`<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Mengimport...`);
 
   let file_input = $('#form-import')[0];
 
@@ -369,6 +373,11 @@ $(document).on("click", "#btn-import-mhs", function(e){
         $("#file").addClass("is-invalid");
         $("#file-err").html(errorResponse.errors);
       }
+    },
+    complete: function () {
+      // Mengaktifkan kembali tombol import dan menyembunyikan ikon loading spinner setelah permintaan selesai
+      $("#btn-import-mhs").prop("disabled", false);
+      $("#btn-import-mhs").html("Import");
     }
 });
 });

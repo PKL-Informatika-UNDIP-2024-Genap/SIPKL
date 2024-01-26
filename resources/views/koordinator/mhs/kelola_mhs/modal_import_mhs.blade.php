@@ -8,9 +8,19 @@
       <div class="modal-body">
         <form id="form-import" action="" method="post" enctype="multipart/form-data">
           @csrf
+          <div class="row mb-2 justify-content-between">
+            <div class="col-auto">
+              <p class="m-0">File yang didukung: .xls, .xlsx</p>
+            </div>
+            <div class="col-auto">
+              <a href="/download_file/private/template/template-import-mhs.xlsx">Download Template</a>
+            </div>
+          </div>
           <div class="row mb-3">
-            <input class="form-control" type="file" name="file" id="file">
-            <div id="file-err" class="invalid-feedback"></div>
+            <div class="col">
+              <input class="form-control" type="file" name="file" id="file">
+              <div id="file-err" class="invalid-feedback"></div>
+            </div>
           </div>
           <div class="row d-flex justify-content-center">
             <div class="col-auto">
