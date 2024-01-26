@@ -47,8 +47,8 @@
           </a>
         </li>
 
-        <li class="nav-item {{ Request::is('dosbing*') ? 'menu-open' : '' }}">
-          <a href="/" class="nav-link {{ Request::is('dosbing*') ? 'active' : '' }}">
+        <li class="nav-item {{ Request::is('dospem*') ? 'menu-open' : '' }}">
+          <a href="/" class="nav-link {{ Request::is('dospem*') ? 'active' : '' }}">
             <i class="nav-icon fas bi bi-people-fill"></i>
             <p>
               Dosen Pembimbing
@@ -57,15 +57,15 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="/dosbing/kelola_dosbing" class="nav-link {{ Request::is('dosbing/kelola_dosbing') ? 'active' : '' }}">
+              <a href="/dospem/kelola_dospem" class="nav-link {{ Request::is('dospem/kelola_dospem') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
-                <p>Kelola Dosbing</p>
+                <p>Kelola Dospem</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/dosbing/kelola_bimbingan" class="nav-link {{ Request::is('dosbing/kelola_bimbingan') ? 'active' : '' }}">
+              <a href="/dospem/assign_mhs_bimbingan" class="nav-link {{ Request::is('dospem/assign_mhs_bimbingan') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
-                <p>Kelola Bimbingan</p>
+                <p>Assign Mhs Bimbingan</p>
               </a>
             </li>
           </ul>
@@ -87,9 +87,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/mhs/assign_dosbing" class="nav-link {{ Request::is('mhs/assign_dosbing') ? 'active' : '' }}">
+              <a href="/mhs/assign_dospem" class="nav-link {{ Request::is('mhs/assign_dospem') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
-                <p>Assign Dosbing</p>
+                <p>Assign Dospem</p>
               </a>
             </li>
           </ul>

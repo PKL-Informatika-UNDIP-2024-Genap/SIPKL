@@ -87,7 +87,7 @@ class MahasiswaController extends Controller
             return response()->json([
                 'status' => 500,
                 'message' => 'Request failed',
-                'errors' => $e->getMessage(),
+                'errors' => "Terdapat duplikasi data pada file excel",
             ], 500);
         }
 
@@ -175,13 +175,13 @@ class MahasiswaController extends Controller
         ]);
     }
 
-    public function get_data_dosbing($nip)
+    public function get_data_dospem($nip)
     {
-        $dosbing = DosenPembimbing::where('nip', $nip)->first();
+        $dospem = DosenPembimbing::where('nip', $nip)->first();
 
         return response()->json([
             'status' => 200,
-            'nama_dosbing' => $dosbing->nama,
+            'nama_dospem' => $dospem->nama,
         ]);
     }
 }

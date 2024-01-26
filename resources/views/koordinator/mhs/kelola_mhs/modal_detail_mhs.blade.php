@@ -78,7 +78,7 @@
           <div class="col-4">
             Dosen Pembimbing
           </div>
-          <div class="col-auto" id="data-dosbing">
+          <div class="col-auto" id="data-dospem">
             :
           </div>
         </div>

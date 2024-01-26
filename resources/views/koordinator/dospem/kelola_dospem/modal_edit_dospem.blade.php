@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal_edit_dosbing" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_edit_dospem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -6,7 +6,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="form-edit-dosbing" action="" method="post">
+        <form id="form-edit-dospem" action="" method="post">
           @csrf
           @method("PUT")
           <div class="row">
@@ -24,15 +24,15 @@
               <label for="golongan" class="form-label">Golongan</label>
               <select name="golongan" class="form-control" id="golongan-edit">
                 <option value="" disabled selected>Pilih Golongan</option>
-                <option value="IIIa">IIIa</option>
-                <option value="IIIb">IIIb</option>
-                <option value="IIIc">IIIc</option>
-                <option value="IIId">IIId</option>
-                <option value="IVa">IVa</option>
-                <option value="IVb">IVb</option>
-                <option value="IVc">IVc</option>
-                <option value="IVd">IVd</option>
-                <option value="IVe">IVe</option>
+                <option value="III/a">III/a</option>
+                <option value="III/b">III/b</option>
+                <option value="III/c">III/c</option>
+                <option value="III/d">III/d</option>
+                <option value="IV/a">IV/a</option>
+                <option value="IV/b">IV/b</option>
+                <option value="IV/c">IV/c</option>
+                <option value="IV/d">IV/d</option>
+                <option value="IV/e">IV/e</option>
               </select>
               <div id="golongan-edit-err" class="invalid-feedback"></div>
             </div>
@@ -52,7 +52,7 @@
           </div>
           <div class="row d-flex justify-content-center">
             <div class="col-auto">
-              <button id="update-dosbing" class="btn btn-primary">Update</button>
+              <button id="update-dospem" class="btn btn-primary">Update</button>
             </div>
           </div>
         </form>

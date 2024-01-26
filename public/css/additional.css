@@ -1,3 +1,15 @@
+/* @import url('//cdn.datatables.net/1.10.2/css/jquery.dataTables.css'); */
+td.details-control {
+  background: url('http://www.datatables.net/examples/resources/details_open.png') no-repeat left center;
+  cursor: pointer;
+  padding-left: 30px; /* Sesuaikan padding sesuai kebutuhan */
+}
+
+tr.shown td.details-control {
+  background: url('http://www.datatables.net/examples/resources/details_close.png') no-repeat left center;
+}
+
+
 .col-fixed-400 {
   flex: 0 0 300px;
   max-width: 300px;

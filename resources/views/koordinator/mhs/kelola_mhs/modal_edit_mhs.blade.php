@@ -24,7 +24,7 @@
               <label for="status" class="form-label">Status</label>
               <select name="status" class="form-control" id="status-edit">
                 <option value="" disabled selected>Pilih Status</option>
-                <option value="Belum Pra-Reg">Belum Pra-Reg</option>
+                <option value="Baru">Baru</option>
                 <option value="Nonaktif">Nonaktif</option>
                 <option value="Aktif">Aktif</option>
               </select>

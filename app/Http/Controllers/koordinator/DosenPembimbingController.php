@@ -16,8 +16,8 @@ class DosenPembimbingController extends Controller
      */
     public function index()
     {
-        return view('koordinator.dosbing.kelola_dosbing.index', [
-            'dosbing' => DosenPembimbing::all()
+        return view('koordinator.dospem.kelola_dospem.index', [
+            'dospem' => DosenPembimbing::all()
         ]);
     }
 
@@ -90,11 +90,11 @@ class DosenPembimbingController extends Controller
         ], 200);
     }
 
-    public function update_tabel_dosbing()
+    public function update_tabel_dospem()
     {
-        $dosbing = DosenPembimbing::all();
-        $view = view('koordinator.dosbing.kelola_dosbing.update_tabel_dosbing', [
-            'dosbing' => $dosbing
+        $dospem = DosenPembimbing::all();
+        $view = view('koordinator.dospem.kelola_dospem.update_tabel_dospem', [
+            'dospem' => $dospem
         ])->render();
 
         return response()->json([
