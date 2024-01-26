@@ -18,14 +18,6 @@
 
 <section class="content">
   <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-auto">
-        <button type="button" id="btn-add" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add">
-          + Tambah Dosen Pembimbing
-        </button>
-      </div>
-    </div>
-
     <div class="row">
       <div class="col">
         <div class="card">

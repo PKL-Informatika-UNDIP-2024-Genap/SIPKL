@@ -19,6 +19,7 @@
           </div>
           <div class="col-auto ms-auto mt-auto">
             <button type="button" class="btn btn-primary mb-2" id="btn-edit">Edit Mhs Bimbingan</button>
+            <button type="button" class="btn btn-danger mb-2 d-none" id="btn-cancel">Cancel</button>
           </div>
         </div>
         

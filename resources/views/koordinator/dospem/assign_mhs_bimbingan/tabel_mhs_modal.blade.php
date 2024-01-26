@@ -18,7 +18,9 @@
         <td>{{ $mhs->nim }}</td>
         <td class="justify-content-center d-flex">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" {{ $mhs->nip_dospem ? 'checked' : '' }} id="flexCheckDefault" disabled>
+            <input class="form-check-input {{ $mhs->nip_dospem ? 'db-checked' : '' }}" 
+            data-nim="{{ $mhs->nim }}" type="checkbox" {{ $mhs->nip_dospem ? 'checked' : '' }} 
+            id="flexCheckDefault" disabled>
           </div>
         </td>
       </tr>

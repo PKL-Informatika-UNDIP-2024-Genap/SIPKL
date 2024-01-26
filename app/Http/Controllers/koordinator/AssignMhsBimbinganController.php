@@ -54,4 +54,35 @@ class AssignMhsBimbinganController extends Controller
       ]);
   }
 
+  public function update_mhs_bimbingan($nip, Request $request){
+    if (!empty($request->arr_nim_add_mhs)) {
+      Mahasiswa::whereIn('nim', $request->arr_nim_add_mhs)->update(['nip_dospem' => $nip]);
+    }
+
+    if (!empty($request->arr_nim_delete_mhs)) {
+        Mahasiswa::whereIn('nim', $request->arr_nim_delete_mhs)->update(['nip_dospem' => null]);
+    }
+
+    return response()->json([
+      'status' => 200,
+    ]);
+  }
+
+  public function update_tabel_dospem(){
+    $data_dospem = DosenPembimbing::leftJoin('mahasiswa', 'dosen_pembimbing.nip', '=', 'mahasiswa.nip_dospem')
+      ->selectRaw('dosen_pembimbing.nip, dosen_pembimbing.nama, count(mahasiswa.nip_dospem) as jumlah_bimbingan')
+      ->whereRaw("mahasiswa.status = 'Nonaktif' OR mahasiswa.status = 'Aktif' OR mahasiswa.status IS NULL")
+      ->groupBy('dosen_pembimbing.nip', 'dosen_pembimbing.nama')
+      ->get();
+
+    $view = view('koordinator.dospem.assign_mhs_bimbingan.update_tabel_dospem', [
+      'data_dospem' => $data_dospem,
+    ])->render();
+
+    return response()->json([
+      'status' => 200,
+      'view' => $view,
+    ]);
+  }
+
 }
