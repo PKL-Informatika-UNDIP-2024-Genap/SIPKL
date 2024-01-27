@@ -33,7 +33,7 @@ function simpleDatatable2() {
 			{
 				searchable: false,
 				orderable: false,
-				targets: [0, 3]
+				targets: [0, 'action']
 			},
 		],
 		order: [[1, 'asc']],

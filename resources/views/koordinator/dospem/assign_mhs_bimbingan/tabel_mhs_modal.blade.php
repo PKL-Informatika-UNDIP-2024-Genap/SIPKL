@@ -2,7 +2,6 @@
   <thead>
     <tr class="table-primary">
       <th>No</th>
-      {{-- <th class="detail"></th> --}}
       <th>Nama Mahasiswa</th>
       <th>NIM</th>
       <th class="action justify-content-center d-flex">Assign</th>
