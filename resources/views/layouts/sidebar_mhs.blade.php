@@ -13,7 +13,7 @@
           <img src="/images/default.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="javascript:void(0)" class="d-block">{{ auth()->user()->mahasiswa->nama }}</a>
+          <a href="/profile" class="d-block">{{ auth()->user()->mahasiswa->nama }}</a>
         </div>
       </div>
 

@@ -22,7 +22,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             // dd($request->session()->regenerate());
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/dashboard')->with('success', 'Berhasil login!');
         }
 
         return back()->with('loginError', 'Login Failed!');
@@ -68,24 +68,23 @@ class LoginController extends Controller
             'instansi' => 'required',
             'judul' => 'required',
         ]);
-        $validatedDataPKL['id'] = substr($mahasiswa->nim,6);
         $validatedDataPKL['nim'] = $mahasiswa->nim;
         //status default 0
 
         $new_password = Hash::make($validatedData['password']);
 
-        unset($validatedData['password']);
-        unset($validatedData['konfirmasi_password']);
-
-        // dd($validatedData+['status' => 'Nonaktif']);
-        $mahasiswa->update($validatedData+['status' => 'Nonaktif']);
+        $mahasiswa->update([
+            'email' => $validatedData['email'],
+            'no_wa' => $validatedData['no_wa'],
+            'status' => 'Nonaktif',
+        ]);
         PKL::create($validatedDataPKL);
         $user->update([
             'email' => $validatedData['email'],
             'password' => $new_password,
         ]);
 
-        return redirect('/dashboard')->with('success', 'Data updated successfully');
+        return redirect('/dashboard')->with('success', 'Data berhasil diperbarui. Selamat Datang di SIPKL Informatika Undip!');
     }
 
     public function logout(Request $request): RedirectResponse

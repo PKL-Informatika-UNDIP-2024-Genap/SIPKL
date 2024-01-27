@@ -38,7 +38,6 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-      <!-- /.row (main row) -->
       <!-- Timelime example  -->
       <div class="row">
         <div class="col-md-12">
@@ -148,7 +147,30 @@
         </div>
         <!-- /.col -->
       </div>
+      <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
 @endsection
+
+@push('scripts')
+  @if (session()->has('success'))
+    <script>
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        },
+      })
+      Toast.fire({
+        icon: 'success',
+        title: '{{ session('success') }}',
+      })
+    </script>
+  @endif
+@endpush

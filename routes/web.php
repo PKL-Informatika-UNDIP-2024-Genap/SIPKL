@@ -10,9 +10,16 @@ use App\Http\Controllers\Koordinator\MahasiswaController;
 use App\Http\Controllers\PKLController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PKLController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RiwayatPKLController;
 use App\Http\Controllers\SeminarPKLController;
+use App\Http\Controllers\Koordinator\DokumenController;
+use App\Http\Controllers\Koordinator\MahasiswaController;
+use App\Http\Controllers\Koordinator\PengumumanController;
+use App\Http\Controllers\Koordinator\DosenPembimbingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +47,7 @@ route::middleware('guest')->group(function () {
 route::middleware('auth')->group(function () {
     Route::middleware('data.updated')->group(function () {
         Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     });
     Route::get('/logout', [LoginController::class, 'logout']);
     Route::get('/preview/{filename}', [FileController::class, 'preview'])->where('filename', '.*');
@@ -73,7 +81,7 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::put('/mhs/kelola_mhs/{nim}/reset_pass', [MahasiswaController::class, 'reset_password']);
     Route::get('/mhs/kelola_mhs/{nim}/get_data_pkl', [MahasiswaController::class, 'get_data_pkl']);
     Route::get('/mhs/kelola_mhs/{nip}/get_data_dospem', [MahasiswaController::class, 'get_data_dospem']);
-    
+
     Route::get('/mhs/assign_dospem/', [AssignDospemController::class, 'index']);
     Route::post('/mhs/assign_dospem/{nim}/update_dospem', [AssignDospemController::class, 'update_dospem']);
 
@@ -99,6 +107,7 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
     Route::post('/registrasi', [PKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
 
     Route::get('/pkl', [PKLController::class, 'index'])->middleware('data.updated')->name('pkl.index');
+    Route::put('/pkl/{pkl}/update', [PKLController::class, 'updateData']);
 
     Route::get('/seminar', [SeminarPKLController::class, 'index'])->middleware('status.mhs:Aktif')->name('seminar.index');
 

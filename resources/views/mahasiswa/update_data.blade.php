@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <!-- Theme style -->
   <link rel="stylesheet" href="/lte/dist/css/adminlte.min.css">
 
@@ -19,18 +21,13 @@
   <style>
     html {
       scrollbar-gutter: stable;
-      scrollbar-width: thin; /* Firefox */
-      -ms-overflow-style: none; /* IE 10+ */
-      ::-webkit-scrollbar-track {
-        -webkit-box-shadow: none !important;
-        background-color: transparent !important;
-      }
-      ::-webkit-scrollbar {
-        width: .6rem !important;
-        background-color: transparent;
-      }
-        ::-webkit-scrollbar-thumb {
-        background-color: #acacac;
+    }
+    body {
+      padding-right: 0px !important; /*prevent content shift to left when open modal*/
+    }
+    @media (max-width: 520px){
+      .bs-stepper-content {
+        margin: 0 20px 20px;
       }
     }
   </style>
@@ -49,7 +46,7 @@
       <!-- Right navbar links -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
         <li class="nav-item">
-          <a href="/logout" class="btn btn-primary ">Logout</a>
+          <a href="" class="btn btn-primary" id="btn-logout">Keluar</a>
         </li>
       </ul>
     </div>
@@ -67,13 +64,13 @@
     <div class="content">
       <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <div class="card card-default">
+          <div class="col-lg-8 mx-auto">
+            <div class="card card-primary card-outline">
               <div class="card-header">
                 {{-- <h3 class="card-title">Pra Registrasi</h3> --}}
-                <h5 class="m-0 text-bold">Pra Registrasi</h5>
+                <h5 class="mb-0"><strong>Pra Registrasi</strong></h5>
               </div>
-              <div class="card-body">
+              <div class="card-body p-0">
                 <div class="bs-stepper">
                   <div class="bs-stepper-header flex-wrap" role="tablist">
                     <!-- your steps here -->
@@ -92,7 +89,7 @@
                     </div>
                   </div>
                   <div class="bs-stepper-content">
-                      <!-- your steps content here -->
+                    <!-- your steps content here -->
                     <form id="form" action="/update_data" method="post" class="needs-validation" onsubmit="return false" >
                       @csrf
                       @method('put')
@@ -177,7 +174,7 @@
                             @enderror
                           </div>
                         </div>
-                        <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+                        <button class="btn btn-primary" onclick="stepper.next()">Selanjutnya</button>
                       </div>
                       <div id="datapkl-part" class="content" role="tabpanel" aria-labelledby="datapkl-part-trigger">
                         <div class="form-group">
@@ -221,8 +218,8 @@
                           </div>
                         </div> --}}
 
-                        <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
-                        <button type="submit" class="btn btn-primary" onclick="submitForm()">Submit</button>
+                        <button class="btn btn-primary" onclick="stepper.previous()">Sebelumnya</button>
+                        <button type="submit" class="btn btn-primary" id="btn-submit">Kirim</button>
                       </div>
                     </form>
                   </div>
@@ -261,9 +258,13 @@
 <!-- jQuery -->
 <script src="/lte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="/lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+{{-- <script src="/lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
+<!-- Bootstrap 5 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <!-- BS-Stepper -->
 <script src="/lte/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 <!-- InputMask -->
 {{-- <script src="/lte/plugins/moment/moment.min.js"></script> --}}
 <script src="/lte/plugins/inputmask/jquery.inputmask.min.js"></script>
@@ -277,11 +278,6 @@
   })
 
   $('[data-mask]').inputmask()
-
-  function submitForm() {
-    var form = document.getElementById('form');
-    form.submit();
-  }
 
   // Toggle password visibility
   const passwordInput = document.getElementById('password');
@@ -307,6 +303,43 @@
       konfirmasiPasswordTgBtn.innerHTML = '<i class="bi bi-eye-slash"></i>';
     }
   });
+
+  // Submit form
+  $('#btn-submit').on('click', function (e) {
+    $('#btn-submit').html(`
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Mengirim...
+    `);
+    $('#btn-submit').attr('disabled', true);
+    var form = document.getElementById('form');
+    form.submit();
+  });
+
+  // Logout
+  $('#btn-logout').on('click', function (e) {
+    e.preventDefault();
+    this.innerHTML = `
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Keluar...
+    `;
+    Swal.fire({
+      title: 'Yakin ingin keluar?',
+      text: "Anda akan diarahkan ke halaman awal.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#007bff',
+      cancelButtonColor: '#dc3545',
+      confirmButtonText: 'Ya, keluar!',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "/logout";
+      } else {
+        this.innerHTML = `Keluar`;
+      }
+    })
+  })
 </script>
+
 </body>
 </html>
