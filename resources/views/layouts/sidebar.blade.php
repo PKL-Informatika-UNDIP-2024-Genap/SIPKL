@@ -68,6 +68,12 @@
                 <p>Assign Mhs Bimbingan</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="/dospem/beban_bimbingan" class="nav-link {{ Request::is('dospem/beban_bimbingan') ? 'active' : '' }}">
+                <i class="far nav-icon bi bi-circle"></i>
+                <p>Beban Bimbingan</p>
+              </a>
+            </li>
           </ul>
         </li>
 

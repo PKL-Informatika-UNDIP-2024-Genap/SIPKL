@@ -1,15 +1,16 @@
 <?php
 
+use App\Http\Controllers\Koordinator\AssignDospemController;
 use App\Http\Controllers\Koordinator\DokumenController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Koordinator\PengumumanController;
 use App\Http\Controllers\Koordinator\DosenPembimbingController;
-use App\Http\Controllers\PKLController;
+use App\Http\Controllers\Koordinator\AssignMhsBimbinganController;
 use App\Http\Controllers\Koordinator\MahasiswaController;
+use App\Http\Controllers\PKLController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
-use App\Http\Controllers\Koordinator\AssignMhsBimbinganController;
 use App\Http\Controllers\RiwayatPKLController;
 use App\Http\Controllers\SeminarPKLController;
 
@@ -72,7 +73,9 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::put('/mhs/kelola_mhs/{nim}/reset_pass', [MahasiswaController::class, 'reset_password']);
     Route::get('/mhs/kelola_mhs/{nim}/get_data_pkl', [MahasiswaController::class, 'get_data_pkl']);
     Route::get('/mhs/kelola_mhs/{nip}/get_data_dospem', [MahasiswaController::class, 'get_data_dospem']);
-
+    
+    Route::get('/mhs/assign_dospem/', [AssignDospemController::class, 'index']);
+    Route::post('/mhs/assign_dospem/{nim}/update_dospem', [AssignDospemController::class, 'update_dospem']);
 
 
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
