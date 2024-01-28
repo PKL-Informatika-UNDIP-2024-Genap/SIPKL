@@ -35,6 +35,9 @@ function simpleDatatable2() {
 				orderable: false,
 				targets: [0, 'action']
 			},
+			{
+				"className": "text-center", "targets": "assign"
+			}
 		],
 		order: [[1, 'asc']],
 		lengthMenu: [5, 10, 25, 50],

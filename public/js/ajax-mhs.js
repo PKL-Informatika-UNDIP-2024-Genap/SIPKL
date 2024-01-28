@@ -271,6 +271,8 @@ $(document).on("click", ".btn-detail-mhs", function(e){
   $("#data-dospem").html(": " + dospem);
 
   if(status != "Baru"){
+    $(".spinner").removeClass("d-none");
+    $(".content-modal").addClass("d-none");
     $.ajax({
       url: '/mhs/kelola_mhs/'+ nim +'/get_data_pkl',
       type: 'GET',
@@ -287,11 +289,13 @@ $(document).on("click", ".btn-detail-mhs", function(e){
           text: 'Terjadi kesalahan saat mengambil data.',
           icon: 'error',
         });
-      }
+      },
     });
   }
 
   if(nip_dospem != "-"){
+    $(".spinner").removeClass("d-none");
+    $(".content-modal").addClass("d-none");
     $.ajax({
       url: '/mhs/kelola_mhs/'+ nip_dospem +'/get_data_dospem',
       type: 'GET',
@@ -306,7 +310,11 @@ $(document).on("click", ".btn-detail-mhs", function(e){
           text: 'Terjadi kesalahan saat mengambil data.',
           icon: 'error',
         });
-      }
+      },
+      complete: function () {
+        $(".spinner").addClass("d-none");
+        $(".content-modal").removeClass("d-none");
+      },
     });
   }
 });

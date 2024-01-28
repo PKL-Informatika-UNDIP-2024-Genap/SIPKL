@@ -21,7 +21,7 @@
   <div class="container-fluid">
 
     <div class="card">
-      <div class="card-body" id="tabel-mhs">
+      <div class="card-body table-responsive" id="tabel-mhs">
         <table class="table" id="myTable2">
           <thead>
             <tr class="table-primary">

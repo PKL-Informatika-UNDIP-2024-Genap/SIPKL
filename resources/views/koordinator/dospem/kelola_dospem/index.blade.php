@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col">
         <div class="card">
-          <div class="card-body" id="tabel-dospem">
+          <div class="card-body table-responsive" id="tabel-dospem">
             <table class="table" id="myTable">
               <thead>
                   <tr class="table-primary">

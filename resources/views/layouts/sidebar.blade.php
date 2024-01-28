@@ -101,8 +101,8 @@
           </ul>
         </li>
 
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+        <li class="nav-item {{ Request::is('pkl*') ? 'menu-open' : '' }}">
+          <a href="#" class="nav-link {{ Request::is('pkl*') ? 'active' : '' }}">
             <i class="nav-icon fas bi bi-briefcase-fill"></i>
             <p>
               PKL
@@ -111,31 +111,25 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="./index.html" class="nav-link">
+              <a href="/pkl/kelola_periode" class="nav-link {{ Request::is('pkl/kelola_periode*') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
                 <p>Kelola Periode</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index2.html" class="nav-link">
+              <a href="pkl/verifikasi_registrasi" class="nav-link {{ Request::is('pkl/verifikasi_registrasi*') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
                 <p>Verifikasi Registrasi</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index2.html" class="nav-link">
-                <i class="far nav-icon bi bi-circle"></i>
-                <p>Assign Pembimbing</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="./index2.html" class="nav-link">
+              <a href="/pkl/kelola_laporan" class="nav-link {{ Request::is('pkl/kelola_laporan*') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
                 <p>Kelola Laporan</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index2.html" class="nav-link">
+              <a href="/pkl/kelola_nilai" class="nav-link {{ Request::is('pkl/kelola_nilai*') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
                 <p>Kelola Nilai</p>
               </a>
@@ -143,8 +137,8 @@
           </ul>
         </li>
 
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+        <li class="nav-item {{ Request::is('seminar*') ? 'menu-open' : '' }}">
+          <a href="#" class="nav-link {{ Request::is('seminar*') ? 'active' : '' }}">
             <i class="nav-icon fas bi bi-calendar2-week"></i>
             <p>
               Seminar
@@ -153,7 +147,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="./index.html" class="nav-link">
+              <a href="./index.html" class="nav-link {{ Request::is('seminar*') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
                 <p>Seminar Tak Terjadwal</p>
               </a>

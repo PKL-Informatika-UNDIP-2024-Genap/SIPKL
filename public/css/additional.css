@@ -22,3 +22,7 @@ tr.shown td.details-control {
   top: 0 !important;          
   transform: none !important; 
 }
+
+.text-center {
+  text-align: center !important;
+}

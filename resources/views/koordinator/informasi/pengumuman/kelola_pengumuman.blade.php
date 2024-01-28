@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col">
         <div class="card">
-          <div class="card-body" id="tabel-pengumuman">
+          <div class="card-body table-responsive" id="tabel-pengumuman">
             <table class="table" id="myTable">
               <thead>
                   <tr class="table-primary">
