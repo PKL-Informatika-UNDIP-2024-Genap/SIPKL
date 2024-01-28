@@ -48,13 +48,20 @@ route::middleware('auth')->group(function () {
         Route::put('/profile/update_password', [ProfileController::class, 'updatePassword']);
         Route::put('/profile/update_nowa', [ProfileController::class, 'updateNoWa']);
         Route::put('/profile/update_email', [ProfileController::class, 'updateEmail']);
+
+        Route::post('/tmp_upload', [PKLController::class, 'tmpUpload']);
+        Route::delete('/tmp_delete', [PKLController::class, 'tmpDelete']);
+
+        Route::post('/tmp_upload_foto_profil', [ProfileController::class, 'tmpUploadFotoProfil']);
+        Route::delete('/tmp_delete_foto_profil', [ProfileController::class, 'tmpDeleteFotoProfil']);
+        Route::put('/profile/update_foto_profil', [ProfileController::class, 'updateFotoProfil']);
+
     });
     Route::get('/logout', [LoginController::class, 'logout']);
     Route::get('/preview/{filename}', [FileController::class, 'preview'])->where('filename', '.*');
     Route::get('/download_file/{filename}', [FileController::class, 'downloadFile'])->where('filename', '.*');
 
-    Route::post('/tmp_upload', [PKLController::class, 'tmpUpload']);
-    Route::delete('/tmp_delete', [PKLController::class, 'tmpDelete']);
+
 });
 
 Route::middleware(['auth', 'is.admin:1'])->group(function () {

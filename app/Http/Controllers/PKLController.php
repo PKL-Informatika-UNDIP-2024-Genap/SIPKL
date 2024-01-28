@@ -92,7 +92,7 @@ class PKLController extends Controller
         if ($request->hasFile('scan_irs')) {
             $file = $request->file('scan_irs');
             $filename = $file->getClientOriginalName();
-            $folder = uniqid() . '-' . now()->timestamp;
+            $folder = uniqid('irs-') . '-' . now()->timestamp;
             $file->storeAs('private/scan_irs/tmp/' . $folder, $filename);
             TemporaryFile::create([
                 'folder' => $folder,

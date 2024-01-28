@@ -7,6 +7,38 @@
       padding-right: 0 !important;
     }
   </style> --}}
+
+  <link href="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.css" rel="stylesheet" />
+
+  {{-- filepond-plugin-image-preview --}}
+  <link href="https://cdn.jsdelivr.net/npm/filepond-plugin-image-preview@4/dist/filepond-plugin-image-preview.min.css" rel="stylesheet" />
+  <style>
+    /*
+    * FilePond Custom Styles
+    */
+    .filepond--drop-label {
+        color: #4c4e53;
+    }
+    .filepond--label-action {
+        text-decoration-color: #babdc0;
+    }
+    .filepond--panel-root {
+        background-color: #edf0f4;
+    }
+
+    /**
+    * Page Styles
+    */
+    /* html {
+        padding: 20vh 0 0;
+    } */
+    .filepond--root {
+      width:170px;
+      margin: 0 auto;
+      border: 2px dashed #ced4da;
+    }
+  </style>
+
 @endpush
 
 @section('container')
@@ -34,10 +66,16 @@
       <!-- Profile Image -->
       <div class="card card-primary card-outline col-xl-6">
         <div class="card-body box-profile">
-          <div class="text-center">
-            <img class="profile-user-img img-fluid img-circle"
-              src="{{ (auth()->user()->foto_profil == null)?'/images/default.jpg':auth()->user()->foto_profil }}"
-              alt="User profile picture">
+          <div class="text-center position-relative">
+            <img id="image_profile_preview" class="profile-user-img img-fluid img-circle"
+              src="{{ (auth()->user()->foto_profil == null)?'/images/default.jpg':'/preview/'.auth()->user()->foto_profil }}"
+              alt="User profile picture" style="width: 170px">
+            <input type="file"
+              class="filepond"
+              name="filepond"
+              accept="image/png, image/jpeg, image/gif"/>
+            <div class="btn btn-outline-primary position-absolute top-0 end-0" type="button" id="editImageBtn"><i class="bi bi-pencil-square"></i></div>
+            <div class="btn btn-outline-primary position-absolute top-0" type="button" id="saveImageBtn" style="right: 50px;"><i class="bi bi-floppy-fill"></i></div>
           </div>
 
           <h3 class="profile-username text-center"><strong>{{ $mahasiswa->nama }}</strong></h3>
@@ -58,7 +96,7 @@
             <table class="table table-hover">
               <tbody>
                 <tr>
-                  <td class="text-nowrap px-0"><strong>Status</strong></td>
+                  <td class="text-nowrap px-0" style="width: 20%"><strong>Status</strong></td>
                   <td style="white-space: nowrap; width: 1%">:</td>
                   <td><strong class="{{ ($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus')?'bg-success':'bg-danger' }} p-2 rounded-2">{{ $mahasiswa->status }}</strong></td>
                 </tr>
@@ -67,7 +105,6 @@
                   <td style="white-space: nowrap; width: 1%">:</td>
                   <td>{{ $mahasiswa->periode_pkl }}</td>
                 </tr>
-                <div id="edit_profil_area">
                 {{-- <tr>
                   <td class="text-nowrap px-0"><strong>No WA</strong></td>
                   <td style="white-space: nowrap; width: 1%">:</td>
@@ -83,7 +120,7 @@
                   <td style="white-space: nowrap; width: 1%">:</td>
                   <td class="px-0 pb-0 pt-1">
                     <div class="input-group">
-                      <input type="text" class="form-control bg-transparent" id="no_wa" name="no_wa" placeholder="Masukkan Nomor Whatsapp" value="{{ old('no_wa',$mahasiswa->no_wa) }}" disabled>
+                      <input type="text" class="form-control bg-transparent border-transparent" id="no_wa" name="no_wa" placeholder="Masukkan Nomor Whatsapp" value="{{ old('no_wa',$mahasiswa->no_wa) }}" disabled>
                       <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveNoWaBtn"><i class="bi bi-floppy-fill"></i></button>
                       <button class="input-group-text btn btn-outline-primary" type="button" id="editNoWaBtn"><i class="bi bi-pencil-fill"></i></button>
                     </div>
@@ -95,14 +132,13 @@
                   <td style="white-space: nowrap; width: 1%">:</td>
                   <td class="px-0 pb-0 pt-1">
                     <div class="input-group">
-                      <input type="text" class="form-control bg-transparent @error('email') is-invalid @enderror" id="email" name="email" placeholder="Masukkan email" value="{{ old('email',$mahasiswa->email) }}" disabled>
+                      <input type="text" class="form-control bg-transparent border-transparent" id="email" name="email" placeholder="Masukkan email" value="{{ old('email',$mahasiswa->email) }}" disabled>
                       <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveEmailBtn"><i class="bi bi-floppy-fill"></i></button>
                       <button class="input-group-text btn btn-outline-primary" type="button" id="editEmailBtn"><i class="bi bi-pencil-fill"></i></button>
                     </div>
                     <div id="email-err" class="invalid-feedback d-block"></div>
                   </td>
                 </tr>
-                </div>
               </tbody>
             </table>
           </div>
@@ -165,10 +201,12 @@
           noWaEl[0].setSelectionRange(noWaEl.val().length, noWaEl.val().length);
           $("#saveNoWaBtn").removeClass("d-none");
           $("#editNoWaBtn").html('<i class="bi bi-x-lg"></i>');
+          $("#no_wa").removeClass("border-transparent");
         } else {
           noWaEl.prop("disabled", true);
           $("#saveNoWaBtn").addClass("d-none");
           $("#editNoWaBtn").html('<i class="bi bi-pencil-fill"></i>');
+          $("#no_wa").addClass("border-transparent");
           $("#no_wa").val(nowa_old);
         }
       });
@@ -232,10 +270,12 @@
           emailEl[0].setSelectionRange(emailEl.val().length, emailEl.val().length);
           $("#saveEmailBtn").removeClass("d-none");
           $("#editEmailBtn").html('<i class="bi bi-x-lg"></i>');
+          $("#email").removeClass("border-transparent");
         } else {
           emailEl.prop("disabled", true);
           $("#saveEmailBtn").addClass("d-none");
           $("#editEmailBtn").html('<i class="bi bi-pencil-fill"></i>');
+          $("#email").addClass("border-transparent");
           $("#email").val(email_old);
         }
       });
@@ -374,4 +414,127 @@
     });
   </script>
   @endif
+
+
+  {{-- filepond-plugin-file-encode --}}
+  <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-encode@2/dist/filepond-plugin-file-encode.min.js"></script>
+  {{-- filepond-plugin-file-validate-type --}}
+  <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-type@1/dist/filepond-plugin-file-validate-type.min.js"></script>
+  {{-- filepond-plugin-image-exif-orientation --}}
+  <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-image-exif-orientation@1/dist/filepond-plugin-image-exif-orientation.min.js"></script>
+  {{-- filepond-plugin-image-preview --}}
+  <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-image-preview@4/dist/filepond-plugin-image-preview.min.js"></script>
+  {{-- filepond-plugin-image-crop --}}
+  <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-image-crop@2/dist/filepond-plugin-image-crop.min.js"></script>
+  {{-- filepond-plugin-image-resize --}}
+  <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-image-resize@2/dist/filepond-plugin-image-resize.min.js"></script>
+  {{-- filepond-plugin-image-transform --}}
+  <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-image-transform@3/dist/filepond-plugin-image-transform.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.js"></script>
+
+  <script>
+    /*
+    We need to register the required plugins to do image manipulation and previewing.
+    */
+    FilePond.registerPlugin(
+      // encodes the file as base64 data
+      FilePondPluginFileEncode,
+      // validates files based on input type
+      FilePondPluginFileValidateType,
+      // corrects mobile image orientation
+      FilePondPluginImageExifOrientation,
+      // previews the image
+      FilePondPluginImagePreview,
+      // crops the image to a certain aspect ratio
+      FilePondPluginImageCrop,
+      // resizes the image to fit a certain size
+      FilePondPluginImageResize,
+      // applies crop and resize information on the client
+      FilePondPluginImageTransform,
+    );
+
+    // Select the file input and use create() to turn it into a pond
+    // in this example we pass properties along with the create method
+    // we could have also put these on the file input element itself
+    FilePond.create(
+      document.querySelector('.filepond'),
+      {
+        labelIdle: `<i class="bi bi-upload fs-3"></i><br>Drag & Drop atau <span class="filepond--label-action">Browse</span>`,
+        imagePreviewHeight: 170,
+        imageCropAspectRatio: '1:1',
+        imageResizeTargetWidth: 200,
+        imageResizeTargetHeight: 200,
+        stylePanelLayout: 'compact circle',
+        styleLoadIndicatorPosition: 'center bottom',
+        styleProgressIndicatorPosition: 'right bottom',
+        styleButtonRemoveItemPosition: 'left bottom',
+        styleButtonProcessItemPosition: 'right bottom',
+        // imageTransformVariants: {
+        //   thumb_small_: (transforms) => {
+        //     transforms.resize = {
+        //       size: {
+        //         width: 128,
+        //         height: 128,
+        //       },
+        //     };
+        //     return transforms;
+        //   },
+        // },
+      }
+    );
+
+    FilePond.setOptions({
+      server: {
+        process: '/tmp_upload_foto_profil',
+        revert: '/tmp_delete_foto_profil',
+
+        headers: {
+          'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+      },
+    });
+
+    $('#saveImageBtn').click(function (e) {
+      e.preventDefault();
+      var preview = $('#image_profile_preview');
+
+      if ($('input[name="filepond"]').val() != '') {
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        $.ajax({
+          type: "put",
+          url: "/profile/update_foto_profil",
+          data: {
+            foto_profil: $('input[name="filepond"]').val(),
+          },
+          dataType: "json",
+          success: function (response) {
+            preview.attr('src', '/preview/'+response.foto_profil);
+            Swal.fire({
+              title: "Berhasil!",
+              text: "Foto profil berhasil diperbarui.",
+              icon: "success",
+              showConfirmButton: true,
+              timer: 1500
+            });
+          },
+          error: function (response) {
+            console.log(response.responseText);
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "Gagal!",
+          text: "Foto profil gagal diperbarui.",
+          icon: "error",
+          showConfirmButton: true,
+          timer: 1500
+        });
+      }
+    });
+  </script>
 @endpush

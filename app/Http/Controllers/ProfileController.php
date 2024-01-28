@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TemporaryFile;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -82,5 +84,59 @@ class ProfileController extends Controller
             'status' => 200,
             'message' => 'Request successful',
         ], 200);
+    }
+
+    public function tmpUploadFotoProfil(Request $request)
+    {
+        if ($request->hasFile('filepond')) {
+            $file = $request->file('filepond');
+            $folder = uniqid('fp-') . '-' . now()->timestamp;
+            $filename = auth()->user()->username . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('private/foto_profil/tmp/' . $folder, $filename);
+            TemporaryFile::create([
+                'folder' => $folder,
+                'filename' => $filename,
+            ]);
+            return $folder;
+        }
+    }
+
+    public function tmpDeleteFotoProfil(Request $request)
+    {
+        $tmp_file = TemporaryFile::where('folder', request()->getContent())->first();
+        if ($tmp_file) {
+            Storage::deleteDirectory('private/foto_profil/tmp/' . $tmp_file->folder);
+            $tmp_file->delete();
+        }
+        return response('');
+    }
+
+    public function updateFotoProfil(Request $request)
+    {
+        $user = auth()->user();
+        $tmp_file = TemporaryFile::where('folder', $request->foto_profil)->first();
+        if ($tmp_file) {
+            if ($user->foto_profil != null) {
+                Storage::delete($user->foto_profil);
+            }
+            $extension = pathinfo(storage_path('/private/foto_profil/tmp/' . $tmp_file->folder . '/' . $tmp_file->filename), PATHINFO_EXTENSION);
+            $new_filename = auth()->user()->username.'-'.now()->timestamp.'-'.uniqid().'.'.$extension;
+            Storage::move('private/foto_profil/tmp/'.$tmp_file->folder.'/'.$tmp_file->filename, 'private/foto_profil/'.$new_filename);
+
+            $user->update([
+                'foto_profil' => 'private/foto_profil/' . $new_filename,
+            ]);
+            Storage::deleteDirectory('private/foto_profil/tmp/' . $tmp_file->folder);
+            $tmp_file->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Request successful',
+                'foto_profil' => $user->foto_profil,
+            ], 200);
+        }
+        return response()->json([
+            'status' => 400,
+            'message' => 'Request failed',
+        ], 400);
     }
 }
