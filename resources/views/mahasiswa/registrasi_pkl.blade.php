@@ -2,8 +2,22 @@
 
 @push('styles')
   <link href="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/filepond-plugin-image-preview@4/dist/filepond-plugin-image-preview.min.css"
-    rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/filepond-plugin-image-preview@4/dist/filepond-plugin-image-preview.min.css" rel="stylesheet" />
+  <style>
+    .filepond--root,
+    .filepond--root .filepond--drop-label {
+      padding: 4rem;
+    }
+    /* bordered drop area */
+    .filepond--panel-root {
+      background-color: transparent;
+      border: 2px dashed #ced4da;
+    }
+    /* the background color of the file and file panel (used when dropping an image) */
+    /* .filepond--item-panel {
+      background-color: #555;
+    } */
+  </style>
 @endpush
 
 @section('container')
@@ -32,7 +46,7 @@
       <!-- general form elements -->
       <div class="card card-primary card-outline">
         <div class="card-header">
-          <h3 class="card-title">Isi data berikut untuk menyatakan bahwa Anda mengikuti PKL pada semester ini.</h3>
+          <h3 class="card-title"><em>Isi data dan scan IRS untuk menyatakan bahwa Anda mengikuti PKL pada periode/semester ini.</em></h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -67,10 +81,6 @@
 
               </div>
             </div>
-            <div class="callout callout-info text-secondary">
-              {{-- <p>Follow the steps to continue to payment.</p> --}}
-              <p>*Anda dapat mengubah isian Instansi dan Judul lagi nanti.<br>Harap segera sesuaikan lagi dengan rencana PKL Anda.</p>
-            </div>
             <div class="form-group">
               <label for="instansi">Instansi</label>
               <div class="input-group">
@@ -99,6 +109,10 @@
                 @enderror
               </div>
             </div>
+            <div class="callout callout-warning text-secondary">
+              {{-- <p>Follow the steps to continue to payment.</p> --}}
+              <em>*Anda dapat mengubah isian Instansi dan Judul PKL lagi nanti.<br>Harap segera sesuaikan lagi dengan rencana PKL Anda.</em>
+            </div>
             <div class="form-group">
               <label for="scan_irs">Scan IRS</label>
               {{-- <input type="file" class="custom-file-input @error('scan_irs') is-invalid @enderror" id="scan_irs" name="scan_irs" value="{{ old('scan_irs') }}"> --}}
@@ -111,14 +125,14 @@
               @enderror
             </div>
             <div class="form-check">
-              <input type="checkbox" class="form-check-input @error('checkbox1') is-invalid @enderror" id="checkbox1" name="checkbox1" {{ (old('checkbox1') != null)?"checked":"" }}>
+              <input type="checkbox" class="form-check-input @error('checkbox1') is-invalid @enderror {{ (old('checkbox1') != null)?"is-valid":"" }}" id="checkbox1" name="checkbox1" {{ (old('checkbox1') != null)?"checked":"" }}>
               <label class="form-check-label" for="checkbox1">Pastikan sudah mengambil PKL di IRS.</label>
             </div>
           </div>
           <!-- /.card-body -->
 
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Kirim</button>
           </div>
         </form>
       </div>
@@ -146,19 +160,22 @@
 
     // Create a FilePond instance
     const pond = FilePond.create(inputElement,{
+      stylePanelLayout: 'compact',
+      labelIdle: `<i class="bi bi-upload fs-2"></i><br>Drag & Drop file Anda atau <span class="filepond--label-action">Browse</span>`,
       acceptedFileTypes: ['image/jpg', 'image/jpeg', 'image/png'],
       labelFileTypeNotAllowed: 'File tidak sesuai format',
       fileValidateTypeLabelExpectedTypes: 'Hanya file JPG, JPEG, PNG yang diperbolehkan',
       maxFileSize: '1500KB',
       labelMaxFileSizeExceeded: 'Ukuran file terlalu besar',
       labelMaxFileSize: 'Total ukuran maksimum file adalah {filesize}',
+      credits: false,
     });
 
     FilePond.setOptions({
       server: {
         process: '/tmp_upload',
         revert: '/tmp_delete',
-        // restore: './restore/',
+        // restore: '/restore',
         // load: './load/',
         // fetch: './fetch/',
         headers: {

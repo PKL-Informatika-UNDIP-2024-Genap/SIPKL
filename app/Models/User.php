@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $primaryKey = 'username';
-    public $timestamps = false;
+    public $timestamps = true;
     public $incrementing = false;
 
     /**

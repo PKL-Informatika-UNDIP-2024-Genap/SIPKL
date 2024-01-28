@@ -92,7 +92,7 @@ class PKLController extends Controller
         if ($request->hasFile('scan_irs')) {
             $file = $request->file('scan_irs');
             $filename = $file->getClientOriginalName();
-            $folder = uniqid() . '-' . now()->timestamp;
+            $folder = uniqid('irs-') . '-' . now()->timestamp;
             $file->storeAs('private/scan_irs/tmp/' . $folder, $filename);
             TemporaryFile::create([
                 'folder' => $folder,
@@ -114,7 +114,8 @@ class PKLController extends Controller
 
     public function submitRegistrasi(UpdatePKLRequest $request)
     {
-        $pkl = auth()->user()->mahasiswa->pkl;
+        $mahasiswa = auth()->user()->mahasiswa;
+        $pkl = $mahasiswa->pkl;
         $validator = validator()->make($request->all(), [
             'periode' => 'required',
             'instansi' => 'required',
@@ -131,12 +132,6 @@ class PKLController extends Controller
             }
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        // $validatedData = $request->validate([
-        //     'periode' => 'required',
-        //     'instansi' => 'required',
-        //     'judul' => 'required',
-        //     'checkbox1' => 'required',
-        // ]);
 
         if ($tmp_file) {
             $extension = pathinfo(storage_path('/private/scan_irs/tmp/'.$tmp_file->folder.'/'.$tmp_file->filename), PATHINFO_EXTENSION);
@@ -148,13 +143,31 @@ class PKLController extends Controller
                 'judul' => $request->judul,
                 'scan_irs' => 'private/scan_irs/'.$new_filename,
             ]);
-            auth()->user()->mahasiswa->update([
+            $mahasiswa->update([
                 'periode_pkl' => $request->periode,
             ]);
             Storage::deleteDirectory('private/scan_irs/tmp/'.$tmp_file->folder);
             $tmp_file->delete();
-            return redirect()->route('pkl.index')->with('success', 'Berhasil mengubah data PKL');
+            return redirect()->route('pkl.index')->with('success', 'Berhasil mengubah data PKL.');
         }
-        return redirect()->back()->with('danger', 'Tolong upload scan IRS.');
+        return redirect()->back();
+    }
+
+    public function updateData(UpdatePKLRequest $request, PKL $pkl) {
+        $validatedData = $request->validate([
+            'instansi' => 'required',
+            'judul' => 'required',
+        ], [
+            'instansi.required' => 'Instansi tidak boleh kosong',
+            'judul.required' => 'Judul tidak boleh kosong',
+        ]);
+        $pkl->update([
+            'instansi' => $validatedData['instansi'],
+            'judul' => $validatedData['judul'],
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Request successful',
+        ], 200);
     }
 }

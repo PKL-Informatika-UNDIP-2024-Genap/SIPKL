@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('status', ['Baru','Nonaktif','Aktif','Lulus'])->default('Baru');
             $table->string('nip_dospem',25)->nullable();
             $table->string('nama_dospem',100)->nullable();
-            $table->string('periode_pkl',15)->nullable();
+            $table->string('periode_pkl',16)->nullable();
         });
     }
 

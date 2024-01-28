@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pkl', function (Blueprint $table) {
-            $table->string('id',20)->primary();
+            $table->string('nim',14)->primary();
             $table->string('instansi',100);
             $table->string('judul');
             $table->string('scan_irs')->nullable();
@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('pesan')->nullable();
             $table->tinyInteger('status')->unsigned()->default(0);
             $table->char('nilai',1)->nullable();
-            $table->string('nim',14);
         });
     }
 

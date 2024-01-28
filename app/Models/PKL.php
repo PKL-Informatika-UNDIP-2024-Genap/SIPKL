@@ -10,7 +10,7 @@ class PKL extends Model
     use HasFactory;
 
     protected $table = 'pkl';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'nim';
     protected $keyType = 'string';
     public $incrementing = false;
     public $timestamps = false;

@@ -44,7 +44,7 @@
           </div>
           <div class="row d-flex justify-content-center">
             <div class="col-auto">
-              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="submit" class="btn btn-primary">Masuk</button>
             </div>
           </div>
         </form>
