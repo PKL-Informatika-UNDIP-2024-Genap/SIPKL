@@ -196,7 +196,7 @@
             $("#modal_edit").modal("hide");
             Swal.fire({
               title: "Berhasil!",
-              text: "Data PKL berhasil diperbarui",
+              text: "Data PKL berhasil diperbarui.",
               icon: "success",
               showConfirmButton: false,
               timer: 1500
@@ -207,7 +207,7 @@
             $('.btn-edit-data').data('judul', judul);
           },
           error: function (response) {
-            // console.log(xhr.responseText);
+            // console.log(response.responseText);
             var errorResponse = $.parseJSON(response.responseText);
             if (errorResponse.errors && errorResponse.errors.instansi) {
               $("#instansi-edit").addClass("is-invalid");

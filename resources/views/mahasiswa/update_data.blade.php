@@ -146,7 +146,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
                             </div>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Masukkan password baru..." value="{{ old('password') }}">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Masukkan password baru..." value="">
                             <div class="input-group-append">
                               <button class="input-group-text btn btn-outline-primary" type="button" id="passwordTgBtn"><i class="bi bi-eye"></i></button>
                             </div>
@@ -163,7 +163,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
                             </div>
-                            <input type="password" class="form-control @error('konfirmasi_password') is-invalid @enderror" id="konfirmasi_password" name="konfirmasi_password" placeholder="Masukkan ulang password..." value="{{ old('konfirmasi_password') }}">
+                            <input type="password" class="form-control @error('konfirmasi_password') is-invalid @enderror" id="konfirmasi_password" name="konfirmasi_password" placeholder="Masukkan ulang password..." value="">
                             <div class="input-group-append">
                               <button class="input-group-text btn btn-outline-primary" type="button" id="konfirmasiPasswordTgBtn"><i class="bi bi-eye"></i></button>
                             </div>

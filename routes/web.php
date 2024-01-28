@@ -1,25 +1,22 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\FileController;
+
 use App\Http\Controllers\Koordinator\AssignDospemController;
 use App\Http\Controllers\Koordinator\DokumenController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Koordinator\PengumumanController;
 use App\Http\Controllers\Koordinator\DosenPembimbingController;
 use App\Http\Controllers\Koordinator\AssignMhsBimbinganController;
 use App\Http\Controllers\Koordinator\MahasiswaController;
+
 use App\Http\Controllers\PKLController;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PKLController;
-use App\Http\Controllers\FileController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RiwayatPKLController;
 use App\Http\Controllers\SeminarPKLController;
-use App\Http\Controllers\Koordinator\DokumenController;
-use App\Http\Controllers\Koordinator\MahasiswaController;
-use App\Http\Controllers\Koordinator\PengumumanController;
-use App\Http\Controllers\Koordinator\DosenPembimbingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +45,9 @@ route::middleware('auth')->group(function () {
     Route::middleware('data.updated')->group(function () {
         Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+        Route::put('/profile/update_password', [ProfileController::class, 'updatePassword']);
+        Route::put('/profile/update_nowa', [ProfileController::class, 'updateNoWa']);
+        Route::put('/profile/update_email', [ProfileController::class, 'updateEmail']);
     });
     Route::get('/logout', [LoginController::class, 'logout']);
     Route::get('/preview/{filename}', [FileController::class, 'preview'])->where('filename', '.*');
