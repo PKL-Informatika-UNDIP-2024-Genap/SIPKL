@@ -170,8 +170,8 @@ class MahasiswaController extends Controller
 
         return response()->json([
             'status' => 200,
-            'judul_pkl' => $pkl->judul,
-            'instansi' => $pkl->instansi,
+            'judul_pkl' => $pkl->judul ?? "-",
+            'instansi' => $pkl->instansi ?? "-",
         ]);
     }
 

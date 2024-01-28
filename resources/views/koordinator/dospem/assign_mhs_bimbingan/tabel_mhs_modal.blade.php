@@ -4,7 +4,7 @@
       <th>No</th>
       <th>Nama Mahasiswa</th>
       <th>NIM</th>
-      <th class="action justify-content-center d-flex">Assign</th>
+      <th class="action assign">Assign</th>
     </tr>
   </thead>
   <tbody>
@@ -15,7 +15,7 @@
           {{ $mhs->nama }}
         </td>
         <td>{{ $mhs->nim }}</td>
-        <td class="justify-content-center d-flex">
+        <td class="assign">
           <div class="form-check">
             <input class="form-check-input {{ $mhs->nip_dospem ? 'db-checked' : '' }}" 
             data-nim="{{ $mhs->nim }}" type="checkbox" {{ $mhs->nip_dospem ? 'checked' : '' }} 

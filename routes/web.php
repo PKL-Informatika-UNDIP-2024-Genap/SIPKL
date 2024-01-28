@@ -11,8 +11,10 @@ use App\Http\Controllers\PKLController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\Koordinator\PeriodePKLController;
 use App\Http\Controllers\RiwayatPKLController;
 use App\Http\Controllers\SeminarPKLController;
+use App\Models\PeriodePKL;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +65,6 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::post('/dospem/assign_mhs_bimbingan/{nip}/update_mhs_bimbingan', [AssignMhsBimbinganController::class, 'update_mhs_bimbingan']);
 
 
-
     Route::get('/mhs/kelola_mhs/', [MahasiswaController::class, 'index']);
     Route::post('/mhs/kelola_mhs/tambah', [MahasiswaController::class, 'store']);
     Route::post('/mhs/kelola_mhs/import', [MahasiswaController::class, 'import']);
@@ -76,6 +77,8 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     
     Route::get('/mhs/assign_dospem/', [AssignDospemController::class, 'index']);
     Route::post('/mhs/assign_dospem/{nim}/update_dospem', [AssignDospemController::class, 'update_dospem']);
+
+    Route::get('/pkl/kelola_periode', [PeriodePKLController::class, 'index']);
 
 
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
