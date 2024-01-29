@@ -10,7 +10,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="/images/default.jpg" class="img-circle elevation-2" alt="User Image">
+          <img id="sidebar_fp" src="{{ (auth()->user()->foto_profil == null)?'/images/default.jpg':'/preview/'.auth()->user()->foto_profil }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="/profile" class="d-block">{{ auth()->user()->mahasiswa->nama }}</a>

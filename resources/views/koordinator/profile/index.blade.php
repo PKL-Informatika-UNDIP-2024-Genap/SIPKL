@@ -1,12 +1,6 @@
-@extends('layouts.main_mhs')
+@extends('layouts.main')
 
 @push('styles')
-  {{-- <style>
-    tr td{
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
-  </style> --}}
 
   <link href="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.css" rel="stylesheet" />
 
@@ -26,12 +20,6 @@
         background-color: #edf0f4;
     }
 
-    /**
-    * Page Styles
-    */
-    /* html {
-        padding: 20vh 0 0;
-    } */
     .filepond--root {
       width:170px;
       margin: 0 auto;
@@ -78,61 +66,33 @@
             <div class="btn btn-outline-primary position-absolute top-0 d-none" type="button" id="saveImageBtn" style="right: 50px;"><i class="bi bi-floppy-fill"></i></div>
           </div>
 
-          <h3 class="profile-username text-center"><strong>{{ $mahasiswa->nama }}</strong></h3>
-          <p class="text-muted text-center">{{ $mahasiswa->nim }}</p>
+          <h3 class="profile-username text-center"><strong>{{ $koordinator->nama }}</strong></h3>
+          <p class="text-muted text-center">{{ $koordinator->nip }}</p>
 
-          {{-- <ul class="list-group list-group-unbordered mb-3">
-            <li class="list-group-item">
-              <b>No WA</b> <span class="float-right">{{ $mahasiswa->no_wa }}</span>
-            </li>
-            <li class="list-group-item">
-              <b>Email</b> <span class="float-right">{{ $mahasiswa->email }}</span>
-            </li>
-            <li class="list-group-item">
-              <b>Status</b> <span class="float-right">{{ $mahasiswa->status }}</span>
-            </li>
-          </ul> --}}
           <div class="table-responsive p-0 mb-3">
             <table class="table table-hover">
               <tbody>
                 <tr>
-                  <td class="text-nowrap px-0" style="width: 20%"><strong>Status</strong></td>
+                  <td class="text-nowrap px-0" style="width: 20%"><strong>Id</strong></td>
                   <td style="white-space: nowrap; width: 1%">:</td>
-                  <td><strong class="{{ ($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus')?'bg-success':'bg-danger' }} p-2 rounded-2">{{ $mahasiswa->status }}</strong></td>
+                  <td><strong class="bg-success p-1 rounded-2">{{ $koordinator->id }}</strong></td>
                 </tr>
                 <tr>
-                  <td class="text-nowrap px-0"><strong>Periode PKL</strong></td>
+                  <td class="text-nowrap px-0"><strong>Golongan</strong></td>
                   <td style="white-space: nowrap; width: 1%">:</td>
-                  <td>{{ $mahasiswa->periode_pkl }}</td>
-                </tr>
-                {{-- <tr>
-                  <td class="text-nowrap px-0"><strong>No WA</strong></td>
-                  <td style="white-space: nowrap; width: 1%">:</td>
-                  <td>{{ $mahasiswa->no_wa }}</td>
+                  <td>{{ $koordinator->golongan }}</td>
                 </tr>
                 <tr>
-                  <td class="text-nowrap px-0"><strong>Email</strong></td>
+                  <td class="text-nowrap px-0"><strong>Jabatan</strong></td>
                   <td style="white-space: nowrap; width: 1%">:</td>
-                  <td>{{ $mahasiswa->email }}</td>
-                </tr> --}}
-                <tr>
-                  <td class="text-nowrap px-0 pb-1"><label for="no_wa"><strong>No WA</strong></label></td>
-                  <td style="white-space: nowrap; width: 1%">:</td>
-                  <td class="px-0 pb-0 pt-1">
-                    <div class="input-group">
-                      <input type="text" class="form-control bg-transparent border-transparent" id="no_wa" name="no_wa" placeholder="Masukkan Nomor Whatsapp" value="{{ old('no_wa',$mahasiswa->no_wa) }}" disabled>
-                      <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveNoWaBtn"><i class="bi bi-floppy-fill"></i></button>
-                      <button class="input-group-text btn btn-outline-primary" type="button" id="editNoWaBtn"><i class="bi bi-pencil-fill"></i></button>
-                    </div>
-                    <div id="no_wa-err" class="invalid-feedback d-block"></div>
-                  </td>
+                  <td>{{ $koordinator->jabatan }}</td>
                 </tr>
                 <tr>
                   <td class="text-nowrap px-0 pb-1"><label for="email"><strong>Email</strong></label></td>
                   <td style="white-space: nowrap; width: 1%">:</td>
                   <td class="px-0 pb-0 pt-1">
                     <div class="input-group">
-                      <input type="text" class="form-control bg-transparent border-transparent" id="email" name="email" placeholder="Masukkan email" value="{{ old('email',$mahasiswa->email) }}" disabled>
+                      <input type="text" class="form-control bg-transparent border-transparent" id="email" name="email" placeholder="Masukkan email" value="{{ old('email',$koordinator->email) }}" disabled>
                       <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveEmailBtn"><i class="bi bi-floppy-fill"></i></button>
                       <button class="input-group-text btn btn-outline-primary" type="button" id="editEmailBtn"><i class="bi bi-pencil-fill"></i></button>
                     </div>
@@ -144,28 +104,13 @@
           </div>
           <!-- /.table-responsive -->
 
-          <p><strong class="text-lightblue">Dosen Pembimbing</strong></p>
+          <p><strong class="text-lightblue">Others?</strong></p>
           <div class="table-responsive p-0 mb-3">
             <table class="table table-hover">
               <tbody>
-
-                @if ($mahasiswa->nip_dospem == null)
                 <tr>
-                  <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong>Belum ada</strong></td>
+                  <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%">Nothing</td>
                 </tr>
-                @else
-                <tr>
-                  <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>NIP</strong></td>
-                  <td style="white-space: nowrap; width: 1%">:</td>
-                  <td>{{ $mahasiswa->nip_dospem }}</td>
-                </tr>
-                <tr>
-                  <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>Nama</strong></td>
-                  <td style="white-space: nowrap; width: 1%">:</td>
-                  <td>{{ $mahasiswa->nama_dospem }} </td>
-                </tr>
-                @endif
-
               </tbody>
             </table>
           </div>
@@ -187,77 +132,6 @@
 @push('scripts')
   <script>
     $(document).ready(function(){
-      let nowa_old = $("#no_wa").val();
-      let email_old = $("#email").val();
-
-      // edit no wa
-      $("#editNoWaBtn").click(function (e) {
-        e.preventDefault();
-        var noWaEl = $("#no_wa");
-        if (noWaEl.prop("disabled") === true){
-          noWaEl.prop("disabled", false);
-          noWaEl.focus();
-          noWaEl.val(noWaEl.val()); // This is optional and can help ensure proper behavior in some cases
-          noWaEl[0].setSelectionRange(noWaEl.val().length, noWaEl.val().length);
-          $("#saveNoWaBtn").removeClass("d-none");
-          $("#editNoWaBtn").html('<i class="bi bi-x-lg"></i>');
-          $("#no_wa").removeClass("border-transparent");
-        } else {
-          noWaEl.prop("disabled", true);
-          $("#saveNoWaBtn").addClass("d-none");
-          $("#editNoWaBtn").html('<i class="bi bi-pencil-fill"></i>');
-          $("#no_wa").addClass("border-transparent");
-          $("#no_wa").val(nowa_old);
-        }
-      });
-
-      // update no wa
-      $("#saveNoWaBtn").click(function (e) {
-        e.preventDefault();
-        let nowa = $("#no_wa").val();
-
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-        });
-
-        $.ajax({
-          type: "put",
-          url: "/profile/update_nowa",
-          data: {
-            no_wa: nowa,
-          },
-          dataType: "json",
-          success: function (response) {
-            $("#no_wa").prop("disabled", true);
-            $("#saveNoWaBtn").addClass("d-none");
-            $("#editNoWaBtn").html('<i class="bi bi-pencil-fill"></i>');
-            Swal.fire({
-              title: "Berhasil!",
-              text: "Nomor Whatsapp berhasil diperbarui.",
-              icon: "success",
-              showConfirmButton: true,
-              timer: 1500
-            });
-            $("#no_wa").removeClass("is-invalid");
-            $("#no_wa-err").html("");
-            nowa_old = nowa;
-          },
-          error: function (response) {
-            // console.log(response.responseText);
-            var errorResponse = $.parseJSON(response.responseText);
-            if (errorResponse.errors && errorResponse.errors.no_wa) {
-              $("#no_wa").addClass("is-invalid");
-              $("#no_wa-err").html(errorResponse.errors.no_wa[0]);
-            }else{
-              $("#no_wa").removeClass("is-invalid");
-              $("#no_wa-err").html("");
-            }
-          }
-        });
-      });
-
 
       // edit email
       $("#editEmailBtn").click(function (e) {
