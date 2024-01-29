@@ -11,9 +11,15 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view('mahasiswa.profile.index', [
-            'mahasiswa' => auth()->user()->mahasiswa,
-        ]);
+        if (auth()->user()->is_admin) {
+            return view('koordinator.profile.index', [
+                'koordinator' => auth()->user()->koordinator,
+            ]);
+        } else {
+            return view('mahasiswa.profile.index', [
+                'mahasiswa' => auth()->user()->mahasiswa,
+            ]);
+        }
     }
 
     public function updatePassword(Request $request)
@@ -77,9 +83,15 @@ class ProfileController extends Controller
         auth()->user()->update([
             'email' => $request->email,
         ]);
-        auth()->user()->mahasiswa->update([
-            'email' => $request->email,
-        ]);
+        if (auth()->user()->is_admin) {
+            auth()->user()->koordinator->update([
+                'email' => $request->email,
+            ]);
+        } else {
+            auth()->user()->mahasiswa->update([
+                'email' => $request->email,
+            ]);
+        }
         return response()->json([
             'status' => 200,
             'message' => 'Request successful',
