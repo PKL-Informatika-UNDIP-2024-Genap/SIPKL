@@ -12,14 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('seminar_pkl', function (Blueprint $table) {
-            $table->string('id', 15)->primary();
+            $table->string('nim', 14)->primary();
+            $table->enum('status', ['Diajukan','TakTerjadwal','Terjadwal']);
             $table->date('tgl_seminar');
             $table->string('pukul_seminar', 15);
             $table->string('ruang', 10);
-            $table->string('id_pkl', 20);
-            $table->string('nim', 14);
             $table->string('nip', 25);
-            $table->tinyInteger('status')->unsigned()->default(0);
             $table->string('scan_layak_seminar')->nullable();
             $table->string('scan_peminjaman_ruang')->nullable();
             $table->timestamps();
