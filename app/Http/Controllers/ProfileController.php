@@ -84,11 +84,11 @@ class ProfileController extends Controller
             'email' => $request->email,
         ]);
         if (auth()->user()->is_admin) {
-            auth()->user()->koordinator->update([
+            auth()->user()->koordinator()->update([
                 'email' => $request->email,
             ]);
         } else {
-            auth()->user()->mahasiswa->update([
+            auth()->user()->mahasiswa()->update([
                 'email' => $request->email,
             ]);
         }
@@ -150,5 +150,38 @@ class ProfileController extends Controller
             'status' => 400,
             'message' => 'Request failed',
         ], 400);
+    }
+
+
+    public function updateGolongan(Request $request)
+    {
+        $request->validate([
+            'golongan' => 'required',
+        ], [
+            'golongan.required' => 'Golongan harus diisi',
+        ]);
+        auth()->user()->koordinator()->update([
+            'golongan' => $request->golongan,
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Request successful',
+        ], 200);
+    }
+
+    public function updateJabatan(Request $request)
+    {
+        $request->validate([
+            'jabatan' => 'required',
+        ], [
+            'jabatan.required' => 'Jabatan harus diisi',
+        ]);
+        auth()->user()->koordinator()->update([
+            'jabatan' => $request->jabatan,
+        ]);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Request successful',
+        ], 200);
     }
 }

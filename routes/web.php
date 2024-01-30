@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
 
 use App\Http\Controllers\Koordinator\AssignDospemController;
@@ -32,19 +32,19 @@ use App\Models\PeriodePKL;
 
 route::middleware('guest')->group(function () {
     Route::get('/', function () {
-        $data_pengumuman = DB::table('pengumuman')->get();
-        $data_dokumen = DB::table('dokumen')->get();
+        $data_pengumuman = DB::table('pengumuman')->select(['deskripsi','lampiran','updated_at'])->get();
+        $data_dokumen = DB::table('dokumen')->select(['deskripsi','lampiran','updated_at'])->get();
         return view('landing',[
             'data_pengumuman' => $data_pengumuman,
             'data_dokumen' => $data_dokumen,
         ]);
     })->name('landing');
-    Route::post('/login', [LoginController::class, 'authenticate']);
+    Route::post('/login', [AuthController::class, 'authenticate']);
 });
 
 route::middleware('auth')->group(function () {
     Route::middleware('data.updated')->group(function () {
-        Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
+        Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
         Route::put('/profile/update_password', [ProfileController::class, 'updatePassword']);
         Route::put('/profile/update_nowa', [ProfileController::class, 'updateNoWa']);
@@ -58,7 +58,7 @@ route::middleware('auth')->group(function () {
         Route::delete('/tmp_delete', [PKLController::class, 'tmpDelete']);
 
     });
-    Route::get('/logout', [LoginController::class, 'logout']);
+    Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/preview/{filename}', [FileController::class, 'preview'])->where('filename', '.*');
     Route::get('/download_file/{filename}', [FileController::class, 'downloadFile'])->where('filename', '.*');
 
@@ -66,6 +66,9 @@ route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'is.admin:1'])->group(function () {
+    Route::put('/profile/update_golongan', [ProfileController::class, 'updateGolongan']);
+    Route::put('/profile/update_jabatan', [ProfileController::class, 'updateJabatan']);
+
     Route::get('/dospem/kelola_dospem/', [DosenPembimbingController::class, 'index']);
     Route::post('/dospem/kelola_dospem/tambah', [DosenPembimbingController::class, 'store']);
     Route::get('/dospem/update_tabel_dospem', [DosenPembimbingController::class, 'update_tabel_dospem']);
@@ -112,8 +115,8 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
 });
 
 Route::middleware(['auth', 'is.admin:0'])->group(function () {
-    Route::get('/update_data', [LoginController::class, 'editData'])->name('update_data');
-    Route::put('/update_data', [LoginController::class, 'updateDataMahasiswa']);
+    Route::get('/update_data', [AuthController::class, 'editData'])->name('update_data');
+    Route::put('/update_data', [AuthController::class, 'updateDataMahasiswa']);
 
     Route::get('/registrasi', [PKLController::class, 'registrasi'])->middleware('status.mhs:Nonaktif')->name('registrasi');
     Route::post('/registrasi', [PKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
