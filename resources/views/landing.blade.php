@@ -51,7 +51,7 @@
         <div class="row">
           <div class="col-lg-12">
             <nav class="navbar navbar-expand-lg">
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="/">
                 <div style="display: flex; align-items: center;">
                   <img src="/images/logo_if.png" alt="Logo" style="height: 55px"/>
                   <h3 class="d-inline" id="navbar-brand-text" style="margin-left: 10px; color:white">SIPKL</h3>
@@ -1047,7 +1047,7 @@
           <div class="row">
             <div class="col-xl-3 col-lg-4 col-md-6">
               <div class="ud-widget">
-                <a href="index.html" class="ud-footer-logo">
+                <a href="/" class="ud-footer-logo">
                   <img src="/images/logo/logo.svg" alt="logo" />
                 </a>
                 <p class="ud-widget-desc">
