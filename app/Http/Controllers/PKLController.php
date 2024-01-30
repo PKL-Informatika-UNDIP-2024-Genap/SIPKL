@@ -139,9 +139,11 @@ class PKLController extends Controller
             Storage::move('private/scan_irs/tmp/'.$tmp_file->folder.'/'.$tmp_file->filename, 'private/scan_irs/'.$new_filename);
 
             $pkl->update([
+                'status' => 'Registrasi',
                 'instansi' => $request->instansi,
                 'judul' => $request->judul,
                 'scan_irs' => 'private/scan_irs/'.$new_filename,
+                'tgl_registrasi' => now(),
             ]);
             $mahasiswa->update([
                 'periode_pkl' => $request->periode,

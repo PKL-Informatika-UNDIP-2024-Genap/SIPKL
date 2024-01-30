@@ -56,12 +56,14 @@ class AuthController extends Controller
         $mahasiswa = $user->mahasiswa;
         request()->no_wa = str_replace(['+', ' ', '_'], '', $request->no_wa);
         $request->merge(['no_wa' => request()->no_wa]);
-        $validatedData = $request->validate([
+        $request->validate([
             'email' => 'required|unique:mahasiswa|regex:/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/',
             // 'no_wa' => 'required|max:20|regex:/^[0-9]{1,20}$/',
             'no_wa' => 'required|min:6|unique:mahasiswa',
             'password' => 'required|min:8|max:32|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/',
             'konfirmasi_password' => 'required|same:password',
+            'instansi' => 'required',
+            'judul' => 'required',
         ], [
             'email.required' => 'Alamat email harus diisi',
             'email.regex' => 'Format alamat email tidak valid',
@@ -75,28 +77,24 @@ class AuthController extends Controller
             'password.regex' => 'Password baru harus mengandung huruf dan angka',
             'konfirmasi_password.required' => 'Konfirmasi password baru harus diisi',
             'konfirmasi_password.same' => 'Konfirmasi password baru tidak sesuai',
-        ]);
-
-        $validatedDataPKL = $request->validate([
-            'instansi' => 'required',
-            'judul' => 'required',
-        ], [
             'instansi.required' => 'Instansi harus diisi',
             'judul.required' => 'Judul PKL harus diisi',
         ]);
-        $validatedDataPKL['nim'] = $mahasiswa->nim;
-        //status default 0
-
-        $new_password = Hash::make($validatedData['password']);
+        $new_password = Hash::make($request->password);
 
         $mahasiswa->update([
-            'email' => $validatedData['email'],
-            'no_wa' => $validatedData['no_wa'],
+            'email' => $request->email,
+            'no_wa' => $request->no_wa,
             'status' => 'Nonaktif',
         ]);
-        PKL::create($validatedDataPKL);
+        PKL::create([
+            'nim' => $mahasiswa->nim,
+            'status' => 'Praregistrasi',
+            'instansi' => $request->instansi,
+            'judul' => $request->judul,
+        ]);
         $user->update([
-            'email' => $validatedData['email'],
+            'email' => $request->email,
             'password' => $new_password,
         ]);
 

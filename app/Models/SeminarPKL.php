@@ -10,7 +10,7 @@ class SeminarPKL extends Model
     use HasFactory;
 
     protected $table = 'seminar_pkl';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'nim';
     protected $keyType = 'string';
     public $incrementing = false;
     public $timestamps = true;

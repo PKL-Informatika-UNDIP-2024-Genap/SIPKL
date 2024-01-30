@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('pkl', function (Blueprint $table) {
             $table->string('nim',14)->primary();
+            $table->enum('status', ['Praregistrasi','Registrasi','Aktif','Laporan','Selesai'])->default('Praregistrasi');
             $table->string('instansi',100);
             $table->string('judul');
             $table->string('scan_irs')->nullable();
+            $table->dateTime('tgl_registrasi')->nullable();
             $table->text('abstrak')->nullable();
             $table->string('keyword1',50)->nullable();
             $table->string('keyword2',50)->nullable();
@@ -25,7 +27,6 @@ return new class extends Migration
             $table->string('link_laporan')->nullable();
             $table->dateTime('tgl_laporan')->nullable();
             $table->string('pesan')->nullable();
-            $table->tinyInteger('status')->unsigned()->default(0);
             $table->char('nilai',1)->nullable();
         });
     }

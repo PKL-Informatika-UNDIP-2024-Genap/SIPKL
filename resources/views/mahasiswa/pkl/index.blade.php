@@ -24,18 +24,18 @@
     <div class="container-fluid">
       <!-- /.row (main row) -->
       <!-- data pkl -->
-      @if ($mahasiswa->status == "Aktif")
-      <div class="card card-success">
+      @if ($pkl->status == "Praregistrasi")
+      <div class="card card-danger">
         <div class="card-header">
-          <h3 class="card-title"><em>Selamat! Anda sudah berstatus Aktif mengikuti PKL pada semester ini.</em></h3>
-      @elseif ($pkl->scan_irs != null)
+          <h3 class="card-title"><em>Anda belum registrasi PKL.</em></h3>
+      @elseif ($pkl->status == 'Registrasi')
       <div class="card card-primary">
         <div class="card-header">
           <h3 class="card-title"><em>Menunggu diterima...</em></h3>
       @else
-      <div class="card card-danger">
+      <div class="card card-success">
         <div class="card-header">
-          <h3 class="card-title"><em>Anda belum registrasi PKL.</em></h3>
+          <h3 class="card-title"><em>Selamat! Anda sudah berstatus Aktif mengikuti PKL pada semester ini.</em></h3>
       @endif
         </div>
         <!-- /.card-header -->
