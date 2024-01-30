@@ -52,7 +52,7 @@
             <i class="nav-icon fas bi bi-people-fill"></i>
             <p>
               Dosen Pembimbing
-              <i class="right fas fa-angle-left"></i>
+              <i class="right fas bi bi-caret-left-fill"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -82,7 +82,7 @@
             <i class="nav-icon fas bi bi-person-fill"></i>
             <p>
               Mahasiswa
-              <i class="right fas fa-angle-left"></i>
+              <i class="right fas bi bi-caret-left-fill"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -106,7 +106,7 @@
             <i class="nav-icon fas bi bi-briefcase-fill"></i>
             <p>
               PKL
-              <i class="right fas fa-angle-left"></i>
+              <i class="right fas bi bi-caret-left-fill"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -142,7 +142,7 @@
             <i class="nav-icon fas bi bi-calendar2-week"></i>
             <p>
               Seminar
-              <i class="right fas fa-angle-left"></i>
+              <i class="right fas bi bi-caret-left-fill"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -175,7 +175,7 @@
             <i class="nav-icon fas bi bi-newspaper"></i>
             <p>
               Kelola Informasi
-              <i class="right fas fa-angle-left"></i>
+              <i class="right fas bi bi-caret-left-fill"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">

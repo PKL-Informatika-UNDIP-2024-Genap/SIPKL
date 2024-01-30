@@ -25,6 +25,8 @@ function simpleDatatable() {
 							});
 			})
 			.draw();
+
+	return table;
 }
 
 function simpleDatatable2() {
