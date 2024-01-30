@@ -21,14 +21,15 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-auto">
-        <button type="button" id="btn-add" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-add-periode">
+        <button type="button" id="btn-add" class="btn btn-primary btn-add" data-periode="{{ isset($data_periode[0]) ? $data_periode[0] : '' }}"  
+          data-bs-toggle="modal" data-bs-target="#modal-add-periode">
           + Tambah Periode PKL
         </button>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-body table-responsive" id="tabel-mhs">
+      <div class="card-body table-responsive" id="tabel-periode">
         <table class="table" id="myTable">
           <thead>
               <tr class="table-primary">
@@ -47,11 +48,19 @@
                       <td>{{ $periode->id_periode }}</td>
                       <td>{{ $periode->tgl_mulai }}</td>
                       <td>{{ $periode->tgl_selesai }}</td>
-                      <td>{{ $periode->status }}</td>
                       <td>
-                          <div class="btn btn-info btn-edit-mhs" data-bs-toggle="modal" data-bs-target="#modal_edit_mhs" 
-                          >Edit</div>
-                          <div class="btn btn-danger btn-delete-mhs">
+                        @if (date('Y-m-d') >= $periode->tgl_mulai && date('Y-m-d') <= $periode->tgl_selesai)
+                          <span class="badge bg-primary">Aktif</span>
+                        @elseif($periode->tgl_selesai < date('Y-m-d'))
+                          <span class="badge bg-success">Selesai</span>
+                        @else
+                          <span class="badge bg-secondary">Mendatang</span>
+                        @endif
+                      </td>
+                      <td>
+                          <div class="btn btn-info btn-edit-periode {{ date('Y-m-d') > $periode->tgl_selesai ? 'disabled' : '' }}" data-bs-toggle="modal" data-bs-target="#modal-edit-periode" 
+                          data-prev-periode="{{isset($data_periode[$loop->index + 1]) ? $data_periode[$loop->index + 1] : ""}}" data-periode="{{ $periode }}">Edit</div>
+                          <div class="btn btn-danger btn-delete-periode {{ date('Y-m-d') > $periode->tgl_selesai ? 'disabled' : '' }}" data-id-periode="{{ $periode->id_periode }}">
                             Delete
                           </div>
                       </td>
@@ -68,20 +77,52 @@
 </section>
 <!-- /.content -->
 
-{{-- modal add mhs --}}
+{{-- modal add periode --}}
 @include('koordinator.pkl.kelola_periode.modal_add_periode')
-{{-- end modal add mhs --}}
+{{-- end modal add periode --}}
 
-{{-- modal edit mhs --}}
+{{-- modal edit periode --}}
 @include('koordinator.pkl.kelola_periode.modal_edit_periode')
-{{-- end modal edit mhs --}}
+{{-- end modal edit periode --}}
 
 @endsection
 
+@push('styles')
+<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+@endpush
+
 @push('scripts')
+
 <script src="/js/ajax-kelola-periode.js"></script>
 <script src="/js/datatables-jquery.js"></script>
+<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+<!-- InputMask -->
+<script src="/lte/plugins/moment/moment.min.js"></script>
+<script src="/lte/plugins/inputmask/jquery.inputmask.min.js"></script>
 <script>
-  simpleDatatable();
+  let tabel = simpleDatatable();
+  tabel.order([1, 'desc']).draw();
+
+  // $('#reservationdate').datetimepicker({
+  //   format: 'L'
+  // });
+  $('#tgl-mulai').datepicker({
+      uiLibrary: 'bootstrap5',
+      format: 'yyyy-mm-dd'
+  });
+  $('#tgl-selesai').datepicker({
+      uiLibrary: 'bootstrap5',
+      format: 'yyyy-mm-dd'
+  });
+  $('#tgl-mulai-edit').datepicker({
+      uiLibrary: 'bootstrap5',
+      format: 'yyyy-mm-dd'
+  });
+  $('#tgl-selesai-edit').datepicker({
+      uiLibrary: 'bootstrap5',
+      format: 'yyyy-mm-dd'
+  });
+
+  $('[data-mask]').inputmask()
 </script>
 @endpush

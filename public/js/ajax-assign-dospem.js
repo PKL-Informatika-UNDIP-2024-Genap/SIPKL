@@ -90,8 +90,8 @@ $(document).ready(function() {
           nip_dospem: nip_dospem
         },
         dataType: "json",
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
           $("#modal-assign-dospem").modal("hide");

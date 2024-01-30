@@ -93,7 +93,10 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::post('/mhs/assign_dospem/{nim}/update_dospem', [AssignDospemController::class, 'update_dospem']);
 
     Route::get('/pkl/kelola_periode', [PeriodePKLController::class, 'index']);
-
+    Route::post('/pkl/kelola_periode/tambah', [PeriodePKLController::class, 'store']);
+    Route::delete('/pkl/kelola_periode/hapus', [PeriodePKLController::class, 'destroy']);
+    Route::put('/pkl/kelola_periode/update', [PeriodePKLController::class, 'update']);
+    Route::get('/pkl/kelola_periode/update_tabel_periode', [PeriodePKLController::class, 'update_tabel_periode']);
 
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
     Route::post('/informasi/kelola_pengumuman/tambah', [PengumumanController::class, 'store']);
