@@ -10,14 +10,10 @@
     <meta name="title" content="SIPKL">
 
     <!--====== Favicon Icon ======-->
-    <link
-      rel="shortcut icon"
-      href="/images/logo_if.png"
-    />
+    <link rel="shortcut icon" href="/images/logo_if.png"/>
 
     <!-- ===== All CSS files ===== -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    {{-- <link rel="stylesheet" href="/css/bootstrap.min.css" /> --}}
     <link rel="stylesheet" href="/css/animate.css" />
     <link rel="stylesheet" href="/css/lineicons.css" />
     <link rel="stylesheet" href="/css/ud-styles.css" />
@@ -26,6 +22,7 @@
     <style>
       html {
         overflow-y: auto;
+        scrollbar-gutter: stable;
         scrollbar-width: thin; /* Firefox */
         -ms-overflow-style: none; /* IE 10+ */
         ::-webkit-scrollbar-track {
@@ -52,7 +49,7 @@
           <div class="col-lg-12">
             <nav class="navbar navbar-expand-lg">
               <a class="navbar-brand" href="/">
-                <div style="display: flex; align-items: center;">
+                <div class="d-flex align-items-center">
                   <img src="/images/logo_if.png" alt="Logo" style="height: 55px"/>
                   <h3 class="d-inline" id="navbar-brand-text" style="margin-left: 10px; color:white">SIPKL</h3>
                 </div>
@@ -96,7 +93,7 @@
     </header>
     <!-- ====== Header End ====== -->
 
-    @include('login_modal')
+    @include('modal_login')
 
     <!-- ====== Hero Start ====== -->
     <section class="ud-hero" id="home">
@@ -110,37 +107,16 @@
               <p class="ud-hero-desc">
                 Praktik Kerja Lapangan (PKL) adalah bentuk penyelenggaraan kegiatan pendidikan dan pelatihan dengan bekerja secara langsung, secara sistematik dan terarah dengan supervisi yang kompeten.
               </p>
-              {{-- <ul class="ud-hero-buttons">
-                <li>
-                  <a href="https://links.uideck.com/play-bootstrap-download" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-white-btn">
-                    Download Now
-                  </a>
-                </li>
-                <li>
-                  <a href="https://github.com/uideck/play-bootstrap" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-link-btn">
-                    Learn More <i class="lni lni-arrow-right"></i>
-                  </a>
-                </li>
-              </ul> --}}
             </div>
             {{-- <div
               class="ud-hero-brands-wrapper wow fadeInUp"
-              data-wow-delay=".3s"
-            >
+              data-wow-delay=".3s">
               <img src="/images/hero/brand.svg" alt="brand" />
             </div> --}}
             <div class="ud-hero-image wow fadeInUp" data-wow-delay=".25s">
               <img src="/images/hero/office-pana.svg" alt="hero-image" />
-              <img
-                src="/images/hero/dotted-shape.svg"
-                alt="shape"
-                class="shape shape-1"
-              />
-              <img
-                src="/images/hero/dotted-shape.svg"
-                alt="shape"
-                class="shape shape-2"
-              />
+              <img src="/images/hero/dotted-shape.svg" alt="shape" class="shape shape-1"/>
+              <img src="/images/hero/dotted-shape.svg" alt="shape" class="shape shape-2"/>
             </div>
           </div>
         </div>
@@ -150,42 +126,37 @@
 
     <!-- ====== Pengumuman Start ====== -->
     <section id="pengumuman" class="ud-features">
-      <div class="container">
+      <div class="container wow fadeInUp" data-wow-delay=".2s">
         <div class="row">
           <div class="col-lg-12">
             <div class="ud-section-title">
-              {{-- <span>Features</span> --}}
+              <span>Announcements</span>
               <h2>Pengumuman</h2>
-              {{-- <p>
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
-              </p> --}}
             </div>
           </div>
         </div>
         <div class="row table-responsive">
-
-          <table class="table table-stripped table-bordered m-0 text-center wow fadeInUp" data-wow-delay=".2s" id="tabel-pengumuman">
-            <tr>
-              <th>Tanggal</th>
-              <th>Deskripsi</th>
-              <th>Lampiran</th>
-            </tr>
-
+          <table class="table table-hover border-primary text-center" id="tabel-pengumuman">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Deskripsi</th>
+                <th>Lampiran</th>
+              </tr>
+            </thead>
             @php
               $i = 0;
             @endphp
+            <tbody>
             @foreach ($data_pengumuman as $pengumuman)
               <tr>
-                <td>{{ date('d M Y', strtotime($pengumuman->updated_at)) }}</td>
+                <td class="">{{ date('d M Y', strtotime($pengumuman->updated_at)) }}</td>
                 <td>{{ $pengumuman->deskripsi }}</td>
-                <td>
-                  <a class="btn btn-primary btn-sm mb-1" href="javascript:void(0)">Download</a>
-                </td>
+                <td><a class="btn btn-primary btn-sm" href="javascript:void(0)">Download</a></td>
               </tr>
             @endforeach
+            </tbody>
           </table>
-
         </div>
       </div>
     </section>
@@ -193,37 +164,37 @@
 
     <!-- ====== Dokumen Start ====== -->
     <section id="dokumen" class="ud-about">
-      <div class="container">
+      <div class="container wow fadeInUp" data-wow-delay=".2s">
         <div class="row">
           <div class="col-lg-12">
             <div class="ud-section-title">
+              <span>Files</span>
               <h2>Dokumen</h2>
             </div>
           </div>
         </div>
         <div class="row table-responsive">
-
-          <table class="table table-stripped table-bordered m-0 text-center wow fadeInUp" data-wow-delay=".2s" id="tabel-dokumen">
-            <tr>
-              <th>Tanggal</th>
-              <th>Deskripsi</th>
-              <th>Lampiran</th>
-            </tr>
-
+          <table class="table table-hover border-primary text-center" id="tabel-dokumen">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Deskripsi</th>
+                <th>Lampiran</th>
+              </tr>
+            </thead>
             @php
               $i = 0;
             @endphp
+            <tbody>
             @foreach ($data_dokumen as $dokumen)
               <tr>
                 <td>{{ date('d M Y', strtotime($dokumen->updated_at)) }}</td>
                 <td>{{ $dokumen->deskripsi }}</td>
-                <td>
-                  <a class="btn btn-primary btn-sm mb-1" href="javascript:void(0)">Download</a>
-                </td>
+                <td><a class="btn btn-primary btn-sm" href="javascript:void(0)">Download</a></td>
               </tr>
             @endforeach
+            </tbody>
           </table>
-
         </div>
       </div>
     </section>
@@ -233,18 +204,6 @@
     {{-- <section id="features" class="ud-features">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title">
-              <span>Features</span>
-              <h2>Main Features of Play</h2>
-              <p>
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
           <div class="col-xl-3 col-lg-3 col-sm-6">
             <div class="ud-single-feature wow fadeInUp" data-wow-delay=".1s">
               <div class="ud-feature-icon">
@@ -252,54 +211,6 @@
               </div>
               <div class="ud-feature-content">
                 <h3 class="ud-feature-title">Free and Open-Source</h3>
-                <p class="ud-feature-desc">
-                  Lorem Ipsum is simply dummy text of the printing and industry.
-                </p>
-                <a href="javascript:void(0)" class="ud-feature-link">
-                  Learn More
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-feature wow fadeInUp" data-wow-delay=".15s">
-              <div class="ud-feature-icon">
-                <i class="lni lni-move"></i>
-              </div>
-              <div class="ud-feature-content">
-                <h3 class="ud-feature-title">Multipurpose Template</h3>
-                <p class="ud-feature-desc">
-                  Lorem Ipsum is simply dummy text of the printing and industry.
-                </p>
-                <a href="javascript:void(0)" class="ud-feature-link">
-                  Learn More
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-feature wow fadeInUp" data-wow-delay=".2s">
-              <div class="ud-feature-icon">
-                <i class="lni lni-layout"></i>
-              </div>
-              <div class="ud-feature-content">
-                <h3 class="ud-feature-title">High-quality Design</h3>
-                <p class="ud-feature-desc">
-                  Lorem Ipsum is simply dummy text of the printing and industry.
-                </p>
-                <a href="javascript:void(0)" class="ud-feature-link">
-                  Learn More
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-feature wow fadeInUp" data-wow-delay=".25s">
-              <div class="ud-feature-icon">
-                <i class="lni lni-layers"></i>
-              </div>
-              <div class="ud-feature-content">
-                <h3 class="ud-feature-title">All Essential Elements</h3>
                 <p class="ud-feature-desc">
                   Lorem Ipsum is simply dummy text of the printing and industry.
                 </p>
@@ -335,107 +246,6 @@
       </div>
     </section>
     <!-- ====== About End ====== -->
-
-    <!-- ====== Pricing Start ====== -->
-    {{-- <section id="pricing" class="ud-pricing">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title mx-auto text-center">
-              <span>Pricing</span>
-              <h2>Our Pricing Plans</h2>
-              <p>
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row g-0 align-items-center justify-content-center">
-          <div class="col-lg-4 col-md-6 col-sm-10">
-            <div
-              class="ud-single-pricing first-item wow fadeInUp"
-              data-wow-delay=".15s"
-            >
-              <div class="ud-pricing-header">
-                <h3>STARTING FROM</h3>
-                <h4>$ 19.99/mo</h4>
-              </div>
-              <div class="ud-pricing-body">
-                <ul>
-                  <li>5 User</li>
-                  <li>All UI components</li>
-                  <li>Lifetime access</li>
-                  <li>Free updates</li>
-                  <li>Use on 1 (one) project</li>
-                  <li>4 Months support</li>
-                </ul>
-              </div>
-              <div class="ud-pricing-footer">
-                <a href="javascript:void(0)" class="ud-main-btn ud-border-btn">
-                  Purchase Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-10">
-            <div
-              class="ud-single-pricing active wow fadeInUp"
-              data-wow-delay=".1s"
-            >
-              <span class="ud-popular-tag">POPULAR</span>
-              <div class="ud-pricing-header">
-                <h3>STARTING FROM</h3>
-                <h4>$ 30.99/mo</h4>
-              </div>
-              <div class="ud-pricing-body">
-                <ul>
-                  <li>5 User</li>
-                  <li>All UI components</li>
-                  <li>Lifetime access</li>
-                  <li>Free updates</li>
-                  <li>Use on 1 (one) project</li>
-                  <li>4 Months support</li>
-                </ul>
-              </div>
-              <div class="ud-pricing-footer">
-                <a href="javascript:void(0)" class="ud-main-btn ud-white-btn">
-                  Purchase Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-10">
-            <div
-              class="ud-single-pricing last-item wow fadeInUp"
-              data-wow-delay=".15s"
-            >
-              <div class="ud-pricing-header">
-                <h3>STARTING FROM</h3>
-                <h4>$ 70.99/mo</h4>
-              </div>
-              <div class="ud-pricing-body">
-                <ul>
-                  <li>5 User</li>
-                  <li>All UI components</li>
-                  <li>Lifetime access</li>
-                  <li>Free updates</li>
-                  <li>Use on 1 (one) project</li>
-                  <li>4 Months support</li>
-                </ul>
-              </div>
-              <div class="ud-pricing-footer">
-                <a href="javascript:void(0)" class="ud-main-btn ud-border-btn">
-                  Purchase Now
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> --}}
-    <!-- ====== Pricing End ====== -->
 
     <!-- ====== FAQ Start ====== -->
     <section id="faq" class="ud-faq">
@@ -607,117 +417,7 @@
     <!-- ====== Testimonials Start ====== -->
     <section id="testimonials" class="ud-testimonials">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title mx-auto text-center">
-              <span>Testimonials</span>
-              <h2>What our Customers Says</h2>
-              <p>
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
-              </p>
-            </div>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div
-              class="ud-single-testimonial wow fadeInUp"
-              data-wow-delay=".1s"
-            >
-              <div class="ud-testimonial-ratings">
-                <i class="lni lni-star-filled"></i>
-                <i class="lni lni-star-filled"></i>
-                <i class="lni lni-star-filled"></i>
-                <i class="lni lni-star-filled"></i>
-                <i class="lni lni-star-filled"></i>
-              </div>
-              <div class="ud-testimonial-content">
-                <p>
-                  “Our members are so impressed. It's intuitive. It's clean.
-                  It's distraction free. If you're building a community.
-                </p>
-              </div>
-              <div class="ud-testimonial-info">
-                <div class="ud-testimonial-image">
-                  <img
-                    src="/images/testimonials/author-01.png"
-                    alt="author"
-                  />
-                </div>
-                <div class="ud-testimonial-meta">
-                  <h4>Sabo Masties</h4>
-                  <p>Founder @UIdeck</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div
-              class="ud-single-testimonial wow fadeInUp"
-              data-wow-delay=".15s"
-            >
-              <div class="ud-testimonial-ratings">
-                <i class="lni lni-star-filled"></i>
-                <i class="lni lni-star-filled"></i>
-                <i class="lni lni-star-filled"></i>
-                <i class="lni lni-star-filled"></i>
-                <i class="lni lni-star-filled"></i>
-              </div>
-              <div class="ud-testimonial-content">
-                <p>
-                  “Our members are so impressed. It's intuitive. It's clean.
-                  It's distraction free. If you're building a community.
-                </p>
-              </div>
-              <div class="ud-testimonial-info">
-                <div class="ud-testimonial-image">
-                  <img
-                    src="/images/testimonials/author-02.png"
-                    alt="author"
-                  />
-                </div>
-                <div class="ud-testimonial-meta">
-                  <h4>Margin Gesmu</h4>
-                  <p>Founder @Lineicons</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div
-              class="ud-single-testimonial wow fadeInUp"
-              data-wow-delay=".2s"
-            >
-              <div class="ud-testimonial-ratings">
-                <i class="lni lni-star-filled"></i>
-                <i class="lni lni-star-filled"></i>
-                <i class="lni lni-star-filled"></i>
-                <i class="lni lni-star-filled"></i>
-                <i class="lni lni-star-filled"></i>
-              </div>
-              <div class="ud-testimonial-content">
-                <p>
-                  “Our members are so impressed. It's intuitive. It's clean.
-                  It's distraction free. If you're building a community.
-                </p>
-              </div>
-              <div class="ud-testimonial-info">
-                <div class="ud-testimonial-image">
-                  <img
-                    src="/images/testimonials/author-03.png"
-                    alt="author"
-                  />
-                </div>
-                <div class="ud-testimonial-meta">
-                  <h4>William Smith</h4>
-                  <p>Founder @GrayGrids</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="row">
           <div class="col-lg-12">
             <div class="ud-brands wow fadeInUp" data-wow-delay=".2s">
@@ -780,38 +480,17 @@
                 <div class="ud-team-image">
                   <img src="/images/team/team-01.png" alt="team" />
                 </div>
-
-                <img
-                  src="/images/team/dotted-shape.svg"
-                  alt="shape"
-                  class="shape shape-1"
-                />
-                <img
-                  src="/images/team/shape-2.svg"
-                  alt="shape"
-                  class="shape shape-2"
-                />
+                <img src="/images/team/dotted-shape.svg" alt="shape" class="shape shape-1"/>
+                <img src="/images/team/shape-2.svg" alt="shape" class="shape shape-2" />
               </div>
               <div class="ud-team-info">
                 <h5>Adveen Desuza</h5>
                 <h6>UI Designer</h6>
               </div>
               <ul class="ud-team-socials">
-                <li>
-                  <a href="https://twitter.com/MusharofChy">
-                    <i class="lni lni-facebook-filled"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/MusharofChy">
-                    <i class="lni lni-twitter-filled"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/MusharofChy">
-                    <i class="lni lni-instagram-filled"></i>
-                  </a>
-                </li>
+                <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
+                <li><a href="javascript:void(0)"><i class="lni lni-twitter-filled"></i></a></li>
+                <li><a href="javascript:void(0)"><i class="lni lni-instagram-filled"></i></a></li>
               </ul>
             </div>
           </div>
@@ -821,17 +500,8 @@
                 <div class="ud-team-image">
                   <img src="/images/team/team-02.png" alt="team" />
                 </div>
-
-                <img
-                  src="/images/team/dotted-shape.svg"
-                  alt="shape"
-                  class="shape shape-1"
-                />
-                <img
-                  src="/images/team/shape-2.svg"
-                  alt="shape"
-                  class="shape shape-2"
-                />
+                <img src="/images/team/dotted-shape.svg" alt="shape" class="shape shape-1" />
+                <img src="/images/team/shape-2.svg" alt="shape" class="shape shape-2" />
               </div>
               <div class="ud-team-info">
                 <h5>Jezmin uniya</h5>
@@ -839,101 +509,13 @@
               </div>
               <ul class="ud-team-socials">
                 <li>
-                  <a href="https://twitter.com/MusharofChy">
-                    <i class="lni lni-facebook-filled"></i>
-                  </a>
+                  <a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/MusharofChy">
-                    <i class="lni lni-twitter-filled"></i>
-                  </a>
+                  <a href="javascript:void(0)"><i class="lni lni-twitter-filled"></i></a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/MusharofChy">
-                    <i class="lni lni-instagram-filled"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-team wow fadeInUp" data-wow-delay=".2s">
-              <div class="ud-team-image-wrapper">
-                <div class="ud-team-image">
-                  <img src="/images/team/team-03.png" alt="team" />
-                </div>
-
-                <img
-                  src="/images/team/dotted-shape.svg"
-                  alt="shape"
-                  class="shape shape-1"
-                />
-                <img
-                  src="/images/team/shape-2.svg"
-                  alt="shape"
-                  class="shape shape-2"
-                />
-              </div>
-              <div class="ud-team-info">
-                <h5>Andrieo Gloree</h5>
-                <h6>App Developer</h6>
-              </div>
-              <ul class="ud-team-socials">
-                <li>
-                  <a href="https://twitter.com/MusharofChy">
-                    <i class="lni lni-facebook-filled"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/MusharofChy">
-                    <i class="lni lni-twitter-filled"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/MusharofChy">
-                    <i class="lni lni-instagram-filled"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-team wow fadeInUp" data-wow-delay=".25s">
-              <div class="ud-team-image-wrapper">
-                <div class="ud-team-image">
-                  <img src="/images/team/team-04.png" alt="team" />
-                </div>
-
-                <img
-                  src="/images/team/dotted-shape.svg"
-                  alt="shape"
-                  class="shape shape-1"
-                />
-                <img
-                  src="/images/team/shape-2.svg"
-                  alt="shape"
-                  class="shape shape-2"
-                />
-              </div>
-              <div class="ud-team-info">
-                <h5>Jackie Sanders</h5>
-                <h6>Content Writer</h6>
-              </div>
-              <ul class="ud-team-socials">
-                <li>
-                  <a href="https://twitter.com/MusharofChy">
-                    <i class="lni lni-facebook-filled"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/MusharofChy">
-                    <i class="lni lni-twitter-filled"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/MusharofChy">
-                    <i class="lni lni-instagram-filled"></i>
-                  </a>
+                  <a href="javascript:void(0)"><i class="lni lni-instagram-filled"></i></a>
                 </li>
               </ul>
             </div>
@@ -1032,7 +614,7 @@
     <!-- ====== Contact End ====== -->
 
     <!-- ====== Footer Start ====== -->
-    <footer class="ud-footer wow fadeInUp" data-wow-delay=".15s">
+    <footer class="ud-footer wow fadeInLeft" data-wow-delay=".15s">
       <div class="shape shape-1">
         <img src="/images/footer/shape-1.svg" alt="shape" />
       </div>
@@ -1274,7 +856,6 @@
 
     <!-- ====== All Javascript Files ====== -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    {{-- <script src="/js/bootstrap.bundle.min.js"></script> --}}
     <script src="/js/wow.min.js"></script>
     <script src="/js/main.js"></script>
     <script>

@@ -24,25 +24,30 @@
         </div>
         <form action="/login" method="post">
           @csrf
-          <div class="row mt-4">
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="username">
+          <div class="my-3">
+            <label for="username" class="form-label"><strong>Username</strong></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+              <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}">
             </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <div class="input-group">
-                <input type="password" class="form-control" id="password" name="password">
-                <button class="btn btn-outline-primary" type="button" id="togglePassword">
-                  <i class="bi bi-eye"></i>
-                </button>
-              </div>
-            </div>
-            <div class="mb-3">
-              <div id="login_error" class="form-text"></div>
-            </div>
+            @error('username')
+            <div class="invalid-feedback d-block">{{ $message }}</div>
+            @enderror
           </div>
-          <div class="row d-flex justify-content-center">
+          <div class="my-3">
+            <label for="password" class="form-label"><strong>Password</strong></label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+              <input type="password" class="form-control" id="password" name="password">
+              <button class="btn btn-outline-primary" type="button" id="togglePassword">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+            @error('password')
+            <div class="invalid-feedback d-block">{{ $message }}</div>
+            @enderror
+          </div>
+          <div class="mt-4 d-flex justify-content-center">
             <div class="col-auto">
               <button type="submit" class="btn btn-primary">Masuk</button>
             </div>
@@ -86,7 +91,6 @@
 @if ($errors->any() || session()->has('loginError'))
   <script>
     $(document).ready(function () {
-      // $("#nim-edit").val("{{ old('nim_edit') }}");
       $('#modal_login').modal('show');
     });
   </script>

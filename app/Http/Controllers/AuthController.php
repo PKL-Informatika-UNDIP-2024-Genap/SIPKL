@@ -6,33 +6,34 @@ use App\Models\PKL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth; // Add this line
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
-    public function authenticate(Request $request){
-        // dd($request->all());
+    public function authenticate(Request $request)
+    {
         $credentials = $request->validate([
-            'username' => 'required',
+            'username' => 'required|exists:users',
             'password' => 'required',
+        ], [
+            'username.required' => 'Username harus diisi',
+            'username.exists' => 'Username tidak ditemukan',
+            'password.required' => 'Password harus diisi',
         ]);
-        // dd(Auth::attempt($credentials));
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            // dd($request->session()->regenerate());
             return redirect()->intended('/dashboard')->with('success', 'Berhasil login!');
         }
 
-        return back()->with('loginError', 'Login Failed!');
+        return back()->with('loginError', 'Login Gagal!')->withErrors(['password' => 'Password tidak sesuai!'])->withInput();
     }
 
-    public function dashboard(){
-        // dd(auth()->user()->username);
+    public function dashboard()
+    {
         if(auth()->user()->is_admin == 1){
             return view('koordinator.dashboard');
-        }else{
+        } else {
             return view('mahasiswa.dashboard', [
                 'mahasiswa' => auth()->user()->mahasiswa,
                 // 'pkl' => auth()->user()->mahasiswa->pkl,
@@ -40,7 +41,8 @@ class LoginController extends Controller
         }
     }
 
-    public function editData(){
+    public function editData()
+    {
         // middleware 'DataNotUpdated' in disguise
         if (auth()->user()->mahasiswa->email != null){
             return redirect('/dashboard');
@@ -48,7 +50,8 @@ class LoginController extends Controller
         return view('mahasiswa.update_data');
     }
 
-    public function updateDataMahasiswa(Request $request){
+    public function updateDataMahasiswa(Request $request)
+    {
         $user = auth()->user();
         $mahasiswa = $user->mahasiswa;
         request()->no_wa = str_replace(['+', ' ', '_'], '', $request->no_wa);

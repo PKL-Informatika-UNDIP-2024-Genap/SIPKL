@@ -27,6 +27,21 @@
     }
   </style>
 
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" /> --}}
+  <link rel="stylesheet" href="/plugins/select2-bootstrap5-theme/select2-bootstrap5.min.css">
+  <style>
+    .select2-container--bootstrap-5 .select2-selection {
+      background-color: transparent;
+    }
+    .select2-container--bootstrap-5.select2-container--disabled .select2-selection, .select2-container--bootstrap-5.select2-container--disabled.select2-container--focus .select2-selection {
+      /* color: #6c757d; */
+      /* cursor: not-allowed; */
+      background-color: transparent;
+      border-color: transparent;
+      /* box-shadow: none; */
+    }
+  </style>
 @endpush
 
 @section('container')
@@ -78,14 +93,46 @@
                   <td><strong class="bg-success p-1 rounded-2">{{ $koordinator->id }}</strong></td>
                 </tr>
                 <tr>
-                  <td class="text-nowrap px-0"><strong>Golongan</strong></td>
+                  <td class="text-nowrap px-0 pb-1"><label for="golongan"><strong>Golongan</strong></label></td>
                   <td style="white-space: nowrap; width: 1%">:</td>
-                  <td>{{ $koordinator->golongan }}</td>
+                  <td class="px-0 pb-0 pt-1">
+                    <div class="input-group">
+                      <select class="form-control bg-transparent border-transparent" id="golongan" name="golongan" disabled>
+                        <option value="" disabled selected>Pilih Golongan</option>
+                        <option value="III/a" @if ($koordinator->golongan == "III/a") selected @endif>III/a</option>
+                        <option value="III/b" @if ($koordinator->golongan == "III/b") selected @endif>III/b</option>
+                        <option value="III/c" @if ($koordinator->golongan == "III/c") selected @endif>III/c</option>
+                        <option value="III/d" @if ($koordinator->golongan == "III/d") selected @endif>III/d</option>
+                        <option value="IV/a" @if ($koordinator->golongan == "IV/a") selected @endif>IV/a</option>
+                        <option value="IV/b" @if ($koordinator->golongan == "IV/b") selected @endif>IV/b</option>
+                        <option value="IV/c" @if ($koordinator->golongan == "IV/c") selected @endif>IV/c</option>
+                        <option value="IV/d" @if ($koordinator->golongan == "IV/d") selected @endif>IV/d</option>
+                        <option value="IV/e" @if ($koordinator->golongan == "IV/e") selected @endif>IV/e</option>
+                      </select>
+                      <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveGolonganBtn"><i class="bi bi-floppy-fill"></i></button>
+                      <button class="input-group-text btn btn-outline-primary" type="button" id="editGolonganBtn"><i class="bi bi-pencil-fill"></i></button>
+                    </div>
+                    <div id="golongan-err" class="invalid-feedback d-block"></div>
+                  </td>
                 </tr>
                 <tr>
-                  <td class="text-nowrap px-0"><strong>Jabatan</strong></td>
+                  <td class="text-nowrap px-0 pb-1"><label for="jabatan"><strong>Jabatan</strong></label></td>
                   <td style="white-space: nowrap; width: 1%">:</td>
-                  <td>{{ $koordinator->jabatan }}</td>
+                  <td class="px-0 pb-0 pt-1">
+                    <div class="input-group">
+                      <select class="form-control bg-transparent border-transparent" id="jabatan" name="jabatan" disabled>
+                        <option value="" disabled selected>Pilih Jabatan</option>
+                        <option value="Pengajar" @if ($koordinator->jabatan == "Pengajar") selected @endif>Pengajar</option>
+                        <option value="Asisten Ahli" @if ($koordinator->jabatan == "Asisten Ahli") selected @endif>Asisten Ahli</option>
+                        <option value="Lektor" @if ($koordinator->jabatan == "Lektor") selected @endif>Lektor</option>
+                        <option value="Lektor Kepala" @if ($koordinator->jabatan == "Lektor Kepala") selected @endif>Lektor Kepala</option>
+                        <option value="Guru Besar" @if ($koordinator->jabatan == "Guru Besar") selected @endif>Guru Besar</option>
+                      </select>
+                      <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveJabatanBtn"><i class="bi bi-floppy-fill"></i></button>
+                      <button class="input-group-text btn btn-outline-primary" type="button" id="editJabatanBtn"><i class="bi bi-pencil-fill"></i></button>
+                    </div>
+                    <div id="jabatan-err" class="invalid-feedback d-block"></div>
+                  </td>
                 </tr>
                 <tr>
                   <td class="text-nowrap px-0 pb-1"><label for="email"><strong>Email</strong></label></td>
@@ -130,8 +177,186 @@
 @endsection
 
 @push('scripts')
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
+    $('#golongan').select2({
+      theme: 'bootstrap-5',
+      // allowClear: true,
+      placeholder: 'Pilih Golongan',
+      dropdownCssClass: "select2--small",
+    });
+    $('#jabatan').select2({
+      theme: 'bootstrap-5',
+      // allowClear: true,
+      placeholder: 'Pilih Jabatan',
+      dropdownCssClass: "select2--small",
+    });
+
     $(document).ready(function(){
+
+      let golongan_old = $("#golongan").val();
+      let jabatan_old = $("#jabatan").val();
+      let email_old = $("#email").val();
+
+      // edit golongan
+      $("#editGolonganBtn").click(function (e) {
+        e.preventDefault();
+        var golonganEl = $("#golongan");
+        if (golonganEl.prop("disabled") === true){
+          golonganEl.prop("disabled", false);
+          golonganEl.focus();
+          $("#saveGolonganBtn").removeClass("d-none");
+          $("#editGolonganBtn").html('<i class="bi bi-x-lg"></i>');
+          // $("#golongan").removeClass("border-transparent");
+        } else {
+          golonganEl.prop("disabled", true);
+          $("#saveGolonganBtn").addClass("d-none");
+          $("#editGolonganBtn").html('<i class="bi bi-pencil-fill"></i>');
+          // $("#golongan").addClass("border-transparent");
+          $("#golongan").val(golongan_old).change();
+          $("#golongan").removeClass("is-invalid"); //reset validasi clientside
+          $('#golongan-err').html(''); //reset validasi clientside
+        }
+      });
+
+      // update golongan
+      $('#saveGolonganBtn').click(function (e) {
+        e.preventDefault();
+        let golongan = $("#golongan").val();
+
+        if (golongan == null) {
+          $("#golongan").addClass("is-invalid");
+          $("#golongan-err").html("Golongan harus dipilih.");
+
+        } else if (golongan == golongan_old) {
+          $("#golongan").prop("disabled", true);
+          $("#saveGolonganBtn").addClass("d-none");
+          $("#editGolonganBtn").html('<i class="bi bi-pencil-fill"></i>');
+
+        } else {
+          $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+          });
+
+          $.ajax({
+            type: "put",
+            url: "/profile/update_golongan",
+            data: {
+              golongan: golongan,
+            },
+            dataType: "json",
+            success: function (response) {
+              $("#golongan").prop("disabled", true);
+              $("#saveGolonganBtn").addClass("d-none");
+              $("#editGolonganBtn").html('<i class="bi bi-pencil-fill"></i>');
+              Swal.fire({
+                title: "Berhasil!",
+                text: "Golongan berhasil diperbarui.",
+                icon: "success",
+                showConfirmButton: true,
+                timer: 1500
+              });
+              $("#golongan").removeClass("is-invalid");
+              $("#golongan-err").html("");
+              golongan_old = golongan;
+            },
+            error: function (response) {
+              // console.log(response.responseText);
+              var errorResponse = $.parseJSON(response.responseText);
+              if (errorResponse.errors && errorResponse.errors.golongan) {
+                $("#golongan").addClass("is-invalid");
+                $("#golongan-err").html(errorResponse.errors.golongan[0]);
+              }else{
+                $("#golongan").removeClass("is-invalid");
+                $("#golongan-err").html("");
+              }
+            }
+          });
+        }
+      });
+
+
+      // edit jabatan
+      $("#editJabatanBtn").click(function (e) {
+        e.preventDefault();
+        var jabatanEl = $("#jabatan");
+        if (jabatanEl.prop("disabled") === true){
+          jabatanEl.prop("disabled", false);
+          jabatanEl.focus();
+          $("#saveJabatanBtn").removeClass("d-none");
+          $("#editJabatanBtn").html('<i class="bi bi-x-lg"></i>');
+          // $("#jabatan").removeClass("border-transparent");
+        } else {
+          jabatanEl.prop("disabled", true);
+          $("#saveJabatanBtn").addClass("d-none");
+          $("#editJabatanBtn").html('<i class="bi bi-pencil-fill"></i>');
+          // $("#jabatan").addClass("border-transparent");
+          $("#jabatan").val(jabatan_old).change();
+          $("#jabatan").removeClass("is-invalid"); //reset validasi clientside
+          $('#jabatan-err').html(''); //reset validasi clientside
+        }
+      });
+
+      // update jabatan
+      $('#saveJabatanBtn').click(function (e) {
+        e.preventDefault();
+        let jabatan = $("#jabatan").val();
+
+        if (jabatan == null) {
+          $("#jabatan").addClass("is-invalid");
+          $("#jabatan-err").html("Jabatan harus dipilih.");
+
+        } else if (jabatan == jabatan_old) {
+          $("#jabatan").prop("disabled", true);
+          $("#saveJabatanBtn").addClass("d-none");
+          $("#editJabatanBtn").html('<i class="bi bi-pencil-fill"></i>');
+
+        } else {
+          $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+          });
+
+          $.ajax({
+            type: "put",
+            url: "/profile/update_jabatan",
+            data: {
+              jabatan: jabatan,
+            },
+            dataType: "json",
+            success: function (response) {
+              $("#jabatan").prop("disabled", true);
+              $("#saveJabatanBtn").addClass("d-none");
+              $("#editJabatanBtn").html('<i class="bi bi-pencil-fill"></i>');
+              Swal.fire({
+                title: "Berhasil!",
+                text: "Jabatan berhasil diperbarui.",
+                icon: "success",
+                showConfirmButton: true,
+                timer: 1500
+              });
+              $("#jabatan").removeClass("is-invalid");
+              $("#jabatan-err").html("");
+              jabatan_old = jabatan;
+            },
+            error: function (response) {
+              // console.log(response.responseText);
+              var errorResponse = $.parseJSON(response.responseText);
+              if (errorResponse.errors && errorResponse.errors.jabatan) {
+                $("#jabatan").addClass("is-invalid");
+                $("#jabatan-err").html(errorResponse.errors.jabatan[0]);
+              }else{
+                $("#jabatan").removeClass("is-invalid");
+                $("#jabatan-err").html("");
+              }
+            }
+          });
+        }
+      });
+
 
       // edit email
       $("#editEmailBtn").click(function (e) {
@@ -151,6 +376,8 @@
           $("#editEmailBtn").html('<i class="bi bi-pencil-fill"></i>');
           $("#email").addClass("border-transparent");
           $("#email").val(email_old);
+          $("#email").removeClass("is-invalid"); //reset validasi clientside
+          $('#email-err').html(''); //reset validasi clientside
         }
       });
 
@@ -159,46 +386,60 @@
         e.preventDefault();
         let email = $("#email").val();
 
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-        });
+        if (email == '') {
+          $('#email').addClass("is-invalid");
+          $('#email-err').html("Email harus diisi.");
 
-        $.ajax({
-          type: "put",
-          url: "/profile/update_email",
-          data: {
-            email: email,
-          },
-          dataType: "json",
-          success: function (response) {
-            $("#email").prop("disabled", true);
-            $("#saveEmailBtn").addClass("d-none");
-            $("#editEmailBtn").html('<i class="bi bi-pencil-fill"></i>');
-            Swal.fire({
-              title: "Berhasil!",
-              text: "Email berhasil diperbarui.",
-              icon: "success",
-              showConfirmButton: true,
-              timer: 1500
-            });
-            $("#email").removeClass("is-invalid");
-            $("#email-err").html("");
-            email_old = email;
-          },
-          error: function (response) {
-            // console.log(response.responseText);
-            var errorResponse = $.parseJSON(response.responseText);
-            if (errorResponse.errors && errorResponse.errors.email) {
-              $("#email").addClass("is-invalid");
-              $("#email-err").html(errorResponse.errors.email[0]);
-            }else{
+        } else if (email == email_old) {
+          $("#email").prop("disabled", true);
+          $("#saveEmailBtn").addClass("d-none");
+          $("#editEmailBtn").html('<i class="bi bi-pencil-fill"></i>');
+          $("#email").addClass("border-transparent");
+          $("#email").removeClass("is-invalid"); //reset validasi clientside
+          $('#email-err').html(''); //reset validasi clientside
+
+        } else {
+          $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          });
+
+          $.ajax({
+            type: "put",
+            url: "/profile/update_email",
+            data: {
+              email: email,
+            },
+            dataType: "json",
+            success: function (response) {
+              $("#email").prop("disabled", true);
+              $("#saveEmailBtn").addClass("d-none");
+              $("#editEmailBtn").html('<i class="bi bi-pencil-fill"></i>');
+              Swal.fire({
+                title: "Berhasil!",
+                text: "Email berhasil diperbarui.",
+                icon: "success",
+                showConfirmButton: true,
+                timer: 1500
+              });
               $("#email").removeClass("is-invalid");
               $("#email-err").html("");
+              email_old = email;
+            },
+            error: function (response) {
+              // console.log(response.responseText);
+              var errorResponse = $.parseJSON(response.responseText);
+              if (errorResponse.errors && errorResponse.errors.email) {
+                $("#email").addClass("is-invalid");
+                $("#email-err").html(errorResponse.errors.email[0]);
+              }else{
+                $("#email").removeClass("is-invalid");
+                $("#email-err").html("");
+              }
             }
-          }
-        });
+          });
+        }
       });
 
 

@@ -208,6 +208,8 @@
           $("#editNoWaBtn").html('<i class="bi bi-pencil-fill"></i>');
           $("#no_wa").addClass("border-transparent");
           $("#no_wa").val(nowa_old);
+          $('#no_wa').removeClass('is-invalid'); //reset validasi clientside
+          $('#no_wa-err').html(''); //reset validasi clientside
         }
       });
 
@@ -216,46 +218,59 @@
         e.preventDefault();
         let nowa = $("#no_wa").val();
 
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-        });
+        if (nowa == '') {
+          $("#no_wa").addClass("is-invalid");
+          $("#no_wa-err").html("Nomor Whatsapp harus diisi.");
 
-        $.ajax({
-          type: "put",
-          url: "/profile/update_nowa",
-          data: {
-            no_wa: nowa,
-          },
-          dataType: "json",
-          success: function (response) {
-            $("#no_wa").prop("disabled", true);
-            $("#saveNoWaBtn").addClass("d-none");
-            $("#editNoWaBtn").html('<i class="bi bi-pencil-fill"></i>');
-            Swal.fire({
-              title: "Berhasil!",
-              text: "Nomor Whatsapp berhasil diperbarui.",
-              icon: "success",
-              showConfirmButton: true,
-              timer: 1500
-            });
-            $("#no_wa").removeClass("is-invalid");
-            $("#no_wa-err").html("");
-            nowa_old = nowa;
-          },
-          error: function (response) {
-            // console.log(response.responseText);
-            var errorResponse = $.parseJSON(response.responseText);
-            if (errorResponse.errors && errorResponse.errors.no_wa) {
-              $("#no_wa").addClass("is-invalid");
-              $("#no_wa-err").html(errorResponse.errors.no_wa[0]);
-            }else{
+        } else if (nowa == nowa_old) {
+          $('#no_wa').prop('disabled', true);
+          $('#saveNoWaBtn').addClass('d-none');
+          $('#editNoWaBtn').html('<i class="bi bi-pencil-fill"></i>');
+          $('#no_wa').removeClass('is-invalid'); //reset validasi clientside
+          $('#no_wa-err').html(''); //reset validasi clientside
+
+        } else {
+          $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          });
+
+          $.ajax({
+            type: "put",
+            url: "/profile/update_nowa",
+            data: {
+              no_wa: nowa,
+            },
+            dataType: "json",
+            success: function (response) {
+              $("#no_wa").prop("disabled", true);
+              $("#saveNoWaBtn").addClass("d-none");
+              $("#editNoWaBtn").html('<i class="bi bi-pencil-fill"></i>');
+              Swal.fire({
+                title: "Berhasil!",
+                text: "Nomor Whatsapp berhasil diperbarui.",
+                icon: "success",
+                showConfirmButton: true,
+                timer: 1500
+              });
               $("#no_wa").removeClass("is-invalid");
               $("#no_wa-err").html("");
+              nowa_old = nowa;
+            },
+            error: function (response) {
+              // console.log(response.responseText);
+              var errorResponse = $.parseJSON(response.responseText);
+              if (errorResponse.errors && errorResponse.errors.no_wa) {
+                $("#no_wa").addClass("is-invalid");
+                $("#no_wa-err").html(errorResponse.errors.no_wa[0]);
+              }else{
+                $("#no_wa").removeClass("is-invalid");
+                $("#no_wa-err").html("");
+              }
             }
-          }
-        });
+          });
+        }
       });
 
 
@@ -277,6 +292,8 @@
           $("#editEmailBtn").html('<i class="bi bi-pencil-fill"></i>');
           $("#email").addClass("border-transparent");
           $("#email").val(email_old);
+          $("#email").removeClass("is-invalid"); //reset validasi clientside
+          $('#email-err').html(''); //reset validasi clientside
         }
       });
 
@@ -285,46 +302,60 @@
         e.preventDefault();
         let email = $("#email").val();
 
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-        });
+        if (email == '') {
+          $('#email').addClass("is-invalid");
+          $('#email-err').html("Email harus diisi.");
 
-        $.ajax({
-          type: "put",
-          url: "/profile/update_email",
-          data: {
-            email: email,
-          },
-          dataType: "json",
-          success: function (response) {
-            $("#email").prop("disabled", true);
-            $("#saveEmailBtn").addClass("d-none");
-            $("#editEmailBtn").html('<i class="bi bi-pencil-fill"></i>');
-            Swal.fire({
-              title: "Berhasil!",
-              text: "Email berhasil diperbarui.",
-              icon: "success",
-              showConfirmButton: true,
-              timer: 1500
-            });
-            $("#email").removeClass("is-invalid");
-            $("#email-err").html("");
-            email_old = email;
-          },
-          error: function (response) {
-            // console.log(response.responseText);
-            var errorResponse = $.parseJSON(response.responseText);
-            if (errorResponse.errors && errorResponse.errors.email) {
-              $("#email").addClass("is-invalid");
-              $("#email-err").html(errorResponse.errors.email[0]);
-            }else{
+        } else if (email == email_old) {
+          $("#email").prop("disabled", true);
+          $("#saveEmailBtn").addClass("d-none");
+          $("#editEmailBtn").html('<i class="bi bi-pencil-fill"></i>');
+          $("#email").addClass("border-transparent");
+          $("#email").removeClass("is-invalid"); //reset validasi clientside
+          $('#email-err').html(''); //reset validasi clientside
+
+        } else {
+          $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          });
+
+          $.ajax({
+            type: "put",
+            url: "/profile/update_email",
+            data: {
+              email: email,
+            },
+            dataType: "json",
+            success: function (response) {
+              $("#email").prop("disabled", true);
+              $("#saveEmailBtn").addClass("d-none");
+              $("#editEmailBtn").html('<i class="bi bi-pencil-fill"></i>');
+              Swal.fire({
+                title: "Berhasil!",
+                text: "Email berhasil diperbarui.",
+                icon: "success",
+                showConfirmButton: true,
+                timer: 1500
+              });
               $("#email").removeClass("is-invalid");
               $("#email-err").html("");
+              email_old = email;
+            },
+            error: function (response) {
+              // console.log(response.responseText);
+              var errorResponse = $.parseJSON(response.responseText);
+              if (errorResponse.errors && errorResponse.errors.email) {
+                $("#email").addClass("is-invalid");
+                $("#email-err").html(errorResponse.errors.email[0]);
+              }else{
+                $("#email").removeClass("is-invalid");
+                $("#email-err").html("");
+              }
             }
-          }
-        });
+          });
+        }
       });
 
 
