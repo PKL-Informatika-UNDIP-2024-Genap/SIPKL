@@ -117,7 +117,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="pkl/verifikasi_registrasi" class="nav-link {{ Request::is('pkl/verifikasi_registrasi*') ? 'active' : '' }}">
+              <a href="/pkl/verifikasi_registrasi" class="nav-link {{ Request::is('pkl/verifikasi_registrasi*') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
                 <p>Verifikasi Registrasi</p>
               </a>

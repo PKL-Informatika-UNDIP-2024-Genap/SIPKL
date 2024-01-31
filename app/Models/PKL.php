@@ -20,4 +20,8 @@ class PKL extends Model
     public function mahasiswa(){
         return $this->hasOne(Mahasiswa::class,'nim','nim');
     }
+
+    public function getRouteKeyName(){
+        return 'nim';
+    }
 }
