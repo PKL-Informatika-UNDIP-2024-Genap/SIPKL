@@ -100,6 +100,10 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::delete('/pkl/kelola_periode/hapus', [PeriodePKLController::class, 'destroy']);
     Route::put('/pkl/kelola_periode/update', [PeriodePKLController::class, 'update']);
     Route::get('/pkl/kelola_periode/update_tabel_periode', [PeriodePKLController::class, 'update_tabel_periode']);
+    
+    Route::get('/pkl/verifikasi_registrasi', [PeriodePKLController::class, 'index']);
+
+
 
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
     Route::post('/informasi/kelola_pengumuman/tambah', [PengumumanController::class, 'store']);
