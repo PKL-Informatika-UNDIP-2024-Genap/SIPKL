@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class EnsureDataUpdated
+class EnsureDataIsUpdated
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class EnsureDataUpdated
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->user()->is_admin == 0){
-            if (auth()->user()->mahasiswa->email == null) {
+            if (auth()->user()->mahasiswa->status == 'Baru') {
                 return redirect()->route('update_data');
             }
         }

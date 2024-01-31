@@ -43,7 +43,7 @@
             </a>
           </li>
 
-          @if (auth()->user()->mahasiswa->status == "Nonaktif" && auth()->user()->mahasiswa->pkl->scan_irs == null)
+          @if (auth()->user()->mahasiswa->status == "Praregistrasi")
 
           <li class="nav-item">
             <a href="/registrasi" class="nav-link {{ Request::is('registrasi')?'active':'' }}">
