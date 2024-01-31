@@ -11,6 +11,7 @@ use App\Http\Controllers\Koordinator\PengumumanController;
 use App\Http\Controllers\Koordinator\DosenPembimbingController;
 use App\Http\Controllers\Koordinator\AssignMhsBimbinganController;
 use App\Http\Controllers\Koordinator\MahasiswaController;
+use App\Http\Controllers\Koordinator\PKLController as KoordinatorPKLController;
 
 use App\Http\Controllers\PKLController;
 use App\Http\Controllers\ProfileController;
@@ -101,8 +102,10 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::put('/pkl/kelola_periode/update', [PeriodePKLController::class, 'update']);
     Route::get('/pkl/kelola_periode/update_tabel_periode', [PeriodePKLController::class, 'update_tabel_periode']);
     
-    Route::get('/pkl/verifikasi_registrasi', [PeriodePKLController::class, 'index']);
-
+    Route::get('/pkl/verifikasi_registrasi', [KoordinatorPKLController::class, 'index_verif_reg']);
+    Route::post('/pkl/verifikasi_registrasi/{pkl}/terima', [KoordinatorPKLController::class, 'terima_registrasi']);
+    Route::post('/pkl/verifikasi_registrasi/{pkl}/tolak', [KoordinatorPKLController::class, 'tolak_registrasi']);
+    Route::get('/pkl/verifikasi_registrasi/update_tabel_registrasi', [KoordinatorPKLController::class, 'update_tabel_registrasi']);
 
 
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);

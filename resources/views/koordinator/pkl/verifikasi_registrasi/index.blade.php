@@ -37,9 +37,10 @@
                       <td></td>
                       <td>{{ $mhs->nama }}</td>
                       <td>{{ $mhs->nim }}</td>
-                      <td>{{ $mhs->tgl_selesai }}</td>
+                      <td>{{ $mhs->tgl_registrasi }}</td>
                       <td>
-                        <div class="btn btn-primary btn-detail-reg" data-bs-toggle="modal" data-bs-target="#modal-detail-reg">Detail</div>
+                        <div class="btn btn-primary btn-detail-reg" data-bs-toggle="modal" data-bs-target="#modal-detail-reg"
+                        data-mhs="{{ $mhs }}">Detail</div>
                       </td>
                   </tr>
               @endforeach
@@ -54,17 +55,33 @@
 </section>
 <!-- /.content -->
 
+@include('koordinator.pkl.verifikasi_registrasi.modal_detail')
+
 @endsection
 
 @push('styles')
-<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 @endpush
 
 @push('scripts')
-
-<script src="/js/ajax-kelola-mhs.js"></script>
+<script src="/js/ajax-verif-reg.js"></script>
 <script src="/js/datatables-jquery.js"></script>
 <script>
   let tabel = simpleDatatable();
+  tabel.order([3, 'asc']).draw();
+  var myImage = document.getElementById('myImage');
+  var showButton = document.getElementById('showButton');
+
+  // Inisialisasi Viewer.js
+  var viewer = new Viewer(myImage, {
+    inline: false,
+    viewed: function() {
+      viewer.zoomTo(1);
+    },
+  });
+
+  // Tambahkan event listener pada tombol
+  showButton.addEventListener('click', function() {
+    viewer.show();
+  });
 </script>
 @endpush
