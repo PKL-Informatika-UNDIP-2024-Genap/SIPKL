@@ -32,23 +32,20 @@
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          <a class="nav-link py-0 px-2" data-widget="pushmenu" href="#" role="button"><i class="bi bi-list fs-3 text-black"></i></a>
         </li>
       </ul>
 
       <!-- Right navbar links -->
       <div class="navbar-nav ml-auto">
-        <a href="/logout" class="btn btn-primary ">Logout</a>
+        <a href="/logout" class="btn btn-primary" id="btn-logout">Keluar</a>
       </div>
     </nav>
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    @if (auth()->user()->is_admin == 1)
-      @include('layouts.sidebar')
-    @else
-      @include('layouts.sidebar_mhs')
-    @endif
+    @include('layouts.sidebar')
+
     <!-- /.Main Sidebar Container -->
 
     <!-- Content Wrapper. Contains page content -->
@@ -97,6 +94,36 @@
   <script src="/lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <!-- AdminLTE App -->
   <script src="/lte/dist/js/adminlte.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Logout
+      $('#btn-logout').on('click', function (e) {
+        e.preventDefault();
+        this.innerHTML = `
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Keluar...
+        `;
+        Swal.fire({
+          title: 'Yakin ingin keluar?',
+          text: "Anda akan diarahkan ke halaman awal.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#007bff',
+          cancelButtonColor: '#dc3545',
+          confirmButtonText: 'Ya, keluar!',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "/logout";
+          } else {
+            this.innerHTML = `Keluar`;
+          }
+        })
+      })
+    });
+  </script>
+
   @stack('scripts')
 
 </body>

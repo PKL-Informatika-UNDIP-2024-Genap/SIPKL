@@ -24,4 +24,8 @@ class Mahasiswa extends Model
     public function pkl(){
         return $this->hasOne(PKL::class,'nim','nim');
     }
+
+    public function seminar_pkl(){
+        return $this->hasOne(SeminarPKL::class,'nim','nim');
+    }
 }
