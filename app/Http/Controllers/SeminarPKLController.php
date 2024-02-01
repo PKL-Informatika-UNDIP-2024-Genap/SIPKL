@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SeminarPKL;
 use App\Http\Requests\StoreSeminarPKLRequest;
 use App\Http\Requests\UpdateSeminarPKLRequest;
+use Carbon\Carbon;
 
 class SeminarPKLController extends Controller
 {
@@ -13,9 +14,18 @@ class SeminarPKLController extends Controller
      */
     public function index()
     {
+        $mahasiswa = auth()->user()->mahasiswa;
+        $seminar_pkl = $mahasiswa->seminar_pkl;
+        // setlocale(LC_TIME, 'id_ID');
+        // Carbon::setLocale('id');
+        $hari_tgl_seminar = null;
+        if ($seminar_pkl != null){
+            $hari_tgl_seminar =  Carbon::parse($seminar_pkl->tgl_seminar)->isoFormat('dddd, D MMMM Y');
+        }
         return view('mahasiswa.seminar.index', [
-            'mahasiswa' => auth()->user()->mahasiswa,
-            'seminar' => auth()->user()->mahasiswa->seminarPKL,
+            'mahasiswa' => $mahasiswa,
+            'seminar_pkl' => $seminar_pkl,
+            'hari_tgl_seminar' => $hari_tgl_seminar,
         ]);
     }
 
