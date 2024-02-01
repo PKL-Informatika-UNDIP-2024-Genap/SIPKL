@@ -56,11 +56,11 @@ class AssignMhsBimbinganController extends Controller
 
   public function update_mhs_bimbingan($nip, Request $request){
     if (!empty($request->arr_nim_add_mhs)) {
-      Mahasiswa::whereIn('nim', $request->arr_nim_add_mhs)->update(['nip_dospem' => $nip]);
+      Mahasiswa::whereIn('nim', $request->arr_nim_add_mhs)->update(['nip_dospem' => $nip, 'nama_dospem' => $request->nama_dospem]);
     }
 
     if (!empty($request->arr_nim_delete_mhs)) {
-        Mahasiswa::whereIn('nim', $request->arr_nim_delete_mhs)->update(['nip_dospem' => null]);
+        Mahasiswa::whereIn('nim', $request->arr_nim_delete_mhs)->update(['nip_dospem' => null, 'nama_dospem' => null]);
     }
 
     return response()->json([

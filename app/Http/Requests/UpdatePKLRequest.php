@@ -11,7 +11,7 @@ class UpdatePKLRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return request()->nim == auth()->user()->username || auth()->user()->is_admin == 1;
     }
 
     /**

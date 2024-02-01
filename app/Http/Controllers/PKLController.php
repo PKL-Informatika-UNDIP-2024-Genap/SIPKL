@@ -73,7 +73,8 @@ class PKLController extends Controller
 
     public function registrasi()
     {
-        if (auth()->user()->mahasiswa->pkl->scan_irs != null) {
+        // middleware status.mhs:Praregistrasi, tapi dialihkan ke pkl
+        if (auth()->user()->mahasiswa->pkl->status != 'Praregistrasi') {
             return redirect('/pkl');
         }
         $periode_sekarang = PeriodePKL::where('tgl_selesai', '>=', date('Y-m-d'))->where('tgl_mulai', '<', date('Y-m-d'))->orderBy('tgl_mulai', 'desc')->first();
@@ -114,14 +115,19 @@ class PKLController extends Controller
 
     public function submitRegistrasi(UpdatePKLRequest $request)
     {
-        $mahasiswa = auth()->user()->mahasiswa;
-        $pkl = $mahasiswa->pkl;
         $validator = validator()->make($request->all(), [
-            'periode' => 'required',
+            // 'periode' => 'required',
+            'nim' => 'required',
             'instansi' => 'required',
             'judul' => 'required',
             'scan_irs' => 'required',
-            'checkbox1' => 'required',
+        ], [
+            'required' => ':attribute harus diisi.',
+        ], [
+            // 'periode' => 'Periode PKL',
+            'instansi' => 'Instansi',
+            'judul' => 'Judul',
+            'scan_irs' => 'Scan IRS',
         ]);
 
         $tmp_file = TemporaryFile::where('folder', $request->scan_irs)->first();
@@ -138,16 +144,16 @@ class PKLController extends Controller
             $new_filename = auth()->user()->username.'-'.now()->timestamp.'-'.uniqid().'.'.$extension;
             Storage::move('private/scan_irs/tmp/'.$tmp_file->folder.'/'.$tmp_file->filename, 'private/scan_irs/'.$new_filename);
 
-            $pkl->update([
+            PKL::where('nim', $request->nim)->update([
                 'status' => 'Registrasi',
                 'instansi' => $request->instansi,
                 'judul' => $request->judul,
                 'scan_irs' => 'private/scan_irs/'.$new_filename,
                 'tgl_registrasi' => now(),
             ]);
-            $mahasiswa->update([
-                'periode_pkl' => $request->periode,
-            ]);
+            // $mahasiswa->update([
+            //     'periode_pkl' => $request->periode,
+            // ]);
             Storage::deleteDirectory('private/scan_irs/tmp/'.$tmp_file->folder);
             $tmp_file->delete();
             return redirect()->route('pkl.index')->with('success', 'Berhasil mengubah data PKL.');

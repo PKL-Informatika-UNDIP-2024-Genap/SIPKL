@@ -47,7 +47,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="bi bi-hand-index-thumb-fill"></i></span>
                 </div>
-                <input type="text" class="form-control text-bold" id="status" placeholder="~" value="{{ $mahasiswa->status }}" readonly>
+                <input type="text" class="form-control text-bold" id="status" value="{{ $mahasiswa->status }}" readonly>
               </div>
             </div>
             <div class="form-group col-sm-7">
@@ -56,7 +56,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
                 </div>
-                <input type="text" class="form-control" id="nama" placeholder="~" value="{{ $mahasiswa->nama }}" readonly>
+                <input type="text" class="form-control" id="nama" value="{{ $mahasiswa->nama }}" readonly>
               </div>
             </div>
             <div class="form-group col-sm-5">
@@ -65,7 +65,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
                 </div>
-                <input type="text" class="form-control" id="nim" placeholder="~" value="{{ $mahasiswa->nim }}" readonly>
+                <input type="text" class="form-control" id="nim" value="{{ $mahasiswa->nim }}" readonly>
               </div>
             </div>
             <div class="form-group col-sm-7">
@@ -74,7 +74,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="bi bi-hourglass-top"></i></span>
                 </div>
-                <input type="text" class="form-control" id="periode" name="periode" placeholder="~" value="{{ $mahasiswa->periode_pkl }}" readonly>
+                <input type="text" class="form-control" id="periode" name="periode" placeholder="Tidak tersedia" value="{{ $mahasiswa->periode_pkl }}" readonly>
               </div>
             </div>
           </div>

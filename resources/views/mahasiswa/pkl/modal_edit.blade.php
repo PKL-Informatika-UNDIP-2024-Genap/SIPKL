@@ -9,17 +9,21 @@
         <form id="form-edit-data" action="" method="post">
           @csrf
           @method("put")
-          <div class="row">
-            <div class="mb-3">
-              <label for="instansi" class="form-label">Instansi</label>
-              <input type="text" class="form-control" id="instansi-edit" name="instansi">
-              <div id="instansi-edit-err" class="invalid-feedback"></div>
+          <div class="form-group">
+            <label for="instansi" class="form-label">Instansi</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-building-fill"></i></span>
+              <input type="text" class="form-control" id="instansi-edit" name="instansi" placeholder="Masukkan nama Instansi">
             </div>
-            <div class="mb-3">
-              <label for="judul" class="form-label">Judul</label>
-              <input type="text" class="form-control" id="judul-edit" name="judul">
-              <div id="judul-edit-err" class="invalid-feedback"></div>
+            <div id="instansi-edit-err" class="invalid-feedback d-block"></div>
+          </div>
+          <div class="form-group">
+            <label for="judul" class="form-label">Judul</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-fonts"></i></span>
+              <input type="text" class="form-control" id="judul-edit" name="judul" placeholder="Masukkan judul PKL">
             </div>
+            <div id="judul-edit-err" class="invalid-feedback d-block"></div>
           </div>
           <div class="row d-flex justify-content-center">
             <div class="col-auto">

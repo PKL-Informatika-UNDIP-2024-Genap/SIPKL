@@ -1,6 +1,7 @@
 $(document).ready(function() {
   let table_modal;
   let nip_dospem;
+  let nama_dospem;
   let map_data_pkl = new Map();
   let arr_nim_delete_mhs = [];
   let arr_nim_add_mhs = [];
@@ -25,6 +26,7 @@ $(document).ready(function() {
     let nama = $(this).data('nama');
     let nip = $(this).data('nip');
     nip_dospem = nip;
+    nama_dospem = nama;
 
     if($("#btn-edit").hasClass("edit")){
       $("#btn-edit").html("Edit Mhs Bimbingan");
@@ -143,7 +145,8 @@ $(document).ready(function() {
           url: "/dospem/assign_mhs_bimbingan/" + nip_dospem + "/update_mhs_bimbingan",
           data: {
             arr_nim_add_mhs: arr_nim_add_mhs,
-            arr_nim_delete_mhs: arr_nim_delete_mhs
+            arr_nim_delete_mhs: arr_nim_delete_mhs,
+            nama_dospem: nama_dospem
           },
           dataType: "json",
           headers: {

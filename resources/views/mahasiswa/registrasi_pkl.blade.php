@@ -4,9 +4,9 @@
   <link href="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/filepond-plugin-image-preview@4/dist/filepond-plugin-image-preview.min.css" rel="stylesheet" />
   <style>
-    .filepond--root,
+    /* .filepond--root, */
     .filepond--root .filepond--drop-label {
-      padding: 4rem;
+      height: 150px;
     }
     /* bordered drop area */
     .filepond--panel-root {
@@ -68,11 +68,11 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
                 </div>
-                <input type="text" class="form-control" id="nim" placeholder="NIM" value="{{ $mahasiswa->nim }}" readonly>
+                <input type="text" class="form-control" id="nim" name="nim" placeholder="NIM" value="{{ $mahasiswa->nim }}" readonly>
               </div>
             </div>
             <div class="form-group">
-              <label for="periode">Periode PKL</label>
+              <label for="periode">Periode PKL Target</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="bi bi-hourglass-top"></i></span>
@@ -124,9 +124,9 @@
                 </div>
               @enderror
             </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input @error('checkbox1') is-invalid @enderror {{ (old('checkbox1') != null)?"is-valid":"" }}" id="checkbox1" name="checkbox1" {{ (old('checkbox1') != null)?"checked":"" }}>
-              <label class="form-check-label" for="checkbox1">Pastikan sudah mengambil PKL di IRS.</label>
+            <div class="form-check ms-1">
+              <input type="checkbox" class="form-check-input" id="checkbox1" name="checkbox1">
+              <label class="form-check-label" for="checkbox1"><em>Pastikan sudah mengambil PKL di IRS.</em></label>
             </div>
           </div>
           <!-- /.card-body -->
@@ -161,7 +161,7 @@
     // Create a FilePond instance
     const pond = FilePond.create(inputElement,{
       stylePanelLayout: 'compact',
-      labelIdle: `<i class="bi bi-upload fs-2"></i><br>Drag & Drop file Anda atau <span class="filepond--label-action">Browse</span>`,
+      labelIdle: `<i class="bi bi-upload fs-2"></i><br>Drag & Drop file atau <span class="filepond--label-action">Browse</span>`,
       acceptedFileTypes: ['image/jpg', 'image/jpeg', 'image/png'],
       labelFileTypeNotAllowed: 'File tidak sesuai format',
       fileValidateTypeLabelExpectedTypes: 'Hanya file JPG, JPEG, PNG yang diperbolehkan',
@@ -173,8 +173,8 @@
 
     FilePond.setOptions({
       server: {
-        process: '/tmp_upload',
-        revert: '/tmp_delete',
+        process: '/tmp_upload_irs',
+        revert: '/tmp_delete_irs',
         // restore: '/restore',
         // load: './load/',
         // fetch: './fetch/',
@@ -184,12 +184,18 @@
       },
     });
 
+    if ($("#checkbox1").checked) {
+      $('button[type=submit]').prop('disabled', false);
+    } else {
+      $('button[type=submit]').prop('disabled', true);
+    }
     $("#checkbox1").change(function() {
       if(this.checked) {
-        this.classList.remove('is-invalid');
         this.classList.add('is-valid');
+        $('button[type=submit]').prop('disabled', false);
       } else {
         this.classList.remove('is-valid');
+        $('button[type=submit]').prop('disabled', true);
       }
     });
   </script>

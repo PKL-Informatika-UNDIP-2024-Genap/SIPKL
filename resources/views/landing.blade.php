@@ -234,7 +234,7 @@
               <span class="tag">Penting</span>
               <h2>Grup WA</h2>
               <p>
-                Gabung grup What's app berikut untuk mendapatkan informasi terbaru seputar PKL Informatika Undip!
+                Gabung grup What's App berikut untuk mendapatkan informasi terbaru seputar PKL Informatika Undip!
               </p>
               <a href="javascript:void(0)" class="ud-main-btn">Gabung</a>
             </div>
@@ -566,7 +566,7 @@
               class="ud-contact-form-wrapper wow fadeInUp"
               data-wow-delay=".2s"
             >
-              <h3 class="ud-contact-form-title">Send us a Message</h3>
+              <h3 class="ud-contact-form-title">Kirim Masukan</h3>
               <form class="ud-contact-form">
                 <div class="ud-form-group">
                   <label for="fullName">Full Name*</label>
