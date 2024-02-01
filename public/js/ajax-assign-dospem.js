@@ -87,7 +87,8 @@ $(document).ready(function() {
         type: "POST",
         url: "/mhs/assign_dospem/"+nim_mhs+"/update_dospem",
         data: {
-          nip_dospem: nip_dospem
+          nip_dospem: nip_dospem,
+          nama_dospem: nama_dospem
         },
         dataType: "json",
         headers: {

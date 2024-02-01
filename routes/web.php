@@ -55,8 +55,8 @@ route::middleware('auth')->group(function () {
         Route::delete('/tmp_delete_foto_profil', [ProfileController::class, 'tmpDeleteFotoProfil']);
         Route::put('/profile/update_foto_profil', [ProfileController::class, 'updateFotoProfil']);
 
-        Route::post('/tmp_upload', [PKLController::class, 'tmpUpload']);
-        Route::delete('/tmp_delete', [PKLController::class, 'tmpDelete']);
+        Route::post('/tmp_upload_irs', [PKLController::class, 'tmpUpload']);
+        Route::delete('/tmp_delete_irs', [PKLController::class, 'tmpDelete']);
 
     });
     Route::get('/logout', [AuthController::class, 'logout']);
@@ -141,6 +141,7 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
     Route::put('/pkl/{pkl}/update', [PKLController::class, 'updateData']);
 
     Route::get('/seminar', [SeminarPKLController::class, 'index'])->middleware('status.mhs:Aktif')->name('seminar.index');
+    Route::post('/seminar/daftar', [SeminarPKLController::class, 'daftarSeminar'])->middleware('status.mhs:Aktif')->name('seminar.daftar');
 
     Route::get('/riwayat', [RiwayatPKLController::class, 'index'])->middleware('data.updated');
 });

@@ -43,7 +43,7 @@
             </a>
           </li>
 
-          @if (auth()->user()->mahasiswa->status == "Praregistrasi")
+          @if (auth()->user()->mahasiswa->pkl->status == "Praregistrasi")
 
           <li class="nav-item">
             <a href="/registrasi" class="nav-link {{ Request::is('registrasi')?'active':'' }}">

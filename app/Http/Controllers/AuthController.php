@@ -53,7 +53,7 @@ class AuthController extends Controller
     public function updateDataMahasiswa(Request $request)
     {
         $user = auth()->user();
-        $mahasiswa = $user->mahasiswa;
+        $mahasiswa = $user->mahasiswa();
         request()->no_wa = str_replace(['+', ' ', '_'], '', $request->no_wa);
         $request->merge(['no_wa' => request()->no_wa]);
         $request->validate([
@@ -88,7 +88,7 @@ class AuthController extends Controller
             'status' => 'Nonaktif',
         ]);
         PKL::create([
-            'nim' => $mahasiswa->nim,
+            'nim' => $user->username,
             'status' => 'Praregistrasi',
             'instansi' => $request->instansi,
             'judul' => $request->judul,
