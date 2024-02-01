@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Verifikasi Registrasi PKL Mahasiswa</h1>
+        <h1 class="m-0">Verifikasi Laporan PKL Mahasiswa</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -20,14 +20,14 @@
 <section class="content">
   <div class="container-fluid">
     <div class="card">
-      <div class="card-body table-responsive" id="tabel-reg">
+      <div class="card-body table-responsive" id="tabel-laporan">
         <table class="table" id="myTable">
           <thead>
               <tr class="table-primary">
                   <th>No</th>
                   <th>Nama Mhs</th>
                   <th>NIM</th>
-                  <th>Tanggal Registrasi</th>
+                  <th>Tanggal Kirim Laporan</th>
                   <th class="action">Action</th>
               </tr>
           </thead>
@@ -37,9 +37,9 @@
                       <td></td>
                       <td>{{ $mhs->nama }}</td>
                       <td>{{ $mhs->nim }}</td>
-                      <td>{{ $mhs->tgl_registrasi }}</td>
+                      <td>{{ $mhs->tgl_laporan }}</td>
                       <td>
-                        <div class="btn btn-primary btn-detail-reg" data-bs-toggle="modal" data-bs-target="#modal-detail-reg"
+                        <div class="btn btn-primary btn-detail-laporan" data-bs-toggle="modal" data-bs-target="#modal-detail-laporan"
                         data-mhs="{{ $mhs }}">Detail</div>
                       </td>
                   </tr>
@@ -55,7 +55,7 @@
 </section>
 <!-- /.content -->
 
-@include('koordinator.pkl.verifikasi_registrasi.modal_detail')
+@include('koordinator.pkl.verifikasi_laporan.modal_detail')
 
 @endsection
 
@@ -65,10 +65,11 @@
 
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js" integrity="sha512-EC3CQ+2OkM+ZKsM1dbFAB6OGEPKRxi6EDRnZW9ys8LghQRAq6cXPUgXCCujmDrXdodGXX9bqaaCRtwj4h4wgSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/ajax-verif-reg.js"></script>
+<script src="/js/ajax-verif-laporan.js"></script>
 <script src="/js/datatables-jquery.js"></script>
 <script>
   let tabel = simpleDatatable();
   tabel.order([3, 'asc']).draw();
+
 </script>
 @endpush
