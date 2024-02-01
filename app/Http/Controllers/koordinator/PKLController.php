@@ -12,9 +12,7 @@ use Carbon\Carbon;
 
 class PKLController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   */
+  // Verifikasi Registrasi
   public function index_verif_reg()
   {
     $data_mhs = PKL::whereRaw("pkl.status = 'Registrasi'")->join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')->get();
@@ -73,6 +71,80 @@ class PKLController extends Controller
     return response()->json([
       'view' => $view
     ]);
+  }
+
+
+  // Verifikasi Laporan
+  public function index_verif_laporan()
+  {
+    $data_mhs = PKL::whereRaw("pkl.status = 'Laporan'")->join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')->get();
+
+    return view('koordinator.pkl.verifikasi_laporan.index', [
+      'data_mhs' => $data_mhs
+    ]);
+  }
+
+  public function terima_laporan(PKL $pkl)
+  {
+    $pkl->status = 'Selesai';
+    $pkl->pesan = null;
+    $pkl->save();
+
+    Mahasiswa::where('nim', $pkl->nim)->update([
+      'status' => 'Lulus',
+    ]);
+
+    return response()->json([
+      'message' => 'Berhasil menerima laporan',
+    ], 200);
+  }
+
+  public function tolak_laporan(PKL $pkl, Request $request)
+  {
+    $pkl->status = 'Aktif';
+    $pkl->pesan = $request->alasan_menolak;
+    $pkl->save();
+
+    return response()->json([
+      'message' => 'Berhasil menolak laporan',
+    ], 200);
+  }
+
+  public function update_tabel_laporan(){
+    $data_mhs = PKL::whereRaw("pkl.status = 'Laporan'")->join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')->get();
+
+    $view = view('koordinator.pkl.verifikasi_laporan.update_tabel_laporan', [
+      'data_mhs' => $data_mhs
+    ])->render();
+
+    return response()->json([
+      'view' => $view
+    ]);
+  }
+
+  // Assign Nilai
+  public function index_assign_nilai()
+  {
+    $data_mhs = PKL::whereRaw("pkl.status = 'Selesai'")->join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')->get();
+
+    return view('koordinator.pkl.assign_nilai.index', [
+      'data_mhs' => $data_mhs
+    ]);
+  }
+
+  public function assign_nilai(PKL $pkl)
+  {
+    $pkl->status = 'Lulus';
+    $pkl->pesan = null;
+    $pkl->save();
+
+    Mahasiswa::where('nim', $pkl->nim)->update([
+      'status' => 'Lulus',
+    ]);
+
+    return response()->json([
+      'message' => 'Berhasil menerima nilai',
+    ], 200);
   }
 
 }

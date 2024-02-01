@@ -16,32 +16,32 @@ class MahasiswaSeeder extends Seeder
             [
                 'nim' => '24060121130086',
                 'nama' => 'Muhammad Rizki',
-                'status' => 'Nonaktif',
+                'status' => 'Lulus',
             ],
             [
                 'nim' => '24060121130050',
                 'nama' => 'Rizki Utama Fauzi',
-                'status' => 'Nonaktif',
+                'status' => 'Lulus',
             ],
             [
                 'nim' => '24060121130123',
                 'nama' => 'Budi Santoso',
-                'status' => 'Nonaktif',
+                'status' => 'Lulus',
             ],
             [
                 'nim' => '24060121130234',
                 'nama' => 'Siti Nurul Hidayah',
-                'status' => 'Nonaktif',
+                'status' => 'Aktif',
             ],
             [
                 'nim' => '24060121130345',
                 'nama' => 'Agus Setiawan',
-                'status' => 'Nonaktif',
+                'status' => 'Aktif',
             ],
             [
                 'nim' => '24060121130456',
                 'nama' => 'Linda Pratiwi',
-                'status' => 'Nonaktif',
+                'status' => 'Aktif',
             ],
             [
                 'nim' => '24060121130567',

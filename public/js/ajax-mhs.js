@@ -290,18 +290,27 @@ $(document).on("click", ".btn-detail-mhs", function(e){
           icon: 'error',
         });
       },
+      complete: function () {
+        if(nip_dospem == "-"){
+          $(".spinner").addClass("d-none");
+          $(".content-modal").removeClass("d-none");
+        }
+      },
     });
   }
+
 
   if(nip_dospem != "-"){
     $(".spinner").removeClass("d-none");
     $(".content-modal").addClass("d-none");
+    console.log(nip_dospem);
     $.ajax({
       url: '/mhs/kelola_mhs/'+ nip_dospem +'/get_data_dospem',
       type: 'GET',
       success: function (response) {
         dospem = response.nama_dospem;
         $("#data-dospem").html(": " + dospem);
+        console.log("success");
       },
       error: function (error) {
         console.error('Error:', error);

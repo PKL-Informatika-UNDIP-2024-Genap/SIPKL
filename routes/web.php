@@ -106,7 +106,16 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::post('/pkl/verifikasi_registrasi/{pkl}/terima', [KoordinatorPKLController::class, 'terima_registrasi']);
     Route::post('/pkl/verifikasi_registrasi/{pkl}/tolak', [KoordinatorPKLController::class, 'tolak_registrasi']);
     Route::get('/pkl/verifikasi_registrasi/update_tabel_registrasi', [KoordinatorPKLController::class, 'update_tabel_registrasi']);
-
+    
+    Route::get('/pkl/verifikasi_laporan', [KoordinatorPKLController::class, 'index_verif_laporan']);
+    Route::post('/pkl/verifikasi_laporan/{pkl}/terima', [KoordinatorPKLController::class, 'terima_laporan']);
+    Route::post('/pkl/verifikasi_laporan/{pkl}/tolak', [KoordinatorPKLController::class, 'tolak_laporan']);
+    Route::get('/pkl/verifikasi_laporan/update_tabel_laporan', [KoordinatorPKLController::class, 'update_tabel_laporan']);
+    
+    Route::get('/pkl/assign_nilai', [KoordinatorPKLController::class, 'index_assign_nilai']);
+    Route::post('/pkl/assign_nilai/{pkl}/terima', [KoordinatorPKLController::class, 'terima_nilai']);
+    Route::post('/pkl/assign_nilai/{pkl}/tolak', [KoordinatorPKLController::class, 'tolak_nilai']);
+    Route::get('/pkl/assign_nilai/update_tabel_nilai', [KoordinatorPKLController::class, 'update_tabel_nilai']);
 
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
     Route::post('/informasi/kelola_pengumuman/tambah', [PengumumanController::class, 'store']);

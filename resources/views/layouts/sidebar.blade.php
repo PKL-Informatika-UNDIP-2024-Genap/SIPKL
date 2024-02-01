@@ -123,15 +123,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/pkl/kelola_laporan" class="nav-link {{ Request::is('pkl/kelola_laporan*') ? 'active' : '' }}">
+              <a href="/pkl/verifikasi_laporan" class="nav-link {{ Request::is('pkl/verifikasi_laporan*') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
-                <p>Kelola Laporan</p>
+                <p>Verifikasi Laporan</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/pkl/kelola_nilai" class="nav-link {{ Request::is('pkl/kelola_nilai*') ? 'active' : '' }}">
+              <a href="/pkl/assign_nilai" class="nav-link {{ Request::is('pkl/assign_nilai*') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
-                <p>Kelola Nilai</p>
+                <p>Assign Nilai</p>
               </a>
             </li>
           </ul>
