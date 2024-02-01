@@ -218,8 +218,8 @@
     collapseTrigger: SELECTOR_DATA_COLLAPSE,
     removeTrigger: SELECTOR_DATA_REMOVE,
     maximizeTrigger: SELECTOR_DATA_MAXIMIZE,
-    collapseIcon: 'fa-minus',
-    expandIcon: 'fa-plus',
+    collapseIcon: 'bi-dash',
+    expandIcon: 'bi-plus',
     maximizeIcon: 'fa-expand',
     minimizeIcon: 'fa-compress'
   };

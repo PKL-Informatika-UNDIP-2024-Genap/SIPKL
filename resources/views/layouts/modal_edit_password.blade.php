@@ -16,7 +16,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
                 </div>
-                <input type="password" class="form-control" id="passwordlama-edit" name="password_lama">
+                <input type="password" class="form-control" id="passwordlama-edit" name="password_lama" placeholder="Masukkan password lama">
               </div>
               <div id="passwordlama-edit-err" class="invalid-feedback d-block"></div>
             </div>
@@ -24,7 +24,7 @@
               <label for="password_baru" class="form-label">Password Baru</label>
               <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
-                <input type="password" class="form-control" id="passwordbaru-edit" name="password_baru">
+                <input type="password" class="form-control" id="passwordbaru-edit" name="password_baru" placeholder="Kombinasi huruf dan angka, 8-32 karakter">
               </div>
               <div id="passwordbaru-edit-err" class="invalid-feedback d-block"></div>
             </div>
@@ -32,7 +32,7 @@
               <label for="konfirmasi_password_baru" class="form-label">Konfirmasi Password Baru</label>
               <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
-                <input type="password" class="form-control" id="konfirmasipasswordbaru-edit" name="konfirmasi_password_baru">
+                <input type="password" class="form-control" id="konfirmasipasswordbaru-edit" name="konfirmasi_password_baru" placeholder="Kombinasi huruf dan angka, 8-32 karakter">
               </div>
               <div id="konfirmasipasswordbaru-edit-err" class="invalid-feedback d-block"></div>
             </div>

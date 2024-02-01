@@ -35,7 +35,7 @@
     .filepond--root {
       width:170px;
       margin: 0 auto;
-      border: 2px dashed #ced4da;
+      border: 3px dashed #ced4da;
     }
   </style>
 

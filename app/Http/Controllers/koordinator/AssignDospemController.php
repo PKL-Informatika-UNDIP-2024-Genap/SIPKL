@@ -25,10 +25,12 @@ class AssignDospemController extends Controller
     public function update_dospem($nim, Request $request){
         $validated_data = $request->validate([
             'nip_dospem' => 'required',
+            'nama_dospem' => 'required',
         ]);
 
         Mahasiswa::where('nim', $nim)->update([
             'nip_dospem' => $validated_data['nip_dospem'],
+            'nama_dospem' => $validated_data['nama_dospem'],
         ]);
 
         return response()->json([

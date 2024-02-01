@@ -183,13 +183,13 @@
       theme: 'bootstrap-5',
       // allowClear: true,
       placeholder: 'Pilih Golongan',
-      dropdownCssClass: "select2--small",
+      // dropdownCssClass: "select2--small",
     });
     $('#jabatan').select2({
       theme: 'bootstrap-5',
       // allowClear: true,
       placeholder: 'Pilih Jabatan',
-      dropdownCssClass: "select2--small",
+      // dropdownCssClass: "select2--small",
     });
 
     $(document).ready(function(){

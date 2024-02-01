@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('seminar_pkl', function (Blueprint $table) {
             $table->string('nim', 14)->primary();
-            $table->enum('status', ['Diajukan','TakTerjadwal','Terjadwal']);
+            $table->enum('status', ['Pengajuan','TakTerjadwal','Terjadwal']);
             $table->date('tgl_seminar');
-            $table->string('pukul_seminar', 15);
+            $table->string('waktu_seminar', 15);
             $table->string('ruang', 10);
-            $table->string('nip', 25);
+            $table->string('nip_dospem', 25);
             $table->string('scan_layak_seminar')->nullable();
             $table->string('scan_peminjaman_ruang')->nullable();
+            $table->string('pesan')->nullable();
             $table->timestamps();
         });
     }
