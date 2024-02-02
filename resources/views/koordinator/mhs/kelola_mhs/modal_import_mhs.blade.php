@@ -1,3 +1,16 @@
+<link href="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.css" rel="stylesheet" />
+<style>
+  /* .filepond--root, */
+  .filepond--root .filepond--drop-label {
+    height: 150px;
+  }
+  /* bordered drop area */
+  .filepond--panel-root {
+    background-color: transparent;
+    border: 2px dashed #ced4da;
+  }
+</style>
+
 <div class="modal fade" id="modal_import_mhs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -18,7 +31,7 @@
           </div>
           <div class="row mb-3">
             <div class="col">
-              <input class="form-control" type="file" name="file" id="file">
+              <input type="file" name="file" id="file">
               <div id="file-err" class="invalid-feedback"></div>
             </div>
           </div>
@@ -34,3 +47,26 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-type@1/dist/filepond-plugin-file-validate-type.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.js"></script>
+<script>
+  // Register the plugin
+  FilePond.registerPlugin(
+    FilePondPluginFileValidateType,
+  );
+
+  // Get a reference to the file input element
+  const inputElement = document.querySelector('input[id="file"]');
+
+  // Create a FilePond instance
+  const pond = FilePond.create(inputElement,{
+    storeAsFile: true,
+    stylePanelLayout: 'compact',
+    labelIdle: `<i class="bi bi-upload fs-2"></i><br>Drag & Drop file atau <span class="filepond--label-action">Browse</span>`,
+    acceptedFileTypes: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'],
+    labelFileTypeNotAllowed: 'File tidak sesuai format',
+    fileValidateTypeLabelExpectedTypes: 'Hanya mendukung file .xlsx atau .xls',
+    credits: false,
+  });
+
+</script>
