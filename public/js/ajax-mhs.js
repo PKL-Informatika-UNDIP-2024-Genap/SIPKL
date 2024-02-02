@@ -248,13 +248,14 @@ $(document).on("click", ".btn-reset-pass", function(e){
 
 $(document).on("click", ".btn-detail-mhs", function(e){
   e.preventDefault();
-  let nim = $(this).data("nim");
-  let nama = $(this).data("nama");
-  let status = $(this).data("status");
-  let no_wa = $(this).data("no-wa") || "-";
-  let email = $(this).data("email") || "-";
-  let nip_dospem = $(this).data("nip-dospem") || "-";
-  let periode_pkl = $(this).data("periode-pkl") || "-";
+  let data_mhs = $(this).data("mhs");
+  let nim = data_mhs.nim;
+  let nama = data_mhs.nama;
+  let status = data_mhs.status;
+  let no_wa = data_mhs.no_wa || "-";
+  let email = data_mhs.email || "-";
+  let id_dospem = data_mhs.id_dospem || "-";
+  let periode_pkl = data_mhs.periode_pkl || "-";
 
   let dospem = "-";
   let judul_pkl = "-";
@@ -291,7 +292,7 @@ $(document).on("click", ".btn-detail-mhs", function(e){
         });
       },
       complete: function () {
-        if(nip_dospem == "-"){
+        if(id_dospem == "-"){
           $(".spinner").addClass("d-none");
           $(".content-modal").removeClass("d-none");
         }
@@ -300,12 +301,12 @@ $(document).on("click", ".btn-detail-mhs", function(e){
   }
 
 
-  if(nip_dospem != "-"){
+  if(id_dospem != "-"){
     $(".spinner").removeClass("d-none");
     $(".content-modal").addClass("d-none");
-    console.log(nip_dospem);
+    console.log(id_dospem);
     $.ajax({
-      url: '/mhs/kelola_mhs/'+ nip_dospem +'/get_data_dospem',
+      url: '/mhs/kelola_mhs/'+ id_dospem +'/get_data_dospem',
       type: 'GET',
       success: function (response) {
         dospem = response.nama_dospem;

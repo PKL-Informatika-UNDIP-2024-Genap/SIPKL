@@ -1,5 +1,6 @@
 $(document).ready(function() {
   let table_modal;
+  let id_dospem;
   let nip_dospem;
   let nama_dospem;
   let map_data_pkl = new Map();
@@ -23,10 +24,9 @@ $(document).ready(function() {
   $(document).on("click", ".btn-assign-mhs", function(e){
     arr_nim_delete_mhs = [];
     arr_nim_add_mhs = [];
-    let nama = $(this).data('nama');
-    let nip = $(this).data('nip');
-    nip_dospem = nip;
-    nama_dospem = nama;
+    id_dospem = $(this).data('id');
+    nip_dospem = $(this).data('nip');
+    nama_dospem = $(this).data('nama');
 
     if($("#btn-edit").hasClass("edit")){
       $("#btn-edit").html("Edit Mhs Bimbingan");
@@ -34,14 +34,14 @@ $(document).ready(function() {
       $('#btn-cancel').addClass('d-none');
     }
 
-    $("#data-nama").html(": " + nama);
-    $("#data-nip").html(": " + nip);
+    $("#data-nama").html(": " + nama_dospem);
+    $("#data-nip").html(": " + nip_dospem);
 
     $('#tabel-modal').html('<div class="d-flex align-items-center"><div class="spinner-border spinner-border-lg me-2" role="status" aria-hidden="true"></div><div class="fs-5">Mengambil Data Mahasiswa...</div></div>');
 
     $.ajax({
       type: "GET",
-      url: "/dospem/assign_mhs_bimbingan/" + nip + "/get_data_mhs",
+      url: "/dospem/assign_mhs_bimbingan/" + id_dospem + "/get_data_mhs",
       success: function (response) {
         $('#tabel-modal').html(response.view);
         if (table_modal) {
@@ -142,7 +142,7 @@ $(document).ready(function() {
       }else{
         $.ajax({
           type: "POST",
-          url: "/dospem/assign_mhs_bimbingan/" + nip_dospem + "/update_mhs_bimbingan",
+          url: "/dospem/assign_mhs_bimbingan/" + id_dospem + "/update_mhs_bimbingan",
           data: {
             arr_nim_add_mhs: arr_nim_add_mhs,
             arr_nim_delete_mhs: arr_nim_delete_mhs,

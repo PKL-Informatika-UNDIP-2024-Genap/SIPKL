@@ -1,3 +1,5 @@
+let dospem;
+
 function update_tabel_dospem() {
   $.ajax({
     type: 'GET',
@@ -102,11 +104,11 @@ $(document).ready(function() {
       $("#jabatan-edit").find("option").removeAttr('selected');
       $("#golongan-edit").find("option").removeAttr('selected');
     });
-  
-    var nama = $(this).data('nama');
-    var nip = $(this).data('nip');
-    var golongan = $(this).data('golongan');
-    var jabatan = $(this).data('jabatan');
+    dospem = $(this).data("dospem");
+    var nama = dospem.nama;
+    var nip = dospem.nip;
+    var golongan = dospem.golongan;
+    var jabatan = dospem.jabatan;
   
     // console.log(nama, nip, golongan, jabatan);s
   
@@ -128,11 +130,13 @@ $(document).ready(function() {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
     });
+    console.log(dospem.id, nama, nip, golongan, jabatan);
 
     $.ajax({
       type: "put",
       url: "/dospem/kelola_dospem/update",
       data: {
+        id: dospem.id,
         nama: nama,
         nip: nip,
         golongan: golongan,
@@ -151,7 +155,7 @@ $(document).ready(function() {
         update_tabel_dospem();
       },
       error: function (response) {
-        // console.log(xhr.responseText);
+        console.log(response);
         var errorResponse = $.parseJSON(response.responseText);
         if (errorResponse.errors && errorResponse.errors.nama) {
           $("#nama-edit").addClass("is-invalid");
@@ -192,6 +196,7 @@ $(document).ready(function() {
 
 $(document).on("click", ".btn-delete-dospem", function(e){
   e.preventDefault();
+  let id = $(this).data("id");
   let nip = $(this).data("nip");
   
   Swal.fire({
@@ -206,7 +211,7 @@ $(document).on("click", ".btn-delete-dospem", function(e){
     if (result.isConfirmed) {
       // Kirim permintaan DELETE ke server menggunakan AJAX
       $.ajax({
-        url: '/dospem/kelola_dospem/'+ nip +'/delete',
+        url: '/dospem/kelola_dospem/'+ id +'/delete',
         type: 'DELETE',
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

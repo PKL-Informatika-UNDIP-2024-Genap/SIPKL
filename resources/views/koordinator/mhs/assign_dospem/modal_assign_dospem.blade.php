@@ -14,7 +14,7 @@
               <select name="dosen-pembimbing" class="form-control select2bs4" style="width: 100%;" id="dosen-pembimbing">
                 <option value="" disabled selected>Pilih Dospem</option>
                 @foreach ($data_dospem as $dospem)
-                  <option value="{{ $dospem->nip }}">{{ $dospem->nama }}</option>
+                  <option value="{{ $dospem->id }}">{{ $dospem->nama }}</option>
                 @endforeach
               </select>
               <div id="dosen-pembimbing-err" class="invalid-feedback"></div>

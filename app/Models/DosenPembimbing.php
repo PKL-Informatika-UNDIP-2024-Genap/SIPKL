@@ -10,9 +10,9 @@ class DosenPembimbing extends Model
     use HasFactory;
 
     protected $table = 'dosen_pembimbing';
-    protected $primaryKey = 'nip';
-    protected $keyType = 'string';
-    public $incrementing = false;
+    // protected $primaryKey = 'id';
+    // protected $keyType = 'string';
+    // public $incrementing = false;
     public $timestamps = false;
     protected $guarded = [];
 }
