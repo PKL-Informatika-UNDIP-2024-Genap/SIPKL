@@ -61,7 +61,7 @@ class MahasiswaController extends Controller
 
     public function import(Request $request)
     {
-        $validatedData = $request->validate([
+        request()->validate([
             'file' => 'required|mimes:xlsx,xls',
         ],
         [
