@@ -41,7 +41,7 @@
                 <td class="kolom-nama-dospem">{{ $mhs->nama_dospem ?? "-"}}</td>
                 <td>
                   <div class="btn btn-primary btn-sm btn-assign-dospem" data-bs-toggle="modal" data-bs-target="#modal-assign-dospem"
-                    data-nim="{{ $mhs->nim }}">
+                    data-nim="{{ $mhs->nim }}" data-id-dospem="{{ $mhs->id_dospem }}">
                     Assign Dospem
                   </div>
                 </td>

@@ -56,12 +56,15 @@ class DosenPembimbingController extends Controller
     public function update(Request $request)
     {
         $validatedData = $request->validate([
+            'id' => ['required', Rule::unique('dosen_pembimbing')->ignore($request->id, 'id')],
             'nama' => 'required',
             'nip' => ['required', Rule::unique('dosen_pembimbing')->ignore($request->nip, 'nip')],
             'golongan' => 'required',
             'jabatan' => 'required',
         ],
         [
+            'id.required' => 'ID tidak boleh kosong',
+            'id.unique' => 'ID sudah terdaftar',
             'nama.required' => 'Nama tidak boleh kosong',
             'nip.required' => 'NIP tidak boleh kosong',
             'nip.unique' => 'NIP sudah terdaftar',
@@ -69,7 +72,7 @@ class DosenPembimbingController extends Controller
             'jabatan.required' => 'Jabatan tidak boleh kosong',
         ]);
 
-        DosenPembimbing::where('nip', $request->nip)->update($validatedData);
+        DosenPembimbing::find($request->id)->update($validatedData);
 
         return response()->json([
             'status' => 200,

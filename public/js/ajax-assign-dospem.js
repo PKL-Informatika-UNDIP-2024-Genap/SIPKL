@@ -5,6 +5,14 @@ $(document).ready(function() {
 
   $(document).on('click', '.btn-assign-dospem', function (e) {
     nim_mhs = $(this).data('nim');
+    let id_dospem = $(this).data('id-dospem');
+    
+    $("#dosen-pembimbing").find("option").removeAttr('selected');
+
+    if(id_dospem != null){
+      $("#dosen-pembimbing").val(id_dospem).trigger('change');
+      console.log(id_dospem);
+    }
 
     $("#dosen-pembimbing").removeClass("is-invalid");
     $("#dosen-pembimbing-err").html("");
@@ -71,15 +79,14 @@ $(document).ready(function() {
     }
   });
 
-
   $(document).on('click', '#simpan-dospem', function (e) {
-    let nip_dospem = $('#dosen-pembimbing').val();
+    let id_dospem = $('#dosen-pembimbing').val();
     let nama_dospem = $("#dosen-pembimbing option:selected").text();
 
     $("#dosen-pembimbing").removeClass("is-invalid");
     $("#dosen-pembimbing-err").html("");
 
-    if(nip_dospem == null){
+    if(id_dospem == null){
       $("#dosen-pembimbing").addClass("is-invalid");
       $("#dosen-pembimbing-err").html("Dosen Pembimbing harus dipilih");
     }else{
@@ -87,8 +94,7 @@ $(document).ready(function() {
         type: "POST",
         url: "/mhs/assign_dospem/"+nim_mhs+"/update_dospem",
         data: {
-          nip_dospem: nip_dospem,
-          nama_dospem: nama_dospem
+          id_dospem: id_dospem,
         },
         dataType: "json",
         headers: {
@@ -116,12 +122,8 @@ $(document).ready(function() {
         }
       });
     }
-    
-
   });
   
-
-
   $('.select2bs4').select2({
     theme: 'bootstrap4',
     dropdownParent: "#modal-assign-dospem"

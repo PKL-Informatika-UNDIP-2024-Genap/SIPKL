@@ -175,9 +175,9 @@ class MahasiswaController extends Controller
         ]);
     }
 
-    public function get_data_dospem($nip)
+    public function get_data_dospem($id_dospem)
     {
-        $dospem = DosenPembimbing::where('nip', $nip)->first();
+        $dospem = DosenPembimbing::where('id', $id_dospem)->first();
 
         return response()->json([
             'status' => 200,

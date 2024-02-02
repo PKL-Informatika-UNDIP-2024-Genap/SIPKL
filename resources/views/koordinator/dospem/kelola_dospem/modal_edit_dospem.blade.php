@@ -17,7 +17,7 @@
             </div>
             <div class="mb-3">
               <label for="nip" class="form-label">NIP</label>
-              <input type="text" class="form-control" id="nip-edit" name="nip" disabled>
+              <input type="text" class="form-control" id="nip-edit" name="nip">
               <div id="nip-edit-err" class="invalid-feedback"></div>
             </div>
             <div class="mb-3">
