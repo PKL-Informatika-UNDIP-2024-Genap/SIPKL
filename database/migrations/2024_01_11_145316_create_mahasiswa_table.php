@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('no_wa',20)->nullable();
             $table->string('email',100)->unique()->nullable();
             $table->enum('status', ['Baru','Nonaktif','Aktif','Lulus'])->default('Baru');
-            $table->string('nip_dospem',25)->nullable();
-            $table->string('nama_dospem',100)->nullable();
+            $table->integer('id_dospem')->unsigned()->nullable();
             $table->string('periode_pkl',16)->nullable();
         });
     }
