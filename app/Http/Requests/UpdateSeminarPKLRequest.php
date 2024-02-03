@@ -11,7 +11,7 @@ class UpdateSeminarPKLRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return request()->nim == auth()->user()->username || auth()->user()->is_admin == 1;
     }
 
     /**

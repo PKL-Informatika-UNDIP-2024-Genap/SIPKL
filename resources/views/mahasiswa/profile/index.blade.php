@@ -104,7 +104,7 @@
                   <tr>
                     <td class="text-nowrap px-0" style="width: 20%"><strong>Status</strong></td>
                     <td style="white-space: nowrap; width: 1%">:</td>
-                    <td><strong class="{{ ($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus')?'bg-success':'bg-danger' }} p-2 rounded-2">{{ $mahasiswa->status }}</strong></td>
+                    <td><strong class="{{ ($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus')?'bg-success':'bg-danger' }} p-2 rounded-1">{{ $mahasiswa->status }}</strong></td>
                   </tr>
                   <tr>
                     <td class="text-nowrap px-0"><strong>Periode PKL</strong></td>
@@ -155,7 +155,7 @@
               <table class="table table-hover">
                 <tbody>
   
-                  @if ($mahasiswa->nip_dospem == null)
+                  @if ($mahasiswa->id_dospem == null)
                   <tr>
                     <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong>Belum ada</strong></td>
                   </tr>
@@ -163,12 +163,12 @@
                   <tr>
                     <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>Nama</strong></td>
                     <td style="white-space: nowrap; width: 1%">:</td>
-                    <td>{{ $mahasiswa->nama_dospem }} </td>
+                    <td>{{ $mahasiswa->dosen_pembimbing->nama }} </td>
                   </tr>
                   <tr>
                     <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>NIP</strong></td>
                     <td style="white-space: nowrap; width: 1%">:</td>
-                    <td>{{ $mahasiswa->nip_dospem }}</td>
+                    <td>{{ $mahasiswa->dosen_pembimbing->nip }}</td>
                   </tr>
                   @endif
   
