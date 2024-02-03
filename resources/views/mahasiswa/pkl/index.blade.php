@@ -41,42 +41,57 @@
         <!-- /.card-header -->
         <div class="card-body">
           <div class="row">
-            <div class="form-group col-sm-5">
-              <label for="status">Status PKL Anda</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="bi bi-hand-index-thumb-fill"></i></span>
+
+            @if ($pkl->status == "Praregistrasi" && $pkl->pesan != null)
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
+              <h5><strong><i class="icon bi bi-exclamation-triangle-fill"></i> Perhatian!</strong></h5>
+              Registrasi PKL Anda ditolak. Silahkan registrasi ulang. Pesan: <em>"{{ $pkl->pesan }}"</em>&nbsp;&nbsp;
+              <a href="/registrasi" class="btn btn-primary btn-sm text-decoration-none">Registrasi Ulang</a>
+            </div>
+            @endif
+              
+            <div class="col-sm-5">
+              <div class="form-group">
+                <label for="status">Status PKL Anda</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="bi bi-hand-index-thumb-fill"></i></span>
+                  </div>
+                  <input type="text" class="form-control text-bold" id="status" value="{{ $mahasiswa->status }}" readonly>
                 </div>
-                <input type="text" class="form-control text-bold" id="status" value="{{ $mahasiswa->status }}" readonly>
+              </div>
+              <div class="form-group">
+                <label for="periode">Periode PKL</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="bi bi-hourglass-top"></i></span>
+                  </div>
+                  <input type="text" class="form-control" id="periode" name="periode" placeholder="Tidak tersedia" value="{{ $mahasiswa->periode_pkl }}" readonly>
+                </div>
               </div>
             </div>
-            <div class="form-group col-sm-7">
-              <label for="nama">Nama</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+            <div class="col-sm-7">
+              <div class="form-group">
+                <label for="nama">Nama</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                  </div>
+                  <input type="text" class="form-control" id="nama" value="{{ $mahasiswa->nama }}" readonly>
                 </div>
-                <input type="text" class="form-control" id="nama" value="{{ $mahasiswa->nama }}" readonly>
               </div>
-            </div>
-            <div class="form-group col-sm-5">
-              <label for="nim">Username/NIM</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
+              <div class="form-group">
+                <label for="nim">Username/NIM</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
+                  </div>
+                  <input type="text" class="form-control" id="nim" value="{{ $mahasiswa->nim }}" readonly>
                 </div>
-                <input type="text" class="form-control" id="nim" value="{{ $mahasiswa->nim }}" readonly>
               </div>
-            </div>
-            <div class="form-group col-sm-7">
-              <label for="periode">Periode PKL</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="bi bi-hourglass-top"></i></span>
-                </div>
-                <input type="text" class="form-control" id="periode" name="periode" placeholder="Tidak tersedia" value="{{ $mahasiswa->periode_pkl }}" readonly>
-              </div>
-            </div>
+            </div>            
+            
           </div>
           {{-- <div class="form-group">
             <dl class="row">
@@ -130,7 +145,7 @@
             <label for="scan_irs">Scan IRS</label>
             <div class="input-group">
               @if ($pkl->scan_irs != null)
-              <a href="/preview/{{ $pkl->scan_irs }}" class="btn btn-info" >Preview</a>
+              <a href="/preview/{{ $pkl->scan_irs }}" class="btn btn-outline-info btn-sm" >Preview</a>
               @else
               <div>
                   Anda belum registrasi PKL ... <br><a href="/registrasi" class="btn btn-primary" >Registrasi Sekarang</a>

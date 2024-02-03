@@ -17,60 +17,17 @@ class PKLController extends Controller
      */
     public function index()
     {
+        $mahasiswa = auth()->user()->mahasiswa;
+        $pkl = $mahasiswa->pkl;
         return view('mahasiswa.pkl.index', [
-            'mahasiswa' => auth()->user()->mahasiswa,
-            'pkl' => auth()->user()->mahasiswa->pkl,
+            'mahasiswa' => $mahasiswa,
+            'pkl' => $pkl,
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for registrasi PKL.
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorePKLRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(PKL $pKL)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(PKL $pKL)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatePKLRequest $request, PKL $pKL)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(PKL $pKL)
-    {
-        //
-    }
-
     public function registrasi()
     {
         // middleware status.mhs:Praregistrasi, tapi dialihkan ke pkl
@@ -104,6 +61,9 @@ class PKLController extends Controller
         return '';
     }
 
+    /**
+     * Delete a file from temporary storage.
+     */
     public function tmpDelete(Request $request) {
         $tmp_file = TemporaryFile::where('folder', request()->getContent())->first();
         if ($tmp_file) {
@@ -113,6 +73,9 @@ class PKLController extends Controller
         return response('');
     }
 
+    /**
+     * Submit form registrasi PKL.
+     */
     public function submitRegistrasi(UpdatePKLRequest $request)
     {
         $validator = validator()->make($request->all(), [
@@ -143,6 +106,11 @@ class PKLController extends Controller
             $extension = pathinfo(storage_path('/private/scan_irs/tmp/'.$tmp_file->folder.'/'.$tmp_file->filename), PATHINFO_EXTENSION);
             $new_filename = auth()->user()->username.'-'.now()->timestamp.'-'.uniqid().'.'.$extension;
             Storage::move('private/scan_irs/tmp/'.$tmp_file->folder.'/'.$tmp_file->filename, 'private/scan_irs/'.$new_filename);
+            
+            $pkl_old = PKL::where('nim', $request->nim)->select(['scan_irs'])->first();
+            if ($pkl_old->scan_irs != null){
+                Storage::delete($pkl_old->scan_irs);
+            }
 
             PKL::where('nim', $request->nim)->update([
                 'status' => 'Registrasi',
@@ -150,6 +118,7 @@ class PKLController extends Controller
                 'judul' => $request->judul,
                 'scan_irs' => 'private/scan_irs/'.$new_filename,
                 'tgl_registrasi' => now(),
+                'pesan' => null,
             ]);
             // $mahasiswa->update([
             //     'periode_pkl' => $request->periode,
@@ -161,6 +130,9 @@ class PKLController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Update data PKL.
+     */
     public function updateData(UpdatePKLRequest $request, PKL $pkl) {
         $validatedData = $request->validate([
             'instansi' => 'required',
@@ -177,5 +149,17 @@ class PKLController extends Controller
             'status' => 200,
             'message' => 'Request successful',
         ], 200);
+    }
+
+    /**
+     * Display laporan PKL.
+     */
+    public function laporan() {
+        $mahasiswa = auth()->user()->mahasiswa;
+        $pkl = $mahasiswa->pkl;
+        return view('mahasiswa.laporan.index', [
+            'mahasiswa' => $mahasiswa,
+            'pkl' => $pkl,
+        ]);
     }
 }

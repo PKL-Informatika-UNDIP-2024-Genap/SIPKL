@@ -11,8 +11,8 @@ class DosenPembimbing extends Model
 
     protected $table = 'dosen_pembimbing';
     // protected $primaryKey = 'id';
-    // protected $keyType = 'string';
-    // public $incrementing = false;
+    // protected $keyType = 'int';
+    // public $incrementing = true;
     public $timestamps = false;
     protected $guarded = [];
 }

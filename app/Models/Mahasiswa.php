@@ -18,7 +18,7 @@ class Mahasiswa extends Model
 
     // Relasi antar tabel
     public function dosen_pembimbing(){
-        return $this->hasOne(DosenPembimbing::class,'nip','nip_dospem');
+        return $this->hasOne(DosenPembimbing::class,'id','id_dospem');
     }
 
     public function pkl(){
