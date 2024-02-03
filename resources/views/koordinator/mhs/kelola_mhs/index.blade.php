@@ -96,13 +96,11 @@
                           <div class="btn btn-danger btn-delete-mhs" data-nim="{{ $mhs->nim }}">
                             Delete
                           </div>
-                          @if ($mhs->no_wa != null)
-                            <a href="//wa.me/{{ $mhs->no_wa }}" target="__blank" style="text-decoration: none">
-                              <div class="btn btn-success btn-wa" data-nim="{{ $mhs->nim }}">
-                                Hubungi Mhs
-                              </div>
+                          <button class="btn btn-success btn-wa" data-nim="{{ $mhs->nim }}" {{ $mhs->no_wa ? "" : "disabled" }}>
+                            <a href="//wa.me/{{ $mhs->no_wa }}" target="__blank" style="text-decoration: none; color: white">
+                              Hubungi Mhs
                             </a>
-                          @endif
+                          </button>
                       </td>
                   </tr>
               @endforeach

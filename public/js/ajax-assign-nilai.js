@@ -96,10 +96,10 @@ $(document).on('click', '.btn-detail-nilai', function() {
   }
 });
 
-$(document).on('click', '.btn-terima', function() {
+$(document).on('click', '.btn-simpan', function() {
   Swal.fire({
-    title: 'Apakah anda yakin menerima nilai PKL mahasiswa ini?',
-    text: "nilai PKL mahasiswa yang sudah diterima tidak dapat dibatalkan lagi",
+    title: 'Apakah anda yakin menyimpan nilai PKL mahasiswa ini?',
+    text: "Nilai PKL mahasiswa yang sudah disimpan tidak dapat diubah lagi, pastikan sudah benar sebelum menyimpan",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#007bff',
@@ -109,8 +109,9 @@ $(document).on('click', '.btn-terima', function() {
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax({
-        url: '/pkl/assign_nilai/'+ data_mhs.nim +'/terima',
+        url: '/pkl/assign_nilai/'+ data_mhs.nim +'/assign',
         type: 'POST',
+        data: { nilai : $('input[name="nilai"]:checked').val() },
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
         },

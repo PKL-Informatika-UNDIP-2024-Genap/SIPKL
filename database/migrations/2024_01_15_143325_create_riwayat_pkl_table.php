@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('riwayat_pkl', function (Blueprint $table) {
-            $table->string('id',24)->primary();
+            $table->string('nim',14);
             $table->string('periode',15);
             $table->string('status',10);
             $table->string('nip_dospem',25);
             $table->string('nama_dospem',100);
             $table->char('nilai',1);
-            $table->string('nim',14);
+
+            $table->primary(['nim', 'periode']);
         });
     }
 

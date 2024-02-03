@@ -113,8 +113,7 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/pkl/verifikasi_laporan/update_tabel_laporan', [KoordinatorPKLController::class, 'update_tabel_laporan']);
     
     Route::get('/pkl/assign_nilai', [KoordinatorPKLController::class, 'index_assign_nilai']);
-    Route::post('/pkl/assign_nilai/{pkl}/terima', [KoordinatorPKLController::class, 'terima_nilai']);
-    Route::post('/pkl/assign_nilai/{pkl}/tolak', [KoordinatorPKLController::class, 'tolak_nilai']);
+    Route::post('/pkl/assign_nilai/{nim}/assign', [KoordinatorPKLController::class, 'assign_nilai']);
     Route::get('/pkl/assign_nilai/update_tabel_nilai', [KoordinatorPKLController::class, 'update_tabel_nilai']);
 
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
