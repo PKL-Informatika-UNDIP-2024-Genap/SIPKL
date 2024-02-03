@@ -61,6 +61,8 @@ class MahasiswaController extends Controller
 
     public function import(Request $request)
     {
+        ini_set('max_execution_time', 18000);
+
         request()->validate([
             'file' => 'required|mimes:xlsx,xls',
         ],
@@ -74,7 +76,8 @@ class MahasiswaController extends Controller
 
             $import = new MahasiswaImport;
             $import->import($file);
-            $importUsers = new UsersImport(Hash::make("12345"));
+            // $importUsers = new UsersImport(Hash::make("12345"));
+            $importUsers = new UsersImport();
             $importUsers->import($file);
 
             $error_row = [];

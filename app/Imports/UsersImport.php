@@ -34,12 +34,12 @@ class UsersImport implements ToModel, WithBatchInserts, WithChunkReading, WithHe
         return 100;
     }
 
-    protected $default_password;
+    // protected $default_password;
 
-    public function __construct($default_password)
-    {
-        $this->default_password = $default_password;
-    }
+    // public function __construct($default_password)
+    // {
+    //     $this->default_password = $default_password;
+    // }
 
     /**
     * @param array $row
@@ -52,9 +52,13 @@ class UsersImport implements ToModel, WithBatchInserts, WithChunkReading, WithHe
             return null;
         }
         
+        // return new User([
+        //     'username' => $row['nim'],
+        //     'password' => $this->default_password,
+        // ]);
         return new User([
             'username' => $row['nim'],
-            'password' => $this->default_password,
+            'password' => $row['nim'],
         ]);
     }
 
