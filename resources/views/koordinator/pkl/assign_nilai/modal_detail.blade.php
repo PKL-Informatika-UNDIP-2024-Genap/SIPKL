@@ -69,26 +69,30 @@
                   </a>
                 </td>
               </tr>
-              <tr>
-                <td class="text-nowrap px-0" style="width: 15%"><strong>Nilai</strong></td>
-                <td style="white-space: nowrap; width: 1%">:</td>
-                <td id="data-nilai">
-                  <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off">
-                  <label class="btn btn-outline-success" for="success-outlined">A</label>
-
-                  <input type="radio" class="btn-check" name="options-outlined" id="primary-outlined" autocomplete="off">
-                  <label class="ms-2 btn btn-outline-primary" for="primary-outlined">B</label>
-
-                  <input type="radio" class="btn-check" name="options-outlined" id="warning-outlined" autocomplete="off">
-                  <label class="ms-2 btn btn-outline-warning" for="warning-outlined">C</label>
-                </td>
-              </tr>
             </tbody>
           </table>
+
+          <div class="row justify-content-center d-flex mt-3">
+            <div class="col-auto">
+              <h5>Pilih Nilai PKL :</h5>
+            </div>
+          </div>
+          <div class="row justify-content-center d-flex mt-2">
+            <div class="col-auto">
+              <input type="radio" class="btn-check" name="nilai" id="success-outlined" autocomplete="off">
+              <label class="btn btn-outline-success btn-lg" for="success-outlined">A</label>
+  
+              <input type="radio" class="btn-check" name="nilai" id="primary-outlined" autocomplete="off">
+              <label class="ms-2 btn btn-outline-primary btn-lg" for="primary-outlined">B</label>
+  
+              <input type="radio" class="btn-check" name="nilai" id="warning-outlined" autocomplete="off">
+              <label class="ms-2 btn btn-outline-warning btn-lg" for="warning-outlined">C</label>
+            </div>
+          </div>
           
           <div class="row justify-content-center d-flex mt-3">
             <div class="col-auto">
-              <div class="btn btn-primary btn-sm btn-terima">Simpan Nilai</div>
+              <div class="btn btn-primary btn-sm btn-simpan">Simpan Nilai</div>
             </div>
           </div>
           

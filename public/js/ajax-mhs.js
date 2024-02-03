@@ -341,6 +341,7 @@ $(document).on("click", "#btn-import-mhs", function(e){
 
   $(this).prop("disabled", true);
   $(this).html(`<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Mengimport...`);
+  $("#message").removeClass("d-none");
 
   let file_input = $('#form-import')[0];
 
@@ -396,6 +397,7 @@ $(document).on("click", "#btn-import-mhs", function(e){
       // Mengaktifkan kembali tombol import dan menyembunyikan ikon loading spinner setelah permintaan selesai
       $("#btn-import-mhs").prop("disabled", false);
       $("#btn-import-mhs").html("Import");
+      $("#message").addClass("d-none");
     }
 });
 });

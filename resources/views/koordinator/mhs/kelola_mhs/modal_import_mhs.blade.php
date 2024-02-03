@@ -40,6 +40,11 @@
               <button class="btn btn-primary" type="button" id="btn-import-mhs">Import</button>
             </div>
           </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col-auto">
+              <div id="message" class="small d-none">Proses import untuk ratusan baris data dibutuhkan waktu beberapa menit ...</div>
+            </div>
+          </div>
         </form>
       </div>
       
