@@ -17,16 +17,22 @@ class MahasiswaSeeder extends Seeder
                 'nim' => '24060121130086',
                 'nama' => 'Muhammad Rizki',
                 'status' => 'Lulus',
+                'periode_pkl' => '2023/2024 Ganjil',
+                'id_dospem' => 5,
             ],
             [
                 'nim' => '24060121130050',
                 'nama' => 'Rizki Utama Fauzi',
-                // 'status' => 'Lulus',
+                'status' => 'Lulus',
+                'periode_pkl' => '2023/2024 Ganjil',
+                'id_dospem' => 5,
             ],
             [
                 'nim' => '24060121130123',
                 'nama' => 'Budi Santoso',
                 'status' => 'Lulus',
+                'periode_pkl' => '2023/2024 Ganjil',
+                'id_dospem' => 5,
             ],
             [
                 'nim' => '24060121130234',

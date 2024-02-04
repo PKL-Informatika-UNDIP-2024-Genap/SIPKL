@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('riwayat_pkl', function (Blueprint $table) {
             $table->string('nim',14);
-            $table->string('periode',16);
+            $table->string('periode_pkl',16);
             $table->string('status',10);
-            $table->integer('id_dospem')->unsigned();
-            $table->string('nip_dospem',25);
-            $table->string('nama_dospem',100);
+            $table->string('id_dospem',25)->unsigned();
             $table->char('nilai',1);
             $table->string('catatan')->nullable();
-            $table->primary(['nim','periode']);
+            $table->primary(['nim', 'periode_pkl']);
         });
     }
 
