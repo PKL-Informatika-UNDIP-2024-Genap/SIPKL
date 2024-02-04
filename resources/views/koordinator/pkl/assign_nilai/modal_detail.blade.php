@@ -79,13 +79,13 @@
           </div>
           <div class="row justify-content-center d-flex mt-2">
             <div class="col-auto">
-              <input type="radio" class="btn-check" name="nilai" id="success-outlined" autocomplete="off">
+              <input type="radio" class="btn-check" name="nilai" id="success-outlined" autocomplete="off" value="A">
               <label class="btn btn-outline-success btn-lg" for="success-outlined">A</label>
   
-              <input type="radio" class="btn-check" name="nilai" id="primary-outlined" autocomplete="off">
+              <input type="radio" class="btn-check" name="nilai" id="primary-outlined" autocomplete="off" value="B">
               <label class="ms-2 btn btn-outline-primary btn-lg" for="primary-outlined">B</label>
   
-              <input type="radio" class="btn-check" name="nilai" id="warning-outlined" autocomplete="off">
+              <input type="radio" class="btn-check" name="nilai" id="warning-outlined" autocomplete="off" value="C">
               <label class="ms-2 btn btn-outline-warning btn-lg" for="warning-outlined">C</label>
             </div>
           </div>

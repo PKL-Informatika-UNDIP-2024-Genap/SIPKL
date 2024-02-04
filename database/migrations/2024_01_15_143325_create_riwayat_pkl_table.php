@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('riwayat_pkl', function (Blueprint $table) {
             $table->string('nim',14);
-            $table->string('periode',15);
+            $table->string('periode_pkl',16);
             $table->string('status',10);
-            $table->string('nip_dospem',25);
-            $table->string('nama_dospem',100);
+            $table->string('id_dospem',25);
             $table->char('nilai',1);
 
-            $table->primary(['nim', 'periode']);
+            $table->primary(['nim', 'periode_pkl']);
         });
     }
 

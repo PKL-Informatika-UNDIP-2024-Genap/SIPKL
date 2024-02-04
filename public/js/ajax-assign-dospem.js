@@ -31,14 +31,20 @@ $(document).ready(function() {
     else {
       if($(this).hasClass("clicked")){
         row.child(
+          '<div class="row">'+
+          '<div class="col-md-4">'+
           '<dl>' +
           '<dt>Instansi PKL:</dt>' +
           '<dd>' + map_data_pkl.get(tr.data("nim"))[0] +'</dd>' +
           '</dl>'+
+          '</div>'+
+          '<div class="col-md-8">'+
           '<dl>' +
           '<dt>Judul PKL:</dt>' +
           '<dd>' + map_data_pkl.get(tr.data("nim"))[1] +'</dd>' +
-          '</dl>'
+          '</dl>'+
+          '</div>'+
+          '</div>'
         ).show();
       }else{
         row.child('<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Loading...').show();
@@ -59,14 +65,20 @@ $(document).ready(function() {
           },
           complete: function () {
             row.child(
+              '<div class="row">'+
+              '<div class="col-md-4">'+
               '<dl>' +
               '<dt>Instansi PKL:</dt>' +
               '<dd>' + instansi_pkl +'</dd>' +
               '</dl>'+
+              '</div>'+
+              '<div class="col-md-8">'+
               '<dl>' +
               '<dt>Judul PKL:</dt>' +
               '<dd>' + judul_pkl +'</dd>' +
-              '</dl>'
+              '</dl>'+
+              '</div>'+
+              '</div>'
             ).show();
 
             map_data_pkl.set(tr.data("nim"), [instansi_pkl, judul_pkl]);

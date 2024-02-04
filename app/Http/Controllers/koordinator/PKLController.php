@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Koordinator;
 
 use App\Http\Controllers\Controller;
+use App\Models\ArsipPKL;
 use App\Models\Mahasiswa;
 use App\Models\PKL;
 use App\Models\PeriodePKL;
+use App\Models\RiwayatPKL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
@@ -132,19 +134,52 @@ class PKLController extends Controller
     ]);
   }
 
-  public function assign_nilai(PKL $pkl)
+  public function assign_nilai(PKL $pkl, Request $request)
   {
-    $pkl->status = 'Lulus';
-    $pkl->pesan = null;
-    $pkl->save();
-
     Mahasiswa::where('nim', $pkl->nim)->update([
       'status' => 'Lulus',
     ]);
 
+    ArsipPKL::create([
+      'nim' => $pkl->nim,
+      'instansi' => $pkl->instansi,
+      'judul' => $pkl->judul,
+      'abstrak' => $pkl->abstrak,
+      'keyword1' => $pkl->keyword1,
+      'keyword2' => $pkl->keyword2,
+      'keyword3' => $pkl->keyword3,
+      'keyword4' => $pkl->keyword4,
+      'keyword5' => $pkl->keyword5,
+      'link_laporan' => $pkl->link_laporan,
+      'tgl_verif_laporan' => $pkl->tgl_verif_laporan,
+      'nilai' => $pkl->nilai,
+    ]);
+
+    RiwayatPKL::create([
+      'nim' => $pkl->nim,
+      'periode_pkl' => $pkl->mahasiswa->periode_pkl,
+      'status' => 'Selesai',
+      'id_dospem' => $pkl->mahasiswa->id_dospem,
+      'nilai' => $request->nilai,
+    ]);
+    
+    $pkl->delete();
+
     return response()->json([
-      'message' => 'Berhasil menerima nilai',
+      'message' => 'Berhasil menyimpan nilai',
     ], 200);
+  }
+
+  public function update_tabel_nilai(){
+    $data_mhs = PKL::whereRaw("pkl.status = 'Selesai'")->join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')->get();
+
+    $view = view('koordinator.pkl.assign_nilai.update_tabel_nilai', [
+      'data_mhs' => $data_mhs
+    ])->render();
+
+    return response()->json([
+      'view' => $view
+    ]);
   }
 
 }
