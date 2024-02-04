@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\TemporaryFile;
 use App\Http\Requests\StorePKLRequest;
 use App\Http\Requests\UpdatePKLRequest;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class PKLController extends Controller
@@ -157,9 +158,66 @@ class PKLController extends Controller
     public function laporan() {
         $mahasiswa = auth()->user()->mahasiswa;
         $pkl = $mahasiswa->pkl;
+        if ($pkl->tgl_laporan) {
+            $carbon = Carbon::parse($pkl->tgl_laporan);
+            $tgl_laporan = $carbon->isoFormat('D MMMM YYYY');
+            $waktu_laporan = $carbon->format('H.i');
+        }
         return view('mahasiswa.laporan.index', [
             'mahasiswa' => $mahasiswa,
             'pkl' => $pkl,
+            'tgl_laporan' => $tgl_laporan ?? '',
+            'waktu_laporan' => $waktu_laporan ?? '',
         ]);
+    }
+
+    /**
+     * Send Laporan PKL.
+     */
+    public function kirimLaporan(UpdatePKLRequest $request) {
+        $validator = validator($request->all(), [
+            'instansi' => 'required',
+            'judul' => 'required',
+            'link_laporan' => 'required|url',
+            'abstrak' => 'required',
+            'keyword1' => 'required',
+            'keyword2' => 'required',
+            'keyword3' => 'required',
+        ], [
+            'required' => ':attribute harus diisi.',
+            'url' => ':attribute harus berupa URL.',
+        ], [
+            'instansi' => 'Instansi',
+            'judul' => 'Judul',
+            'link_laporan' => 'Link Laporan',
+            'abstrak' => 'Abstrak',
+            'keyword1' => 'Kata kunci 1',
+            'keyword2' => 'Kata kunci 2',
+            'keyword3' => 'Kata kunci 3',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('fails', '');
+        }
+
+        $new_data = $validator->validated() + [
+            'status' => 'Laporan',
+            'tgl_laporan' => now(),
+            'pesan' => null,
+        ];
+        if ($request->keyword4) {
+            $new_data['keyword4'] = $request->keyword4;
+        }
+        if ($request->keyword5) {
+            if ($request->keyword4 == null) {
+                $new_data['keyword4'] = $request->keyword5;
+            } else {
+                $new_data['keyword5'] = $request->keyword5;
+            }
+        }
+
+        PKL::where('nim', $request->nim)->update($new_data);
+        
+        return redirect()->back()->with('success', 'Berhasil mengirim laporan PKL.');
     }
 }

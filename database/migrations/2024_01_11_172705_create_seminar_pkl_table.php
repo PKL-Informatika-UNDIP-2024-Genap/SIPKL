@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('tgl_seminar');
             $table->string('waktu_seminar', 15);
             $table->string('ruang', 10);
-            $table->int('id_dospem')->unsigned();
+            $table->integer('id_dospem')->unsigned();
             $table->string('scan_layak_seminar')->nullable();
             $table->string('scan_peminjaman_ruang')->nullable();
             $table->string('pesan')->nullable();

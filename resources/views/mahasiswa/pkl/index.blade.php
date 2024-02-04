@@ -138,7 +138,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="bi bi-fonts"></i></span>
               </div>
-              <textarea class="form-control" name="judul" id="judul" cols="" rows="3" style="resize: none" readonly>{{ $pkl->judul }}</textarea>
+              <textarea class="form-control" name="judul" id="judul" cols="" rows="2" readonly>{{ $pkl->judul }}</textarea>
             </div>
           </div>
           <div class="form-group">

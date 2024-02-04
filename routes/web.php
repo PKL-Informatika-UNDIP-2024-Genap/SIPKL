@@ -145,6 +145,7 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         Route::post('/seminar/daftar_ulang', [SeminarPKLController::class, 'daftarUlangSeminar']);
 
         Route::get('/laporan', [PKLController::class, 'laporan']);
+        Route::post('/laporan/kirim', [PKLController::class, 'kirimLaporan']);
     });
 
     Route::get('/riwayat', [RiwayatPKLController::class, 'index'])->middleware('data.updated');

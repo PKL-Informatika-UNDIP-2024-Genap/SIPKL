@@ -35,7 +35,7 @@
   <!-- /.content-header -->
 
   <!-- Main content -->
-  <section class="content" id="main-content">
+  <section class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-xl-6 col-md-7">
@@ -494,8 +494,9 @@
 
 @push('scripts')
 
+{{-- TO DO: modif code like in laporan page --}}
   @if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
-  <script>
+  <script type="text/javascript">
     function goToForm() {
       setTimeout(() => {
         document.querySelector($('#btn-form').attr('href')).scrollIntoView({
@@ -590,9 +591,7 @@
         $('button[type=submit]').prop('disabled', true);
       }
     });
-  </script>
-  
-  <script>
+
     // disable submit button
     $('form').submit(function() {
       // show spinner on button
