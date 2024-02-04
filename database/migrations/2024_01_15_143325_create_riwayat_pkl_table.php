@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('riwayat_pkl', function (Blueprint $table) {
             $table->string('nim',14);
             $table->string('periode_pkl',16);
-            $table->string('status',10);
+            $table->enum('status',['Lulus','Tidak Lulus']);
             $table->string('id_dospem',25)->unsigned();
             $table->char('nilai',1);
             $table->string('catatan')->nullable();

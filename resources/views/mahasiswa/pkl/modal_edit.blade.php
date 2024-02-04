@@ -27,7 +27,7 @@
           </div>
           <div class="row d-flex justify-content-center">
             <div class="col-auto">
-              <button id="update-data" class="btn btn-primary">Update</button>
+              <button id="update-data" class="btn btn-primary">Update Data</button>
             </div>
           </div>
         </form>

@@ -16,8 +16,12 @@ class ProfileController extends Controller
                 'koordinator' => auth()->user()->koordinator,
             ]);
         } else {
+            $user = auth()->user();
+            $mahasiswa = $user->mahasiswa;
             return view('mahasiswa.profile.index', [
-                'mahasiswa' => auth()->user()->mahasiswa,
+                'user' => $user,
+                'mahasiswa' => $mahasiswa,
+                'pkl' => $mahasiswa->pkl,
             ]);
         }
     }

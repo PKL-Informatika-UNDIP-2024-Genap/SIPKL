@@ -48,43 +48,20 @@
               <span class="bg-red">Terbaru</span>
             </div>
             <!-- /.timeline-label -->
+
+            
             <!-- timeline item -->
             <div>
-              <i class="fas bi bi-people-fill bg-green"></i>
+              <i class="fa bi bi-camera-fill bg-purple"></i>
               <div class="timeline-item">
-                <span class="time"><i class="fas bi bi-clock"></i> 5 mins ago</span>
-                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Koordinator</a> telah membagikan Dosen Pembimbing</h3>
+                <span class="time"><i class="fas bi bi-clock"></i> 2 days ago</span>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Laporan PKL</a></h3>
                 <div class="timeline-body">
-                  Dosen Pembimbing Anda: {{ $mahasiswa->nama_dospem }}
+                  Kirim laporan PKL Anda pada halaman yang telah disediakan.
                 </div>
                 <div class="timeline-footer">
-                  <a href="/profile" class="btn btn-primary btn-sm">Periksa</a>
+                  <a href="javascript:void(0)" class="btn btn-sm bg-maroon">Lihat</a>
                 </div>
-              </div>
-            </div>
-            <!-- END timeline item -->
-            <!-- timeline item -->
-            <div>
-              <i class="fas bi bi-envelope-fill bg-blue"></i>
-              <div class="timeline-item">
-                <span class="time"><i class="fas bi bi-clock"></i> 12:05</span>
-                <h3 class="timeline-header"><a href="javascript:void(0)">Registrasi PKL</a></h3>
-                <div class="timeline-body">
-                  Lakukan registrasi PKL segera setelah Anda mengambil IRS, dan serahkan bukti bahwa Anda telah mengambil PKL.
-                </div>
-                <div class="timeline-footer">
-                  <a href="/registrasi" class="btn btn-primary btn-sm">Registrasi Sekarang</a>
-                  <a class="btn btn-danger btn-sm">Delete</a>
-                </div>
-              </div>
-            </div>
-            <!-- END timeline item -->
-            <!-- timeline item -->
-            <div>
-              <i class="fas bi bi-person-fill bg-green"></i>
-              <div class="timeline-item">
-                <span class="time"><i class="fas bi bi-clock"></i> 5 mins ago</span>
-                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Koordinator</a> menerima Registrasi PKL Anda</h3>
               </div>
             </div>
             <!-- END timeline item -->
@@ -103,35 +80,72 @@
               </div>
             </div>
             <!-- END timeline item -->
-            <!-- timeline time label -->
-            <div class="time-label">
-              <span class="bg-green">5 Jan 2024</span>
-            </div>
-            <!-- /.timeline-label -->
             <!-- timeline item -->
             <div>
-              <i class="fa bi bi-camera-fill bg-purple"></i>
+              <i class="fas bi bi-person-fill bg-green"></i>
               <div class="timeline-item">
-                <span class="time"><i class="fas bi bi-clock"></i> 2 days ago</span>
-                <h3 class="timeline-header"><a href="javascript:void(0)">Laporan PKL</a></h3>
-                <div class="timeline-body">
-                  Kirim laporan PKL Anda pada halaman yang telah disediakan.
-                </div>
-                <div class="timeline-footer">
-                  <a href="javascript:void(0)" class="btn btn-sm bg-maroon">Lihat</a>
-                </div>
+                <span class="time"><i class="fas bi bi-clock"></i> 5 mins ago</span>
+                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Koordinator</a> menerima Registrasi PKL Anda</h3>
               </div>
             </div>
             <!-- END timeline item -->
             <!-- timeline item -->
             <div>
+              <i class="fas bi bi-envelope-fill bg-blue"></i>
+              <div class="timeline-item">
+                <span class="time"><i class="fas bi bi-clock"></i> 12:05</span>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Registrasi PKL</a></h3>
+                <div class="timeline-body">
+                  Lakukan registrasi PKL segera setelah Anda mengambil IRS, dan serahkan bukti bahwa Anda telah mengambil PKL.
+                </div>
+                <div class="timeline-footer">
+                  <a href="/registrasi" class="btn btn-primary btn-sm">Registrasi Sekarang</a>
+                  {{-- <a class="btn btn-danger btn-sm">Delete</a> --}}
+                </div>
+              </div>
+            </div>
+            <!-- END timeline item -->
+            
+            <!-- timeline item -->
+            <div>
+              <i class="fas bi bi-people-fill bg-green"></i>
+              <div class="timeline-item">
+                <span class="time"><i class="fas bi bi-clock"></i> sometimes ago</span>
+                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Koordinator</a> telah membagikan Dosen Pembimbing</h3>
+                <div class="timeline-body">
+                  Dosen Pembimbing Anda: {{ $mahasiswa->nama_dospem }}
+                </div>
+                <div class="timeline-footer">
+                  <a href="/profile" class="btn btn-primary btn-sm">Periksa</a>
+                </div>
+              </div>
+            </div>
+            <!-- END timeline item -->
+
+            <!-- timeline item -->
+            <div>
+              <i class="fas bi bi-person-fill-add bg-primary"></i>
+              <div class="timeline-item">
+                <span class="time"><i class="fas bi bi-clock"></i> {{ $user->created_at }}</span>
+                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Koordinator</a> menambahkan Anda ke Sistem</h3>
+              </div>
+            </div>
+            <!-- END timeline item -->
+            
+            <!-- timeline time label -->
+            <div class="time-label">
+              <span class="bg-green"><i class="bi bi-arrow-up-circle-fill mx-3"></i></span>
+            </div>
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+            <div>
               <i class="fas bi bi-camera-video-fill bg-maroon"></i>
               <div class="timeline-item">
-                <span class="time"><i class="fas bi bi-clock"></i> 5 days ago</span>
-                <h3 class="timeline-header"><a href="#">Tutorial</a></h3>
+                <span class="time"><i class="fas bi bi-clock"></i> ages ago</span>
+                <h3 class="timeline-header"><a href="#">Car</a></h3>
                 <div class="timeline-body">
                   <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tMWkeBIohBs" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="https://giphy.com/embed/MDJ9IbxxvDUQM" allowfullscreen></iframe>
                   </div>
                 </div>
                 <div class="timeline-footer">
@@ -140,6 +154,7 @@
               </div>
             </div>
             <!-- END timeline item -->
+            
             <div>
               <i class="fas bi bi-clock bg-gray"></i>
             </div>

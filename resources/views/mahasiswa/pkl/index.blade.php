@@ -158,7 +158,7 @@
           </div>
         </div>
         <!-- /.card-body -->
-        <div class="card-footer">
+        <div class="card-footer text-center">
           <div class="btn btn-primary btn-edit-data" data-bs-toggle="modal" data-bs-target="#modal_edit"
           data-instansi="{{ $pkl->instansi }}" data-judul="{{ $pkl->judul }}">Edit Data</div>
           {{-- <button type="submit" class="btn btn-primary">Edit</button> --}}
