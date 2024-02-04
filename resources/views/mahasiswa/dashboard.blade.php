@@ -45,7 +45,7 @@
           <div class="timeline">
             <!-- timeline time label -->
             <div class="time-label">
-              <span class="bg-red">1 Jan 2024</span>
+              <span class="bg-red">Terbaru</span>
             </div>
             <!-- /.timeline-label -->
             <!-- timeline item -->

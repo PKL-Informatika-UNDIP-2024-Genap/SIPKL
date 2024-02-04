@@ -67,103 +67,110 @@
   <section class="content">
     <div class="container-fluid">
       <!-- Profile Image -->
-      <div class="card card-primary card-outline col-xl-6">
-        <div class="card-body box-profile">
-          <div class="text-center position-relative">
-            <img id="image_profile_preview" class="profile-user-img img-fluid img-circle"
-              src="{{ (auth()->user()->foto_profil == null)?'/images/default.jpg':'/preview/'.auth()->user()->foto_profil }}"
-              alt="User profile picture" style="width: 170px">
-            <input type="file" id="filepond"
-              class="filepond d-none"
-              name="filepond"
-              accept="image/png, image/jpeg, image/gif"/>
-            <div class="btn btn-outline-primary position-absolute top-0 end-0" type="button" id="editImageBtn"><i class="bi bi-pencil-square"></i></div>
-            <div class="btn btn-outline-primary position-absolute top-0 d-none" type="button" id="saveImageBtn" style="right: 50px;"><i class="bi bi-floppy-fill"></i></div>
+      <div class="card card-primary card-outline">
+        <div class="card-body box-profile row">
+          <div class="col-md-4 m-auto pb-4 pb-md-0">
+            <div class="text-center position-relative">
+              <img id="image_profile_preview" class="profile-user-img img-fluid img-circle"
+                src="{{ (auth()->user()->foto_profil == null)?'/images/default.jpg':'/preview/'.auth()->user()->foto_profil }}"
+                alt="User profile picture" style="width: 170px">
+              <input type="file" id="filepond"
+                class="filepond d-none"
+                name="filepond"
+                accept="image/png, image/jpeg, image/gif"/>
+              <div class="btn btn-outline-primary position-absolute top-0 end-0 mr-md-2" type="button" id="editImageBtn"><i class="bi bi-pencil-square"></i></div>
+              <div class="btn btn-outline-primary position-absolute top-0 mr-md-2 d-none" type="button" id="saveImageBtn" style="right: 50px;"><i class="bi bi-floppy-fill"></i></div>
+            </div>
+            <h3 class="profile-username text-center"><strong>{{ $koordinator->nama }}</strong></h3>
+            <p class="text-muted text-center">{{ $koordinator->nip }}</p>
+
+            <div class="btn btn-primary btn-edit-password" data-bs-toggle="modal" data-bs-target="#modal_edit_password"><b>Edit Password</b></div>
+          </div>
+          <div class="col-md-8">
+            <p><strong class="text-lightblue">Data Pribadi</strong></p>
+            <div class="table-responsive p-0 mb-3">
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <td class="text-nowrap px-0" style="width: 20%"><strong>Id</strong></td>
+                    <td style="white-space: nowrap; width: 1%">:</td>
+                    <td><strong class="bg-success p-1 rounded-2">{{ $koordinator->id }}</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="text-nowrap px-0 pb-1"><label for="golongan"><strong>Golongan</strong></label></td>
+                    <td style="white-space: nowrap; width: 1%">:</td>
+                    <td class="px-0 pb-0 pt-1">
+                      <div class="input-group">
+                        <select class="form-control bg-transparent border-transparent" id="golongan" name="golongan" disabled>
+                          <option value="" disabled selected>Pilih Golongan</option>
+                          <option value="III/a" @if ($koordinator->golongan == "III/a") selected @endif>III/a</option>
+                          <option value="III/b" @if ($koordinator->golongan == "III/b") selected @endif>III/b</option>
+                          <option value="III/c" @if ($koordinator->golongan == "III/c") selected @endif>III/c</option>
+                          <option value="III/d" @if ($koordinator->golongan == "III/d") selected @endif>III/d</option>
+                          <option value="IV/a" @if ($koordinator->golongan == "IV/a") selected @endif>IV/a</option>
+                          <option value="IV/b" @if ($koordinator->golongan == "IV/b") selected @endif>IV/b</option>
+                          <option value="IV/c" @if ($koordinator->golongan == "IV/c") selected @endif>IV/c</option>
+                          <option value="IV/d" @if ($koordinator->golongan == "IV/d") selected @endif>IV/d</option>
+                          <option value="IV/e" @if ($koordinator->golongan == "IV/e") selected @endif>IV/e</option>
+                        </select>
+                        <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveGolonganBtn"><i class="bi bi-floppy-fill"></i></button>
+                        <button class="input-group-text btn btn-outline-primary" type="button" id="editGolonganBtn"><i class="bi bi-pencil-fill"></i></button>
+                      </div>
+                      <div id="golongan-err" class="invalid-feedback d-block"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-nowrap px-0 pb-1"><label for="jabatan"><strong>Jabatan</strong></label></td>
+                    <td style="white-space: nowrap; width: 1%">:</td>
+                    <td class="px-0 pb-0 pt-1">
+                      <div class="input-group">
+                        <select class="form-control bg-transparent border-transparent" id="jabatan" name="jabatan" disabled>
+                          <option value="" disabled selected>Pilih Jabatan</option>
+                          <option value="Pengajar" @if ($koordinator->jabatan == "Pengajar") selected @endif>Pengajar</option>
+                          <option value="Asisten Ahli" @if ($koordinator->jabatan == "Asisten Ahli") selected @endif>Asisten Ahli</option>
+                          <option value="Lektor" @if ($koordinator->jabatan == "Lektor") selected @endif>Lektor</option>
+                          <option value="Lektor Kepala" @if ($koordinator->jabatan == "Lektor Kepala") selected @endif>Lektor Kepala</option>
+                          <option value="Guru Besar" @if ($koordinator->jabatan == "Guru Besar") selected @endif>Guru Besar</option>
+                        </select>
+                        <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveJabatanBtn"><i class="bi bi-floppy-fill"></i></button>
+                        <button class="input-group-text btn btn-outline-primary" type="button" id="editJabatanBtn"><i class="bi bi-pencil-fill"></i></button>
+                      </div>
+                      <div id="jabatan-err" class="invalid-feedback d-block"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-nowrap px-0 pb-1"><label for="email"><strong>Email</strong></label></td>
+                    <td style="white-space: nowrap; width: 1%">:</td>
+                    <td class="px-0 pb-0 pt-1">
+                      <div class="input-group">
+                        <input type="text" class="form-control bg-transparent border-transparent" id="email" name="email" placeholder="Masukkan email" value="{{ old('email',$koordinator->email) }}" disabled>
+                        <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveEmailBtn"><i class="bi bi-floppy-fill"></i></button>
+                        <button class="input-group-text btn btn-outline-primary" type="button" id="editEmailBtn"><i class="bi bi-pencil-fill"></i></button>
+                      </div>
+                      <div id="email-err" class="invalid-feedback d-block"></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.table-responsive -->
+  
+            <p><strong class="text-lightblue">Others?</strong></p>
+            <div class="table-responsive p-0 mb-3">
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%">Nothing</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.table-responsive -->
+
           </div>
 
-          <h3 class="profile-username text-center"><strong>{{ $koordinator->nama }}</strong></h3>
-          <p class="text-muted text-center">{{ $koordinator->nip }}</p>
 
-          <div class="table-responsive p-0 mb-3">
-            <table class="table table-hover">
-              <tbody>
-                <tr>
-                  <td class="text-nowrap px-0" style="width: 20%"><strong>Id</strong></td>
-                  <td style="white-space: nowrap; width: 1%">:</td>
-                  <td><strong class="bg-success p-1 rounded-2">{{ $koordinator->id }}</strong></td>
-                </tr>
-                <tr>
-                  <td class="text-nowrap px-0 pb-1"><label for="golongan"><strong>Golongan</strong></label></td>
-                  <td style="white-space: nowrap; width: 1%">:</td>
-                  <td class="px-0 pb-0 pt-1">
-                    <div class="input-group">
-                      <select class="form-control bg-transparent border-transparent" id="golongan" name="golongan" disabled>
-                        <option value="" disabled selected>Pilih Golongan</option>
-                        <option value="III/a" @if ($koordinator->golongan == "III/a") selected @endif>III/a</option>
-                        <option value="III/b" @if ($koordinator->golongan == "III/b") selected @endif>III/b</option>
-                        <option value="III/c" @if ($koordinator->golongan == "III/c") selected @endif>III/c</option>
-                        <option value="III/d" @if ($koordinator->golongan == "III/d") selected @endif>III/d</option>
-                        <option value="IV/a" @if ($koordinator->golongan == "IV/a") selected @endif>IV/a</option>
-                        <option value="IV/b" @if ($koordinator->golongan == "IV/b") selected @endif>IV/b</option>
-                        <option value="IV/c" @if ($koordinator->golongan == "IV/c") selected @endif>IV/c</option>
-                        <option value="IV/d" @if ($koordinator->golongan == "IV/d") selected @endif>IV/d</option>
-                        <option value="IV/e" @if ($koordinator->golongan == "IV/e") selected @endif>IV/e</option>
-                      </select>
-                      <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveGolonganBtn"><i class="bi bi-floppy-fill"></i></button>
-                      <button class="input-group-text btn btn-outline-primary" type="button" id="editGolonganBtn"><i class="bi bi-pencil-fill"></i></button>
-                    </div>
-                    <div id="golongan-err" class="invalid-feedback d-block"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-nowrap px-0 pb-1"><label for="jabatan"><strong>Jabatan</strong></label></td>
-                  <td style="white-space: nowrap; width: 1%">:</td>
-                  <td class="px-0 pb-0 pt-1">
-                    <div class="input-group">
-                      <select class="form-control bg-transparent border-transparent" id="jabatan" name="jabatan" disabled>
-                        <option value="" disabled selected>Pilih Jabatan</option>
-                        <option value="Pengajar" @if ($koordinator->jabatan == "Pengajar") selected @endif>Pengajar</option>
-                        <option value="Asisten Ahli" @if ($koordinator->jabatan == "Asisten Ahli") selected @endif>Asisten Ahli</option>
-                        <option value="Lektor" @if ($koordinator->jabatan == "Lektor") selected @endif>Lektor</option>
-                        <option value="Lektor Kepala" @if ($koordinator->jabatan == "Lektor Kepala") selected @endif>Lektor Kepala</option>
-                        <option value="Guru Besar" @if ($koordinator->jabatan == "Guru Besar") selected @endif>Guru Besar</option>
-                      </select>
-                      <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveJabatanBtn"><i class="bi bi-floppy-fill"></i></button>
-                      <button class="input-group-text btn btn-outline-primary" type="button" id="editJabatanBtn"><i class="bi bi-pencil-fill"></i></button>
-                    </div>
-                    <div id="jabatan-err" class="invalid-feedback d-block"></div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-nowrap px-0 pb-1"><label for="email"><strong>Email</strong></label></td>
-                  <td style="white-space: nowrap; width: 1%">:</td>
-                  <td class="px-0 pb-0 pt-1">
-                    <div class="input-group">
-                      <input type="text" class="form-control bg-transparent border-transparent" id="email" name="email" placeholder="Masukkan email" value="{{ old('email',$koordinator->email) }}" disabled>
-                      <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveEmailBtn"><i class="bi bi-floppy-fill"></i></button>
-                      <button class="input-group-text btn btn-outline-primary" type="button" id="editEmailBtn"><i class="bi bi-pencil-fill"></i></button>
-                    </div>
-                    <div id="email-err" class="invalid-feedback d-block"></div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- /.table-responsive -->
-
-          <p><strong class="text-lightblue">Others?</strong></p>
-          <div class="table-responsive p-0 mb-3">
-            <table class="table table-hover">
-              <tbody>
-                <tr>
-                  <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%">Nothing</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- /.table-responsive -->
-
-          <div class="btn btn-primary btn-edit-password" data-bs-toggle="modal" data-bs-target="#modal_edit_password"><b>Edit Password</b></div>
+          
         </div>
         <!-- /.card-body -->
       </div>

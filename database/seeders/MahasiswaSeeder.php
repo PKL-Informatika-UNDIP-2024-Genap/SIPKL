@@ -21,7 +21,7 @@ class MahasiswaSeeder extends Seeder
             [
                 'nim' => '24060121130050',
                 'nama' => 'Rizki Utama Fauzi',
-                'status' => 'Lulus',
+                // 'status' => 'Lulus',
             ],
             [
                 'nim' => '24060121130123',
