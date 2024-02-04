@@ -18,11 +18,12 @@ class PKLController extends Controller
      */
     public function index()
     {
-        $mahasiswa = auth()->user()->mahasiswa;
-        $pkl = $mahasiswa->pkl;
+        $user = auth()->user();
+        $mahasiswa = $user->mahasiswa;
         return view('mahasiswa.pkl.index', [
+            'user' => $user,
             'mahasiswa' => $mahasiswa,
-            'pkl' => $pkl,
+            'pkl' => $mahasiswa->pkl,
         ]);
     }
 
@@ -38,6 +39,7 @@ class PKLController extends Controller
         $periode_sekarang = PeriodePKL::where('tgl_selesai', '>=', date('Y-m-d'))->where('tgl_mulai', '<', date('Y-m-d'))->orderBy('tgl_mulai', 'desc')->first();
         return view('mahasiswa.registrasi_pkl', [
             'periode_sekarang' => $periode_sekarang->id_periode,
+            'user' => auth()->user(),
             'mahasiswa' => auth()->user()->mahasiswa,
             'pkl' => auth()->user()->mahasiswa->pkl,
         ]);
@@ -156,7 +158,8 @@ class PKLController extends Controller
      * Display laporan PKL.
      */
     public function laporan() {
-        $mahasiswa = auth()->user()->mahasiswa;
+        $user = auth()->user();
+        $mahasiswa = $user->mahasiswa;
         $pkl = $mahasiswa->pkl;
         if ($pkl->tgl_laporan) {
             $carbon = Carbon::parse($pkl->tgl_laporan);
@@ -164,6 +167,7 @@ class PKLController extends Controller
             $waktu_laporan = $carbon->format('H.i');
         }
         return view('mahasiswa.laporan.index', [
+            'user' => $user,
             'mahasiswa' => $mahasiswa,
             'pkl' => $pkl,
             'tgl_laporan' => $tgl_laporan ?? '',

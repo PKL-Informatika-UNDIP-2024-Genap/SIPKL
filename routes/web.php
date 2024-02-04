@@ -59,6 +59,7 @@ route::middleware('auth')->group(function () {
         Route::delete('/tmp_delete_irs', [PKLController::class, 'tmpDelete']);
 
     });
+    
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/preview/{filename}', [FileController::class, 'preview'])->where('filename', '.*');
     Route::get('/download_file/{filename}', [FileController::class, 'downloadFile'])->where('filename', '.*');
@@ -130,14 +131,19 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
 });
 
 Route::middleware(['auth', 'is.admin:0'])->group(function () {
-    Route::get('/update_data', [AuthController::class, 'editData'])->name('update_data');
-    Route::put('/update_data', [AuthController::class, 'updateDataMahasiswa']);
-
-    Route::get('/registrasi', [PKLController::class, 'registrasi'])->middleware('status.mhs:Nonaktif')->name('registrasi');
-    Route::post('/registrasi', [PKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
+    Route::middleware('status.mhs:Baru')->group(function () {
+        Route::get('/update_data', [AuthController::class, 'editData'])->name('update_data');
+        Route::put('/update_data', [AuthController::class, 'updateDataMahasiswa']);
+    });
 
     Route::get('/pkl', [PKLController::class, 'index'])->middleware('data.updated')->name('pkl.index');
     Route::put('/pkl/{pkl}/update', [PKLController::class, 'updateData']);
+    Route::get('/riwayat', [RiwayatPKLController::class, 'index'])->middleware('data.updated');
+
+    Route::middleware('status.mhs:Nonaktif')->group(function () {
+        Route::get('/registrasi', [PKLController::class, 'registrasi'])->name('registrasi');
+        Route::post('/registrasi', [PKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
+    });
 
     Route::middleware('status.mhs:Aktif')->group(function () {
         Route::get('/seminar', [SeminarPKLController::class, 'index'])->name('seminar.index');
@@ -148,5 +154,4 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         Route::post('/laporan/kirim', [PKLController::class, 'kirimLaporan']);
     });
 
-    Route::get('/riwayat', [RiwayatPKLController::class, 'index'])->middleware('data.updated');
 });

@@ -34,19 +34,18 @@ class AuthController extends Controller
         if(auth()->user()->is_admin == 1){
             return view('koordinator.dashboard');
         } else {
+            $user = auth()->user();
+            $mahasiswa = $user->mahasiswa;
             return view('mahasiswa.dashboard', [
-                'mahasiswa' => auth()->user()->mahasiswa,
-                // 'pkl' => auth()->user()->mahasiswa->pkl,
+                'user' => $user,
+                'mahasiswa' => $mahasiswa,
+                'pkl' => $mahasiswa->pkl,
             ]);
         }
     }
 
     public function editData()
     {
-        // middleware 'DataNotUpdated' in disguise
-        if (auth()->user()->mahasiswa->email != null){
-            return redirect('/dashboard');
-        }
         return view('mahasiswa.update_data');
     }
 
