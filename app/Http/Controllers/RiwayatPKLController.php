@@ -13,7 +13,10 @@ class RiwayatPKLController extends Controller
      */
     public function index()
     {
-        return view('mahasiswa.riwayat_pkl');
+        $data_riwayat_pkl = RiwayatPKL::where('nim', auth()->user()->mahasiswa->nim)->get();
+        return view('mahasiswa.riwayat_pkl', [
+            'data_riwayat_pkl' => $data_riwayat_pkl,
+        ]);
     }
 
     /**

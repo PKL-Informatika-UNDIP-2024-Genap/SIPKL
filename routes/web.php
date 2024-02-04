@@ -139,8 +139,14 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
     Route::get('/pkl', [PKLController::class, 'index'])->middleware('data.updated')->name('pkl.index');
     Route::put('/pkl/{pkl}/update', [PKLController::class, 'updateData']);
 
-    Route::get('/seminar', [SeminarPKLController::class, 'index'])->middleware('status.mhs:Aktif')->name('seminar.index');
-    Route::post('/seminar/daftar', [SeminarPKLController::class, 'daftarSeminar'])->middleware('status.mhs:Aktif')->name('seminar.daftar');
+    Route::middleware('status.mhs:Aktif')->group(function () {
+        Route::get('/seminar', [SeminarPKLController::class, 'index'])->name('seminar.index');
+        Route::post('/seminar/daftar', [SeminarPKLController::class, 'daftarSeminar']);
+        Route::post('/seminar/daftar_ulang', [SeminarPKLController::class, 'daftarUlangSeminar']);
+
+        Route::get('/laporan', [PKLController::class, 'laporan']);
+        Route::post('/laporan/kirim', [PKLController::class, 'kirimLaporan']);
+    });
 
     Route::get('/riwayat', [RiwayatPKLController::class, 'index'])->middleware('data.updated');
 });

@@ -15,9 +15,9 @@ return new class extends Migration
             $table->string('nim',14);
             $table->string('periode_pkl',16);
             $table->string('status',10);
-            $table->string('id_dospem',25);
+            $table->string('id_dospem',25)->unsigned();
             $table->char('nilai',1);
-
+            $table->string('catatan')->nullable();
             $table->primary(['nim', 'periode_pkl']);
         });
     }

@@ -10,7 +10,7 @@ class RiwayatPKL extends Model
     use HasFactory;
 
     protected $table = 'riwayat_pkl';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'nim';
     protected $keyType = 'string';
     public $incrementing = false;
     public $timestamps = false;
