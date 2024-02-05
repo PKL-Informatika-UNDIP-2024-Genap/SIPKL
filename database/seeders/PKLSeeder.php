@@ -31,7 +31,7 @@ class PKLSeeder extends Seeder
                 'tgl_laporan' => '2024-07-01',
             ],
             [
-                'nim' => '24060120150001',
+                'nim' => '24060121131012',
                 'status' => 'Selesai',
                 'instansi' => 'PT. DEF',
                 'judul' => 'Pengembangan Sistem Informasi',
@@ -148,7 +148,7 @@ class PKLSeeder extends Seeder
                 'tgl_registrasi' => '2024-01-01',
             ],
             [
-                'nim' => '24060121131012',
+                'nim' => '24060121130050',
                 'status' => 'Praregistrasi',
                 'instansi' => 'PT. HIJ',
                 'judul' => 'Pengembangan Sistem Informasi',

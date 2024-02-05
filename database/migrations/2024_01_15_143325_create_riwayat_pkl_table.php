@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('status',['Lulus','Tidak Lulus']);
             $table->integer('id_dospem')->unsigned();
             $table->char('nilai',1);
-            $table->string('catatan')->nullable();
+
             $table->primary(['nim', 'periode_pkl']);
         });
     }

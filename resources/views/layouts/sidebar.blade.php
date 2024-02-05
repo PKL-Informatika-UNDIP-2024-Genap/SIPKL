@@ -147,15 +147,15 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="./index.html" class="nav-link {{ Request::is('seminar*') ? 'active' : '' }}">
+              <a href="/seminar/verifikasi_pengajuan" class="nav-link {{ Request::is('seminar/verifikasi_pengajuan*') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
-                <p>Seminar Tak Terjadwal</p>
+                <p>Verifikasi Pengajuan</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index2.html" class="nav-link">
+              <a href="/seminar/jadwal_seminar" class="nav-link  {{ Request::is('seminar/jadwal_seminar*') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
-                <p>Seminar Terjadwal</p>
+                <p>Jadwal Seminar</p>
               </a>
             </li>
           </ul>

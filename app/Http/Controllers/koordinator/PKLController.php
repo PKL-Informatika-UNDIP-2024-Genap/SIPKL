@@ -8,6 +8,7 @@ use App\Models\Mahasiswa;
 use App\Models\PKL;
 use App\Models\PeriodePKL;
 use App\Models\RiwayatPKL;
+use App\Models\SeminarPKL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
@@ -158,12 +159,14 @@ class PKLController extends Controller
     RiwayatPKL::create([
       'nim' => $pkl->nim,
       'periode_pkl' => $pkl->mahasiswa->periode_pkl,
-      'status' => 'Selesai',
+      'status' => 'Lulus',
       'id_dospem' => $pkl->mahasiswa->id_dospem,
       'nilai' => $request->nilai,
     ]);
     
     $pkl->delete();
+
+    SeminarPKL::where('nim', $pkl->nim)->delete();
 
     return response()->json([
       'message' => 'Berhasil menyimpan nilai',

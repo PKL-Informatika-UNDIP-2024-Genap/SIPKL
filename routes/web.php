@@ -12,6 +12,7 @@ use App\Http\Controllers\Koordinator\DosenPembimbingController;
 use App\Http\Controllers\Koordinator\AssignMhsBimbinganController;
 use App\Http\Controllers\Koordinator\MahasiswaController;
 use App\Http\Controllers\Koordinator\PKLController as KoordinatorPKLController;
+use App\Http\Controllers\Koordinator\SeminarPKLController as KoordinatorSeminarPKLController;
 
 use App\Http\Controllers\PKLController;
 use App\Http\Controllers\ProfileController;
@@ -116,6 +117,12 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/pkl/assign_nilai', [KoordinatorPKLController::class, 'index_assign_nilai']);
     Route::post('/pkl/assign_nilai/{pkl}/assign', [KoordinatorPKLController::class, 'assign_nilai']);
     Route::get('/pkl/assign_nilai/update_tabel_nilai', [KoordinatorPKLController::class, 'update_tabel_nilai']);
+    
+    Route::get('/seminar/verifikasi_pengajuan', [KoordinatorSeminarPKLController::class, 'index_verif_pengajuan']);
+    Route::post('/seminar/verifikasi_pengajuan/{seminar_pkl}/terima', [KoordinatorSeminarPKLController::class, 'terima_pengajuan']);
+    Route::post('/seminar/verifikasi_pengajuan/{seminar_pkl}/tolak', [KoordinatorSeminarPKLController::class, 'tolak_pengajuan']);
+    Route::get('/seminar/verifikasi_pengajuan/update_tabel_pengajuan', [KoordinatorSeminarPKLController::class, 'update_tabel_pengajuan']);
+
 
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
     Route::post('/informasi/kelola_pengumuman/tambah', [PengumumanController::class, 'store']);
