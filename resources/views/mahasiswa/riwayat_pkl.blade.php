@@ -28,8 +28,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <div class="card p-3">
-            <div class="card-body table-responsive p-0">
+          <div class="card px-3">
+            <div class="card-body table-responsive px-0">
               <table class="table" id="myTable">
                 <thead>
                     <tr class="table-primary">

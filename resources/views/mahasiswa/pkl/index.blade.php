@@ -22,7 +22,6 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-      <!-- /.row (main row) -->
       <!-- data pkl -->
       @if ($pkl->status == "Praregistrasi")
       <div class="card card-danger">
@@ -46,7 +45,7 @@
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
               <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
               <h5><strong><i class="icon bi bi-exclamation-triangle-fill"></i> Perhatian!</strong></h5>
-              Registrasi PKL Anda ditolak. Silahkan registrasi ulang. Pesan: <em>"{{ $pkl->pesan }}"</em>&nbsp;&nbsp;
+              Registrasi PKL Anda ditolak. Silahkan registrasi ulang. Pesan: <strong><em>“{{ $pkl->pesan }}”</em></strong>&nbsp;&nbsp;
               <a href="/registrasi" class="btn btn-primary btn-sm text-decoration-none">Registrasi Ulang</a>
             </div>
             @endif
@@ -82,7 +81,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="nim">Username/NIM</label>
+                <label for="nim">NIM</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
@@ -95,32 +94,11 @@
           </div>
           {{-- <div class="form-group">
             <dl class="row">
-              <dt class="col-sm-3"><i class="bi bi-building-fill"></i> Instansi</dt>
-              <dd class="col-sm-9">{{ $pkl->instansi }}</dd>
-              <dt class="col-sm-3"><i class="bi bi-fonts"></i> Judul PKL</dt>
-              <dd class="col-sm-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, sint.</dd>
+              <dt><i class="bi bi-building-fill mx-2"></i>Instansi</dt>
+              <dd>{{ $pkl->instansi }}</dd>
+              <dt><i class="bi bi-fonts mx-2"></i>Judul PKL</dt>
+              <dd>{{ $pkl->judul }}</dd>
             </dl>
-          </div> --}}
-
-          {{-- <div class="form-group">
-            <!-- /.card-header -->
-            <div class="card-body table-responsive p-0">
-              <table class="table table-hover table-borderless">
-                <tbody>
-                  <tr>
-                    <td class="text-nowrap"><i class="bi bi-building-fill px-2 py-1 mr-1 bg-primary-subtle rounded-1"></i> <strong>Instansi</strong></td>
-                    <td>:</td>
-                    <td>{{ $pkl->instansi }}</td>
-                  </tr>
-                  <tr>
-                    <td class="text-nowrap"><i class="bi bi-fonts px-2 py-1 mr-1 bg-primary-subtle rounded-1"></i> <strong>Judul PKL</strong></td>
-                    <td>:</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae quia itaque soluta ratione sapiente nisi ullam praesentium perspiciatis libero veritatis?</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- /.card-body -->
           </div> --}}
 
           <div class="form-group">
@@ -145,10 +123,10 @@
             <label for="scan_irs">Scan IRS</label>
             <div class="input-group">
               @if ($pkl->scan_irs != null)
-              <a href="/preview/{{ $pkl->scan_irs }}" class="btn btn-outline-info btn-sm" >Preview</a>
+              <a href="/preview/{{ $pkl->scan_irs }}" class="btn btn-outline-info btn-sm" >Lihat Scan IRS</a>
               @else
               <div>
-                  Anda belum registrasi PKL ... <br><a href="/registrasi" class="btn btn-primary" >Registrasi Sekarang</a>
+                  Tidak tersedia <br><a href="/registrasi" class="btn btn-outline-warning btn-sm" >Registrasi Sekarang</a>
               </div>
               @endif
             </div>

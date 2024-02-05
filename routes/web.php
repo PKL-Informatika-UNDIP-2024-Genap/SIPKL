@@ -59,7 +59,7 @@ route::middleware('auth')->group(function () {
         Route::delete('/tmp_delete_irs', [PKLController::class, 'tmpDelete']);
 
     });
-    
+
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/preview/{filename}', [FileController::class, 'preview'])->where('filename', '.*');
     Route::get('/download_file/{filename}', [FileController::class, 'downloadFile'])->where('filename', '.*');
@@ -136,7 +136,7 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         Route::put('/update_data', [AuthController::class, 'updateDataMahasiswa']);
     });
 
-    Route::get('/pkl', [PKLController::class, 'index'])->middleware('data.updated')->name('pkl.index');
+    Route::get('/pkl', [PKLController::class, 'index'])->middleware('status.mhs:Nonaktif,Aktif')->name('pkl.index');
     Route::put('/pkl/{pkl}/update', [PKLController::class, 'updateData']);
     Route::get('/riwayat', [RiwayatPKLController::class, 'index'])->middleware('data.updated');
 

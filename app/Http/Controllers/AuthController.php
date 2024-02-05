@@ -6,7 +6,8 @@ use App\Models\PKL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth; // Add this line
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -40,6 +41,7 @@ class AuthController extends Controller
                 'user' => $user,
                 'mahasiswa' => $mahasiswa,
                 'pkl' => $mahasiswa->pkl,
+                'created_at' => Carbon::parse($user->created_at)->diffForHumans(),
             ]);
         }
     }

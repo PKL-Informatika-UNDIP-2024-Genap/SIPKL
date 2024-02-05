@@ -43,7 +43,7 @@
           </a>
         </li>
 
-        @if ($pkl->status == "Praregistrasi")
+        @if ($mahasiswa->status == "Nonaktif" && $pkl->status == "Praregistrasi")
 
         <li class="nav-item">
           <a href="/registrasi" class="nav-link {{ Request::is('registrasi')?'active':'' }}">
@@ -56,6 +56,7 @@
 
         @endif
 
+        @if ($mahasiswa->status != "Lulus")
         <li class="nav-item">
           <a href="/pkl" class="nav-link {{ Request::is('pkl')?'active':'' }}">
             <i class="nav-icon bi bi-briefcase-fill"></i>
@@ -64,6 +65,7 @@
             </p>
           </a>
         </li>
+        @endif
 
         @if ($mahasiswa->status == "Aktif")
 
