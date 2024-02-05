@@ -336,11 +336,6 @@
               <!-- form start -->
               <form action="/seminar/daftar_ulang" class="needs-validation" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                  <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
-                  <h5><strong><i class="icon bi bi-exclamation-triangle-fill"></i> Perhatian!</strong></h5>
-                  Pesan: <strong><em>“{{ $seminar_pkl->pesan }}”</em></strong>
-                </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -466,6 +461,12 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
+                  <i class="icon bi bi-exclamation-triangle-fill"></i>Pesan: <strong><em>“{{ $seminar_pkl->pesan }}”</em></strong>
+                </div>
+
                 <div class="form-check ms-1 mb-3">
                   <input type="checkbox" class="form-check-input" id="checkbox1">
                   <label class="form-check-label" for="checkbox1"><em>Pastikan semua data sudah benar, dan scan dapat dibaca dengan jelas.</em></label>

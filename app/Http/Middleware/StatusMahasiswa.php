@@ -13,9 +13,12 @@ class StatusMahasiswa
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $Status): Response
+    public function handle(Request $request, Closure $next, $Status, $Status2 = ""): Response
     {
         if (auth()->user()->mahasiswa->status == $Status) {
+            return $next($request);
+        }
+        if (auth()->user()->mahasiswa->status == $Status2) {
             return $next($request);
         }
         return redirect("/");
