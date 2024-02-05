@@ -187,7 +187,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="bi bi-calendar-event-fill"></i></span>
                         </div>
-                        <input type="date" class="form-control" id="tgl_seminar" name="tgl_seminar" value="{{ $mahasiswa->seminar_pkl->tgl_seminar }}" readonly>
+                        <input type="date" class="form-control" id="tgl_seminar" name="tgl_seminar" value="{{ ($mahasiswa->seminar_pkl == null)?'':$mahasiswa->seminar_pkl->tgl_seminar }}" readonly>
                         @error('tgl_seminar')
                           <div class="invalid-feedback">
                             {{ $message }}

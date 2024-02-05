@@ -15,7 +15,8 @@ class SeminarPKLController extends Controller
      */
     public function index()
     {
-        $mahasiswa = auth()->user()->mahasiswa;
+        $user = auth()->user();
+        $mahasiswa = $user->mahasiswa;
         $seminar_pkl = $mahasiswa->seminar_pkl;
         // setlocale(LC_TIME, 'id_ID');
         // Carbon::setLocale('id');
@@ -24,6 +25,7 @@ class SeminarPKLController extends Controller
             $hari_tgl_seminar =  Carbon::parse($seminar_pkl->tgl_seminar)->isoFormat('dddd, D MMMM Y');
         }
         return view('mahasiswa.seminar.index', [
+            'user' => $user,
             'mahasiswa' => $mahasiswa,
             'seminar_pkl' => $seminar_pkl,
             'hari_tgl_seminar' => $hari_tgl_seminar,
@@ -160,6 +162,7 @@ class SeminarPKLController extends Controller
             'waktu_seminar' => $request->waktu_seminar_mulai . '-' . $request->waktu_seminar_selesai,
             'ruang' => $request->ruang,
             'pesan' => null,
+            'created_at' => now(),
         ];
         if ($request->scan_layak_seminar) {
             if ($request->scan_layak_seminar_old) {

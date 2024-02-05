@@ -63,7 +63,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="nim">Username/NIM</label>
+              <label for="nim">NIM</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
@@ -115,6 +115,11 @@
             </div>
             <div class="form-group">
               <label for="scan_irs">Scan IRS</label>
+              @if ($pkl->scan_irs != null)
+                <div class="mb-2">
+                  <a href="/preview/{{ $pkl->scan_irs }}" target="_blank" class="btn btn-outline-info btn-sm py-0">Lihat scan lama</a>
+                </div>
+              @endif
               {{-- <input type="file" class="custom-file-input @error('scan_irs') is-invalid @enderror" id="scan_irs" name="scan_irs" value="{{ old('scan_irs') }}"> --}}
               {{-- <label class="custom-file-label" for="scan_irs">Choose file</label> --}}
               <input type="file" class="@error('scan_irs') is-invalid @enderror" id="scan_irs" name="scan_irs">
@@ -124,6 +129,14 @@
                 </div>
               @enderror
             </div>
+
+            @if ($pkl->pesan != null)
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
+                <i class="icon bi bi-exclamation-triangle-fill"></i> Pesan: <strong><em>“{{ $pkl->pesan }}”</em></strong>
+              </div>
+						@endif
+
             <div class="form-check ms-1">
               <input type="checkbox" class="form-check-input" id="checkbox1" name="checkbox1">
               <label class="form-check-label" for="checkbox1"><em>Pastikan sudah mengambil PKL di IRS.</em></label>
