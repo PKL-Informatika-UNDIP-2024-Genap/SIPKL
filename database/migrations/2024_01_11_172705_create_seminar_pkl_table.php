@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('scan_peminjaman_ruang')->nullable();
             $table->string('pesan')->nullable();
             $table->timestamps();
+
+            $table->foreign('nim')->references('nim')->on('mahasiswa')->onDelete('cascade');
         });
     }
 

@@ -21,4 +21,9 @@ class SeminarPKL extends Model
     {
         return $this->hasOne(Mahasiswa::class,'nim','nim');
     }
+
+    public function dosen_pembimbing()
+    {
+        return $this->hasOne(DosenPembimbing::class,'id','id_dospem');
+    }
 }

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->enum('status', ['Baru','Nonaktif','Aktif','Lulus'])->default('Baru');
             $table->integer('id_dospem')->unsigned()->nullable();
             $table->string('periode_pkl',16)->nullable();
+
+            $table->foreign('id_dospem')->references('id')->on('dosen_pembimbing')->onDelete('set null');
         });
     }
 

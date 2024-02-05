@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PeriodePKLSeeder::class,
             PKLSeeder::class,
+            SeminarPKLSeeder::class,
         ]);
     }
 }

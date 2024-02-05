@@ -21,8 +21,8 @@ class MahasiswaSeeder extends Seeder
                 'id_dospem' => 5,
             ],
             [
-                'nim' => '24060121130050',
-                'nama' => 'Rizki Utama Fauzi',
+                'nim' => '24060121131012',
+                'nama' => 'Ayu Kartika',
                 'status' => 'Lulus',
                 'periode_pkl' => '2023/2024 Ganjil',
                 'id_dospem' => 5,
@@ -75,8 +75,8 @@ class MahasiswaSeeder extends Seeder
                 'status' => 'Nonaktif',
             ],
             [
-                'nim' => '24060121131012',
-                'nama' => 'Ayu Kartika',
+                'nim' => '24060121130050',
+                'nama' => 'Rizki Utama Fauzi',
             ],
             [
                 'nim' => '24060121131123',
