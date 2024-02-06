@@ -122,6 +122,10 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::post('/seminar/verifikasi_pengajuan/{seminar_pkl}/terima', [KoordinatorSeminarPKLController::class, 'terima_pengajuan']);
     Route::post('/seminar/verifikasi_pengajuan/{seminar_pkl}/tolak', [KoordinatorSeminarPKLController::class, 'tolak_pengajuan']);
     Route::get('/seminar/verifikasi_pengajuan/update_tabel_pengajuan', [KoordinatorSeminarPKLController::class, 'update_tabel_pengajuan']);
+    
+    Route::get('/seminar/jadwal_seminar', [KoordinatorSeminarPKLController::class, 'index_jadwal_seminar']);
+    Route::put('/seminar/jadwal_seminar/{seminar_pkl}/update', [KoordinatorSeminarPKLController::class, 'update_jadwal_seminar']);
+    Route::get('/seminar/jadwal_seminar/update_tabel_jadwal', [KoordinatorSeminarPKLController::class, 'update_tabel_jadwal']);
 
 
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
