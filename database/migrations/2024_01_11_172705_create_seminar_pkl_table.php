@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('seminar_pkl', function (Blueprint $table) {
             $table->string('nim', 14)->primary();
-            $table->enum('status', ['Pengajuan','TakTerjadwal','Terjadwal']);
+            $table->enum('status', ['Pengajuan','Tak Terjadwal','Terjadwal']);
             $table->date('tgl_seminar');
             $table->string('waktu_seminar', 15);
             $table->string('ruang', 10);

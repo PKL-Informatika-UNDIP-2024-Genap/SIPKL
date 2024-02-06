@@ -21,7 +21,7 @@ class SeminarPKLController extends Controller
 
   public function terima_pengajuan(SeminarPKL $seminar_pkl){
     $seminar_pkl->update([
-      'status' => 'TakTerjadwal'
+      'status' => 'Tak Terjadwal'
     ]);
 
     return response()->json([
@@ -49,6 +49,29 @@ class SeminarPKLController extends Controller
 
     return response()->json([
       'view' => $view
+    ]);
+  }
+
+
+  // Jadwal Seminar
+  public function index_jadwal_seminar()
+  {
+    $data_jadwal = SeminarPKL::whereRaw('status = "Tak Terjadwal" OR status = "Terjadwal"')->with(["mahasiswa", "dosen_pembimbing"])->get();
+
+    return view('koordinator.seminar.jadwal_seminar.index', [
+      'data_jadwal' => $data_jadwal
+    ]);
+  }
+
+  public function update_jadwal_seminar(SeminarPKL $seminar_pkl){
+    $seminar_pkl->update([
+      'tgl_seminar' => request('tgl_seminar'),
+      'waktu_seminar' => request('waktu_seminar'),
+      'ruang' => request('ruang'),
+    ]);
+
+    return response()->json([
+      'message' => $seminar_pkl
     ]);
   }
 }
