@@ -17,6 +17,7 @@ use App\Http\Controllers\Koordinator\SeminarPKLController as KoordinatorSeminarP
 use App\Http\Controllers\PKLController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Koordinator\PeriodePKLController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\RiwayatPKLController;
 use App\Http\Controllers\SeminarPKLController;
 use App\Models\PeriodePKL;
@@ -165,5 +166,7 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         Route::get('/laporan', [PKLController::class, 'laporan']);
         Route::post('/laporan/kirim', [PKLController::class, 'kirimLaporan']);
     });
+
+    Route::get('/email/send-otp', [MailController::class, 'sendOtp'])->name('send-otp');
 
 });

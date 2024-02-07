@@ -83,6 +83,11 @@
             <p class="text-muted text-center">{{ $mahasiswa->nim }}</p>
 
             <div class="btn btn-primary btn-edit-password" data-bs-toggle="modal" data-bs-target="#modal_edit_password"><b>Edit Password</b></div>
+
+            {{-- <div class="mt-1">
+              <a href="{{ route('send-otp') }}" class="btn btn-primary "><b>Verifikasi Email</b></a>
+            </div> --}}
+
           </div>
           <div class="col-md-8">
   
@@ -157,7 +162,7 @@
   
                   @if ($mahasiswa->id_dospem == null)
                   <tr>
-                    <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-pink">Belum ada</strong></td>
+                    <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-warning">Belum ada</strong></td>
                   </tr>
                   @else
                   <tr>
@@ -191,7 +196,7 @@
 @endsection
 
 @push('scripts')
-  <script>
+  <script type="text/javascript">
     $(document).ready(function(){
       let nowa_old = $("#no_wa").val();
       let email_old = $("#email").val();
@@ -460,7 +465,7 @@
     });
   </script>
 
-  @if (session()->has('success'))
+@if (session()->has('success'))
   <script>
     $(document).ready(function(){
       Swal.fire({
@@ -472,7 +477,7 @@
       })
     });
   </script>
-  @endif
+@endif
 
 
   {{-- filepond-plugin-file-encode --}}
@@ -492,7 +497,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.js"></script>
 
-  <script>
+  <script type="text/javascript">
     /*
     We need to register the required plugins to do image manipulation and previewing.
     */

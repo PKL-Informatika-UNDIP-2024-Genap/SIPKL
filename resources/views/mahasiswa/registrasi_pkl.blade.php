@@ -160,7 +160,7 @@
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-size@2/dist/filepond-plugin-file-validate-size.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-image-preview@4/dist/filepond-plugin-image-preview.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.js"></script>
-  <script>
+  <script type="text/javascript">
     // Register the plugin
     FilePond.registerPlugin(
       FilePondPluginImagePreview,
@@ -213,7 +213,7 @@
     });
   </script>
 
-  <script>
+  <script type="text/javascript">
     // disable submit button
     $('form').submit(function() {
       // show spinner on button

@@ -205,19 +205,6 @@
                             @enderror
                           </div>
                         </div>
-                        {{-- <div class="form-group">
-                          <label for="exampleInputFile">File input</label>
-                          <div class="input-group">
-                            <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="exampleInputFile">
-                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                            </div>
-                            <div class="input-group-append">
-                              <span class="input-group-text">Upload</span>
-                            </div>
-                          </div>
-                        </div> --}}
-
                         <button class="btn btn-primary" onclick="stepper.previous()">Sebelumnya</button>
                         <button type="submit" class="btn btn-primary" id="btn-submit">Kirim</button>
                       </div>
@@ -257,8 +244,6 @@
 
 <!-- jQuery -->
 <script src="/lte/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-{{-- <script src="/lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
 <!-- Bootstrap 5 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <!-- BS-Stepper -->
@@ -271,7 +256,7 @@
 <!-- AdminLTE App -->
 <script src="/lte/dist/js/adminlte.min.js"></script>
 
-<script>
+<script type="text/javascript">
   // BS-Stepper Init
   document.addEventListener('DOMContentLoaded', function () {
     window.stepper = new Stepper(document.querySelector('.bs-stepper'))

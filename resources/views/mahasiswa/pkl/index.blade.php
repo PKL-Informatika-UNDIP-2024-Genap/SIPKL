@@ -152,7 +152,7 @@
 @endsection
 
 @push('scripts')
-  <script>
+  <script type="text/javascript">
     $(document).ready(function(){
       // modal edit
       $('.btn-edit-data').on('click', function(){
@@ -223,8 +223,8 @@
     });
   </script>
 
-  @if (session()->has('success'))
-  <script>
+@if (session()->has('success'))
+  <script type="text/javascript">
     $(document).ready(function(){
       Swal.fire({
         icon: 'success',
@@ -235,5 +235,5 @@
       })
     });
   </script>
-  @endif
+@endif
 @endpush

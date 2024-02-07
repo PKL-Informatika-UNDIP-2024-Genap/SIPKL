@@ -337,7 +337,7 @@
 
 @push('scripts')
   @if (session()->has('success'))
-    <script>
+    <script type="text/javascript">
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
