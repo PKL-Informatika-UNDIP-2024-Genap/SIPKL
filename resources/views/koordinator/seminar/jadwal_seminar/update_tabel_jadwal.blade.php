@@ -24,7 +24,7 @@
                 data-mhs="{{ $jadwal->mahasiswa }}" data-jadwal="{{ $jadwal }}" data-dospem="{{ $jadwal->dosen_pembimbing }}"
                 data-tgl-jadwal="{{ $jadwal->created_at }}">Detail</div>
 
-                <div class="btn btn-danger btn-sm btn-delete-jadwal" data-jadwal="{{ $jadwal }}">
+                <div class="btn btn-danger btn-sm btn-delete-jadwal" data-nim="{{ $jadwal->nim }}">
                   Delete
                 </div>
               </td>

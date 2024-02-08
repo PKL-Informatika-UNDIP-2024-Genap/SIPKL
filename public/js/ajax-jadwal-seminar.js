@@ -7,8 +7,6 @@ let arr_mhs_tambah_jadwal = [];
 let view = null;
 let tabel_modal;
 
-console.log(view);
-
 const options = {
   weekday: 'long',
   year: 'numeric',
@@ -51,6 +49,14 @@ $(document).on('click', '.btn-detail-jadwal', function() {
   $("#data-waktu-seminar").html(data_jadwal.waktu_seminar);
   $("#data-ruang").html(data_jadwal.ruang);
   $("#data-jenis-seminar").html(data_jadwal.status);
+
+  $("#edit-tgl-seminar").removeClass('d-none');
+  $("#edit-tgl-err").html("");
+  $("#edit-waktu-mulai").removeClass('d-none');
+  $("#edit-waktu-selesai").removeClass('d-none');
+  $("#edit-waktu-err").html("");
+  $("#edit-ruang").removeClass('d-none');
+  $("#edit-ruang-err").html("");
 });
 
 $(document).on('click', '#btn-edit', function() {
@@ -63,67 +69,104 @@ $(document).on('click', '#btn-edit', function() {
     $("#data-ruang").addClass('d-none');
     $(".edit-item").removeClass('d-none');
 
-    let waktu_seminar = data_waktu_seminar.split('-');
+    let waktu_seminar_split = data_waktu_seminar.split('-');
     
     $("#edit-tgl-seminar").val(data_tgl_seminar);
-    $("#edit-waktu-mulai").val(waktu_seminar[0]);
-    $("#edit-waktu-selesai").val(waktu_seminar[1]);
+    $("#edit-waktu-mulai").val(waktu_seminar_split[0]);
+    $("#edit-waktu-selesai").val(waktu_seminar_split[1]);
     $("#edit-ruang").val(data_ruang);
     $("#btn-batal").removeClass('d-none');
   } else {
-    let tgl_seminar = $("#edit-tgl-seminar").val();
-    let waktu_seminar = $("#edit-waktu-mulai").val() + '-' + $("#edit-waktu-selesai").val();
-    let ruang = $("#edit-ruang").val();
-    console.log(tgl_seminar);
-    console.log(waktu_seminar);
-    console.log(ruang);
-    $.ajax({
-      type: "PUT",
-      url: "/seminar/jadwal_seminar/" + data_nim + "/update",
-      data: {
-        tgl_seminar: tgl_seminar,
-        waktu_seminar: waktu_seminar,
-        ruang: ruang,
-      },
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      success: function (response) {
-        console.log(response);
-        Swal.fire({
-          title: "Success",
-          text: "Jadwal Seminar mahasiswa dengan nim " + data_nim + " Berhasil Diupdate",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 2000
-        })
-        update_tabel_jadwal();
-        $("#btn-edit").removeClass('edit');
-        $("#btn-edit").html('Edit');
-        $("#btn-batal").addClass('d-none');
-        tgl_seminar = new Date(tgl_seminar);
-        $("#data-tgl-seminar").removeClass('d-none');
-        $("#data-tgl-seminar").html(tgl_seminar.toLocaleDateString('id-ID', options));
-        $("#data-waktu-seminar").removeClass('d-none');
-        $("#data-waktu-seminar").html(waktu_seminar);
-        $("#data-ruang").removeClass('d-none');
-        $("#data-ruang").html(ruang);
-        $(".edit-item").addClass('d-none');
+    let validation = true;
 
-        $(this).removeClass('edit');
-        $(this).html('Edit');
-      },
-      error: function (response) {
-        Swal.fire({
-          title: "Error",
-          text: "Jadwal Seminar mahasiswa dengan nim " + data_nim + " Gagal Diupdate",
-          icon: "error",
-          showConfirmButton: false,
-          timer: 2000
-        })
-        console.log('Error:', response);
-      },
-    });
+    if($("#edit-tgl-seminar").val() == ""){
+      validation = false;
+      $("#edit-tgl-seminar").addClass('is-invalid');
+      $("#edit-tgl-err").html("Tanggal seminar tidak boleh kosong");
+    }else{
+      $("#edit-tgl-seminar").removeClass('is-invalid');
+      $("#edit-tgl-err").html("");
+    }
+    if($("#edit-waktu-mulai").val() == "" || $("#edit-waktu-selesai").val() == ""){
+      validation = false;
+      $("#edit-waktu-mulai").addClass('is-invalid');
+      $("#edit-waktu-selesai").addClass('is-invalid');
+      $("#edit-waktu-err").html("Waktu seminar tidak boleh kosong");
+    } else{
+      $("#edit-waktu-mulai").removeClass('is-invalid');
+      $("#edit-waktu-selesai").removeClass('is-invalid');
+      $("#edit-waktu-err").html("");
+    }
+
+    if($("#edit-ruang").val() == ""){
+      validation = false;
+      $("#edit-ruang").addClass('is-invalid');
+      $("#edit-ruang-err").html("Ruang seminar tidak boleh kosong");
+    }else{
+      $("#edit-ruang").removeClass('is-invalid');
+      $("#edit-ruang-err").html("");
+    }
+
+    if(validation == true){
+      let tgl_seminar = $("#edit-tgl-seminar").val();
+      let waktu_seminar = $("#edit-waktu-mulai").val() + '-' + $("#edit-waktu-selesai").val();
+      let ruang = $("#edit-ruang").val();
+      console.log(tgl_seminar);
+      console.log(waktu_seminar);
+      console.log(ruang);
+      $.ajax({
+        type: "PUT",
+        url: "/seminar/jadwal_seminar/" + data_nim + "/update",
+        data: {
+          tgl_seminar: tgl_seminar,
+          waktu_seminar: waktu_seminar,
+          ruang: ruang,
+        },
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+          console.log(response);
+          Swal.fire({
+            title: "Success",
+            text: "Jadwal Seminar mahasiswa dengan nim " + data_nim + " Berhasil Diupdate",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 2000
+          })
+          update_tabel_jadwal();
+          $("#btn-edit").removeClass('edit');
+          $("#btn-edit").html('Edit');
+          $("#btn-batal").addClass('d-none');
+
+          data_tgl_seminar = tgl_seminar;
+          data_waktu_seminar = waktu_seminar;
+          data_ruang = ruang;
+
+          tgl_seminar = new Date(tgl_seminar);
+          $("#data-tgl-seminar").removeClass('d-none');
+          $("#data-tgl-seminar").html(tgl_seminar.toLocaleDateString('id-ID', options));
+          $("#data-waktu-seminar").removeClass('d-none');
+          $("#data-waktu-seminar").html(waktu_seminar);
+          $("#data-ruang").removeClass('d-none');
+          $("#data-ruang").html(ruang);
+          $(".edit-item").addClass('d-none');
+  
+          $(this).removeClass('edit');
+          $(this).html('Edit');
+        },
+        error: function (response) {
+          Swal.fire({
+            title: "Error",
+            text: "Jadwal Seminar mahasiswa dengan nim " + data_nim + " Gagal Diupdate",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 2000
+          })
+          console.log('Error:', response);
+        },
+      });
+    }
   }
 
 });
@@ -276,6 +319,7 @@ $(document).on('click', '#btn-submit', function() {
           timer: 2000
         })
         update_tabel_jadwal();
+        $('#modal-tambah-jadwal').modal('hide');
       },
       error: function (response) {
         Swal.fire({
@@ -289,4 +333,134 @@ $(document).on('click', '#btn-submit', function() {
       },
     });
   }
+});
+
+
+$(document).on('click', '#btn-submit-export', function() {
+  let jenis_seminar = $("#jenis-seminar").val();
+
+  // Membuat URL untuk export dengan parameter jenis_seminar
+  let exportUrl = "/seminar/jadwal_seminar/export?jenis_seminar=" + jenis_seminar;
+
+  // Membuka URL di tab baru
+  window.open(exportUrl, '_blank');
+
+});
+
+$(document).on('click', '#btn-import-jadwal', function(){
+  $("#file").val("");
+  $("#file").removeClass("is-invalid");
+  $("#file-err").html("");
+});
+
+$(document).on('click', '#btn-submit-import', function(){
+  $(this).prop("disabled", true);
+  $(this).html(`<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Mengimport...`);
+
+  let file_input = $('#form-import')[0];
+
+  let file = new FormData(file_input);
+  console.log(file_input);
+
+  $.ajax({
+    url: "/seminar/jadwal_seminar/import",
+    type: 'POST',
+    data: file,
+    processData: false,
+    contentType: false,
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    success: function (response) {
+      $("#modal-import-jadwal").modal("hide");
+      // console.log(response.failures);
+      if(response.error_row.length == 0){
+        Swal.fire({
+          title: "Success",
+          text: "Semua Data Jadwal Seminar Mahasiswa Berhasil Diimport",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }else{
+        var error = "<ul style='text-align: left; list-style-position: inside;'>";
+        for (var i = 0; i < response.error_row.length; i++) {
+          error += "<li>Baris " + response.error_row[i] + " error : " + response.error_message[i] + "</li>";
+        }
+        error += "</ul>";
+
+        Swal.fire({
+          title: "Warning",
+          html: "Berhasil melakukan import. Namun terdapat beberapa baris data yang tidak dapat diimport, yaitu :" + error,
+          icon: "warning",
+        });
+      }
+
+      update_tabel_jadwal();
+    },
+    error: function (response) {
+      var errorResponse = $.parseJSON(response.responseText);
+      console.log(errorResponse.errors);
+      if (errorResponse.errors && errorResponse.errors.file) {
+        $("#file").addClass("is-invalid");
+        $("#file-err").html(errorResponse.errors.file);
+      }else if(errorResponse.errors){
+        $("#file").addClass("is-invalid");
+        $("#file-err").html(errorResponse.errors);
+      }
+    },
+    complete: function () {
+      // Mengaktifkan kembali tombol import dan menyembunyikan ikon loading spinner setelah permintaan selesai
+      $("#btn-submit-import").prop("disabled", false);
+      $("#btn-submit-import").html("Import");
+      $("#message").addClass("d-none");
+    }
+  });
+
+});
+
+$(document).on('click', '.btn-delete-jadwal', function(){
+  let nim = $(this).attr('data-nim');
+
+  Swal.fire({
+    title: 'Apakah Anda Yakin?',
+    text: "Data Jadwal Seminar Mahasiswa dengan NIM " + nim + " akan dihapus",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#6c757d',
+    confirmButtonText: 'Hapus',
+    cancelButtonText: 'Batal',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        type: "DELETE",
+        url: "/seminar/jadwal_seminar/" + nim + "/delete",
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+          console.log(response);
+          Swal.fire({
+            title: "Success",
+            text: "Jadwal Seminar mahasiswa dengan nim " + nim + " Berhasil Dihapus",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 2000
+          })
+          update_tabel_jadwal();
+        },
+        error: function (response) {
+          Swal.fire({
+            title: "Error",
+            text: "Jadwal Seminar mahasiswa dengan nim " + nim + " Gagal Dihapus",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 2000
+          })
+          console.log('Error:', response);
+        },
+      });
+    }
+  });
 });
