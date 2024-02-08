@@ -65,8 +65,8 @@
     </div>
 
 
-    <div class="card">
-      <div class="card-body table-responsive" id="tabel-mhs">
+    <div class="card px-3">
+      <div class="card-body table-responsive px-0" id="tabel-mhs">
         <table class="table" id="myTable">
           <thead>
               <tr class="table-primary">

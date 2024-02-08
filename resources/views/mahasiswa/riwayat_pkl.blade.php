@@ -38,7 +38,6 @@
                         <th>Status</th>
                         <th>Dosen Pembimbing</th>
                         <th>NIP Dosen Pembimbing</th>
-                        <th>Catatan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,7 +49,6 @@
                             <td>{{ $riwayat_pkl->status }}</td>
                             <td>{{ $riwayat_pkl->nama_dospem }}</td>
                             <td>{{ $riwayat_pkl->nip_dospem }}</td>
-                            <td>{{ $riwayat_pkl->catatan }}</td>
                         </tr>
                     @endforeach
                   @endif
@@ -70,7 +68,7 @@
 @push('scripts')
   <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
-  <script>
+  <script type="text/javascript">
     $(document).ready( function () {
       $('#myTable').DataTable();
     });

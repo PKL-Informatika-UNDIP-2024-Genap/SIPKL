@@ -20,8 +20,8 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <div class="card">
-          <div class="card-body table-responsive" id="tabel-dospem">
+        <div class="card px-3">
+          <div class="card-body table-responsive px-0" id="tabel-dospem">
             <table class="table" id="myTable">
               <thead>
                 <tr class="table-primary">

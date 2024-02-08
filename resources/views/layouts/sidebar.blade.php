@@ -107,6 +107,8 @@
             <p>
               PKL
               <i class="right fas bi bi-caret-left-fill"></i>
+              {{-- <span class="badge badge-danger right p-1 m-1 rounded-circle"><span class="visually-hidden"></span></span> --}}
+              <span class="right badge badge-danger">5</span>
             </p>
           </a>
           <ul class="nav nav-treeview">
@@ -120,6 +122,7 @@
               <a href="/pkl/verifikasi_registrasi" class="nav-link {{ Request::is('pkl/verifikasi_registrasi*') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
                 <p>Verifikasi Registrasi</p>
+                <span class="right badge badge-danger">5</span>
               </a>
             </li>
             <li class="nav-item">
@@ -161,6 +164,14 @@
           </ul>
         </li>
 
+        <li class="nav-item">
+          <a href="/cetak_sk" class="nav-link">
+            <i class="nav-icon fas bi bi-file-earmark-spreadsheet-fill"></i>
+            <p>
+              Cetak SK PKL
+            </p>
+          </a>
+        </li>
         <li class="nav-item">
           <a href="pages/widgets.html" class="nav-link">
             <i class="nav-icon fas bi bi-clock-history"></i>
