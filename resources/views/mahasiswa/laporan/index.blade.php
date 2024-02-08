@@ -178,7 +178,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="bi bi-person-check-fill"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="nama_dospem" name="nama_dospem" value="{{ $mahasiswa->dosen_pembimbing->nama }}" readonly>
+                        <input type="text" class="form-control" id="nama_dospem" name="nama_dospem" value="{{ ($mahasiswa->dosen_pembimbing == null)?'':$mahasiswa->dosen_pembimbing->nama }}" readonly>
                       </div>
                     </div>
                     <div class="form-group">
@@ -430,7 +430,7 @@
 			event.preventDefault();
 			Swal.fire({
 				title: 'Apakah data sudah benar?',
-				text: "Pastikan semua data sudah benar, dan link laporan valid dan dapat diakses.",
+				text: "Pastikan semua data sudah benar, dan link laporan valid serta dapat diakses.",
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#007bff',
@@ -457,7 +457,7 @@
 @endif
 
 @if (session()->has('fails'))
-	<script>
+	<script type="text/javascript">
 		if ($('#form-section').hasClass('collapsed-card')) {
 			$('#btn-form').click();
 		}
@@ -467,7 +467,7 @@
 
 
 @if (session()->has('success'))
-	<script>
+	<script type="text/javascript">
 	$(document).ready(function(){
 		Swal.fire({
 			icon: 'success',

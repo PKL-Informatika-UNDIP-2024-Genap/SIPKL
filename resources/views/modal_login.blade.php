@@ -59,7 +59,7 @@
   </div>
 </div>
 
-<script>
+<script type="text/javascript">
   // disable submit button
   $('form').submit(function() {
     // show spinner on button
@@ -71,7 +71,7 @@
   });
 </script>
 
-<script>
+<script type="text/javascript">
   const passwordInput = document.getElementById('password');
   const togglePasswordButton = document.getElementById('togglePassword');
 
@@ -89,7 +89,7 @@
 </script>
 
 @if ($errors->any() || session()->has('loginError'))
-  <script>
+  <script type="text/javascript">
     $(document).ready(function () {
       $('#modal_login').modal('show');
     });

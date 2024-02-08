@@ -59,7 +59,7 @@
                   <tbody>
                     @if ($seminar_pkl == null)
                     <tr>
-                      <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong>Belum ada</strong></td>
+                      <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-warning">Belum ada</strong></td>
                     </tr>
 
                     @else
@@ -118,7 +118,7 @@
     
                     @if ($mahasiswa->id_dospem == null)
                     <tr>
-                      <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong>Belum ada</strong></td>
+                      <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-warning">Belum ada</strong></td>
                     </tr>
                     @else
                     <tr>
@@ -193,8 +193,8 @@
         </div>
 
         @if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
-        <div class="col-12" id="form-section">
-          <div class="card card-primary collapsed-card">
+        <div class="col-12">
+          <div class="card card-primary collapsed-card" id="form-section">
             <div class="card-header">
               <h3 class="card-title">Form Pendaftaran Seminar PKL Tak Terjadwal</h3>
       
@@ -239,7 +239,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="bi bi-person-check-fill"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="nama_dospem" name="nama_dospem" value="{{ $mahasiswa->dosen_pembimbing->nama }}" readonly>
+                        <input type="text" class="form-control" id="nama_dospem" name="nama_dospem" value="{{ ($mahasiswa->dosen_pembimbing == null)?'':$mahasiswa->dosen_pembimbing->nama }}" readonly>
                       </div>
                     </div>
                   </div>
@@ -364,7 +364,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="bi bi-person-check-fill"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="nama_dospem" name="nama_dospem" value="{{ $mahasiswa->dosen_pembimbing->nama }}" readonly>
+                        <input type="text" class="form-control" id="nama_dospem" name="nama_dospem" value="{{ ($mahasiswa->dosen_pembimbing == null)?'':$mahasiswa->dosen_pembimbing->nama }}" readonly>
                       </div>
                     </div>
                   </div>
@@ -495,8 +495,7 @@
 
 @push('scripts')
 
-{{-- TO DO: modif code like in laporan page --}}
-  @if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
+@if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
   <script type="text/javascript">
     function goToForm() {
       setTimeout(() => {
@@ -512,7 +511,7 @@
       $('#btn-form').click();
     })
     $('#btn-form').click(function() {
-      if ($('#btn-daftar').hasClass('btn-primary')) {
+      if ($('#form-section').hasClass('collapsed-card')) {
         $('#btn-daftar').removeClass('btn-primary');
         $('#btn-daftar').addClass('btn-secondary');
         $('#btn-daftar').html('Tutup');
@@ -528,7 +527,7 @@
     });
     $('#btn-daftar-ulang').click(function() {
       $(this).prop('disabled', true);
-      if ($('#btn-daftar').hasClass('btn-primary')) {
+      if ($('#form-section').hasClass('collapsed-card')) {
         $('#btn-form').click();
       }
       goToForm();
@@ -536,7 +535,53 @@
         $('#btn-daftar-ulang').prop('disabled', false);
       }, 500);
     })
+
+
+    if ($("#checkbox1").checked) {
+      $('button[type=submit]').prop('disabled', false);
+    } else {
+      $('button[type=submit]').prop('disabled', true);
+    }
+    $("#checkbox1").change(function() {
+      if(this.checked) {
+        this.classList.add('is-valid');
+        $('button[type=submit]').prop('disabled', false);
+      } else {
+        this.classList.remove('is-valid');
+        $('button[type=submit]').prop('disabled', true);
+      }
+    });
+
+    //add alert confirmation before submiting form
+		$('button[type=submit]').click(function() {
+			event.preventDefault();
+			Swal.fire({
+				title: 'Apakah data sudah benar?',
+				text: "Pastikan semua data sudah benar, dan scan surat dapat dibaca.",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#007bff',
+        cancelButtonColor: '#dc3545',
+        confirmButtonText: 'Ya, Kirim!',
+        cancelButtonText: 'Batal'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					$('form').submit();
+				}
+			})
+		});
+
+    // disable submit button
+    $('form').submit(function() {
+      // show spinner on button
+      $('button[type=submit]').html(`
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Mengirim...
+      `);
+      $('button[type=submit]').prop('disabled', true);
+    });
   </script>
+
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-type@1/dist/filepond-plugin-file-validate-type.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-size@2/dist/filepond-plugin-file-validate-size.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.js"></script>
@@ -577,45 +622,20 @@
       labelMaxFileSize: 'Total ukuran maksimum file adalah {filesize}',
       credits: false,
     });
-  
-    if ($("#checkbox1").checked) {
-      $('button[type=submit]').prop('disabled', false);
-    } else {
-      $('button[type=submit]').prop('disabled', true);
-    }
-    $("#checkbox1").change(function() {
-      if(this.checked) {
-        this.classList.add('is-valid');
-        $('button[type=submit]').prop('disabled', false);
-      } else {
-        this.classList.remove('is-valid');
-        $('button[type=submit]').prop('disabled', true);
-      }
-    });
-
-    // disable submit button
-    $('form').submit(function() {
-      // show spinner on button
-      $('button[type=submit]').html(`
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        Mengirim...
-      `);
-      $('button[type=submit]').prop('disabled', true);
-    });
   </script>
-  @endif
+@endif
   
-  @if (session()->has('fails'))
-    <script>
-      if ($('#btn-daftar').hasClass('btn-primary')) {
-        $('#btn-form').click();
-      }
-      goToForm();
-    </script>
-  @endif
+@if (session()->has('fails'))
+  <script>
+    if ($('#btn-daftar').hasClass('btn-primary')) {
+      $('#btn-form').click();
+    }
+    goToForm();
+  </script>
+@endif
 
 
-  @if (session()->has('success'))
+@if (session()->has('success'))
   <script>
     $(document).ready(function(){
       Swal.fire({
@@ -627,5 +647,5 @@
       })
     });
   </script>
-  @endif
+@endif
 @endpush

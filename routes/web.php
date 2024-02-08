@@ -10,6 +10,7 @@ use App\Http\Controllers\Koordinator\DokumenController;
 use App\Http\Controllers\Koordinator\PengumumanController;
 use App\Http\Controllers\Koordinator\DosenPembimbingController;
 use App\Http\Controllers\Koordinator\AssignMhsBimbinganController;
+use App\Http\Controllers\Koordinator\ExportController;
 use App\Http\Controllers\Koordinator\MahasiswaController;
 use App\Http\Controllers\Koordinator\PKLController as KoordinatorPKLController;
 use App\Http\Controllers\Koordinator\SeminarPKLController as KoordinatorSeminarPKLController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Koordinator\SeminarPKLController as KoordinatorSeminarP
 use App\Http\Controllers\PKLController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Koordinator\PeriodePKLController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\RiwayatPKLController;
 use App\Http\Controllers\SeminarPKLController;
 use App\Models\PeriodePKL;
@@ -129,6 +131,10 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/seminar/jadwal_seminar/update_tabel_jadwal', [KoordinatorSeminarPKLController::class, 'update_tabel_jadwal']);
     Route::get('/seminar/jadwal_seminar/get_mhs_aktif', [KoordinatorSeminarPKLController::class, 'get_mhs_aktif']);
 
+    Route::get('/cetak_sk', [ExportController::class, 'index']);
+    Route::get('/cetak_sk/export', [ExportController::class, 'export']);
+
+
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
     Route::post('/informasi/kelola_pengumuman/tambah', [PengumumanController::class, 'store']);
     Route::get('/informasi/update_tabel_pengumuman', [PengumumanController::class, 'update_tabel_pengumuman']);
@@ -165,5 +171,7 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         Route::get('/laporan', [PKLController::class, 'laporan']);
         Route::post('/laporan/kirim', [PKLController::class, 'kirimLaporan']);
     });
+
+    Route::get('/email/send-otp', [MailController::class, 'sendOtp'])->name('send-otp');
 
 });

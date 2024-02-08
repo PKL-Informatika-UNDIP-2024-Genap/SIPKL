@@ -123,7 +123,7 @@
             <label for="scan_irs">Scan IRS</label>
             <div class="input-group">
               @if ($pkl->scan_irs != null)
-              <a href="/preview/{{ $pkl->scan_irs }}" class="btn btn-outline-info btn-sm" >Lihat Scan IRS</a>
+              <a href="/preview/{{ $pkl->scan_irs }}" target="_blank" class="btn btn-outline-info btn-sm" >Lihat Scan IRS</a>
               @else
               <div>
                   Tidak tersedia <br><a href="/registrasi" class="btn btn-outline-warning btn-sm" >Registrasi Sekarang</a>
@@ -152,7 +152,7 @@
 @endsection
 
 @push('scripts')
-  <script>
+  <script type="text/javascript">
     $(document).ready(function(){
       // modal edit
       $('.btn-edit-data').on('click', function(){
@@ -223,8 +223,8 @@
     });
   </script>
 
-  @if (session()->has('success'))
-  <script>
+@if (session()->has('success'))
+  <script type="text/javascript">
     $(document).ready(function(){
       Swal.fire({
         icon: 'success',
@@ -235,5 +235,5 @@
       })
     });
   </script>
-  @endif
+@endif
 @endpush

@@ -28,8 +28,8 @@
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-body table-responsive" id="tabel-periode">
+    <div class="card px-3">
+      <div class="card-body table-responsive px-0" id="tabel-periode">
         <table class="table" id="myTable">
           <thead>
               <tr class="table-primary">
