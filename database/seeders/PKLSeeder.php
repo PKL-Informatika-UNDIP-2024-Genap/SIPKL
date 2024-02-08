@@ -147,12 +147,7 @@ class PKLSeeder extends Seeder
                 'scan_irs' => '/private/scan_irs/irs5.pdf',
                 'tgl_registrasi' => '2024-01-01',
             ],
-            [
-                'nim' => '24060121130050',
-                'status' => 'Praregistrasi',
-                'instansi' => 'PT. HIJ',
-                'judul' => 'Pengembangan Sistem Informasi',
-            ],
+
             [
                 'nim' => '24060121131123',
                 'status' => 'Praregistrasi',
@@ -170,7 +165,43 @@ class PKLSeeder extends Seeder
                 'status' => 'Praregistrasi',
                 'instansi' => 'PT. QRS',
                 'judul' => 'Pengembangan Sistem Informasi',
-            ]
+            ],
+            [
+                'nim' => '24060121131456',
+                'status' => 'Praregistrasi',
+                'instansi' => 'PT. TUV',
+                'judul' => 'Pengembangan Sistem Informasi',
+            ],
+            [
+                'nim' => '24060120150001',
+                'status' => 'Praregistrasi',
+                'instansi' => 'PT. WXY',
+                'judul' => 'Pengembangan Sistem Informasi',
+            ],
+            [
+                'nim' => '24060120150002',
+                'status' => 'Praregistrasi',
+                'instansi' => 'PT. ZAB',
+                'judul' => 'Pengembangan Sistem Informasi',
+            ],
+            [
+                'nim' => '24060120150003',
+                'status' => 'Praregistrasi',
+                'instansi' => 'PT. CDE',
+                'judul' => 'Pengembangan Sistem Informasi',
+            ],
+            [
+                'nim' => '24060120150004',
+                'status' => 'Praregistrasi',
+                'instansi' => 'PT. FGH',
+                'judul' => 'Pengembangan Sistem Informasi',
+            ],
+            [
+                'nim' => '24060120150005',
+                'status' => 'Praregistrasi',
+                'instansi' => 'PT. IJK',
+                'judul' => 'Pengembangan Sistem Informasi',
+            ],
         ];
 
         foreach ($pkl as $data) {
