@@ -35,7 +35,8 @@
                 <td class="p-0 m-0">
                   <div id="data-tgl-seminar" style="padding: 0.75rem"></div>
                   <div class="edit-item d-none ">
-                    <input id="edit-tgl-seminar" type="date" class="form-control my-1" style="width: 150px">
+                    <input id="edit-tgl-seminar" type="date" class="form-control my-1" style="width: 170px">
+                    <div id="edit-tgl-err" class="invalid-feedback"></div>
                   </div>
                 </td>
               </tr>
@@ -45,9 +46,10 @@
                 <td class="p-0 m-0">
                   <div id="data-waktu-seminar" style="padding: 0.75rem"></div>
                   <div class="edit-item d-none ">
-                    <input id="edit-waktu-mulai" type="time" class="form-control my-1 d-inline" style="width: 100px">
+                    <input id="edit-waktu-mulai" type="time" class="form-control my-1 d-inline" style="width: 120px">
                     <p class="d-inline m-0 p-0 mx-2 "> - </p>
-                    <input id="edit-waktu-selesai" type="time" class="form-control my-1 d-inline" style="width: 100px">
+                    <input id="edit-waktu-selesai" type="time" class="form-control my-1 d-inline" style="width: 120px">
+                    <div id="edit-waktu-err" class="invalid-feedback"></div>
                   </div>
                 </td>
               </tr>
@@ -58,6 +60,7 @@
                   <div id="data-ruang" style="padding: 0.75rem"></div>
                   <div class="edit-item d-none ">
                     <input id="edit-ruang" type="text" class="form-control my-1" style="width: 150px">
+                    <div id="edit-ruang-err" class="invalid-feedback"></div>
                   </div>
                 </td>
               </tr>

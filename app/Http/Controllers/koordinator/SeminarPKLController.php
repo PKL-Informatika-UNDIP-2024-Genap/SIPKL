@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
 use App\Models\SeminarPKL;
 use Illuminate\Http\Request;
+use App\Exports\JadwalSeminarExport;
+use App\Exports\MhsAktifExport;
+use App\Imports\JadwalSeminarImport;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
@@ -126,4 +129,60 @@ class SeminarPKLController extends Controller
       'view' => $view
     ]);
   }
+
+  public function export_jadwal_seminar(){
+    return (new JadwalSeminarExport(request('jenis_seminar')))->download('Jadwal Seminar PKL.xlsx');
+  }
+
+  public function export_mhs_aktif(){
+    return (new MhsAktifExport)->download('Mahasiswa Aktif.xlsx');
+  }
+
+  public function import_jadwal_seminar(Request $request){
+    request()->validate([
+      'file' => 'required|mimes:xlsx,xls',
+    ],
+    [
+      'file.required' => 'File tidak boleh kosong',
+      'file.mimes' => 'File harus berupa file excel',
+    ]);
+
+    try {
+      $file = $request->file('file');
+
+      $import = new JadwalSeminarImport;
+      $import->import($file);
+
+      $error_row = [];
+      $error_message = [];
+      foreach ($import->failures() as $failure) {
+        array_push($error_row, $failure->row());
+        array_push($error_message, $failure->errors());
+      }
+    } catch (\PDOException $e) {
+        return response()->json([
+            'status' => 500,
+            'message' => 'Request failed',
+            'errors' => "Terdapat duplikasi data pada file excel",
+        ], 500);
+    }
+
+    return response()->json([
+        'status' => 200,
+        'message' => 'Request successful',
+        'error_row' => $error_row,
+        'error_message' => $error_message,
+        'failures' => $import->failures(),
+    ], 200);
+    
+  }
+
+  public function delete_jadwal_seminar(SeminarPKL $seminar_pkl){
+    $seminar_pkl->delete();
+
+    return response()->json([
+      'message' => 'Jadwal Seminar PKL telah dihapus'
+    ]);
+  }
+
 }
