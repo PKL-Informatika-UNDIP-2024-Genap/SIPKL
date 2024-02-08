@@ -1,8 +1,8 @@
 @extends('layouts.main_mhs')
 
-{{-- @push('styles')
+@push('styles')
   <style>
-    .timeline-icon {
+    /* .timeline-icon {
       background-color: #adb5bd;
       border-radius: 50%;
       font-size: 16px;
@@ -13,9 +13,12 @@
       text-align: center;
       top: 0;
       width: 30px;
+    } */
+    .no-border {
+      border-bottom: none !important;
     }
   </style>
-@endpush --}}
+@endpush
 
 @section('container')
   <!-- Content Header (Page header) -->
@@ -86,7 +89,7 @@
               <i class="fas bi bi-check-circle-fill bg-green"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> {{ Carbon\Carbon::parse($pkl->tgl_verif_laporan)->diffForHumans() }}</span>
-                <h3 class="timeline-header"><a href="javascript:void(0)">Koordinator</a> telah menerima Laporan PKL Anda</h3>
+                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Koordinator</a> telah menerima Laporan PKL Anda</h3>
               </div>
             </div>
             @endif
@@ -116,7 +119,7 @@
               <i class="fas bi bi-send-check-fill bg-blue"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> {{ Carbon\Carbon::parse($pkl->tgl_laporan)->diffForHumans() }}</span>
-                <h3 class="timeline-header"><a href="javascript:void(0)">Anda</a> telah mengirim laporan PKL</h3>
+                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Anda</a> telah mengirim laporan PKL</h3>
               </div>
             </div>
             @endif
@@ -146,7 +149,7 @@
               <i class="fas bi bi-check-circle-fill bg-green"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> {{ Carbon\Carbon::parse($mahasiswa->seminar_pkl->updated_at)->diffForHumans() }}</span>
-                <h3 class="timeline-header"><a href="javascript:void(0)">Koordinator</a> telah memasukkan Anda ke dalam Seminar PKL Terjadwal</h3>
+                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Koordinator</a> telah memasukkan Anda ke dalam Seminar PKL Terjadwal</h3>
               </div>
             </div>
             @endif
@@ -157,7 +160,7 @@
               <i class="fas bi bi-check-circle-fill bg-green"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> {{ Carbon\Carbon::parse($mahasiswa->seminar_pkl->updated_at)->diffForHumans() }}</span>
-                <h3 class="timeline-header"><a href="javascript:void(0)">Koordinator</a> telah menerima pengajuan Seminar PKL Tak Terjadwal Anda</h3>
+                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Koordinator</a> telah menerima pengajuan Seminar PKL Tak Terjadwal Anda</h3>
               </div>
             </div>
             @endif
@@ -187,7 +190,7 @@
               <i class="fas bi bi-send-check-fill bg-blue"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> {{ Carbon\Carbon::parse($mahasiswa->seminar_pkl->created_at)->diffForHumans() }}</span>
-                <h3 class="timeline-header"><a href="javascript:void(0)">Anda</a> telah mengirim pengajuan Seminar PKL Tak Terjadwal</h3>
+                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Anda</a> telah mengirim pengajuan Seminar PKL Tak Terjadwal</h3>
               </div>
             </div>
             @endif
@@ -217,7 +220,7 @@
               <i class="fas bi bi-check-circle-fill bg-green"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> ~</span>
-                <h3 class="timeline-header"><a href="javascript:void(0)">Koordinator</a> telah menerima Registrasi PKL Anda</h3>
+                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Koordinator</a> telah menerima Registrasi PKL Anda</h3>
               </div>
             </div>
             @endif
@@ -247,7 +250,7 @@
               <i class="fas bi bi-send-check-fill bg-blue"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> {{ Carbon\Carbon::parse($pkl->tgl_registrasi)->diffForHumans() }}</span>
-                <h3 class="timeline-header"><a href="javascript:void(0)">Anda</a> telah mengirim Registrasi PKL</h3>
+                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Anda</a> telah mengirim Registrasi PKL</h3>
               </div>
             </div>
             @endif
@@ -277,7 +280,7 @@
               <i class="fas bi bi-people-fill bg-green"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> ~</span>
-                <h3 class="timeline-header no-border"><a href="javascript:void(0)">Koordinator</a> telah membagikan Dosen Pembimbing</h3>
+                <h3 class="timeline-header"><a href="javascript:void(0)">Koordinator</a> telah membagikan Dosen Pembimbing</h3>
                 <div class="timeline-body">
                   Dosen Pembimbing Anda: {{ $mahasiswa->dosen_pembimbing->nama }}
                 </div>
