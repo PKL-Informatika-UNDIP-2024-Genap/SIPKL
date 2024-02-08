@@ -35,7 +35,7 @@
                 <td class="p-0 m-0">
                   <div id="data-tgl-seminar" style="padding: 0.75rem"></div>
                   <div class="edit-item d-none ">
-                    <input id="input-tgl-seminar" type="date" class="form-control my-1" style="width: 150px">
+                    <input id="edit-tgl-seminar" type="date" class="form-control my-1" style="width: 150px">
                   </div>
                 </td>
               </tr>
@@ -45,9 +45,9 @@
                 <td class="p-0 m-0">
                   <div id="data-waktu-seminar" style="padding: 0.75rem"></div>
                   <div class="edit-item d-none ">
-                    <input id="input-waktu-mulai" type="time" class="form-control my-1 d-inline" style="width: 100px">
+                    <input id="edit-waktu-mulai" type="time" class="form-control my-1 d-inline" style="width: 100px">
                     <p class="d-inline m-0 p-0 mx-2 "> - </p>
-                    <input id="input-waktu-selesai" type="time" class="form-control my-1 d-inline" style="width: 100px">
+                    <input id="edit-waktu-selesai" type="time" class="form-control my-1 d-inline" style="width: 100px">
                   </div>
                 </td>
               </tr>
@@ -57,7 +57,7 @@
                 <td class="p-0 m-0">
                   <div id="data-ruang" style="padding: 0.75rem"></div>
                   <div class="edit-item d-none ">
-                    <input id="input-ruang" type="text" class="form-control my-1" style="width: 150px">
+                    <input id="edit-ruang" type="text" class="form-control my-1" style="width: 150px">
                   </div>
                 </td>
               </tr>

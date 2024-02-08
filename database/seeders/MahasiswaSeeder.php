@@ -81,38 +81,47 @@ class MahasiswaSeeder extends Seeder
             [
                 'nim' => '24060121131123',
                 'nama' => 'Rudi Hartono',
+                'status' => 'Aktif',
             ],
             [
                 'nim' => '24060121131234',
                 'nama' => 'Eka Putri',
+                'status' => 'Aktif',
             ],
             [
                 'nim' => '24060121131345',
                 'nama' => 'Irfan Pratama',
+                'status' => 'Aktif',
             ],
             [
                 'nim' => '24060121131456',
                 'nama' => 'Siti Rahayu',
+                'status' => 'Aktif',
             ],
             [
                 'nim' => '24060120150001', // NIM Mahasiswa 16
                 'nama' => 'Diana Sari',
+                'status' => 'Aktif',
             ],
             [
                 'nim' => '24060120150002', // NIM Mahasiswa 17
                 'nama' => 'Ahmad Fauzi',
+                'status' => 'Aktif',
             ],
             [
                 'nim' => '24060120150003', // NIM Mahasiswa 18
                 'nama' => 'Fitriani Hidayati',
+                'status' => 'Aktif',
             ],
             [
                 'nim' => '24060120150004', // NIM Mahasiswa 19
                 'nama' => 'Agung Setiawan',
+                'status' => 'Aktif',
             ],
             [
                 'nim' => '24060120150005', // NIM Mahasiswa 20
                 'nama' => 'Ratna Dewi',
+                'status' => 'Aktif',
             ],
             [
                 'nim' => '24060120150006', // NIM Mahasiswa 21
