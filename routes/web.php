@@ -180,6 +180,8 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         Route::post('/laporan/kirim', [PKLController::class, 'kirimLaporan']);
     });
 
-    Route::get('/email/send-otp', [MailController::class, 'sendOtp'])->name('send-otp');
+    Route::get('/profile/verifikasi_email', [ProfileController::class, 'verifikasiEmail'])->name('profile.verifikasi_email');
+    Route::post('/email/send_otp', [MailController::class, 'sendOtp'])->name('send_otp');
+    Route::post('/email/verifikasi', [MailController::class, 'verifikasiOtp'])->name('verifikasi_email');
 
 });

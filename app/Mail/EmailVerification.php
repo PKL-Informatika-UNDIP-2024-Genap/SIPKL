@@ -12,13 +12,14 @@ use Illuminate\Queue\SerializesModels;
 class EmailVerification extends Mailable
 {
     use Queueable, SerializesModels;
+    public $otp;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($otp)
     {
-        //
+        $this->otp = $otp;
     }
 
     /**
@@ -38,6 +39,7 @@ class EmailVerification extends Mailable
     {
         return new Content(
             markdown: 'mail.email-verification',
+            with: ['otp' => $this->otp],
         );
     }
 
