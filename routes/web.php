@@ -10,10 +10,12 @@ use App\Http\Controllers\Koordinator\DokumenController;
 use App\Http\Controllers\Koordinator\PengumumanController;
 use App\Http\Controllers\Koordinator\DosenPembimbingController;
 use App\Http\Controllers\Koordinator\AssignMhsBimbinganController;
+use App\Http\Controllers\Koordinator\BebanBimbinganController;
 use App\Http\Controllers\Koordinator\ExportController;
 use App\Http\Controllers\Koordinator\MahasiswaController;
 use App\Http\Controllers\Koordinator\PKLController as KoordinatorPKLController;
 use App\Http\Controllers\Koordinator\SeminarPKLController as KoordinatorSeminarPKLController;
+
 
 use App\Http\Controllers\PKLController;
 use App\Http\Controllers\ProfileController;
@@ -86,6 +88,8 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/dospem/assign_mhs_bimbingan/{nim}/get_data_pkl', [AssignMhsBimbinganController::class, 'get_data_pkl']);
     Route::post('/dospem/assign_mhs_bimbingan/{id_dospem}/update_mhs_bimbingan', [AssignMhsBimbinganController::class, 'update_mhs_bimbingan']);
 
+    Route::get('/dospem/beban_bimbingan/', [BebanBimbinganController::class, 'index']);
+    Route::get('/dospem/beban_bimbingan/update_tabel_index', [BebanBimbinganController::class, 'update_tabel_index']);
 
     Route::get('/mhs/kelola_mhs/', [MahasiswaController::class, 'index']);
     Route::post('/mhs/kelola_mhs/tambah', [MahasiswaController::class, 'store']);
