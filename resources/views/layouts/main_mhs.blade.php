@@ -86,7 +86,7 @@
 <!-- AdminLTE App -->
 <script src="/lte/dist/js/adminlte.js"></script>
 
-<script>
+<script type="text/javascript">
   $(document).ready(function() {
     // Logout
     $('#btn-logout').on('click', function (e) {

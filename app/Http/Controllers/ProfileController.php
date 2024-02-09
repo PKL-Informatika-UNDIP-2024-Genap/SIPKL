@@ -188,4 +188,11 @@ class ProfileController extends Controller
             'message' => 'Request successful',
         ], 200);
     }
+
+    public function verifikasiEmail()
+    {
+        return view('mahasiswa.profile.verifikasi_email',[
+            'email' => auth()->user()->email,
+        ]);
+    }
 }

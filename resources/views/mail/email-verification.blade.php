@@ -1,11 +1,15 @@
 <x-mail::message>
-# Introduction
+# Kode OTP
 
-The body of your message.
+Jangan bagikan kode OTP ini kepada siapa pun.
 
-<x-mail::button :url="''">
+{{-- <x-mail::button :url="''">
 Button Text
-</x-mail::button>
+</x-mail::button> --}}
+<x-mail::panel>
+Kode OTP adalah {{ $otp }}.
+</x-mail::panel>
+
 
 Thanks,<br>
 {{ config('app.name') }}

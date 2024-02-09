@@ -5,7 +5,7 @@
 				<th >NO</th>
 				<th >NAMA DOSEN<br>NIP</th>
 				<th >GOLONGAN<br>JABATAN</th>
-				<th >NAMA<br>NIM</th>
+				<th >NAMA MAHASISWA<br>NIM</th>
 				<th >JUDUL LAPORAN PKL</th>
 				<th >JUMLAH</th>
 		</tr>
@@ -20,9 +20,9 @@
 				@if ($count == 1)
 					<td rowspan="{!! $counter[$row] !!}">{{ $row+1 }}</td>
 					<td rowspan="{!! $counter[$row] !!}">{{ $sk->nama_dospem }}<br>{{ $sk->nip_dospem }}</td>
+					<td rowspan="{!! $counter[$row] !!}">{{ $sk->gol_dospem }}<br>{{ $sk->jabatan_dospem }}</td>
 				@endif
 
-					<td>{{ $sk->gol_dospem }}<br>{{ $sk->jabatan_dospem }}</td>
 					<td>{{ $sk->nama_mhs }}<br>{{ $sk->nim_mhs }}</td>
 					<td>{{ $sk->judul_pkl }}</td>
 
