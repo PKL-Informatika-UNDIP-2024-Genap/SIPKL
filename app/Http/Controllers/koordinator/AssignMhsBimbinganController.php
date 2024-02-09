@@ -12,11 +12,17 @@ class AssignMhsBimbinganController extends Controller
 {
   public function index()
   {
+    // $data_dospem = DosenPembimbing::leftJoin('mahasiswa', 'dosen_pembimbing.id', '=', 'mahasiswa.id_dospem')
+    //   ->selectRaw('dosen_pembimbing.id, dosen_pembimbing.nip, dosen_pembimbing.nama, count(mahasiswa.id_dospem) as jumlah_bimbingan')
+    //   ->whereRaw("mahasiswa.status = 'Nonaktif' OR mahasiswa.status = 'Aktif' OR mahasiswa.status IS NULL")
+    //   ->groupBy('dosen_pembimbing.id','dosen_pembimbing.nip', 'dosen_pembimbing.nama')
+    //   ->get();
+
     $data_dospem = DosenPembimbing::leftJoin('mahasiswa', 'dosen_pembimbing.id', '=', 'mahasiswa.id_dospem')
-      ->selectRaw('dosen_pembimbing.id, dosen_pembimbing.nip, dosen_pembimbing.nama, count(mahasiswa.id_dospem) as jumlah_bimbingan')
-      ->whereRaw("mahasiswa.status = 'Nonaktif' OR mahasiswa.status = 'Aktif' OR mahasiswa.status IS NULL")
-      ->groupBy('dosen_pembimbing.id','dosen_pembimbing.nip', 'dosen_pembimbing.nama')
-      ->get();
+    ->selectRaw('dosen_pembimbing.id, dosen_pembimbing.nip, dosen_pembimbing.nama, 
+                 COUNT(CASE WHEN mahasiswa.status = "Aktif" OR mahasiswa.status = "Nonaktif" THEN mahasiswa.id_dospem ELSE NULL END) as jumlah_bimbingan')
+    ->groupBy('dosen_pembimbing.id','dosen_pembimbing.nip', 'dosen_pembimbing.nama')
+    ->get();
 
     return view('koordinator.dospem.assign_mhs_bimbingan.index',
       [
@@ -27,7 +33,7 @@ class AssignMhsBimbinganController extends Controller
 
   public function get_data_mhs($id_dospem)
   {
-    $data_mhs = Mahasiswa::whereRaw("id_dospem = '$id_dospem' OR (id_dospem IS NULL AND (status = 'Aktif' OR status = 'Nonaktif'))")->get();
+    $data_mhs = Mahasiswa::whereRaw("(id_dospem = '$id_dospem' OR id_dospem IS NULL) AND (status = 'Aktif' OR status = 'Nonaktif')")->get();
 
     $view = view('koordinator.dospem.assign_mhs_bimbingan.tabel_mhs_modal', [
       'data_mhs' => $data_mhs,

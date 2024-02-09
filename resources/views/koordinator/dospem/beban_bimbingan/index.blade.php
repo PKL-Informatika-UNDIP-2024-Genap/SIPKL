@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Kelola Dosen Pembimbing</h1>
+        <h1 class="m-0">Beban Bimbingan Dospem</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -19,51 +19,52 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <div class="row mb-2">
+    <div class="row mb-2 align-items-center">
       <div class="col-auto">
-        <button type="button" id="btn-add" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add">
-          + Tambah Dosen Pembimbing
-        </button>
+        <p class="m-0 p-0"><strong>Pilih Periode :</strong></p>
+      </div>
+      <div class="col" style="max-width: 170px">
+        <select name="periode-pkl" id="periode-pkl" class="form-control">
+          <option value="" selected>Semua Periode</option>
+          @foreach ($arr_periode as $periode)
+          <option value="{{ $periode }}">{{ $periode }}</option>
+          @endforeach
+        </select>
       </div>
     </div>
 
     <div class="row">
       <div class="col">
         <div class="card px-3">
-          <div class="card-body px-0" id="tabel-dospem">
+          <div class="card-body px-0" id="tabel-index">
             <table class="table" id="myTable">
               <thead>
-                  <tr class="table-primary">
-                      <th>No</th>
-                      <th>Nama</th>
-                      <th>NIP</th>
-                      <th>Golongan</th>
-                      <th>Jabatan</th>
-                      <th class="action">Action</th>
-                  </tr>
+                <tr class="table-primary">
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>NIP</th>
+                  <th>Jumlah Bimbingan</th>
+                  <th class="action">Action</th>
+                </tr>
               </thead>
               <tbody>
-                  @foreach ($dospem as $index => $dos)
-                      <tr>
-                          <td></td>
-                          <td>{{ $dos->nama }}</td>
-                          <td>{{ $dos->nip }}</td>
-                          <td>{{ $dos->golongan }}</td>
-                          <td>{{ $dos->jabatan }}</td>
-                          <td>
-                              <div class="btn btn-primary btn-edit-dospem" data-bs-toggle="modal" data-bs-target="#modal_edit_dospem" 
-                              data-nip="{{ $dos->nip }}" data-nama="{{ $dos->nama }}" data-nip="{{ $dos->nip }}" 
-                              data-golongan="{{ $dos->golongan }}" data-jabatan="{{ $dos->jabatan }}">Edit</div>
-                              <div class="btn btn-danger btn-delete-dospem" data-nip="{{ $dos->nip }}">
-                                Delete
-                              </div>
-                          </td>
-                      </tr>
-                  @endforeach
+                @foreach ($arr_dospem as $dospem)
+                  <tr>
+                    <td></td>
+                    <td>{{ $dospem->nama }}</td>
+                    <td>{{ $dospem->nip }}</td>
+                    <td>{{ $dospem->jml_bimbingan }}</td>
+                    <td>
+                      <div class="btn btn-primary btn-detail" data-nip="{{ $dospem->nip }}">
+                        Detail
+                      </div>
+                    </td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
-      </div>
+        </div>
       </div>
     </div>
     
@@ -72,18 +73,11 @@
 </section>
 <!-- /.content -->
 
-{{-- modal add dospem --}}
-@include('koordinator.dospem.kelola_dospem.modal_add_dospem')
-{{-- end modal add dospem --}}
-
-{{-- modal edit dospem --}}
-@include('koordinator.dospem.kelola_dospem.modal_edit_dospem')
-{{-- end modal edit dospem --}}
 
 @endsection
 
 @push('scripts')
-<script src="/js/ajax-dospem.js"></script>
+<script src="/js/ajax-beban-bimbingan.js"></script>
 
 <script src="/js/datatables-jquery.js"></script>
 <script>
