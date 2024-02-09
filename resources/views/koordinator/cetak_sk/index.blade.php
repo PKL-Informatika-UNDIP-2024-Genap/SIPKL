@@ -32,7 +32,7 @@
 										<th>No</th>
 										<th>Nama Dosen<br>NIP</th>
 										<th>Golongan<br>Jabatan</th>
-										<th>Nama Mahasiswa<br>NIM</th>
+										<th class="text-nowrap">Nama Mahasiswa<br>NIM</th>
 										<th>Judul Laporan PKL</th>
 										<th>Jumlah</th>
 								</tr>
@@ -47,9 +47,9 @@
 										@if ($count == 1)
 											<td rowspan="{!! $counter[$row] !!}" class="text-center">{{ $row+1 }}</td>
 											<td rowspan="{!! $counter[$row] !!}">{{ $sk->nama_dospem }}<br>{{ $sk->nip_dospem }}</td>
+											<td rowspan="{!! $counter[$row] !!}">{{ $sk->gol_dospem }}<br>{{ $sk->jabatan_dospem }}</td>
 										@endif
 
-											<td>{{ $sk->gol_dospem }}<br>{{ $sk->jabatan_dospem }}</td>
 											<td>{{ $sk->nama_mhs }}<br>{{ $sk->nim_mhs }}</td>
 											<td>{{ $sk->judul_pkl }}</td>
 

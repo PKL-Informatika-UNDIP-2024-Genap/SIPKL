@@ -84,8 +84,13 @@
 
             <div class="btn btn-primary btn-edit-password" data-bs-toggle="modal" data-bs-target="#modal_edit_password"><b>Edit Password</b></div>
 
+            @if (auth()->user()->email_verified_at == null)
+              <div class="mt-1">
+                <a href="{{ route('profile.verifikasi_email') }}" class="btn btn-primary "><b>Verifikasi Email</b></a>
+              </div>
+            @endif
             {{-- <div class="mt-1">
-              <a href="{{ route('send-otp') }}" class="btn btn-primary "><b>Verifikasi Email</b></a>
+              <a href="{{ route('send_otp') }}" class="btn btn-primary "><b>Verifikasi Email</b></a>
             </div> --}}
 
           </div>
@@ -144,8 +149,14 @@
                     <td class="px-0 pb-0 pt-1">
                       <div class="input-group">
                         <input type="text" class="form-control bg-transparent border-transparent" id="email" name="email" placeholder="Masukkan email" value="{{ old('email',$mahasiswa->email) }}" disabled>
+                        @if (auth()->user()->email_verified_at == null)
                         <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveEmailBtn"><i class="bi bi-floppy-fill"></i></button>
                         <button class="input-group-text btn btn-outline-primary" type="button" id="editEmailBtn"><i class="bi bi-pencil-fill"></i></button>
+                        @else
+                        <div class="input-group-text">
+                          <i class="bi bi-check-circle-fill text-success"></i>
+                        </div>
+                        @endif
                       </div>
                       <div id="email-err" class="invalid-feedback d-block"></div>
                     </td>
