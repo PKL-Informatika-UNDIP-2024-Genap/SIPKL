@@ -165,10 +165,24 @@ class PKLController extends Controller
       'id_dospem' => $pkl->mahasiswa->id_dospem,
       'nilai' => $request->nilai,
     ]);
+
+    if ($pkl->scan_irs != null){
+      Storage::delete($pkl->scan_irs);
+    }
     
     $pkl->delete();
 
-    SeminarPKL::where('nim', $pkl->nim)->delete();
+    $seminar_pkl = SeminarPKL::where('nim', $pkl->nim)->first();
+
+    if ($seminar_pkl){
+      if ($seminar_pkl->scan_layak_seminar != null){
+        Storage::delete($seminar_pkl->scan_layak_seminar);
+      }
+      if($seminar_pkl->scan_peminjaman_ruang != null){
+        Storage::delete($seminar_pkl->scan_peminjaman_ruang);
+      }
+      $seminar_pkl->delete();
+    }
 
     return response()->json([
       'message' => 'Berhasil menyimpan nilai',
