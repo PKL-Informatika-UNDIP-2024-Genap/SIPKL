@@ -16,7 +16,7 @@
         <td>{{ $dospem->nip }}</td>
         <td>{{ $dospem->jml_bimbingan }}</td>
         <td>
-          <div class="btn btn-primary btn-detail" data-nip="{{ $dospem->nip }}">
+          <div class="btn btn-primary btn-detail" data-dospem="{{ $dospem }}" data-bs-toggle="modal" data-bs-target="#modal-detail">
             Detail
           </div>
         </td>

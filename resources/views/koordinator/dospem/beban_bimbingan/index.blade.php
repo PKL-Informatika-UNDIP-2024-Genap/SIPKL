@@ -24,8 +24,9 @@
         <p class="m-0 p-0"><strong>Pilih Periode :</strong></p>
       </div>
       <div class="col" style="max-width: 170px">
-        <select name="periode-pkl" id="periode-pkl" class="form-control">
-          <option value="" selected>Semua Periode</option>
+        <select name="periode-pkl" id="periode-pkl" class="form-select" style="cursor: pointer;">
+          <option value="" selected>Semua</option>
+          <option value="belum">Belum Memiliki Periode</option>
           @foreach ($arr_periode as $periode)
           <option value="{{ $periode }}">{{ $periode }}</option>
           @endforeach
@@ -55,7 +56,7 @@
                     <td>{{ $dospem->nip }}</td>
                     <td>{{ $dospem->jml_bimbingan }}</td>
                     <td>
-                      <div class="btn btn-primary btn-detail" data-nip="{{ $dospem->nip }}">
+                      <div class="btn btn-primary btn-detail" data-dospem="{{ $dospem }}" data-bs-toggle="modal" data-bs-target="#modal-detail">
                         Detail
                       </div>
                     </td>
@@ -73,6 +74,7 @@
 </section>
 <!-- /.content -->
 
+@include('koordinator.dospem.beban_bimbingan.modal_detail')
 
 @endsection
 
