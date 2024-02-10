@@ -70,5 +70,20 @@
 <script>
   let tabel = simpleDatatable();
   tabel.order([3, 'asc']).draw();
+  var myImage = document.getElementById('myImage');
+  var showButton = document.getElementById('showButton');
+
+  // Inisialisasi Viewer.js
+  var viewer = new Viewer(myImage, {
+    inline: false,
+    viewed: function() {
+      viewer.zoomTo(1);
+    },
+  });
+
+  // Tambahkan event listener pada tombol
+  showButton.addEventListener('click', function() {
+    viewer.show();
+  });
 </script>
 @endpush
