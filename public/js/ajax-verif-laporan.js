@@ -19,7 +19,7 @@ $(document).on('click', '.btn-detail-laporan', function() {
   $("#data-dospem").html('<p class="placeholder-glow m-0"><span class="placeholder col-10" style="border-radius: 5px;"></span></p>');
 
   data_mhs = JSON.parse($(this).attr('data-mhs'));
-  console.log(data_mhs);
+
   $("#data-nama").html(data_mhs.nama);
   $("#data-nim").html(data_mhs.nim);
   $("#data-instansi").html(data_mhs.instansi);

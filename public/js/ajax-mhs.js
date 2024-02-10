@@ -1,7 +1,7 @@
 function update_tabel_mhs() {
   $.ajax({
     type: 'GET',
-    url: '/mhs/update_tabel_mhs',
+    url: '/mhs/lelola_mhs/update_tabel_mhs',
     success: function(response) {
       $('#tabel-mhs').html(response.view);
       simpleDatatable();

@@ -187,4 +187,33 @@ class MahasiswaController extends Controller
             'nama_dospem' => $dospem->nama,
         ]);
     }
+
+    public function index_belum_lulus()
+    {
+        $arr_mhs = Mahasiswa::join('periode_pkl', 'periode_pkl.id_periode', '=', 'mahasiswa.periode_pkl')
+        ->where("tgl_selesai", "<", date('Y-m-d'))
+        ->where("mahasiswa.status", "=","Aktif")
+        ->select('mahasiswa.*')
+        ->with(['pkl', 'dosen_pembimbing'])
+        ->get();
+
+        $arr_nim = $arr_mhs->pluck('nim')->toArray();
+
+        // dd($arr_nim);
+        return view('koordinator.mhs.belum_lulus.index', [
+            'arr_mhs' => $arr_mhs,
+            'arr_nim' => $arr_nim,
+        ]);
+    }
+
+    public function reset_status(){
+        $arr_nim = request('arr_nim');
+        Mahasiswa::whereIn('nim', $arr_nim)->update(['status' => 'Nonaktif']);
+        PKL::whereIn('nim', $arr_nim)->update(['status' => 'Praregistrasi']);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Request successful',
+        ], 200);
+    }
 }

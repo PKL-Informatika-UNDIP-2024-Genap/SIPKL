@@ -98,6 +98,12 @@
                 <p>Assign Dospem</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="/mhs/daftar_mhs_belum_lulus" class="nav-link {{ Request::is('mhs/daftar_mhs_belum_lulus') ? 'active' : '' }}">
+                <i class="far nav-icon bi bi-circle"></i>
+                <p>Daftar Mhs Belum Lulus</p>
+              </a>
+            </li>
           </ul>
         </li>
 
