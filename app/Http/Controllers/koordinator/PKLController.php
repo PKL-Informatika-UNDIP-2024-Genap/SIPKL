@@ -31,6 +31,7 @@ class PKLController extends Controller
 
     $periode_pkl = PeriodePKL::select('id_periode')->whereDate('tgl_mulai', '<=', $today)
         ->whereDate('tgl_selesai', '>=', $today)
+        ->orderBy('tgl_mulai', 'desc')
         ->first();
     
     if(!$periode_pkl){
@@ -91,6 +92,7 @@ class PKLController extends Controller
   {
     $pkl->status = 'Selesai';
     $pkl->pesan = null;
+    $pkl->tgl_verif_laporan = now();
     $pkl->save();
 
     Mahasiswa::where('nim', $pkl->nim)->update([

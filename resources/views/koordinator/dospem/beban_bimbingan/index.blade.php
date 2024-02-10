@@ -23,7 +23,7 @@
       <div class="col-auto">
         <p class="m-0 p-0"><strong>Pilih Periode :</strong></p>
       </div>
-      <div class="col" style="max-width: 170px">
+      <div class="col" style="max-width: 250px">
         <select name="periode-pkl" id="periode-pkl" class="form-select" style="cursor: pointer;">
           <option value="" selected>Semua</option>
           <option value="belum">Belum Memiliki Periode</option>
