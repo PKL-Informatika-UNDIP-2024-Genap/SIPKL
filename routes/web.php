@@ -15,6 +15,7 @@ use App\Http\Controllers\Koordinator\ExportController;
 use App\Http\Controllers\Koordinator\MahasiswaController;
 use App\Http\Controllers\Koordinator\PKLController as KoordinatorPKLController;
 use App\Http\Controllers\Koordinator\SeminarPKLController as KoordinatorSeminarPKLController;
+use App\Http\Controllers\Koordinator\RiwayatPKLController as KoordinatorRiwayatPKLController;
 
 
 use App\Http\Controllers\PKLController;
@@ -147,6 +148,8 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/cetak_sk', [ExportController::class, 'index']);
     Route::get('/cetak_sk/export', [ExportController::class, 'export']);
 
+    Route::get('/riwayat_pkl', [KoordinatorRiwayatPKLController::class, 'index']);
+    Route::get('/riwayat_pkl/{nim}/get_data_riwayat', [KoordinatorRiwayatPKLController::class, 'getDataRiwayat']);
 
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
     Route::post('/informasi/kelola_pengumuman/tambah', [PengumumanController::class, 'store']);
