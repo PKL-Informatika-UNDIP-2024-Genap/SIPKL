@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -76,7 +76,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
 
   <!-- jQuery -->
-  <script src="/lte/plugins/jquery/jquery.min.js"></script>
+  {{-- <script src="/lte/plugins/jquery/jquery.min.js"></script> --}}
   <!-- jQuery UI 1.11.4 -->
   <script src="/lte/plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
