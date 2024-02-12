@@ -186,6 +186,14 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="/arsip_pkl" class="nav-link {{ Request::is('arsip_pkl*') ? 'active' : '' }}">
+            <i class="nav-icon fas bi bi-clock-history"></i>
+            <p>
+              Arsip PKL
+            </p>
+          </a>
+        </li>
 
         <li class="nav-item {{ Request::is('informasi*') ? 'menu-open' : '' }}">
           <a href="#" class="nav-link {{ Request::is('informasi*') ? 'active' : '' }}">

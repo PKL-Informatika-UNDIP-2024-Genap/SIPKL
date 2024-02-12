@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\ArsipPKL;
 use App\Models\PeriodePKL;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder
             PeriodePKLSeeder::class,
             PKLSeeder::class,
             SeminarPKLSeeder::class,
+            ArsipPKLSeeder::class,
         ]);
     }
 }

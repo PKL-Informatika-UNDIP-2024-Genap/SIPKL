@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('arsip_pkl', function (Blueprint $table) {
             $table->string('nim',14)->primary();
+            $table->string('nama',100);
+            $table->string('periode_pkl',16)->nullable();
             $table->string('instansi',100);
             $table->string('judul');
             $table->text('abstrak')->nullable();
