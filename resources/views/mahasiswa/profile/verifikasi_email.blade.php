@@ -52,8 +52,9 @@
 								</div>
 							@enderror
 						</div>
+						<div class="invalid-feedback d-block" id="email-err"></div>
 					</div>
-					<div class="form-group" id="otpArea">
+					<div class="form-group">
 						@if (session('otp'))
 							<div class="input-group">
 								<input type="otp" id="otp" name="otp" class="form-control @error('otp') is-invalid @enderror" placeholder="Kode OTP">
@@ -68,7 +69,7 @@
 									</div>
 								@enderror
 							</div>
-							<div class="invalid-feedback d-block" id="email-err"></div>
+							<div class="invalid-feedback d-block" id="otp-err"></div>
 
 						@else
 							<div class="input-group">
@@ -89,9 +90,9 @@
 						@endif
 					</div>
 					<div class="row">
-						<div class="col-8"></div>
+						<div class="col-7"></div>
 						<!-- /.col -->
-						<div class="col-4">
+						<div class="col-5">
 							@if (session('otp'))
 								<button type="submit" class="btn btn-primary btn-block"><b>Submit</b></button>
 							@else
@@ -129,6 +130,11 @@
 		// kirim otp
 		$('#kirimOtpBtn').click(function (e) {
 			e.preventDefault();
+			$(this).html(`
+				<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+				Memuat...
+    	`);
+    	$(this).attr('disabled', true);
 			var emailEl = $('#email');
 			var passwordEl = $('#password');
 			let validated = true;
@@ -149,7 +155,11 @@
 				passwordEl.removeClass('is-invalid');
 				$('#password-err').html('');
 			}
-			if (!validated) return false;
+			if (!validated) {
+				$(this).html('<b>Kirim OTP</b>');
+				$(this).attr('disabled', false);
+				return;
+			}
 			$('form').submit();
 
 		});

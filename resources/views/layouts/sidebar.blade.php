@@ -162,7 +162,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/seminar/jadwal_seminar" class="nav-link  {{ Request::is('seminar/jadwal_seminar*') ? 'active' : '' }}">
+              <a href="/seminar/jadwal_seminar" class="nav-link {{ Request::is('seminar/jadwal_seminar*') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
                 <p>Jadwal Seminar</p>
               </a>
@@ -171,15 +171,16 @@
         </li>
 
         <li class="nav-item">
-          <a href="/cetak_sk" class="nav-link">
+          <a href="/cetak_sk" class="nav-link {{ Request::is('cetak_sk') ? 'active' : '' }}">
             <i class="nav-icon fas bi bi-file-earmark-spreadsheet-fill"></i>
             <p>
               Cetak SK PKL
             </p>
           </a>
         </li>
+        
         <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
+          <a href="/riwayat_pkl" class="nav-link {{ Request::is('riwayat_pkl') ? 'active' : '' }}">
             <i class="nav-icon fas bi bi-clock-history"></i>
             <p>
               Riwayat PKL
