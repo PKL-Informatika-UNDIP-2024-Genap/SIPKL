@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
-
+use App\Http\Controllers\Koordinator\ArsipPKLController;
 use App\Http\Controllers\Koordinator\AssignDospemController;
 use App\Http\Controllers\Koordinator\DokumenController;
 use App\Http\Controllers\Koordinator\PengumumanController;
@@ -24,6 +24,7 @@ use App\Http\Controllers\Koordinator\PeriodePKLController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\RiwayatPKLController;
 use App\Http\Controllers\SeminarPKLController;
+use App\Models\ArsipPKL;
 use App\Models\PeriodePKL;
 
 /*
@@ -144,6 +145,10 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/seminar/jadwal_seminar/export_mhs_aktif', [KoordinatorSeminarPKLController::class, 'export_mhs_aktif']);
     Route::post('/seminar/jadwal_seminar/import', [KoordinatorSeminarPKLController::class, 'import_jadwal_seminar']);
     Route::delete('/seminar/jadwal_seminar/{seminar_pkl}/delete', [KoordinatorSeminarPKLController::class, 'delete_jadwal_seminar']);
+
+    Route::get('/arsip_pkl', [ArsipPKLController::class, 'index']);
+    Route::get('/arsip_pkl/update_tabel_arsip', [ArsipPKLController::class, 'update_tabel_arsip']);
+    Route::post('/arsip_pkl/export_nilai', [ArsipPKLController::class, 'export_arsip_pkl']);
 
     Route::get('/cetak_sk', [ExportController::class, 'index']);
     Route::get('/cetak_sk/export', [ExportController::class, 'export']);

@@ -9,8 +9,6 @@ var arr_periode = $('#periode-pkl').find('option').map(function() {
 let tabel_modal;
 let data_dospem;
 
-console.log(arr_periode);
-
 $(document).on('change', '#periode-pkl', function() {
   periode_pkl = $(this).val();
 

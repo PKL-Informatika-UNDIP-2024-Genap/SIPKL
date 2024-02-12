@@ -145,6 +145,7 @@ class PKLController extends Controller
 
     ArsipPKL::create([
       'nim' => $pkl->nim,
+      'nama' => $pkl->mahasiswa->nama,
       'instansi' => $pkl->instansi,
       'judul' => $pkl->judul,
       'abstrak' => $pkl->abstrak,
@@ -156,6 +157,7 @@ class PKLController extends Controller
       'link_laporan' => $pkl->link_laporan,
       'tgl_verif_laporan' => $pkl->tgl_verif_laporan,
       'nilai' => $pkl->nilai,
+      'periode_pkl' => $pkl->mahasiswa->periode_pkl,
     ]);
 
     RiwayatPKL::create([
