@@ -4,13 +4,8 @@
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
-      <div class="col-sm-6">
+      <div class="col">
         <h1 class="m-0">Kelola Pengumuman</h1>
-      </div><!-- /.col -->
-      <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
@@ -19,18 +14,18 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-auto">
-        <button type="button" id="btn-add" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add">
-          + Tambah Pengumuman
-        </button>
-      </div>
-    </div>
-
     <div class="row">
       <div class="col">
         <div class="card px-3">
           <div class="card-body table-responsive px-0" id="tabel-pengumuman">
+            <div class="row">
+              <div class="col-auto mb-3 d-flex align-items-center">
+                {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
+                <button type="button" id="btn-add" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add">
+                  + Tambah Pengumuman
+                </button>
+              </div>
+            </div>
             <table class="table" id="myTable">
               <thead>
                   <tr class="table-primary">

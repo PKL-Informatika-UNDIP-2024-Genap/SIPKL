@@ -41,13 +41,13 @@
             </div>
           </div>
           <div class="col-auto ms-auto mt-auto">
-            <button type="button" class="btn btn-primary mb-2" id="btn-edit">Export</button>
-            <button type="button" class="btn btn-danger mb-2 d-none" id="btn-cancel">Cancel</button>
+            {{-- <button type="button" class="btn btn-primary mb-2" id="btn-profil">Lihat Profil</button> --}}
+            {{-- <button type="button" class="btn btn-danger mb-2 d-none" id="btn-cancel">Cancel</button> --}}
           </div>
         </div>
         
-        <div class="row">
-          <div class="col" id="tabel-modal">
+        <div class="row px-2">
+          <div class="col table-responsive px-0" id="tabel-modal">
             
           </div>
         </div>

@@ -82,7 +82,7 @@
                 <td>{{ $arsip->nim }}</td>
                 <td>{{ $arsip->periode_pkl }}</td>
                 <td>{{ $arsip->nilai }}</td>
-                <td>
+                <td class="py-0 align-middle">
                   <div class="btn btn-primary btn-detail-mhs btn-sm" data-bs-toggle="modal" data-bs-target="#modal_detail_mhs" data-mhs="{{ $arsip }}">
                     Detail
                   </div>

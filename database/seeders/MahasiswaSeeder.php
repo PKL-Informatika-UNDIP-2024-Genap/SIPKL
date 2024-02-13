@@ -21,11 +21,8 @@ class MahasiswaSeeder extends Seeder
                 'id_dospem' => 5,
             ],
             [
-                'nim' => '24060121131012',
-                'nama' => 'Ayu Kartika',
-                'status' => 'Lulus',
-                'periode_pkl' => '2023/2024 Ganjil',
-                'id_dospem' => 5,
+                'nim' => '24060121130050',
+                'nama' => 'Rizki Utama Fauzi',
             ],
             [
                 'nim' => '24060121130123',
@@ -38,16 +35,19 @@ class MahasiswaSeeder extends Seeder
                 'nim' => '24060121130234',
                 'nama' => 'Siti Nurul Hidayah',
                 'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Genap',
             ],
             [
                 'nim' => '24060121130345',
                 'nama' => 'Agus Setiawan',
                 'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Genap',
             ],
             [
                 'nim' => '24060121130456',
                 'nama' => 'Linda Pratiwi',
                 'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Genap',
             ],
             [
                 'nim' => '24060121130567',
@@ -75,53 +75,65 @@ class MahasiswaSeeder extends Seeder
                 'status' => 'Nonaktif',
             ],
             [
-                'nim' => '24060121130050',
-                'nama' => 'Rizki Utama Fauzi',
+                'nim' => '24060121131012',
+                'nama' => 'Ayu Kartika',
+                'status' => 'Lulus',
+                'periode_pkl' => '2023/2024 Ganjil',
+                'id_dospem' => 2,
             ],
             [
                 'nim' => '24060121131123',
                 'nama' => 'Rudi Hartono',
                 'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Genap',
             ],
             [
                 'nim' => '24060121131234',
                 'nama' => 'Eka Putri',
                 'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Genap',
             ],
             [
                 'nim' => '24060121131345',
                 'nama' => 'Irfan Pratama',
                 'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Genap',
             ],
             [
                 'nim' => '24060121131456',
                 'nama' => 'Siti Rahayu',
                 'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Genap',
             ],
             [
                 'nim' => '24060120150001', // NIM Mahasiswa 16
                 'nama' => 'Diana Sari',
                 'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Genap',
             ],
             [
                 'nim' => '24060120150002', // NIM Mahasiswa 17
                 'nama' => 'Ahmad Fauzi',
                 'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Genap',
             ],
             [
                 'nim' => '24060120150003', // NIM Mahasiswa 18
                 'nama' => 'Fitriani Hidayati',
                 'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Genap',
             ],
             [
                 'nim' => '24060120150004', // NIM Mahasiswa 19
                 'nama' => 'Agung Setiawan',
                 'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Genap',
             ],
             [
                 'nim' => '24060120150005', // NIM Mahasiswa 20
                 'nama' => 'Ratna Dewi',
                 'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Genap',
             ],
             [
                 'nim' => '24060120150006', // NIM Mahasiswa 21

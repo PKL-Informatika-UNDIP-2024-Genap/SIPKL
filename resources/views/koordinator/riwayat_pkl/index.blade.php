@@ -11,7 +11,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col">
-        <h1 class="m-0 text-center">Riwayat PKL</h1>
+        <h1 class="m-0">Riwayat PKL</h1>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
@@ -20,48 +20,26 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <div class="row justify-content-between">
-      <div class="col-auto mb-2">
-        <div class="row mb-2">
-          <div class="col-auto">
-            <h5 class="m-0 p-0">Action</h5>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-auto">
-            <button type="button" id="btn-import" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_import_mhs">
-              Export
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col col-fixed-400 mb-2">
-        <div class="row mb-2">
-          <div class="col-12">
-            <h5 class="m-0 p-0">Filter</h5>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-2">
-            <p class="mb-0">Status:</p>
-          </div>
-          <div class="col-10">
-            <div class="d-flex align-items-center">
-              <select name="status" id="status" class="form-control">
-                <option value="" selected>Semua Status</option>
-                <option value="Baru">Baru (Belum Pra-Reg)</option>
-                <option value="Nonaktif">Nonaktif</option>
-                <option value="Aktif">Aktif</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="card px-3">
       <div class="card-body table-responsive px-0" id="tabel-mhs">
+				<div class="row justify-content-center">
+					{{-- <div class="col-auto mb-2 d-flex align-items-center">
+						<strong class="m-0">Filter:</strong>
+					</div> --}}
+					<div class="col-auto mb-2 d-flex align-items-center">
+						<strong class="mr-3 text-lightblue">Filter:</strong>
+						<label for="status" class="my-0 mr-2 fw-normal">Status:</label for="status">
+						<div class="d-inline-block" style="width: 200px">
+							<select name="status" id="status" class="form-control">
+								<option value="" selected>Semua</option>
+								<option value="Baru">Baru (Belum Pra-Reg)</option>
+								<option value="Nonaktif">Nonaktif</option>
+								<option value="Aktif">Aktif</option>
+								<option value="Lulus">Lulus</option>
+							</select>
+						</div>
+					</div>
+				</div>
         <table class="table" id="myTable">
           <thead>
               <tr class="table-primary">
@@ -79,7 +57,7 @@
                       <td>{{ $mhs->nama }}</td>
                       <td>{{ $mhs->nim }}</td>
                       <td>{{ $mhs->status }}</td>
-                      <td>
+                      <td class="py-0 align-middle">
                           <div class="btn btn-primary detailRiwayatBtn" data-bs-toggle="modal" data-bs-target="#modal_detail_mhs" data-mhs="{{ $mhs }}">
                             Detail
                           </div>
@@ -124,7 +102,7 @@
 					},
 				],
 				order: [[1, 'asc']],
-				lengthMenu: [5, 10, 25, 50],
+				lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
 				pageLength: 10,
 				"initComplete": function(settings, json) {
 					$.fn.dataTable.ext.search.push(
@@ -143,7 +121,7 @@
 					})
 				}
 			});
-			$('#myTable_filter input').css('width', '210px');
+			$('#myTable_filter input').css('width', '200px');
 			table.on('order.dt search.dt', function () {
 				let i = 1;
 				table
@@ -181,19 +159,24 @@
 			let status = data_mhs.status;
 			let id_dospem = data_mhs.id_dospem || "-";
 			let periode_pkl = data_mhs.periode_pkl || "-";
-			let dospem = "-";
+			// let dospem = "-";
 
 			$("#data-nama").html(": " + nama);
 			$("#data-nim").html(": " + nim);
 			$("#data-status").html(": " + status);
 			$("#data-periode-pkl").html(": " + periode_pkl);
-			$("#data-dospem").html(": " + dospem);
+			// $("#data-dospem").html(": " + dospem);
 
 			$('#tabel-modal').html('<div class="d-flex align-items-center"><div class="spinner-border spinner-border-lg me-2" role="status" aria-hidden="true"></div><div class="fs-5">Mengambil Data Mahasiswa...</div></div>');
 
 			$.ajax({
 				type: "GET",
 				url: "/riwayat_pkl/" + nim + "/get_data_riwayat",
+				data: {
+					status: status,
+					periode_pkl: periode_pkl,
+					id_dospem: id_dospem,
+				},
 				success: function (response) {
 					$('#tabel-modal').html(response.view);
 					if (table_modal) {
@@ -208,10 +191,10 @@
 							},
 						],
 						order: [[1, 'asc']],
-						lengthMenu: [5, 10, 25, 50],
+						lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
 						pageLength: 5,
 					});
-					// $('#myTable2_filter input').css('width', '210px');
+					// $('#myTable2_filter input').css('width', '200px');
 					table_modal.on('order.dt search.dt', function () {
 						let i = 1;
 						table_modal

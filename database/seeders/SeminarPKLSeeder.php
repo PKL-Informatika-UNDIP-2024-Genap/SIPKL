@@ -29,7 +29,7 @@ class SeminarPKLSeeder extends Seeder
                 'tgl_seminar' => '2021-08-01',
                 'waktu_seminar' => '10:00-12:00',
                 'ruang' => 'A101',
-                'id_dospem' => 5,
+                'id_dospem' => 2,
                 'scan_layak_seminar' => '/private/scan_layak_seminar/template_scan.pdf',
                 'scan_peminjaman_ruang' => '/private/scan_peminjaman_ruang/template_scan.pdf',
             ],

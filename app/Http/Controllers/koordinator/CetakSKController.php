@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 // use Maatwebsite\Excel\Facades\Excel;
 
-class ExportController extends Controller
+class CetakSKController extends Controller
 {
     public function index()
     {
