@@ -10,9 +10,11 @@ use Illuminate\Http\Request;
 class AssignDospemController extends Controller
 {
     public function index(){
-        $data_mhs = Mahasiswa::select('mahasiswa.nim', 'mahasiswa.nama', 'mahasiswa.status', 'mahasiswa.id_dospem', 'dosen_pembimbing.nama as nama_dospem')
-        ->whereRaw("status = 'Nonaktif' OR status = 'Aktif'")
-        ->leftJoin('dosen_pembimbing', 'dosen_pembimbing.id', '=', 'mahasiswa.id_dospem')->get();
+        $data_mhs = Mahasiswa::select('mahasiswa.nim', 'mahasiswa.nama', 'mahasiswa.status', 'mahasiswa.id_dospem', 'dosen_pembimbing.nama as nama_dospem', 'pkl.instansi', 'pkl.judul')
+        ->whereRaw("mahasiswa.status = 'Nonaktif' OR mahasiswa.status = 'Aktif'")
+        ->leftJoin('dosen_pembimbing', 'dosen_pembimbing.id', '=', 'mahasiswa.id_dospem')
+        ->leftJoin('pkl', 'pkl.nim', '=', 'mahasiswa.nim')
+        ->get();
 
         $data_dospem = DosenPembimbing::select('id', 'nama')->get();
 

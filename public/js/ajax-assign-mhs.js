@@ -63,64 +63,22 @@ $(document).ready(function() {
       tr.removeClass('shown');
     }
     else {
-      if($(this).hasClass("clicked")){
-        row.child(
-          '<div class="row">'+
-          '<div class="col-md-4">'+
-          '<dl>' +
-          '<dt>Instansi PKL:</dt>' +
-          '<dd>' + map_data_pkl.get(tr.data("nim"))[0] +'</dd>' +
-          '</dl>'+
-          '</div>'+
-          '<div class="col-md-8">'+
-          '<dl>' +
-          '<dt>Judul PKL:</dt>' +
-          '<dd>' + map_data_pkl.get(tr.data("nim"))[1] +'</dd>' +
-          '</dl>'+
-          '</div>'+
-          '</div>'
-        ).show();
-      }else{
-        row.child('<span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Loading...').show();
-        $.ajax({
-          type: "GET",
-          url: "/dospem/assign_mhs_bimbingan/"+tr.data('nim')+"/get_data_pkl",
-          success: function (response) {
-            instansi_pkl = response.instansi_pkl;
-            judul_pkl = response.judul_pkl;
-          },
-          error: function (response) {
-            console.error('Error:', response);
-            Swal.fire({
-              title: 'Error!',
-              text: 'Terjadi kesalahan saat mengambil data.',
-              icon: 'error',
-            });
-          },
-          complete: function () {
-            row.child(
-              '<div class="row">'+
-              '<div class="col-md-4">'+
-              '<dl>' +
-              '<dt>Instansi PKL:</dt>' +
-              '<dd>' + instansi_pkl +'</dd>' +
-              '</dl>'+
-              '</div>'+
-              '<div class="col-md-8">'+
-              '<dl>' +
-              '<dt>Judul PKL:</dt>' +
-              '<dd>' + judul_pkl +'</dd>' +
-              '</dl>'+
-              '</div>'+
-              '</div>'
-            ).show();
-
-            map_data_pkl.set(tr.data("nim"), [instansi_pkl, judul_pkl]);
-          }
-        });
-        $(this).addClass("clicked");
-      }
-
+      row.child(
+        '<div class="row">'+
+        '<div class="col-md-4">'+
+        '<dl>' +
+        '<dt>Instansi PKL:</dt>' +
+        '<dd>' + tr.attr("data-judul") +'</dd>' +
+        '</dl>'+
+        '</div>'+
+        '<div class="col-md-8">'+
+        '<dl>' +
+        '<dt>Judul PKL:</dt>' +
+        '<dd>' + tr.attr("data-instansi") +'</dd>' +
+        '</dl>'+
+        '</div>'+
+        '</div>'
+      ).show();
       tr.addClass('shown');
     }
   });
