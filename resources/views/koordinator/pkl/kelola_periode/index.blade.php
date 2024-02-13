@@ -4,13 +4,8 @@
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
-      <div class="col-sm-6">
+      <div class="col">
         <h1 class="m-0">Kelola Periode PKL</h1>
-      </div><!-- /.col -->
-      <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
@@ -19,17 +14,17 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-auto">
-        <button type="button" id="btn-add" class="btn btn-primary btn-add" data-periode="{{ isset($data_periode[0]) ? $data_periode[0] : '' }}"  
-          data-bs-toggle="modal" data-bs-target="#modal-add-periode">
-          + Tambah Periode PKL
-        </button>
-      </div>
-    </div>
-
     <div class="card px-3">
       <div class="card-body table-responsive px-0" id="tabel-periode">
+        <div class="row">
+          <div class="col-auto mb-3 d-flex align-items-center">
+            {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
+            <button type="button" id="btn-add" class="btn btn-primary btn-add" data-periode="{{ isset($data_periode[0]) ? $data_periode[0] : '' }}"  
+              data-bs-toggle="modal" data-bs-target="#modal-add-periode">
+              + Tambah Periode PKL
+            </button>
+          </div>
+        </div>
         <table class="table" id="myTable">
           <thead>
               <tr class="table-primary">

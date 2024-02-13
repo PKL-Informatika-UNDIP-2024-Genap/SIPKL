@@ -11,7 +11,7 @@ use App\Http\Controllers\Koordinator\PengumumanController;
 use App\Http\Controllers\Koordinator\DosenPembimbingController;
 use App\Http\Controllers\Koordinator\AssignMhsBimbinganController;
 use App\Http\Controllers\Koordinator\BebanBimbinganController;
-use App\Http\Controllers\Koordinator\ExportController;
+use App\Http\Controllers\Koordinator\CetakSKController;
 use App\Http\Controllers\Koordinator\MahasiswaController;
 use App\Http\Controllers\Koordinator\PKLController as KoordinatorPKLController;
 use App\Http\Controllers\Koordinator\SeminarPKLController as KoordinatorSeminarPKLController;
@@ -150,8 +150,8 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/arsip_pkl/update_tabel_arsip', [ArsipPKLController::class, 'update_tabel_arsip']);
     // Route::post('/arsip_pkl/export_nilai', [ArsipPKLController::class, 'export_arsip_pkl']);
 
-    Route::get('/cetak_sk', [ExportController::class, 'index']);
-    Route::get('/cetak_sk/export', [ExportController::class, 'export']);
+    Route::get('/cetak_sk', [CetakSKController::class, 'index']);
+    Route::get('/cetak_sk/export', [CetakSKController::class, 'export']);
 
     Route::get('/riwayat_pkl', [KoordinatorRiwayatPKLController::class, 'index']);
     Route::get('/riwayat_pkl/{nim}/get_data_riwayat', [KoordinatorRiwayatPKLController::class, 'getDataRiwayat']);

@@ -19,26 +19,24 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    
-    <div class="row mb-2">
-      <div class="col-auto">
-        <div class="btn btn-sm btn-primary" id="btn-tambah-jadwal" data-bs-toggle="modal" data-bs-target="#modal-tambah-jadwal">
-          + Tambah
+    <div class="card px-3">
+      <div class="card-body table-responsive px-0" id="tabel-jadwal">
+        <div class="row">
+          <div class="col-auto mb-3 d-flex align-items-center gap-1">
+            {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
+            <div class="btn btn-sm btn-primary" id="btn-tambah-jadwal" data-bs-toggle="modal" data-bs-target="#modal-tambah-jadwal">
+              + Tambah
+            </div>
+            <div class="btn btn-sm btn-info" id="btn-import-jadwal" data-bs-toggle="modal" data-bs-target="#modal-import-jadwal">
+              <span class="bi bi-upload me-1"></span>
+              Import
+            </div>
+            <div class="btn btn-sm btn-success" id="btn-export-jadwal" data-bs-toggle="modal" data-bs-target="#modal-export-jadwal">
+              <span class="bi bi-download me-1"></span>
+              Export
+            </div>
+          </div>
         </div>
-        <div class="btn btn-sm btn-info" id="btn-import-jadwal" data-bs-toggle="modal" data-bs-target="#modal-import-jadwal">
-          <span class="bi bi-download me-1"></span>
-          Import
-        </div>
-        <div class="btn btn-sm btn-success" id="btn-export-jadwal" data-bs-toggle="modal" data-bs-target="#modal-export-jadwal">
-          <span class="bi bi-upload me-1"></span>
-          Export
-        </div>
-      </div>
-    </div>
-
-
-    <div class="card">
-      <div class="card-body table-responsive" id="tabel-jadwal">
         <table class="table" id="myTable">
           <thead>
               <tr class="table-primary">

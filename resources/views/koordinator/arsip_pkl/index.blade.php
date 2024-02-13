@@ -91,7 +91,7 @@
                     <h4><span class="badge bg-warning">B</span></h4>
                   @endif
                 </td>
-                <td>
+                <td class="py-0 align-middle">
                   <div class="btn btn-primary btn-detail btn-sm" data-bs-toggle="modal" data-bs-target="#modal-detail" data-arsip="{{ $arsip }}">
                     Detail
                   </div>
