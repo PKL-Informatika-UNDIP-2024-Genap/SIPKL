@@ -4,17 +4,21 @@
       <th>No</th>
       <th>Nama Mahasiswa</th>
       <th>NIM</th>
+      <th class="judul-pkl">Judul PKL</th>
+      <th class="instansi-pkl">Instansi</th>
       <th class="action assign">Assign</th>
     </tr>
   </thead>
   <tbody>
     @foreach ($data_mhs as $index => $mhs)
-      <tr data-nim="{{ $mhs->nim }}">
+      <tr data-nim="{{ $mhs->nim }}" data-instansi="{{ $mhs->instansi }}" data-judul="{{ $mhs->judul }}">
         <td></td>
         <td class="details-control">
           {{ $mhs->nama }}
         </td>
         <td>{{ $mhs->nim }}</td>
+        <td class="judul-pkl">{{ $mhs->judul }}</td>
+        <td class="instansi-pkl">{{ $mhs->instansi }}</td>
         <td class="assign">
           <div class="form-check">
             <input class="form-check-input {{ $mhs->id_dospem ? 'db-checked' : '' }}" 

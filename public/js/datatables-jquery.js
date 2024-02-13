@@ -38,6 +38,11 @@ function simpleDatatable2() {
 				targets: [0, 'action']
 			},
 			{
+				searchable: true,
+				visible: false, 
+				targets: ['judul-pkl', 'instansi-pkl']
+			},
+			{
 				"className": "text-center", "targets": "assign"
 			}
 		],

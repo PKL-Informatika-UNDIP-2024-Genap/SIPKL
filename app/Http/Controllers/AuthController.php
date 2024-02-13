@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DosenPembimbing;
+use App\Models\Mahasiswa;
+use App\Models\PeriodePKL;
 use App\Models\PKL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -33,7 +36,28 @@ class AuthController extends Controller
     public function dashboard()
     {
         if(auth()->user()->is_admin == 1){
-            return view('koordinator.dashboard');
+            $periode_aktif = PeriodePKL::whereRaw('CURDATE() BETWEEN tgl_mulai AND tgl_selesai')->select('id_periode')->first();
+            $periode_mendatang = PeriodePKL::where('tgl_mulai', '>', Carbon::now())->select('id_periode')->first();
+            $data_mhs = null;
+            $total_mhs = 0;
+            $total_dospem = DosenPembimbing::count();
+
+            if($periode_aktif != null){
+                $data_mhs = Mahasiswa::selectRaw('status, count(*) as jumlah')
+                ->groupBy('status')
+                ->get()
+                ->pluck('jumlah', 'status');
+
+                $total_mhs = $data_mhs->sum();;
+            }
+
+            return view('koordinator.dashboard', [
+                'periode_aktif' => $periode_aktif,
+                'periode_mendatang' => $periode_mendatang,
+                'data_mhs' => $data_mhs,
+                'total_mhs' => $total_mhs,
+                'total_dospem' => $total_dospem,
+            ]);
         } else {
             $user = auth()->user();
             $mahasiswa = $user->mahasiswa;

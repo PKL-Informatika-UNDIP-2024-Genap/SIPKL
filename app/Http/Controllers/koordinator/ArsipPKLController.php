@@ -43,7 +43,6 @@ class ArsipPKLController extends Controller
 
         return response()->json(['html' => $view]);
     }
-
     
     public function export_arsip_pkl(){
         // Proses data yang diterima dari JavaScript

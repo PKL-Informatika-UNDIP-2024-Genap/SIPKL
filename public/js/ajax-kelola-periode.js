@@ -164,6 +164,9 @@
           $('#submit').html('Submit');
         }
       });
+    } else {
+      $('#submit').prop("disabled", false);
+      $('#submit').html('Submit');
     }
 
   });
@@ -255,6 +258,9 @@
 
 
   $(document).on('click', '#update', function() {
+    $(this).prop("disabled", true);
+    $(this).html('Updating ...');
+
     let id_periode = $('#id-periode-edit').val();
     let tgl_mulai = $('#tgl-mulai-edit').val();
     let tgl_selesai = $('#tgl-selesai-edit').val();
@@ -352,6 +358,9 @@
           
         }
       });
+    } else {
+      $('#update').prop("disabled", false);
+      $('#update').html('Update');
     }
   });
 

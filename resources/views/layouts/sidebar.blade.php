@@ -178,20 +178,21 @@
             </p>
           </a>
         </li>
+
+        <li class="nav-item">
+          <a href="/arsip_pkl" class="nav-link {{ Request::is('arsip_pkl*') ? 'active' : '' }}">
+            <i class="nav-icon fas bi bi-file-earmark-zip-fill"></i>
+            <p>
+              Arsip PKL
+            </p>
+          </a>
+        </li>
         
         <li class="nav-item">
           <a href="/riwayat_pkl" class="nav-link {{ Request::is('riwayat_pkl') ? 'active' : '' }}">
             <i class="nav-icon fas bi bi-clock-history"></i>
             <p>
               Riwayat PKL
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/arsip_pkl" class="nav-link {{ Request::is('arsip_pkl*') ? 'active' : '' }}">
-            <i class="nav-icon fas bi bi-clock-history"></i>
-            <p>
-              Arsip PKL
             </p>
           </a>
         </li>

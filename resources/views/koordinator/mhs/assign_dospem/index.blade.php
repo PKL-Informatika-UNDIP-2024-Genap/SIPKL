@@ -29,16 +29,20 @@
                 <th>Nama</th>
                 <th>NIM</th>
                 <th>Dosen Pembimbing</th>
+                <th class="judul-pkl">Judul PKL</th>
+                <th class="instansi-pkl">Instansi</th>
                 <th class="action">Action</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($data_mhs as $mhs)
-              <tr data-nim="{{ $mhs->nim }}">
+              <tr data-nim="{{ $mhs->nim }}" data-instansi="{{ $mhs->instansi }}" data-judul="{{ $mhs->judul }}">
                 <td></td>
                 <td class="details-control">{{ $mhs->nama }}</td>
                 <td>{{ $mhs->nim }}</td>
                 <td class="kolom-nama-dospem">{{ $mhs->nama_dospem ?? "-"}}</td>
+                <td class="judul-pkl">{{ $mhs->judul }}</td>
+                <td class="instansi-pkl">{{ $mhs->instansi }}</td>
                 <td>
                   <div class="btn btn-primary btn-sm btn-assign-dospem" data-bs-toggle="modal" data-bs-target="#modal-assign-dospem"
                     data-nim="{{ $mhs->nim }}" data-id-dospem="{{ $mhs->id_dospem }}">

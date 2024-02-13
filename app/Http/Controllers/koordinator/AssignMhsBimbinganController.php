@@ -33,7 +33,10 @@ class AssignMhsBimbinganController extends Controller
 
   public function get_data_mhs($id_dospem)
   {
-    $data_mhs = Mahasiswa::whereRaw("(id_dospem = '$id_dospem' OR id_dospem IS NULL) AND (status = 'Aktif' OR status = 'Nonaktif')")->get();
+    $data_mhs = Mahasiswa::whereRaw("(id_dospem = '$id_dospem' OR id_dospem IS NULL) AND (mahasiswa.status = 'Aktif' OR mahasiswa.status = 'Nonaktif')")
+    ->join('pkl', 'mahasiswa.nim', '=', 'pkl.nim')
+    ->select('mahasiswa.*', 'pkl.instansi', 'pkl.judul')
+    ->get();
 
     $view = view('koordinator.dospem.assign_mhs_bimbingan.tabel_mhs_modal', [
       'data_mhs' => $data_mhs,
@@ -45,20 +48,20 @@ class AssignMhsBimbinganController extends Controller
     ]);
   }
 
-  public function get_data_pkl($nim)
-  {
-      $data_pkl = PKL::select('instansi', 'judul')->where('nim', $nim)->first();
+  // public function get_data_pkl($nim)
+  // {
+  //     $data_pkl = PKL::select('instansi', 'judul')->where('nim', $nim)->first();
 
-      $judul_pkl = $data_pkl ? $data_pkl->judul : "-";
-      $instansi_pkl = $data_pkl ? $data_pkl->instansi : "-";
+  //     $judul_pkl = $data_pkl ? $data_pkl->judul : "-";
+  //     $instansi_pkl = $data_pkl ? $data_pkl->instansi : "-";
 
-      return response()->json([
-          'status' => 200,
-          'judul_pkl' => $judul_pkl,
-          'instansi_pkl' => $instansi_pkl,
-          'nim' => $nim,
-      ]);
-  }
+  //     return response()->json([
+  //         'status' => 200,
+  //         'judul_pkl' => $judul_pkl,
+  //         'instansi_pkl' => $instansi_pkl,
+  //         'nim' => $nim,
+  //     ]);
+  // }
 
   public function update_mhs_bimbingan($id_dospem, Request $request){
     if (!empty($request->arr_nim_add_mhs)) {
