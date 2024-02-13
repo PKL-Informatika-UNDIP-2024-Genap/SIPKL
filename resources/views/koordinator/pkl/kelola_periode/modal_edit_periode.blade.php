@@ -16,13 +16,13 @@
             </div>
             <div class="">
               <label for="tgl-mulai-edit" class="form-label">Tanggal Mulai</label>
-              <input id="tgl-mulai-edit" width="170" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask name="tgl-mulai-edit"/>
-              <div id="tgl-mulai-edit-err" class="small text-danger" style="margin-top: -15px"></div>
+              <input id="tgl-mulai-edit" class="form-control" type="date" style="max-width: 170px" name="tgl-mulai-edit"/>
+              <div id="tgl-mulai-edit-err" class="invalid-feedback"></div>
             </div>
             <div class="">
               <label for="tgl-selesai-edit" class="form-label mt-3">Tanggal Selesai</label>
-              <input id="tgl-selesai-edit" width="170" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask name="tgl-selesai-edit"/>
-              <div id="tgl-selesai-edit-err" class="small text-danger" style="margin-top: -15px"></div>
+              <input id="tgl-selesai-edit" class="form-control" type="date" style="max-width: 170px" name="tgl-selesai-edit"/>
+              <div id="tgl-selesai-edit-err" class="invalid-feedback"></div>
             </div>
           </form>
         </div>

@@ -17,9 +17,17 @@
         <td>{{ $arsip->nama }}</td>
         <td>{{ $arsip->nim }}</td>
         <td>{{ $arsip->periode_pkl }}</td>
-        <td>{{ $arsip->nilai }}</td>
         <td>
-          <div class="btn btn-primary btn-detail-mhs btn-sm" data-bs-toggle="modal" data-bs-target="#modal_detail_mhs" data-mhs="{{ $arsip }}">
+          @if ($arsip->nilai == "A")
+            <h4><span class="badge bg-success">A</span></h4>
+          @elseif($arsip->nilai == "B")
+            <h4><span class="badge bg-primary">B</span></h4>
+          @else
+            <h4><span class="badge bg-warning">B</span></h4>
+          @endif
+        </td>
+        <td>
+          <div class="btn btn-primary btn-detail btn-sm" data-bs-toggle="modal" data-bs-target="#modal-detail" data-arsip="{{ $arsip }}">
             Detail
           </div>
         </td>

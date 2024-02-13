@@ -148,7 +148,7 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
 
     Route::get('/arsip_pkl', [ArsipPKLController::class, 'index']);
     Route::get('/arsip_pkl/update_tabel_arsip', [ArsipPKLController::class, 'update_tabel_arsip']);
-    Route::post('/arsip_pkl/export_nilai', [ArsipPKLController::class, 'export_arsip_pkl']);
+    // Route::post('/arsip_pkl/export_nilai', [ArsipPKLController::class, 'export_arsip_pkl']);
 
     Route::get('/cetak_sk', [ExportController::class, 'index']);
     Route::get('/cetak_sk/export', [ExportController::class, 'export']);
