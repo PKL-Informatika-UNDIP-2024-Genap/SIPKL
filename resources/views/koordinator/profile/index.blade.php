@@ -185,7 +185,7 @@
 
 @push('scripts')
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script>
+  <script type="text/javascript">
     $('#golongan').select2({
       theme: 'bootstrap-5',
       // allowClear: true,
@@ -545,7 +545,7 @@
   </script>
 
   @if (session()->has('success'))
-  <script>
+  <script type="text/javascript">
     $(document).ready(function(){
       Swal.fire({
         icon: 'success',
@@ -576,7 +576,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.js"></script>
 
-  <script>
+  <script type="text/javascript">
     /*
     We need to register the required plugins to do image manipulation and previewing.
     */

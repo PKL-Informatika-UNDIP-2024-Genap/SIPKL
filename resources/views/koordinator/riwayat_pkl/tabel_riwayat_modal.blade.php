@@ -4,8 +4,8 @@
 					<th>No</th>
 					<th>Periode PKL</th>
 					<th>Status</th>
-					<th>Dosen Pembimbing</th>
-					<th class="action">Action</th>
+					<th>Nama Dosen Pembimbing</th>
+					<th>NIP Dospem</th>
 			</tr>
 	</thead>
 	<tbody>
@@ -15,13 +15,18 @@
 							<td>{{ $riwayat_pkl->periode_pkl }}</td>
 							<td>{{ $riwayat_pkl->status }}</td>
 							<td>{{ $riwayat_pkl->nama_dospem }}</td>
-							<td>
-									<div class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modal_detail_mhs" data-mhs="{{ $riwayat_pkl }}">
-										Detail
-									</div>
-							 
-							</td>
+							<td>{{ $riwayat_pkl->nip_dospem }}</td>
 					</tr>
 			@endforeach
+
+			@if ($data_pkl)
+					<tr>
+							<td class="text-success"></td>
+							<td class="text-success">{{ $data_pkl['periode_pkl'] }}</td>
+							<td class="text-success">{{ $data_pkl['status'] }}</td>
+							<td class="text-success">{{ $data_pkl['nama_dospem'] }}</td>
+							<td class="text-success">{{ $data_pkl['nip_dospem'] }}</td>
+					</tr>
+			@endif
 	</tbody>
 </table>
