@@ -19,17 +19,18 @@ $(document).on('click', '.btn-detail-reg', function() {
   $("#data-dospem").html('<p class="placeholder-glow m-0"><span class="placeholder col-10" style="border-radius: 5px;"></span></p>');
 
   data_mhs = JSON.parse($(this).attr('data-mhs'));
-  console.log(data_mhs);
+  // console.log(data_mhs);
   $("#data-nama").html(data_mhs.nama);
   $("#data-nim").html(data_mhs.nim);
   $("#data-instansi").html(data_mhs.instansi);
   $("#data-judul-pkl").html(data_mhs.judul);
+  $("#myImage").attr('src','/preview/'+data_mhs.scan_irs);
 
-  if(data_mhs.nip_dospem == null){
+  if(data_mhs.id_dospem == null){
     $("#data-dospem").html("-");
   }else{
     $.ajax({
-      url: '/mhs/kelola_mhs/'+ data_mhs.nip_dospem +'/get_data_dospem',
+      url: '/mhs/kelola_mhs/'+ data_mhs.id_dospem +'/get_data_dospem',
       type: 'GET',
       success: function (response) {
         dospem = response.nama_dospem;

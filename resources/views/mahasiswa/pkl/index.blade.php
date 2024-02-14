@@ -1,5 +1,9 @@
 @extends('layouts.main_mhs')
 
+@push('styles')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.css" integrity="sha512-eG8C/4QWvW9MQKJNw2Xzr0KW7IcfBSxljko82RuSs613uOAg/jHEeuez4dfFgto1u6SRI/nXmTr9YPCjs1ozBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endpush
+
 @section('container')
   <!-- Content Header (Page header) -->
   <div class="content-header">
@@ -121,9 +125,11 @@
           </div>
           <div class="form-group">
             <label for="scan_irs">Scan IRS</label>
+            <input type="hidden" id="scanIRSSrc" name="scanIRSSrc" value="{{ $pkl->scan_irs }}">
+            <img id="scanIRSImg" src="" alt="Picture" style="display:none;">
             <div class="input-group">
               @if ($pkl->scan_irs != null)
-              <a href="/preview/{{ $pkl->scan_irs }}" target="_blank" class="btn btn-outline-info btn-sm" >Lihat Scan IRS</a>
+              <button type="button" id="scanIRSView" class="btn btn-outline-info btn-sm" >Lihat Scan IRS</button>
               @else
               <div>
                   Tidak tersedia <br><a href="/registrasi" class="btn btn-outline-warning btn-sm" >Registrasi Sekarang</a>
@@ -220,6 +226,22 @@
         });
       });
 
+    });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js" integrity="sha512-EC3CQ+2OkM+ZKsM1dbFAB6OGEPKRxi6EDRnZW9ys8LghQRAq6cXPUgXCCujmDrXdodGXX9bqaaCRtwj4h4wgSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript">
+    var scanIRSImg = $('#scanIRSImg')[0];
+    // Inisialisasi Viewer.js
+    scanIRSImg.src = '/preview/'+$('#scanIRSSrc').val();
+    var viewer = new Viewer(scanIRSImg, {
+      inline: false,
+      viewed: function() {
+        viewer.zoomTo(1);
+      },
+    });
+    $('#scanIRSView').click(function(){
+      viewer.show();
     });
   </script>
 

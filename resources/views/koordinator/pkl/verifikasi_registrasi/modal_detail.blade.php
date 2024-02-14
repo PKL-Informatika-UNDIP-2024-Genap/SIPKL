@@ -48,7 +48,7 @@
                 <td style="white-space: nowrap; width: 1%; border-bottom:none">:</td>
                 <td style="border-bottom:none">
                   <button id="showButton" class="badge text-bg-primary">Tampilkan Scan</button>
-                  <img id="myImage" src="/preview/private/scan_irs/irs5.jpg" alt="Picture" style="display:none;">
+                  <img id="myImage" src="/images/default.jpg" alt="Picture" style="display:none;">
                 </td>
               </tr>
             </tbody>
