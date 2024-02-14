@@ -8,6 +8,7 @@ use App\Imports\UsersImport;
 use App\Models\DosenPembimbing;
 use App\Models\Mahasiswa;
 use App\Models\PKL;
+use App\Models\RiwayatPKL;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -208,7 +209,18 @@ class MahasiswaController extends Controller
 
     public function reset_status(){
         $arr_nim = request('arr_nim');
-        Mahasiswa::whereIn('nim', $arr_nim)->update(['status' => 'Nonaktif']);
+        $arr_mhs = Mahasiswa::whereIn('nim', $arr_nim);
+        $arr_mhs->update(['status' => 'Nonaktif']);
+
+        RiwayatPKL::create($arr_mhs->get()->map(function($item){
+            return [
+                'nim' => $item->nim,
+                'periode_pkl' => $item->periode_pkl,
+                'status' => 'Tidak Lulus',
+                'id_dospem' => $item->id_dospem,
+            ];
+        })->toArray());
+
         PKL::whereIn('nim', $arr_nim)->update(['status' => 'Praregistrasi']);
 
         return response()->json([

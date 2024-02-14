@@ -64,29 +64,6 @@ function simpleDatatable() {
 	return table;
 }
 
-$(document).on('change', '#periode-pkl', function() {
-  periode_pkl = $(this).val();
-
-  $.ajax({
-    url: '/arsip_pkl/update_tabel_arsip/',
-    method: 'GET',
-    data: {
-      periode_pkl: periode_pkl,
-      arr_periode: arr_periode
-    },
-    success: function(response) {
-      $('#tabel-arsip').html(response.html);
-      tabel_arsip = simpleDatatable();
-      tabel_arsip.order([[1, 'asc'],[3, 'desc'],[4, 'asc']]).draw();
-    },
-    error: function(response) {
-      console.log(response);
-    }
-
-  });
-  
-});
-
 $(document).on('click', '.btn-detail', function() {
   let data_arsip = JSON.parse($(this).attr('data-arsip'));
   

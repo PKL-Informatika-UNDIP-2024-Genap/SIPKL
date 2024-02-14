@@ -22,7 +22,7 @@
 
     <div class="row mb-3">
       <div class="col-auto">
-        <button class="btn btn-primary btn-sm" id="reset-status" data-arr-nim="{{ json_encode($arr_nim) }}">
+        <button class="btn btn-primary btn-sm {{ count($arr_mhs) ? "" : "disabled" }}" id="reset-status" data-arr-nim="{{ json_encode($arr_nim) }}">
           Reset Status Mahasiswa
         </button>
       </div>

@@ -62,7 +62,7 @@
         <!-- small card -->
         <div class="small-box bg-success">
           <div class="inner">
-            <h3>{{ $data_mhs ? $data_mhs["Lulus"] : "-" }}</h3>
+            <h3>{{ isset($data_mhs["Lulus"]) ? $data_mhs["Lulus"] : "0" }}</h3>
 
             <p>Mhs Lulus</p>
           </div>
@@ -75,7 +75,7 @@
         <!-- small card -->
         <div class="small-box bg-primary">
           <div class="inner">
-            <h3>{{ $data_mhs ? $data_mhs["Aktif"] : "-" }}</h3>
+            <h3>{{ isset($data_mhs["Aktif"]) ? $data_mhs["Aktif"] : "0" }}</h3>
 
             <p>Mhs Aktif</p>
           </div>
@@ -88,7 +88,7 @@
         <!-- small card -->
         <div class="small-box bg-warning">
           <div class="inner">
-            <h3 class="text-white">{{ $data_mhs ? $data_mhs["Nonaktif"] : "-" }}</h3>
+            <h3 class="text-white">{{ isset($data_mhs["Nonaktif"]) ? $data_mhs["Nonaktif"] : "0" }}</h3>
 
             <p class="text-white">Mhs Belum Reg</p>
           </div>
@@ -101,7 +101,7 @@
         <!-- small card -->
         <div class="small-box bg-danger">
           <div class="inner">
-            <h3>{{ $data_mhs ? $data_mhs["Baru"] : "-" }}</h3>
+            <h3>{{ isset($data_mhs["Baru"]) ? $data_mhs["Baru"] : "0" }}</h3>
 
             <p>Mhs Belum Pra-Reg</p>
           </div>

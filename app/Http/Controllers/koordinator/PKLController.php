@@ -156,7 +156,7 @@ class PKLController extends Controller
       'keyword5' => $pkl->keyword5,
       'link_laporan' => $pkl->link_laporan,
       'tgl_verif_laporan' => $pkl->tgl_verif_laporan,
-      'nilai' => $pkl->nilai,
+      'nilai' => $request->nilai,
       'periode_pkl' => $pkl->mahasiswa->periode_pkl,
     ]);
 
