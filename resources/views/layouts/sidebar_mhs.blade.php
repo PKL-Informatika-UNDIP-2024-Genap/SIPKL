@@ -69,13 +69,28 @@
 
         @if ($mahasiswa->status == "Aktif")
 
-        <li class="nav-item">
-          <a href="/seminar" class="nav-link {{ Request::is('seminar')?'active':'' }}">
+        <li class="nav-item {{ Request::is('seminar*') ? 'menu-open' : '' }}">
+          <a href="#" class="nav-link {{ Request::is('seminar*') ? 'active' : '' }}">
             <i class="nav-icon bi bi-calendar2-week"></i>
             <p>
               Seminar PKL
+              <i class="right bi bi-caret-left-fill"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/seminar" class="nav-link {{ Request::is('seminar') ? 'active' : '' }}">
+                <i class="far nav-icon bi bi-circle"></i>
+                <p>Info Seminar</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/seminar/jadwal" class="nav-link {{ Request::is('seminar/jadwal*') ? 'active' : '' }}">
+                <i class="far nav-icon bi bi-circle"></i>
+                <p>Jadwal Seminar</p>
+              </a>
+            </li>
+          </ul>
         </li>
 
         <li class="nav-item">

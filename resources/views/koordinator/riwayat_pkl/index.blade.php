@@ -84,9 +84,9 @@
 	<script type="text/javascript">
 		$('#status').select2({
 			theme: 'bootstrap-5',
-			allowClear: true,
+			// allowClear: true,
 			minimumResultsForSearch: Infinity,
-			placeholder: 'Semua',
+			// placeholder: 'Semua',
 			// width: '100%',
 		});
 	</script>

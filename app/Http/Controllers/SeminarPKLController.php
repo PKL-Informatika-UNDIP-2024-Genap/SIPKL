@@ -180,4 +180,14 @@ class SeminarPKLController extends Controller
 
         return redirect()->back()->with('success', 'Berhasil mendaftar ulang seminar.');
     }
+
+    public function jadwalSeminar ()
+    {
+        $data_jadwal = SeminarPKL::whereRaw('status = "Tak Terjadwal" OR status = "Terjadwal"')->with(["mahasiswa", "dosen_pembimbing"])->get();
+        return view('mahasiswa.seminar.jadwal_seminar', [
+            'user' => auth()->user(),
+            'mahasiswa' => auth()->user()->mahasiswa,
+            'data_jadwal' => $data_jadwal,
+        ]);
+    }
 }

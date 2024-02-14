@@ -136,7 +136,7 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::post('/seminar/verifikasi_pengajuan/{seminar_pkl}/tolak', [KoordinatorSeminarPKLController::class, 'tolak_pengajuan']);
     Route::get('/seminar/verifikasi_pengajuan/update_tabel_pengajuan', [KoordinatorSeminarPKLController::class, 'update_tabel_pengajuan']);
     
-    Route::get('/seminar/jadwal_seminar', [KoordinatorSeminarPKLController::class, 'index_jadwal_seminar']);
+    Route::get('/seminar/jadwal_seminar', [KoordinatorSeminarPKLController::class, 'index_jadwal_seminar'])->name('koordinator.seminar.jadwal_seminar');
     Route::post('/seminar/jadwal_seminar/tambah', [KoordinatorSeminarPKLController::class, 'tambah_jadwal_seminar']);
     Route::put('/seminar/jadwal_seminar/{seminar_pkl}/update', [KoordinatorSeminarPKLController::class, 'update_jadwal_seminar']);
     Route::get('/seminar/jadwal_seminar/update_tabel_jadwal', [KoordinatorSeminarPKLController::class, 'update_tabel_jadwal']);
@@ -188,6 +188,7 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         Route::get('/seminar', [SeminarPKLController::class, 'index'])->name('seminar.index');
         Route::post('/seminar/daftar', [SeminarPKLController::class, 'daftarSeminar']);
         Route::post('/seminar/daftar_ulang', [SeminarPKLController::class, 'daftarUlangSeminar']);
+        Route::get('/seminar/jadwal', [SeminarPKLController::class, 'jadwalSeminar']);
 
         Route::get('/laporan', [PKLController::class, 'laporan']);
         Route::post('/laporan/kirim', [PKLController::class, 'kirimLaporan']);
