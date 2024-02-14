@@ -4,13 +4,8 @@
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
-      <div class="col-sm-6">
+      <div class="col">
         <h1 class="m-0">Verifikasi Registrasi PKL Mahasiswa</h1>
-      </div><!-- /.col -->
-      <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
@@ -67,7 +62,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js" integrity="sha512-EC3CQ+2OkM+ZKsM1dbFAB6OGEPKRxi6EDRnZW9ys8LghQRAq6cXPUgXCCujmDrXdodGXX9bqaaCRtwj4h4wgSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/js/ajax-verif-reg.js"></script>
 <script src="/js/datatables-jquery.js"></script>
-<script>
+<script type="text/javascript">
   let tabel = simpleDatatable();
   tabel.order([3, 'asc']).draw();
   var myImage = document.getElementById('myImage');
