@@ -271,47 +271,23 @@ $(document).on("click", ".btn-detail-mhs", function(e){
   $("#data-judul").html(": " + judul_pkl);
   $("#data-dospem").html(": " + dospem);
 
-  if(status != "Baru"){
+  if(status != "Baru" || id_dospem != "-"){
     $(".spinner").removeClass("d-none");
     $(".content-modal").addClass("d-none");
     $.ajax({
-      url: '/mhs/kelola_mhs/'+ nim +'/get_data_pkl',
+      url: '/mhs/kelola_mhs/get_data_pkl_dospem',
       type: 'GET',
+      data: {
+        id_dospem: id_dospem,
+        nim: nim,
+      },
       success: function (response) {
         judul_pkl = response.judul_pkl;
         instansi = response.instansi;
-        $("#data-instansi").html(": " + instansi);
-        $("#data-judul").html(": " + judul_pkl);
-      },
-      error: function (error) {
-        console.error('Error:', error);
-        Swal.fire({
-          title: 'Error!',
-          text: 'Terjadi kesalahan saat mengambil data.',
-          icon: 'error',
-        });
-      },
-      complete: function () {
-        if(id_dospem == "-"){
-          $(".spinner").addClass("d-none");
-          $(".content-modal").removeClass("d-none");
-        }
-      },
-    });
-  }
-
-
-  if(id_dospem != "-"){
-    $(".spinner").removeClass("d-none");
-    $(".content-modal").addClass("d-none");
-    console.log(id_dospem);
-    $.ajax({
-      url: '/mhs/kelola_mhs/'+ id_dospem +'/get_data_dospem',
-      type: 'GET',
-      success: function (response) {
         dospem = response.nama_dospem;
         $("#data-dospem").html(": " + dospem);
-        console.log("success");
+        $("#data-instansi").html(": " + instansi);
+        $("#data-judul").html(": " + judul_pkl);
       },
       error: function (error) {
         console.error('Error:', error);
@@ -326,7 +302,10 @@ $(document).on("click", ".btn-detail-mhs", function(e){
         $(".content-modal").removeClass("d-none");
       },
     });
+
   }
+
+
 });
 
 $(document).on("click", "#btn-import", function(e){

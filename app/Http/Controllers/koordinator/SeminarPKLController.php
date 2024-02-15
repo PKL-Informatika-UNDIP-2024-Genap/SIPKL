@@ -16,7 +16,11 @@ class SeminarPKLController extends Controller
 {
   public function index_verif_pengajuan()
   {
-    $data_pengajuan = SeminarPKL::whereRaw('status = "Pengajuan" AND pesan is NULL')->with(["mahasiswa", "dosen_pembimbing"])->get();
+    $data_pengajuan = SeminarPKL::whereRaw('seminar_pkl.status = "Pengajuan" AND pesan is NULL')
+    ->join('mahasiswa', 'seminar_pkl.nim', '=', 'mahasiswa.nim')
+    ->leftJoin('dosen_pembimbing', 'seminar_pkl.id_dospem', '=', 'dosen_pembimbing.id')
+    ->select('seminar_pkl.*', 'mahasiswa.nama as nama_mhs', 'dosen_pembimbing.nama as nama_dospem')
+    ->get();
 
     return view('koordinator.seminar.verifikasi_pengajuan.index', [
       'data_pengajuan' => $data_pengajuan
@@ -45,7 +49,11 @@ class SeminarPKLController extends Controller
   }
 
   public function update_tabel_pengajuan(){
-    $data_pengajuan = SeminarPKL::whereRaw('status = "Pengajuan" AND pesan is NULL')->with(["mahasiswa", "dosen_pembimbing"])->get();
+    $data_pengajuan = SeminarPKL::whereRaw('seminar_pkl.status = "Pengajuan" AND pesan is NULL')
+    ->join('mahasiswa', 'seminar_pkl.nim', '=', 'mahasiswa.nim')
+    ->leftJoin('dosen_pembimbing', 'seminar_pkl.id_dospem', '=', 'dosen_pembimbing.id')
+    ->select('seminar_pkl.*', 'mahasiswa.nama as nama_mhs', 'dosen_pembimbing.nama as nama_dospem')
+    ->get();
 
     $view = view('koordinator.seminar.verifikasi_pengajuan.update_tabel_pengajuan', [
       'data_pengajuan' => $data_pengajuan
@@ -60,7 +68,11 @@ class SeminarPKLController extends Controller
   // Jadwal Seminar
   public function index_jadwal_seminar()
   {
-    $data_jadwal = SeminarPKL::whereRaw('status = "Tak Terjadwal" OR status = "Terjadwal"')->with(["mahasiswa", "dosen_pembimbing"])->get();
+    $data_jadwal = SeminarPKL::whereRaw('seminar_pkl.status = "Tak Terjadwal" OR seminar_pkl.status = "Terjadwal"')
+    ->join('mahasiswa', 'seminar_pkl.nim', '=', 'mahasiswa.nim')
+    ->leftJoin('dosen_pembimbing', 'seminar_pkl.id_dospem', '=', 'dosen_pembimbing.id')
+    ->select('seminar_pkl.*', 'mahasiswa.nama as nama_mhs', 'dosen_pembimbing.nama as nama_dospem')
+    ->get();
 
     return view('koordinator.seminar.jadwal_seminar.index', [
       'data_jadwal' => $data_jadwal
@@ -89,11 +101,13 @@ class SeminarPKLController extends Controller
   }
 
   public function get_mhs_aktif(){
-    $mhs_aktif = Mahasiswa::where('status', 'Aktif')
-    ->whereNotIn('nim', function($query) {
-        $query->select('nim')->from('seminar_pkl');
+    $mhs_aktif = Mahasiswa::where('mahasiswa.status', 'Aktif')
+    ->whereNotIn('mahasiswa.nim', function($query) {
+        $query->select('seminar_pkl.nim')->from('seminar_pkl');
     })
-    ->with(["pkl", "dosen_pembimbing"])
+    ->leftJoin('dosen_pembimbing', 'mahasiswa.id_dospem', '=', 'dosen_pembimbing.id')
+    ->leftJoin('pkl', 'mahasiswa.nim', '=', 'pkl.nim')
+    ->select('mahasiswa.nim', 'mahasiswa.nama', 'mahasiswa.id_dospem', 'dosen_pembimbing.nama as nama_dospem', 'pkl.judul', 'pkl.instansi')
     ->get();
 
     $view = view('koordinator.seminar.jadwal_seminar.tabel_modal_tambah', [
@@ -119,7 +133,11 @@ class SeminarPKLController extends Controller
   }
 
   public function update_tabel_jadwal(){
-    $data_jadwal = SeminarPKL::whereRaw('status = "Tak Terjadwal" OR status = "Terjadwal"')->with(["mahasiswa", "dosen_pembimbing"])->get();
+    $data_jadwal = SeminarPKL::whereRaw('seminar_pkl.status = "Tak Terjadwal" OR seminar_pkl.status = "Terjadwal"')
+    ->join('mahasiswa', 'seminar_pkl.nim', '=', 'mahasiswa.nim')
+    ->leftJoin('dosen_pembimbing', 'seminar_pkl.id_dospem', '=', 'dosen_pembimbing.id')
+    ->select('seminar_pkl.*', 'mahasiswa.nama as nama_mhs', 'dosen_pembimbing.nama as nama_dospem')
+    ->get();
 
     $view = view('koordinator.seminar.jadwal_seminar.update_tabel_jadwal', [
       'data_jadwal' => $data_jadwal

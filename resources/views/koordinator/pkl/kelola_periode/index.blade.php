@@ -14,17 +14,17 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
+    <div class="row">
+      <div class="col-auto mb-3 d-flex align-items-center">
+        {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
+        <button type="button" id="btn-add" class="btn btn-primary btn-add" data-periode="{{ isset($data_periode[0]) ? $data_periode[0] : '' }}"  
+          data-bs-toggle="modal" data-bs-target="#modal-add-periode">
+          + Tambah Periode PKL
+        </button>
+      </div>
+    </div>
     <div class="card px-3">
       <div class="card-body table-responsive px-0" id="tabel-periode">
-        <div class="row">
-          <div class="col-auto mb-3 d-flex align-items-center">
-            {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
-            <button type="button" id="btn-add" class="btn btn-primary btn-add" data-periode="{{ isset($data_periode[0]) ? $data_periode[0] : '' }}"  
-              data-bs-toggle="modal" data-bs-target="#modal-add-periode">
-              + Tambah Periode PKL
-            </button>
-          </div>
-        </div>
         <table class="table" id="myTable">
           <thead>
               <tr class="table-primary">
@@ -53,9 +53,9 @@
                         @endif
                       </td>
                       <td>
-                          <div class="btn btn-info btn-edit-periode" data-bs-toggle="modal" data-bs-target="#modal-edit-periode" 
+                          <div class="btn btn-sm btn-info btn-edit-periode" data-bs-toggle="modal" data-bs-target="#modal-edit-periode" 
                           data-prev-periode="{{isset($data_periode[$loop->index + 1]) ? $data_periode[$loop->index + 1] : ""}}" data-periode="{{ $periode }}">Edit</div>
-                          <div class="btn btn-danger btn-delete-periode {{ date('Y-m-d') > $periode->tgl_selesai ? 'disabled' : '' }}" data-id-periode="{{ $periode->id_periode }}">
+                          <div class="btn btn-sm btn-danger btn-delete-periode {{ date('Y-m-d') > $periode->tgl_selesai ? 'disabled' : '' }}" data-id-periode="{{ $periode->id_periode }}">
                             Delete
                           </div>
                       </td>

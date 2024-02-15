@@ -200,6 +200,114 @@ class UserSeeder extends Seeder
                 'is_admin' => 0,
                 'status' => 1,
             ],
+            [
+                'username' => '24060120150016',
+                'password' => Hash::make('24060120150016'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150017',
+                'password' => Hash::make('24060120150017'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150018',
+                'password' => Hash::make('24060120150018'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150019',
+                'password' => Hash::make('24060120150019'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150020',
+                'password' => Hash::make('24060120150020'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150021',
+                'password' => Hash::make('24060120150021'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150022',
+                'password' => Hash::make('24060120150022'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150023',
+                'password' => Hash::make('24060120150023'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150024',
+                'password' => Hash::make('24060120150024'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150025',
+                'password' => Hash::make('24060120150025'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150026',
+                'password' => Hash::make('24060120150026'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150027',
+                'password' => Hash::make('24060120150027'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150028',
+                'password' => Hash::make('24060120150028'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150029',
+                'password' => Hash::make('24060120150029'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150030',
+                'password' => Hash::make('24060120150030'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150031',
+                'password' => Hash::make('24060120150031'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150032',
+                'password' => Hash::make('24060120150032'),
+                'is_admin' => 0,
+                'status' => 1,
+            ],
+            [
+                'username' => '24060120150033',
+                'password' => Hash::make('24060120150033'),
+                'is_admin' => 0,
+                'status' => 1,
+            ]
         ];
 
         foreach ($data_user as $user) {

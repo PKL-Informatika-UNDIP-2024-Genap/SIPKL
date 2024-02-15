@@ -202,6 +202,42 @@ class PKLSeeder extends Seeder
                 'instansi' => 'PT. IJK',
                 'judul' => 'Pengembangan Sistem Informasi',
             ],
+            [
+                'nim' => '24060120150016',
+                'status' => 'Praregistrasi',
+                'instansi' => 'PT. LMN',
+                'judul' => 'Pengembangan Sistem Informasi',
+            ],
+            [
+                'nim' => '24060120150017',
+                'status' => 'Praregistrasi',
+                'instansi' => 'PT. OPQ',
+                'judul' => 'Pengembangan Sistem Informasi',
+            ],
+            [
+                'nim' => '24060120150018',
+                'status' => 'Praregistrasi',
+                'instansi' => 'PT. RST',
+                'judul' => 'Pengembangan Sistem Informasi',
+            ],
+            [
+                'nim' => '24060120150019',
+                'status' => 'Praregistrasi',
+                'instansi' => 'PT. UVW',
+                'judul' => 'Pengembangan Sistem Informasi',
+            ],
+            [
+                'nim' => '24060120150020',
+                'status' => 'Praregistrasi',
+                'instansi' => 'PT. XYZ',
+                'judul' => 'Pengembangan Sistem Informasi',
+            ],
+            [
+                'nim' => '24060120150021',
+                'status' => 'Praregistrasi',
+                'instansi' => 'PT. ABC',
+                'judul' => 'Pengembangan Sistem Informasi',
+            ],
         ];
 
         foreach ($pkl as $data) {

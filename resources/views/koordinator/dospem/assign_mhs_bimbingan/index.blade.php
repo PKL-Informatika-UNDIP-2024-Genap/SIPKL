@@ -35,7 +35,7 @@
                     <td>{{ $dospem->nip }}</td>
                     <td>{{ $dospem->jumlah_bimbingan ?? 0 }}</td>
                     <td>
-                        <div class="btn btn-primary btn-assign-mhs" data-nama="{{ $dospem->nama }}" data-nip="{{ $dospem->nip }}" data-id="{{ $dospem->id }}" data-bs-toggle="modal" data-bs-target="#modal_assign_mhs">
+                        <div class="btn btn-sm btn-primary btn-assign-mhs" data-nama="{{ $dospem->nama }}" data-nip="{{ $dospem->nip }}" data-id="{{ $dospem->id }}" data-bs-toggle="modal" data-bs-target="#modal_assign_mhs">
                           Assign Mahasiswa
                         </div>
                     </td>

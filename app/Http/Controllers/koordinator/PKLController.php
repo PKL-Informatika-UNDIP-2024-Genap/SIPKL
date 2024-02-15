@@ -18,7 +18,11 @@ class PKLController extends Controller
   // Verifikasi Registrasi
   public function index_verif_reg()
   {
-    $data_mhs = PKL::whereRaw("pkl.status = 'Registrasi'")->join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')->get();
+    $data_mhs = Mahasiswa::whereRaw("pkl.status = 'Registrasi'")
+    ->join('pkl', 'pkl.nim', '=', 'mahasiswa.nim')
+    ->leftJoin('dosen_pembimbing', 'mahasiswa.id_dospem', '=', 'dosen_pembimbing.id')
+    ->select('mahasiswa.*', 'pkl.*', 'dosen_pembimbing.nama as nama_dospem')
+    ->get();
 
     return view('koordinator.pkl.verifikasi_registrasi.index', [
       'data_mhs' => $data_mhs
@@ -66,7 +70,11 @@ class PKLController extends Controller
   }
 
   public function update_tabel_registrasi(){
-    $data_mhs = PKL::whereRaw("pkl.status = 'Registrasi'")->join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')->get();
+    $data_mhs = Mahasiswa::whereRaw("pkl.status = 'Registrasi'")
+    ->join('pkl', 'pkl.nim', '=', 'mahasiswa.nim')
+    ->leftJoin('dosen_pembimbing', 'mahasiswa.id_dospem', '=', 'dosen_pembimbing.id')
+    ->select('mahasiswa.*', 'pkl.*', 'dosen_pembimbing.nama as nama_dospem')
+    ->get();
 
     $view = view('koordinator.pkl.verifikasi_registrasi.update_tabel_registrasi', [
       'data_mhs' => $data_mhs
@@ -156,7 +164,7 @@ class PKLController extends Controller
       'keyword5' => $pkl->keyword5,
       'link_laporan' => $pkl->link_laporan,
       'tgl_verif_laporan' => $pkl->tgl_verif_laporan,
-      'nilai' => $pkl->nilai,
+      'nilai' => $request->nilai,
       'periode_pkl' => $pkl->mahasiswa->periode_pkl,
     ]);
 

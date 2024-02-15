@@ -88,7 +88,7 @@
                   @elseif($arsip->nilai == "B")
                     <h4><span class="badge bg-primary">B</span></h4>
                   @else
-                    <h4><span class="badge bg-warning">B</span></h4>
+                    <h4><span class="badge bg-warning">C</span></h4>
                   @endif
                 </td>
                 <td class="py-0 align-middle">

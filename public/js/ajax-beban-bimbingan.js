@@ -10,6 +10,8 @@ let tabel_modal;
 let data_dospem;
 
 $(document).on('change', '#periode-pkl', function() {
+  $('#tabel-index').html('<div class="d-flex align-items-center"><div class="spinner-border spinner-border-lg me-2" role="status" aria-hidden="true"></div><div class="fs-5">Mengambil Data ...</div></div>');
+  
   periode_pkl = $(this).val();
 
   $.ajax({
@@ -32,7 +34,7 @@ $(document).on('change', '#periode-pkl', function() {
 });
 
 $(document).on('click', '.btn-detail', function() {
-  
+  $("#tabel-modal").html('<div class="d-flex align-items-center"><div class="spinner-border spinner-border-lg me-2" role="status" aria-hidden="true"></div><div class="fs-5">Mengambil Data Bimbingan...</div></div>')
   data_dospem = $(this).data('dospem');
 
   $("#data-nama").html(data_dospem.nama);

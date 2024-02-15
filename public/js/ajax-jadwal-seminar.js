@@ -14,13 +14,59 @@ const options = {
   day: 'numeric',
 };
 
+function datatable_jadwal(){
+  const table = new DataTable('#myTable', {
+    columnDefs: [
+      {
+        searchable: false,
+        orderable: false,
+        targets: [0,"action"]
+      },
+    ],
+    order: [[3, 'asc'],[4, 'asc']],
+    lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+    pageLength: 10,
+    "initComplete": function(settings, json) {
+      $.fn.dataTable.ext.search.push(
+      function (setting, data, index) {
+        // if (setting.nTable.id !== 'myTable') {
+        //   return true;
+        // }
+        var selectedStatus = $('#status').val();
+        if (selectedStatus == "") {
+          return true;
+        }
+        if (selectedStatus == data[5]) {
+          return true;
+        }
+        return false;
+      })
+    }
+  });
+  $('#myTable_filter input').css('width', '200px');
+  table.on('order.dt search.dt', function () {
+    let i = 1;
+    table
+      .cells(null, 0, { search: 'applied', order: 'applied' })
+      .every(function (cell) {
+          this.data(i++);
+      });
+  }).draw();
+  
+  $('#status').on('change', function() {
+    table.draw();
+  });
+
+  return table;
+}
+
 function update_tabel_jadwal() {
   $.ajax({
     type: 'GET',
     url: '/seminar/jadwal_seminar/update_tabel_jadwal',
     success: function(response) {
       $('#tabel-jadwal').html(response.view);
-      let tabel = simpleDatatable();
+      let tabel = datatable_jadwal();
       tabel.order([[3, 'asc'],[4, 'asc']]).draw();
     },
     error: function(response) {
@@ -30,11 +76,9 @@ function update_tabel_jadwal() {
 }
 
 $(document).on('click', '.btn-detail-jadwal', function() {
-  let data_mhs = JSON.parse($(this).attr('data-mhs'));
   let data_jadwal = JSON.parse($(this).attr('data-jadwal'));
-  let data_dospem = JSON.parse($(this).attr('data-dospem'));
 
-  data_nim = data_mhs.nim;
+  data_nim = data_jadwal.nim;
   data_tgl_seminar = data_jadwal.tgl_seminar;
   data_waktu_seminar = data_jadwal.waktu_seminar;
   data_ruang = data_jadwal.ruang;
@@ -42,9 +86,9 @@ $(document).on('click', '.btn-detail-jadwal', function() {
   let tanggal_seminar = new Date(data_jadwal.tgl_seminar);
   tanggal_seminar = tanggal_seminar.toLocaleDateString('id-ID', options);
 
-  $("#data-nama").html(data_mhs.nama);
-  $("#data-nim").html(data_mhs.nim);
-  $("#data-dospem").html(data_dospem.nama);
+  $("#data-nama").html(data_jadwal.nama_mhs);
+  $("#data-nim").html(data_jadwal.nim);
+  $("#data-dospem").html(data_jadwal.nama_dospem);
   $("#data-tgl-seminar").html(tanggal_seminar);
   $("#data-waktu-seminar").html(data_jadwal.waktu_seminar);
   $("#data-ruang").html(data_jadwal.ruang);
@@ -223,13 +267,13 @@ $(document).on('click', 'td.details-control', function() {
       '<div class="col-md-4">'+
       '<dl>' +
       '<dt>Instansi PKL:</dt>' +
-      '<dd>' + tr.data("pkl").instansi +'</dd>' +
+      '<dd>' + tr.data("mhs").instansi +'</dd>' +
       '</dl>'+
       '</div>'+
       '<div class="col-md-8">'+
       '<dl>' +
       '<dt>Judul PKL:</dt>' +
-      '<dd>' + tr.data("pkl").judul +'</dd>' +
+      '<dd>' + tr.data("mhs").judul +'</dd>' +
       '</dl>'+
       '</div>'+
       '</div>'
@@ -320,6 +364,7 @@ $(document).on('click', '#btn-submit', function() {
         })
         update_tabel_jadwal();
         $('#modal-tambah-jadwal').modal('hide');
+        view = null;
       },
       error: function (response) {
         Swal.fire({
@@ -397,6 +442,7 @@ $(document).on('click', '#btn-submit-import', function(){
       }
 
       update_tabel_jadwal();
+      view = null;
     },
     error: function (response) {
       var errorResponse = $.parseJSON(response.responseText);
@@ -449,6 +495,7 @@ $(document).on('click', '.btn-delete-jadwal', function(){
             timer: 2000
           })
           update_tabel_jadwal();
+          view = null;
         },
         error: function (response) {
           Swal.fire({

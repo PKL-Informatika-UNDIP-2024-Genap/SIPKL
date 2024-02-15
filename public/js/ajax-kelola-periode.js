@@ -356,6 +356,10 @@
             });
           }
           
+        },
+        complete: function (response) {
+          $('#update').prop("disabled", false);
+          $('#update').html('Update');
         }
       });
     } else {

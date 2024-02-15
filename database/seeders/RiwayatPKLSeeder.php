@@ -74,14 +74,6 @@ class RiwayatPKLSeeder extends Seeder
                 'id_dospem' => 2,
                 'nilai' => '',
             ],
-
-            [
-                'nim' => '24060121131012',
-                'periode_pkl' => '2023/2024 Ganjil',
-                'status' => 'Lulus',
-                'id_dospem' => 2,
-                'nilai' => 'A',
-            ],
             [
                 'nim' => '24060121131012',
                 'periode_pkl' => '2022/2023 Genap',

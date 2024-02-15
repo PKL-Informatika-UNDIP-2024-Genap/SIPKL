@@ -85,18 +85,18 @@
                       <td>{{ $mhs->nim }}</td>
                       <td>{{ $mhs->status }}</td>
                       <td>
-                          <div class="btn btn-primary btn-detail-mhs" data-bs-toggle="modal" data-bs-target="#modal_detail_mhs" data-mhs="{{ $mhs }}">
+                          <div class="btn btn-sm btn-primary btn-detail-mhs" data-bs-toggle="modal" data-bs-target="#modal_detail_mhs" data-mhs="{{ $mhs }}">
                             Detail
                           </div>
-                          <div class="btn btn-info btn-edit-mhs" data-bs-toggle="modal" data-bs-target="#modal_edit_mhs" 
+                          <div class="btn btn-sm btn-info btn-edit-mhs" data-bs-toggle="modal" data-bs-target="#modal_edit_mhs" 
                           data-nim="{{ $mhs->nim }}" data-nama="{{ $mhs->nama }}" data-status="{{ $mhs->status }}" >Edit</div>
-                          <div class="btn btn-warning btn-reset-pass" data-nim="{{ $mhs->nim }}">
+                          <div class="btn btn-sm btn-warning btn-reset-pass" data-nim="{{ $mhs->nim }}">
                             Reset Password
                           </div>
-                          <div class="btn btn-danger btn-delete-mhs" data-nim="{{ $mhs->nim }}">
+                          <div class="btn btn-sm btn-danger btn-delete-mhs" data-nim="{{ $mhs->nim }}">
                             Delete
                           </div>
-                          <button class="btn btn-success btn-wa" data-nim="{{ $mhs->nim }}" {{ $mhs->no_wa ? "" : "disabled" }}>
+                          <button class="btn btn-sm btn-success btn-wa" data-nim="{{ $mhs->nim }}" {{ $mhs->no_wa ? "" : "disabled" }}>
                             <a href="//wa.me/{{ $mhs->no_wa }}" target="__blank" style="text-decoration: none; color: white">
                               Hubungi Mhs
                             </a>

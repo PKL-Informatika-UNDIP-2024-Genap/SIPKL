@@ -58,18 +58,16 @@ $(document).on('click', '#reset-status', function() {
 
 $(document).on('click', '.btn-detail-mhs', function() {
   let data_mhs = $(this).data('mhs');
-  let data_nama_dospem = $(this).data('nama-dospem');
-  let data_pkl = $(this).data('pkl');
 
   $("#data-nama").html(data_mhs.nama);
   $("#data-nim").html(data_mhs.nim);
   $("#data-instansi").html(data_mhs.instansi);
   $("#data-judul-pkl").html(data_mhs.judul);
-  $("#data-dospem").html(data_nama_dospem);
-  $("#data-judul-pkl").html(data_pkl.judul);
-  $("#data-instansi").html(data_pkl.instansi);
-  $("#data-no-wa").html(data_pkl.no_wa || "-");
-  $("#data-email").html(data_pkl.email || "-");
+  $("#data-dospem").html(data_mhs.nama_dospem || "-");
+  $("#data-judul-pkl").html(data_mhs.judul || "-");
+  $("#data-instansi").html(data_mhs.instansi || "-");
+  $("#data-no-wa").html(data_mhs.no_wa || "-");
+  $("#data-email").html(data_mhs.email || "-");
 
   if(data_mhs.keyword1 != null){
     let keyword = data_mhs.keyword1 + '; ' + data_mhs.keyword2 + '; ' + data_mhs.keyword3;

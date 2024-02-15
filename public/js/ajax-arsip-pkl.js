@@ -64,29 +64,6 @@ function simpleDatatable() {
 	return table;
 }
 
-$(document).on('change', '#periode-pkl', function() {
-  periode_pkl = $(this).val();
-
-  $.ajax({
-    url: '/arsip_pkl/update_tabel_arsip/',
-    method: 'GET',
-    data: {
-      periode_pkl: periode_pkl,
-      arr_periode: arr_periode
-    },
-    success: function(response) {
-      $('#tabel-arsip').html(response.html);
-      tabel_arsip = simpleDatatable();
-      tabel_arsip.order([[1, 'asc'],[3, 'desc'],[4, 'asc']]).draw();
-    },
-    error: function(response) {
-      console.log(response);
-    }
-
-  });
-  
-});
-
 $(document).on('click', '.btn-detail', function() {
   let data_arsip = JSON.parse($(this).attr('data-arsip'));
   
@@ -95,6 +72,15 @@ $(document).on('click', '.btn-detail', function() {
   $("#data-instansi").html(data_arsip.instansi);
   $("#data-judul-pkl").html(data_arsip.judul);
   $("#data-periode-pkl").html(data_arsip.periode_pkl);
+
+  let nilai = data_arsip.nilai;
+  if(nilai == "A"){
+    $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-success'>A</span></h5>");
+  } else if(nilai == "B"){
+    $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-primary'>B</span></h5>");
+  } else if(nilai == "C"){
+    $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-warning'>C</span></h5>");
+  }
 
   let link = data_arsip.link_laporan;
   if (!link.startsWith('http://') || !link.startsWith('https://') || !link.startsWith('//')) {

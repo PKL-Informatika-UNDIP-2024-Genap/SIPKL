@@ -26,9 +26,9 @@
                 @endif
               </td>
               <td>
-                  <div class="btn btn-info btn-edit-periode" data-bs-toggle="modal" data-bs-target="#modal-edit-periode" 
+                  <div class="btn btn-sm btn-info btn-edit-periode" data-bs-toggle="modal" data-bs-target="#modal-edit-periode" 
                   data-prev-periode="{{isset($data_periode[$loop->index + 1]) ? $data_periode[$loop->index + 1] : ""}}" data-periode="{{ $periode }}">Edit</div>
-                  <div class="btn btn-danger btn-delete-periode {{ date('Y-m-d') > $periode->tgl_selesai ? 'disabled' : '' }}" data-id-periode="{{ $periode->id_periode }}">
+                  <div class="btn btn-sm btn-danger btn-delete-periode {{ date('Y-m-d') > $periode->tgl_selesai ? 'disabled' : '' }}" data-id-periode="{{ $periode->id_periode }}">
                     Delete
                   </div>
               </td>

@@ -105,9 +105,4 @@ class DosenPembimbingController extends Controller
             'view' => $view,
         ]);
     }
-
-    public function bebang_bimbingan()
-    {
-        
-    }
 }

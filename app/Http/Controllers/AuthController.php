@@ -45,6 +45,7 @@ class AuthController extends Controller
             if($periode_aktif != null){
                 $data_mhs = Mahasiswa::selectRaw('status, count(*) as jumlah')
                 ->groupBy('status')
+                ->whereRaw("periode_pkl = '$periode_aktif->id_periode' OR periode_pkl IS NULL")
                 ->get()
                 ->pluck('jumlah', 'status');
 
