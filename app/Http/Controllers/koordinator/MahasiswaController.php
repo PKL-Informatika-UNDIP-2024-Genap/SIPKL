@@ -168,24 +168,20 @@ class MahasiswaController extends Controller
         ]);
     }
 
-    public function get_data_pkl($nim)
+    public function get_data_pkl_dospem(Request $request)
     {
-        $pkl = PKL::where('nim', $nim)->first();
+        $pkl = PKL::where('nim', $request->nim)->first();
+        $dospem = null;
+
+        if($request->id_dospem != "-"){
+            $dospem = DosenPembimbing::where('id', $request->id_dospem)->first();
+        }
 
         return response()->json([
             'status' => 200,
             'judul_pkl' => $pkl->judul ?? "-",
             'instansi' => $pkl->instansi ?? "-",
-        ]);
-    }
-
-    public function get_data_dospem($id_dospem)
-    {
-        $dospem = DosenPembimbing::where('id', $id_dospem)->first();
-
-        return response()->json([
-            'status' => 200,
-            'nama_dospem' => $dospem->nama,
+            'nama_dospem' => $dospem->nama ?? "-",
         ]);
     }
 
@@ -194,8 +190,9 @@ class MahasiswaController extends Controller
         $arr_mhs = Mahasiswa::join('periode_pkl', 'periode_pkl.id_periode', '=', 'mahasiswa.periode_pkl')
         ->where("tgl_selesai", "<", date('Y-m-d'))
         ->where("mahasiswa.status", "=","Aktif")
-        ->select('mahasiswa.*')
-        ->with(['pkl', 'dosen_pembimbing'])
+        ->leftJoin("dosen_pembimbing", "dosen_pembimbing.id", "=", "mahasiswa.id_dospem")
+        ->leftJoin("pkl", "pkl.nim", "=", "mahasiswa.nim")
+        ->select('mahasiswa.*', 'dosen_pembimbing.nama as nama_dospem', 'pkl.judul', 'pkl.instansi', 'pkl.status as status_pkl')
         ->get();
 
         $arr_nim = $arr_mhs->pluck('nim')->toArray();

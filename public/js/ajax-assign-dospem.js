@@ -4,7 +4,7 @@ $(document).ready(function() {
 
   $(document).on('click', '.btn-assign-dospem', function (e) {
     nim_mhs = $(this).data('nim');
-    let id_dospem = $(this).data('id-dospem');
+    let id_dospem = $(this).attr('data-id-dospem');
     
     $("#dosen-pembimbing").find("option").removeAttr('selected');
 
@@ -78,6 +78,7 @@ $(document).ready(function() {
           });
           var targetRow = $("tr[data-nim='" + nim_mhs + "']");
           targetRow.find('.kolom-nama-dospem').html(nama_dospem);
+          targetRow.find('.btn-assign-dospem').attr("data-id-dospem", id_dospem);
         },
         error: function (response) {
           console.error('Error:', response);

@@ -1,6 +1,5 @@
-let data_mhs;
 let data_pengajuan;
-let data_dospem;
+
 const options = {
   weekday: 'long',
   year: 'numeric',
@@ -28,17 +27,15 @@ function update_tabel_pengajuan() {
 }
 
 $(document).on('click', '.btn-detail-pengajuan', function() {
-  data_mhs = JSON.parse($(this).attr('data-mhs'));
   data_pengajuan = JSON.parse($(this).attr('data-pengajuan'));
-  data_dospem = JSON.parse($(this).attr('data-dospem'));
   
   let tanggal_pengajuan = new Date(data_pengajuan.created_at);
   tanggal_pengajuan = tanggal_pengajuan.toLocaleDateString('id-ID', options);
 
-  $("#data-nama").html(data_mhs.nama);
-  $("#data-nim").html(data_mhs.nim);
+  $("#data-nama").html(data_pengajuan.nama_mhs);
+  $("#data-nim").html(data_pengajuan.nim);
   $("#data-tgl-pengajuan").html(tanggal_pengajuan);
-  $("#data-dospem").html(data_dospem.nama);
+  $("#data-dospem").html(data_pengajuan.nama_dospem || "-");
   $("#data-scan-layak-seminar").attr('href', '/preview/' + data_pengajuan.scan_layak_seminar);
   $("#data-scan-peminjaman-ruang").attr('href', '/preview/' + data_pengajuan.scan_peminjaman_ruang);
 });
@@ -56,7 +53,7 @@ $(document).on('click', '.btn-terima', function() {
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax({
-        url: '/seminar/verifikasi_pengajuan/'+ data_mhs.nim +'/terima',
+        url: '/seminar/verifikasi_pengajuan/'+ data_pengajuan.nim +'/terima',
         type: 'POST',
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -65,7 +62,7 @@ $(document).on('click', '.btn-terima', function() {
           $("#modal-detail-pengajuan").modal('hide');
           Swal.fire({
             title: 'Berhasil!',
-            text: 'Berhasil menerima pengajuan seminar PKL mahasiswa dengan nim ' + data_mhs.nim,
+            text: 'Berhasil menerima pengajuan seminar PKL mahasiswa dengan nim ' + data_pengajuan.nim,
             icon: 'success',
           });
           update_tabel_pengajuan();
@@ -105,7 +102,7 @@ $(document).on('click', '.btn-tolak', function() {
       var alasan_menolak = Swal.getInput().value;
 
       $.ajax({
-        url: '/seminar/verifikasi_pengajuan/' + data_mhs.nim + '/tolak',
+        url: '/seminar/verifikasi_pengajuan/' + data_pengajuan.nim + '/tolak',
         type: 'POST',
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -115,7 +112,7 @@ $(document).on('click', '.btn-tolak', function() {
           $("#modal-detail-pengajuan").modal('hide');
           Swal.fire({
             title: 'Berhasil!',
-            text: 'Berhasil menolak pengajuan mahasiswa dengan nim ' + data_mhs.nim,
+            text: 'Berhasil menolak pengajuan mahasiswa dengan nim ' + data_pengajuan.nim,
             icon: 'success',
           });
           update_tabel_pengajuan();

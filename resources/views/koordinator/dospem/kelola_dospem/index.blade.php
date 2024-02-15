@@ -15,17 +15,18 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
+      <div class="col-auto mb-3 d-flex align-items-center">
+        {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
+        <button type="button" id="btn-add" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add">
+          + Tambah Dosen Pembimbing
+        </button>
+      </div>
+    </div>
+    
+    <div class="row">
       <div class="col">
         <div class="card px-3">
           <div class="card-body table-responsive px-0" id="tabel-dospem">
-            <div class="row">
-              <div class="col-auto mb-3 d-flex align-items-center">
-                {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
-                <button type="button" id="btn-add" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add">
-                  + Tambah Dosen Pembimbing
-                </button>
-              </div>
-            </div>
             <table class="table" id="myTable">
               <thead>
                   <tr class="table-primary">
@@ -46,9 +47,9 @@
                           <td>{{ $dos->golongan }}</td>
                           <td>{{ $dos->jabatan }}</td>
                           <td>
-                              <div class="btn btn-primary btn-edit-dospem" data-bs-toggle="modal" data-bs-target="#modal_edit_dospem" 
+                              <div class="btn btn-sm btn-primary btn-edit-dospem" data-bs-toggle="modal" data-bs-target="#modal_edit_dospem" 
                               data-dospem="{{ $dos }}">Edit</div>
-                              <div class="btn btn-danger btn-delete-dospem" data-id="{{ $dos->id }}" data-nip="{{ $dos->nip }}">
+                              <div class="btn btn-sm btn-danger btn-delete-dospem" data-id="{{ $dos->id }}" data-nip="{{ $dos->nip }}">
                                 Delete
                               </div>
                           </td>

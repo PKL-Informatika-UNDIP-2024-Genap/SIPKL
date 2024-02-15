@@ -48,10 +48,10 @@
                   <td>{{ $mhs->nama }}</td>
                   <td>{{ $mhs->nim }}</td>
                   <td>{{ $mhs->status }}</td>
-                  <td>{{ $mhs->dosen_pembimbing ? $mhs->dosen_pembimbing->nama : "-" }}</td>
+                  <td>{{ $mhs->nama_dospem ? $mhs->nama_dospem : "-" }}</td>
                   <td>
                     <div class="btn btn-primary btn-sm btn-detail-mhs" data-bs-toggle="modal" data-bs-target="#modal-detail-mhs" data-mhs="{{ $mhs }}"
-                    data-nama-dospem="{{ $mhs->dosen_pembimbing ? $mhs->dosen_pembimbing->nama : "-" }}" data-pkl="{{ $mhs->pkl }}">
+                    >
                       Detail
                     </div>
                     <button class="btn btn-success btn-sm btn-wa" data-nim="{{ $mhs->nim }}" {{ $mhs->no_wa ? "" : "disabled" }}>

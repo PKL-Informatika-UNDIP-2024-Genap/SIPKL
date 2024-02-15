@@ -39,7 +39,7 @@
                       <td>{{ $mhs->nim }}</td>
                       <td>{{ $mhs->tgl_laporan }}</td>
                       <td>
-                        <div class="btn btn-primary btn-detail-nilai" data-bs-toggle="modal" data-bs-target="#modal-detail-nilai"
+                        <div class="btn btn-sm btn-primary btn-detail-nilai" data-bs-toggle="modal" data-bs-target="#modal-detail-nilai"
                         data-mhs="{{ $mhs }}">Detail</div>
                       </td>
                   </tr>

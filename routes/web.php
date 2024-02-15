@@ -101,8 +101,7 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::put('/mhs/kelola_mhs/update', [MahasiswaController::class, 'update']);
     Route::delete('/mhs/kelola_mhs/{mahasiswa}/delete', [MahasiswaController::class, 'destroy']);
     Route::put('/mhs/kelola_mhs/{nim}/reset_pass', [MahasiswaController::class, 'reset_password']);
-    Route::get('/mhs/kelola_mhs/{nim}/get_data_pkl', [MahasiswaController::class, 'get_data_pkl']);
-    Route::get('/mhs/kelola_mhs/{id_dospem}/get_data_dospem', [MahasiswaController::class, 'get_data_dospem']);
+    Route::get('/mhs/kelola_mhs/get_data_pkl_dospem', [MahasiswaController::class, 'get_data_pkl_dospem']);
 
     Route::get('/mhs/assign_dospem/', [AssignDospemController::class, 'index']);
     Route::post('/mhs/assign_dospem/{nim}/update_dospem', [AssignDospemController::class, 'update_dospem']);

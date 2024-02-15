@@ -38,6 +38,7 @@
       <div class="col">
         <div class="card px-3">
           <div class="card-body px-0" id="tabel-index">
+            
             <table class="table" id="myTable">
               <thead>
                 <tr class="table-primary">
@@ -56,7 +57,7 @@
                     <td>{{ $dospem->nip }}</td>
                     <td>{{ $dospem->jml_bimbingan }}</td>
                     <td>
-                      <div class="btn btn-primary btn-detail" data-dospem="{{ $dospem }}" data-bs-toggle="modal" data-bs-target="#modal-detail">
+                      <div class="btn btn-sm btn-primary btn-detail" data-dospem="{{ $dospem }}" data-bs-toggle="modal" data-bs-target="#modal-detail">
                         Detail
                       </div>
                     </td>

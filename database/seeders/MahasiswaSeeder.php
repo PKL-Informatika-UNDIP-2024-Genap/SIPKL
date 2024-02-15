@@ -106,74 +106,164 @@ class MahasiswaSeeder extends Seeder
                 'periode_pkl' => '2023/2024 Genap',
             ],
             [
-                'nim' => '24060120150001', // NIM Mahasiswa 16
+                'nim' => '24060120150001',
                 'nama' => 'Diana Sari',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
             ],
             [
-                'nim' => '24060120150002', // NIM Mahasiswa 17
+                'nim' => '24060120150002',
                 'nama' => 'Ahmad Fauzi',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
             ],
             [
-                'nim' => '24060120150003', // NIM Mahasiswa 18
+                'nim' => '24060120150003',
                 'nama' => 'Fitriani Hidayati',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
             ],
             [
-                'nim' => '24060120150004', // NIM Mahasiswa 19
+                'nim' => '24060120150004',
                 'nama' => 'Agung Setiawan',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
             ],
             [
-                'nim' => '24060120150005', // NIM Mahasiswa 20
+                'nim' => '24060120150005',
                 'nama' => 'Ratna Dewi',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
             ],
             [
-                'nim' => '24060120150006', // NIM Mahasiswa 21
+                'nim' => '24060120150006',
                 'nama' => 'Hendra Wijaya',
             ],
             [
-                'nim' => '24060120150007', // NIM Mahasiswa 22
+                'nim' => '24060120150007',
                 'nama' => 'Rini Fitria',
             ],
             [
-                'nim' => '24060120150008', // NIM Mahasiswa 23
+                'nim' => '24060120150008',
                 'nama' => 'Arief Prasetyo',
             ],
             [
-                'nim' => '24060120150009', // NIM Mahasiswa 24
+                'nim' => '24060120150009',
                 'nama' => 'Lia Kartika',
             ],
             [
-                'nim' => '24060120150010', // NIM Mahasiswa 25
+                'nim' => '24060120150010',
                 'nama' => 'Firman Nugroho',
             ],
             [
-                'nim' => '24060120150011', // NIM Mahasiswa 26
+                'nim' => '24060120150011',
                 'nama' => 'Eka Widiastuti',
             ],
             [
-                'nim' => '24060120150012', // NIM Mahasiswa 27
+                'nim' => '24060120150012',
                 'nama' => 'Dwi Cahyono',
             ],
             [
-                'nim' => '24060120150013', // NIM Mahasiswa 28
+                'nim' => '24060120150013',
                 'nama' => 'Ratih Susanti',
             ],
             [
-                'nim' => '24060120150014', // NIM Mahasiswa 29
+                'nim' => '24060120150014',
                 'nama' => 'Aditya Saputra',
             ],
             [
-                'nim' => '24060120150015', // NIM Mahasiswa 30
+                'nim' => '24060120150015',
                 'nama' => 'Sri Wahyuni',
+            ],
+            [
+                'nim' => '24060120150016',
+                'nama' => 'Ahmad Ali',
+                'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Ganjil',
+                'id_dospem' => 2,
+            ],
+            [
+                'nim' => '24060120150017',
+                'nama' => 'Budi Cahya',
+                'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Ganjil',
+                'id_dospem' => 2,
+            ],
+            [
+                'nim' => '24060120150018',
+                'nama' => 'Citra Dewi',
+                'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Ganjil',
+                'id_dospem' => 1,
+            ],
+            [
+                'nim' => '24060120150019',
+                'nama' => 'Dewi Anggraeni',
+                'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Ganjil',
+                'id_dospem' => 1,
+            ],
+            [
+                'nim' => '24060120150020',
+                'nama' => 'Eko Budi',
+                'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Ganjil',
+                'id_dospem' => 1,
+            ],
+            [
+                'nim' => '24060120150021',
+                'nama' => 'Fani Lestari',
+                'status' => 'Aktif',
+                'periode_pkl' => '2023/2024 Ganjil',
+                'id_dospem' => 2,
+            ],
+            [
+                'nim' => '24060120150022',
+                'nama' => 'Gunawan Surya',
+            ],
+            [
+                'nim' => '24060120150023',
+                'nama' => 'Hani Fitri',
+            ],
+            [
+                'nim' => '24060120150024',
+                'nama' => 'Indra Pratama',
+            ],
+            [
+                'nim' => '24060120150025',
+                'nama' => 'Joko Santoso',
+            ],
+            [
+                'nim' => '24060120150026',
+                'nama' => 'Kartika Puspita',
+            ],
+            [
+                'nim' => '24060120150027',
+                'nama' => 'Lia Amelia',
+            ],
+            [
+                'nim' => '24060120150028',
+                'nama' => 'Mega Putri',
+            ],
+            [
+                'nim' => '24060120150029',
+                'nama' => 'Nadia Wulandari',
+            ],
+            [
+                'nim' => '24060120150030',
+                'nama' => 'Oscar Efendi',
+            ],
+            [
+                'nim' => '24060120150031',
+                'nama' => 'Putri Safitri',
+            ],
+            [
+                'nim' => '24060120150032',
+                'nama' => 'Rudi Hartono',
+            ],
+            [
+                'nim' => '24060120150033',
+                'nama' => 'Sari Indah',
             ],
         ];
 

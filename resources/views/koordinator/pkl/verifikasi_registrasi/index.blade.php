@@ -34,7 +34,7 @@
                       <td>{{ $mhs->nim }}</td>
                       <td>{{ $mhs->tgl_registrasi }}</td>
                       <td>
-                        <div class="btn btn-primary btn-detail-reg" data-bs-toggle="modal" data-bs-target="#modal-detail-reg"
+                        <div class="btn btn-sm btn-primary btn-detail-reg" data-bs-toggle="modal" data-bs-target="#modal-detail-reg"
                         data-mhs="{{ $mhs }}">Detail</div>
                       </td>
                   </tr>

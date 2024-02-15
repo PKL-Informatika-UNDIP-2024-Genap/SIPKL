@@ -73,6 +73,15 @@ $(document).on('click', '.btn-detail', function() {
   $("#data-judul-pkl").html(data_arsip.judul);
   $("#data-periode-pkl").html(data_arsip.periode_pkl);
 
+  let nilai = data_arsip.nilai;
+  if(nilai == "A"){
+    $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-success'>A</span></h5>");
+  } else if(nilai == "B"){
+    $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-primary'>B</span></h5>");
+  } else if(nilai == "C"){
+    $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-warning'>C</span></h5>");
+  }
+
   let link = data_arsip.link_laporan;
   if (!link.startsWith('http://') || !link.startsWith('https://') || !link.startsWith('//')) {
     link = 'https://' + link;
