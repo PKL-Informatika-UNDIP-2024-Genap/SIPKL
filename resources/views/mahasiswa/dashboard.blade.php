@@ -18,6 +18,8 @@
       border-bottom: none !important;
     }
   </style>
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
 @endpush
 
 @section('container')
@@ -25,13 +27,8 @@
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
+        <div class="col">
           <h1 class="m-0">Dashboard</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Dashboard</li>
-          </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -333,12 +330,171 @@
         <!-- /.col -->
       </div>
       <!-- /.row (main row) -->
+
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="text-center">Pengumuman</h4>
+              <div class="row">
+                <div class="col-auto mb-2 d-flex align-items-center">
+                  {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
+                  <button type="button" id="refreshPengumumanBtn" class="btn btn-primary btn-sm">
+                    Refresh
+                  </button>
+                </div>
+              </div>
+              <div class="table-responsive pt-1" id="tabel-pengumuman">
+                <table class="table" id="myTable">
+                  <thead>
+                      <tr class="table-primary">
+                        <th>No</th>
+                        <th>Tanggal</th>
+                        <th>Deskripsi</th>
+                        <th class="lampiran">Lampiran</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($data_pengumuman as $pengumuman)
+                      <tr>
+                        <td></td>
+                        <td>{{ $pengumuman->updated_at }}</td>
+                        <td>{{ $pengumuman->deskripsi }}</td>
+                        <td class="py-0 align-middle">
+                          <a href="{{ $pengumuman->lampiran }}" class="btn btn-primary btn-sm">Download</a>
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row () -->
+      
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="text-center">Dokumen</h4>
+              <div class="row">
+                <div class="col-auto mb-2 d-flex align-items-center">
+                  {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
+                  <button type="button" id="refreshDokumenBtn" class="btn btn-primary btn-sm">
+                    Refresh
+                  </button>
+                </div>
+              </div>
+              <div class="table-responsive pt-1" id="tabel-dokumen">
+                <table class="table text-center" id="myTable2">
+                  <thead>
+                      <tr class="table-primary">
+                        <th>No</th>
+                        <th>Tanggal</th>
+                        <th>Deskripsi</th>
+                        <th class="lampiran">Lampiran</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($data_dokumen as $dokumen)
+                      <tr>
+                        <td></td>
+                        <td>{{ $dokumen->updated_at }}</td>
+                        <td>{{ $dokumen->deskripsi }}</td>
+                        <td class="py-0 align-middle">
+                          <a href="{{ $dokumen->lampiran }}" class="btn btn-primary btn-sm">Download</a>
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row () -->
+
     </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
 @endsection
 
 @push('scripts')
+  <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+  <script src="/lte/plugins/moment/moment.min.js"></script>
+  <script src="/lte/plugins/moment/locale/id.js"></script>
+  <script type="text/javascript">
+    function dataTableInit(idTable) {
+      const table = new DataTable(idTable, {
+				columnDefs: [
+					{
+						searchable: false,
+						orderable: false,
+						targets: [0,"lampiran"]
+					},
+          {
+            target: 1,
+            render: DataTable.render.datetime( "dddd, D MMM YYYY", "id"),
+          },
+				],
+				order: [[1, 'asc']],
+				lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+				pageLength: 10,
+				// "initComplete": function(settings, json) {
+				// 	$.fn.dataTable.ext.search.push(
+				// 	function (setting, data, index) {
+				// 		if (setting.nTable.id !== 'myTable') {
+				// 			return true;
+				// 		}
+				// 		var selectedStatus = $('#status').val();
+				// 		if (selectedStatus == "") {
+				// 			return true;
+				// 		}
+				// 		if (selectedStatus == data[3]) {
+				// 			return true;
+				// 		}
+				// 		return false;
+				// 	})
+				// }
+			});
+			$(idTable+'_filter input').css('width', '200px');
+			table.on('order.dt search.dt', function () {
+				let i = 1;
+				table
+					.cells(null, 0, { search: 'applied', order: 'applied' })
+					.every(function (cell) {
+							this.data(i++);
+					});
+			}).draw();
+
+			// $('#status').on('change', function() {
+			// 	table.draw();
+			// })
+		
+			// $.fn.dataTableExt.afnFiltering.push(
+			// 	function (setting, data, index) {
+			// 		var selectedStatus = $('#status').val();
+			// 		if (selectedStatus == "") {
+			// 			return true;
+			// 		}
+			// 		if (selectedStatus == data[3]) {
+			// 			return true;
+			// 		}
+			// 		return false;
+			// 	});
+    }
+
+		$(document).ready(function() {
+      dataTableInit('#myTable');
+      dataTableInit('#myTable2');
+		});
+	</script>
+
+
   @if (session()->has('success'))
     <script type="text/javascript">
       const Toast = Swal.mixin({
