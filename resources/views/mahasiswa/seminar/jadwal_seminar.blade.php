@@ -24,18 +24,14 @@
 	<!-- Main content -->
 	<section class="content">
 		<div class="container-fluid">
-			<div class="card px-3">
-				<div class="card-body table-responsive px-0" id="tabel-jadwal">
-					<div class="row">
-						{{-- <div class="col-auto mb-3 d-flex align-items-center gap-1">
-							<strong class="mr-3 text-lightblue">Action:</strong>
-							<div class="btn btn-sm btn-success" id="btn-export-jadwal" data-bs-toggle="modal" data-bs-target="#modal-export-jadwal">
-								<span class="bi bi-download me-1"></span>
-								Export
-							</div>
-						</div> --}}
-						<div class="col-auto mb-2 d-flex align-items-center mx-auto mr-md-0">
-							<strong class="mr-3 text-lightblue">Filter:</strong>
+			<div class="card">
+				<div class="card-body">
+					<div class="row justify-content-center">
+						<div class="col-auto mb-2 d-flex align-items-center">
+							<strong class="m-0 text-lightblue">Filter:</strong>
+						</div>
+						<div class="col-auto mb-2 d-flex align-items-center flex-wrap">
+							{{-- <strong class="mr-3 text-lightblue">Filter:</strong> --}}
 							<label for="status" class="my-0 mr-2 fw-normal">Status/Jenis:</label for="status">
 							<div class="d-inline-block" style="width: 200px">
 								<select name="status" id="status" class="form-control">
@@ -46,44 +42,45 @@
 							</div>
 						</div>
 					</div>
-					<table class="table" id="myTable">
-						<thead>
-								<tr class="table-primary">
-										<th>No</th>
-										<th>Dosen Pembimbing</th>
-										<th>Hari, Tanggal</th>
-										<th>Waktu</th>
-										<th>Ruang</th>
-										<th>Nama</th>
-										<th>NIM</th>
-										<th>Jenis</th>
-										<th class="action">Action</th>
-								</tr>
-						</thead>
-						<tbody>
-								@foreach ($data_jadwal as $jadwal)
-										<tr>
-												<td></td>
-												<td>{{ $jadwal->dosen_pembimbing->nama }}</td>
-												{{-- <td>{{ Carbon\Carbon::parse($jadwal->tgl_seminar)->isoFormat('dddd, D MMMM Y') }}</td> --}}
-												<td>{{ $jadwal->tgl_seminar }}</td>
-												<td>{{ $jadwal->waktu_seminar }}</td>
-												<td>{{ $jadwal->ruang }}</td>
-												<td>{{ $jadwal->mahasiswa->nama }}</td>
-												<td>{{ $jadwal->nim }}</td>
-												<td>{{ $jadwal->status }}</td>
-												<td>
-													<div class="btn btn-primary btn-sm btn-detail-jadwal" data-bs-toggle="modal" data-bs-target="#modal-detail-jadwal"
-													data-mhs="{{ $jadwal->mahasiswa }}" data-jadwal="{{ $jadwal }}" data-dospem="{{ $jadwal->dosen_pembimbing }}"
-													data-tgl-jadwal="{{ $jadwal->created_at }}">Detail</div>
-												</td>
-										</tr>
-								@endforeach
-						</tbody>
-					</table>
+					<div id="tabel-jadwal" class="table-responsive pt-1">
+						<table class="table" id="myTable">
+							<thead>
+									<tr class="table-primary">
+											<th>No</th>
+											<th>Dosen Pembimbing</th>
+											<th>Hari, Tanggal</th>
+											<th>Waktu</th>
+											<th>Ruang</th>
+											<th>Nama</th>
+											<th>NIM</th>
+											<th>Jenis</th>
+											<th class="action">Action</th>
+									</tr>
+							</thead>
+							<tbody>
+									@foreach ($data_jadwal as $jadwal)
+											<tr>
+													<td></td>
+													<td>{{ $jadwal->dosen_pembimbing->nama }}</td>
+													{{-- <td>{{ Carbon\Carbon::parse($jadwal->tgl_seminar)->isoFormat('dddd, D MMMM Y') }}</td> --}}
+													<td>{{ $jadwal->tgl_seminar }}</td>
+													<td>{{ $jadwal->waktu_seminar }}</td>
+													<td>{{ $jadwal->ruang }}</td>
+													<td>{{ $jadwal->mahasiswa->nama }}</td>
+													<td>{{ $jadwal->nim }}</td>
+													<td>{{ $jadwal->status }}</td>
+													<td>
+														<div class="btn btn-primary btn-sm btn-detail-jadwal" data-bs-toggle="modal" data-bs-target="#modal-detail-jadwal"
+														data-mhs="{{ $jadwal->mahasiswa }}" data-jadwal="{{ $jadwal }}" data-dospem="{{ $jadwal->dosen_pembimbing }}"
+														data-tgl-jadwal="{{ $jadwal->created_at }}">Detail</div>
+													</td>
+											</tr>
+									@endforeach
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
-
 			
 			<!-- /.row (main row) -->
 		</div><!-- /.container-fluid -->
@@ -107,6 +104,8 @@
 
 	<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+	<script src="/lte/plugins/moment/moment.min.js"></script>
+  <script src="/lte/plugins/moment/locale/id.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       const table = new DataTable('#myTable', {
@@ -116,6 +115,10 @@
             orderable: false,
             targets: [0,"action"]
           },
+					{
+            target: 2,
+            render: DataTable.render.datetime( "dddd, D MMMM YYYY", "id"),
+					},
         ],
         order: [[2, 'asc'],[3, 'asc']],
         lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],

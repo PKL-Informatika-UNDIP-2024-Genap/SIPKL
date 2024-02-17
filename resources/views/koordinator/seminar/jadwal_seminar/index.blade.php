@@ -34,9 +34,8 @@
 <section class="content">
   <div class="container-fluid">
 
-    <div class="card px-3">
-      <div class="card-body px-0">
-
+    <div class="card">
+      <div class="card-body">
         <div class="row">
           <div class="col-auto mb-3 d-flex align-items-center gap-1">
             <div class="btn btn-sm btn-primary" id="btn-tambah-jadwal" data-bs-toggle="modal" data-bs-target="#modal-tambah-jadwal">
@@ -52,6 +51,7 @@
             </div>
           </div>
           <div class="col-auto mb-2 d-flex align-items-center mx-auto mr-md-0">
+            <strong class="mr-3 text-lightblue">Filter:</strong>
             <label for="status" class="my-0 mr-2 fw-normal">Status/Jenis:</label for="status">
             <div class="d-inline-block" style="width: 200px">
               <select name="status" id="status" class="form-control">
@@ -62,16 +62,17 @@
             </div>
           </div>
         </div>
-
-        <div id="tabel-jadwal" class="table-responsive">
+        <div id="tabel-jadwal" class="table-responsive pt-1">
           <table class="table" id="myTable">
             <thead>
                 <tr class="table-primary">
                     <th>No</th>
+                    <th>Dosen Pembimbing</th>
+                    <th class="hari_tanggal">Hari, Tanggal</th>
+                    <th>Waktu</th>
+                    <th>Ruang</th>
                     <th>Nama</th>
                     <th>NIM</th>
-                    <th>Tanggal Seminar</th>
-                    <th>Waktu</th>
                     <th>Jenis</th>
                     <th class="action">Action</th>
                 </tr>
@@ -80,20 +81,17 @@
                 @foreach ($data_jadwal as $jadwal)
                     <tr>
                         <td></td>
-                        <td>{{ $jadwal->nama_mhs }}</td>
-                        <td>{{ $jadwal->nim }}</td>
-                        {{-- <td>{{ Carbon\Carbon::parse($jadwal->tgl_seminar)->isoFormat('dddd, D MMMM Y') }}</td> --}}
+                        <td>{{ $jadwal->dosen_pembimbing->nama }}</td>
                         <td>{{ $jadwal->tgl_seminar }}</td>
                         <td>{{ $jadwal->waktu_seminar }}</td>
+                        <td>{{ $jadwal->ruang }}</td>
+                        <td>{{ $jadwal->mahasiswa->nama }}</td>
+                        <td>{{ $jadwal->nim }}</td>
                         <td>{{ $jadwal->status }}</td>
                         <td>
                           <div class="btn btn-primary btn-sm btn-detail-jadwal" data-bs-toggle="modal" data-bs-target="#modal-detail-jadwal"
-                          data-jadwal="{{ $jadwal }}"
+                          data-mhs="{{ $jadwal->mahasiswa }}" data-jadwal="{{ $jadwal }}" data-dospem="{{ $jadwal->dosen_pembimbing }}"
                           data-tgl-jadwal="{{ $jadwal->created_at }}">Detail</div>
-  
-                          <div class="btn btn-sm btn-danger btn-sm btn-delete-jadwal" data-nim="{{ $jadwal->nim }}">
-                            Delete
-                          </div>
                         </td>
                     </tr>
                 @endforeach
@@ -103,8 +101,6 @@
       </div>
     </div>
 
-    
-    <!-- /.row (main row) -->
   </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
@@ -132,11 +128,17 @@
   <script src="/js/ajax-jadwal-seminar.js"></script>
   <script src="/js/datatables-jquery.js"></script>
 
+  <script src="/lte/plugins/moment/moment.min.js"></script>
+  <script src="/lte/plugins/moment/locale/id.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      let tabel = datatableWithCustomFilter("#status", 5);
+    });
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-type@1/dist/filepond-plugin-file-validate-type.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.js"></script>
   <script type="text/javascript">
-    let tabel = datatableWithCustomFilter("#status", 5);
-
     // Register the plugin
     FilePond.registerPlugin(
       FilePondPluginFileValidateType,

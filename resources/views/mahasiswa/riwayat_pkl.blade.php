@@ -22,32 +22,34 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <div class="card px-3">
-            <div class="card-body table-responsive px-0">
-              <table class="table" id="myTable">
-                <thead>
-                    <tr class="table-primary">
-                        <th>No</th>
-                        <th>Periode</th>
-                        <th>Status</th>
-                        <th>Dosen Pembimbing</th>
-                        <th>NIP Dosen Pembimbing</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  @if ($data_riwayat_pkl)
-                    @foreach ($data_riwayat_pkl as $index => $riwayat_pkl)
-                        <tr>
-                            <td>{{ $index+1 }}</td>
-                            <td>{{ $riwayat_pkl->periode }}</td>
-                            <td>{{ $riwayat_pkl->status }}</td>
-                            <td>{{ $riwayat_pkl->nama_dospem }}</td>
-                            <td>{{ $riwayat_pkl->nip_dospem }}</td>
-                        </tr>
-                    @endforeach
-                  @endif
-                </tbody>
-              </table>
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive pt-1">
+                <table class="table" id="myTable">
+                  <thead>
+                      <tr class="table-primary">
+                          <th>No</th>
+                          <th>Periode</th>
+                          <th>Status</th>
+                          <th>Dosen Pembimbing</th>
+                          <th>NIP Dosen Pembimbing</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    @if ($data_riwayat_pkl)
+                      @foreach ($data_riwayat_pkl as $index => $riwayat_pkl)
+                          <tr>
+                              <td>{{ $index+1 }}</td>
+                              <td>{{ $riwayat_pkl->periode }}</td>
+                              <td>{{ $riwayat_pkl->status }}</td>
+                              <td>{{ $riwayat_pkl->nama_dospem }}</td>
+                              <td>{{ $riwayat_pkl->nip_dospem }}</td>
+                          </tr>
+                      @endforeach
+                    @endif
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
