@@ -20,55 +20,61 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <div class="card px-3">
-      <div class="card-body table-responsive px-0" id="tabel-mhs">
-				<div class="row justify-content-center">
-					{{-- <div class="col-auto mb-2 d-flex align-items-center">
-						<strong class="m-0">Filter:</strong>
-					</div> --}}
-					<div class="col-auto mb-2 d-flex align-items-center">
-						<strong class="mr-3 text-lightblue">Filter:</strong>
-						<label for="status" class="my-0 mr-2 fw-normal">Status:</label for="status">
-						<div class="d-inline-block" style="width: 200px">
-							<select name="status" id="status" class="form-control">
-								<option value="" selected>Semua</option>
-								<option value="Baru">Baru (Belum Pra-Reg)</option>
-								<option value="Nonaktif">Nonaktif</option>
-								<option value="Aktif">Aktif</option>
-								<option value="Lulus">Lulus</option>
-							</select>
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<div class="card-body">
+						<div class="row justify-content-center">
+							<div class="col-auto mb-2 d-flex align-items-center">
+								<strong class="m-0 text-lightblue">Filter:</strong>
+							</div>
+							<div class="col-auto mb-2 d-flex align-items-center flex-wrap">
+								{{-- <strong class="mr-3 text-lightblue">Filter:</strong> --}}
+								<label for="status" class="my-0 mr-2 fw-normal">Status:</label for="status">
+								<div class="d-inline-block" style="width: 200px">
+									<select name="status" id="status" class="form-control">
+										<option value="" selected>Semua</option>
+										<option value="Baru">Baru (Belum Pra-Reg)</option>
+										<option value="Nonaktif">Nonaktif</option>
+										<option value="Aktif">Aktif</option>
+										<option value="Lulus">Lulus</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div id="tabel-mhs" class="table-responsive pt-1">
+							<table class="table" id="myTable">
+								<thead>
+										<tr class="table-primary">
+												<th>No</th>
+												<th>Nama</th>
+												<th>NIM</th>
+												<th>Status</th>
+												<th class="action">Action</th>
+										</tr>
+								</thead>
+								<tbody>
+										@foreach ($arr_mhs as $mhs)
+												<tr>
+														<td></td>
+														<td>{{ $mhs->nama }}</td>
+														<td>{{ $mhs->nim }}</td>
+														<td>{{ $mhs->status }}</td>
+														<td class="py-0 align-middle">
+																<div class="btn btn-sm btn-primary detailRiwayatBtn" data-bs-toggle="modal" data-bs-target="#modal_detail_mhs" data-mhs="{{ $mhs }}">
+																	Detail
+																</div>
+														
+														</td>
+												</tr>
+										@endforeach
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
-        <table class="table" id="myTable">
-          <thead>
-              <tr class="table-primary">
-                  <th>No</th>
-                  <th>Nama</th>
-                  <th>NIM</th>
-                  <th>Status</th>
-                  <th class="action">Action</th>
-              </tr>
-          </thead>
-          <tbody>
-              @foreach ($arr_mhs as $mhs)
-                  <tr>
-                      <td></td>
-                      <td>{{ $mhs->nama }}</td>
-                      <td>{{ $mhs->nim }}</td>
-                      <td>{{ $mhs->status }}</td>
-                      <td class="py-0 align-middle">
-                          <div class="btn btn-primary detailRiwayatBtn" data-bs-toggle="modal" data-bs-target="#modal_detail_mhs" data-mhs="{{ $mhs }}">
-                            Detail
-                          </div>
-                       
-                      </td>
-                  </tr>
-              @endforeach
-          </tbody>
-        </table>
-      </div>
-    </div>
+			</div>
+		</div>
     <!-- /.row (main row) -->
 
   </div><!-- /.container-fluid --> 

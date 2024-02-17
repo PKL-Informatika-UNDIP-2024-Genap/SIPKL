@@ -6,6 +6,14 @@ function simpleDatatable() {
 						orderable: false,
 						targets: [0,"action","lampiran"]
 				},
+				{
+						targets: ['hari_tanggal'],
+						render: DataTable.render.datetime( "dddd, D MMMM YYYY", "id"),
+				},
+				{
+						targets: ['tanggal'],
+						render: DataTable.render.datetime( "D MMMM YYYY", "id"),
+				},
 		],
 		order: [[1, 'asc']],
 		lengthMenu: [5, 10, 25, 50],
@@ -76,6 +84,10 @@ function datatableWithCustomFilter(id_filter, column_index) {
         orderable: false,
         targets: [0, "action"]
       },
+			{
+				targets: ['hari_tanggal'],
+				render: DataTable.render.datetime( "dddd, D MMMM YYYY", "id"),
+			},
     ],
     order: [[1, 'asc']],
     lengthMenu: [5, 10, 25, 50],

@@ -16,46 +16,48 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <div class="card px-3">
-          <div class="card-body table-responsive px-0" id="tabel-pengumuman">
+        <div class="card">
+          <div class="card-body">
             <div class="row">
-              <div class="col-auto mb-3 d-flex align-items-center">
+              <div class="col-auto mb-2 d-flex align-items-center">
                 {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
-                <button type="button" id="btn-add" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add">
+                <button type="button" id="btn-add" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add">
                   + Tambah Pengumuman
                 </button>
               </div>
             </div>
-            <table class="table" id="myTable">
-              <thead>
-                  <tr class="table-primary">
-                      <th>No</th>
-                      <th>Tanggal</th>
-                      <th>Deskripsi</th>
-                      <th class="lampiran">Lampiran</th>
-                      <th class="action">Action</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  @foreach ($arr_pengumuman as $pengumuman)
-                      <tr>
-                          <td></td>
-                          <td>{{ date('d M Y', strtotime($pengumuman->updated_at)) }}</td>
-                          <td>{{ $pengumuman->deskripsi }}</td>
-                          <td>
-                            <a href="{{ $pengumuman->lampiran }}" class="btn btn-primary">Download</a>
-                          </td>
-                          <td>
-                              <div class="btn btn-primary btn-edit-pengumuman" data-bs-toggle="modal" data-bs-target="#modal_edit_pengumuman" 
-                              data-id="{{ $pengumuman->id }}" data-deskripsi="{{ $pengumuman->deskripsi }}" data-lampiran="lampiran">Edit</div>
-                              <div class="btn btn-danger btn-delete-pengumuman" data-id="{{ $pengumuman->id }}" data-deskripsi="{{ $pengumuman->deskripsi }}">
-                                Delete
-                              </div>
-                          </td>
-                      </tr>
-                  @endforeach
-              </tbody>
-            </table>
+            <div id="tabel-pengumuman" class="table-responsive pt-1">
+              <table class="table" id="myTable">
+                <thead>
+                    <tr class="table-primary">
+                        <th>No</th>
+                        <th class="hari_tanggal">Tanggal</th>
+                        <th>Deskripsi</th>
+                        <th class="lampiran">Lampiran</th>
+                        <th class="action">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($arr_pengumuman as $pengumuman)
+                        <tr>
+                            <td></td>
+                            <td>{{ $pengumuman->updated_at }}</td>
+                            <td>{{ $pengumuman->deskripsi }}</td>
+                            <td class="py-0 align-middle">
+                              <a href="{{ $pengumuman->lampiran }}" class="btn btn-sm btn-primary">Download</a>
+                            </td>
+                            <td class="py-0 align-middle">
+                                <div class="btn btn-sm btn-primary btn-edit-pengumuman" data-bs-toggle="modal" data-bs-target="#modal_edit_pengumuman" 
+                                data-id="{{ $pengumuman->id }}" data-deskripsi="{{ $pengumuman->deskripsi }}" data-lampiran="lampiran">Edit</div>
+                                <div class="btn btn-sm btn-danger btn-delete-pengumuman" data-id="{{ $pengumuman->id }}" data-deskripsi="{{ $pengumuman->deskripsi }}">
+                                  Delete
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -76,9 +78,11 @@
 @endsection
 
 @push('scripts')
-<script src="/js/datatables-jquery.js"></script>
-<script>
-  simpleDatatable();
-</script>
-<script src="/js/ajax-pengumuman.js"></script>
+  <script src="/lte/plugins/moment/moment.min.js"></script>
+  <script src="/lte/plugins/moment/locale/id.js"></script>
+  <script src="/js/datatables-jquery.js"></script>
+  <script>
+    simpleDatatable();
+  </script>
+  <script src="/js/ajax-pengumuman.js"></script>
 @endpush

@@ -19,73 +19,72 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-
-    <div class="card px-3">
-      <div class="card-body px-0">
-
-        <div class="row">
-          <div class="col-auto mb-3 d-flex align-items-center gap-1">
-            <button type="button" id="btn-export" class="btn btn-success">
-              <span class="bi bi-upload me-1"></span>
-              Export Nilai
-            </button>
-          </div>
-    
-          <div class="col-auto mb-2 d-flex align-items-center mx-auto mr-md-0">
-            <label for="periode-pkl" class="my-0 mr-2 fw-normal">Periode PKL:</label>
-            <div class="d-inline-block" style="width: 200px">
-              <select name="periode-pkl" id="periode-pkl" class="form-control">
-                <option value="" selected>Semua Periode</option>
-                @foreach ($arr_periode as $periode)
-                  <option value="{{ $periode }}">{{ $periode }}</option>
-                @endforeach
-              </select>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-auto mb-2 d-flex align-items-center gap-1">
+                <button type="button" id="btn-export" class="btn btn-sm btn-success">
+                  <span class="bi bi-upload me-1"></span>
+                  Export Nilai
+                </button>
+              </div>
+              <div class="col-auto mb-2 d-flex align-items-center mx-auto mr-md-0">
+                <label for="periode-pkl" class="my-0 mr-2 fw-normal">Periode PKL:</label>
+                <div class="d-inline-block" style="width: 200px">
+                  <select name="periode-pkl" id="periode-pkl" class="form-control">
+                    <option value="" selected>Semua Periode</option>
+                    @foreach ($arr_periode as $periode)
+                      <option value="{{ $periode }}">{{ $periode }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div id="tabel-arsip" class="table-responsive pt-1">
+              <div data-arsip="{{ $arr_arsip }}" id="data-arsip"></div>
+              <table class="table" id="myTable">
+                <thead>
+                  <tr class="table-primary">
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>NIM</th>
+                    <th>Periode PKL</th>
+                    <th>Nilai</th>
+                    <th class="action">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($arr_arsip as $arsip)
+                    <tr>
+                      <td></td>
+                      <td>{{ $arsip->nama }}</td>
+                      <td>{{ $arsip->nim }}</td>
+                      <td>{{ $arsip->periode_pkl }}</td>
+                      <td>
+                        @if ($arsip->nilai == "A")
+                          <h4><span class="badge bg-success">A</span></h4>
+                        @elseif($arsip->nilai == "B")
+                          <h4><span class="badge bg-primary">B</span></h4>
+                        @else
+                          <h4><span class="badge bg-warning">C</span></h4>
+                        @endif
+                      </td>
+                      <td class="py-0 align-middle">
+                        <div class="btn btn-primary btn-detail btn-sm" data-bs-toggle="modal" data-bs-target="#modal-detail" data-arsip="{{ $arsip }}">
+                          Detail
+                        </div>
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-
-        <div id="tabel-arsip" class="table-responsive">
-          <div data-arsip="{{ $arr_arsip }}" id="data-arsip"></div>
-          <table class="table" id="myTable">
-            <thead>
-              <tr class="table-primary">
-                <th>No</th>
-                <th>Nama</th>
-                <th>NIM</th>
-                <th>Periode PKL</th>
-                <th>Nilai</th>
-                <th class="action">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($arr_arsip as $arsip)
-                <tr>
-                  <td></td>
-                  <td>{{ $arsip->nama }}</td>
-                  <td>{{ $arsip->nim }}</td>
-                  <td>{{ $arsip->periode_pkl }}</td>
-                  <td>
-                    @if ($arsip->nilai == "A")
-                      <h4><span class="badge bg-success">A</span></h4>
-                    @elseif($arsip->nilai == "B")
-                      <h4><span class="badge bg-primary">B</span></h4>
-                    @else
-                      <h4><span class="badge bg-warning">C</span></h4>
-                    @endif
-                  </td>
-                  <td class="py-0 align-middle">
-                    <div class="btn btn-primary btn-detail btn-sm" data-bs-toggle="modal" data-bs-target="#modal-detail" data-arsip="{{ $arsip }}">
-                      Detail
-                    </div>
-                  </td>
-                </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
       </div>
     </div>
-
     <!-- /.row (main row) -->
   </div><!-- /.container-fluid -->
 </section>
