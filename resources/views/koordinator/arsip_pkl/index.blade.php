@@ -115,9 +115,6 @@
 <script>
   let tabel = datatableWithCustomFilter("#periode-pkl", 3);
   tabel.order([[1, 'asc'],[3, 'desc'],[4, 'asc']]).draw();
-  $('#periode-pkl').on('change', function () {
-    tabel.draw();
-  });
   
   $('#btn-export').on('click', function () {
     tabel.button(0).trigger();

@@ -114,8 +114,5 @@
 <script src="/js/datatables-jquery.js"></script>
 <script>
   let tabel = datatableWithCustomFilter("#status", 3);
-    $('#status').on('change', function () {
-      tabel.draw();
-    });
 </script>
 @endpush
