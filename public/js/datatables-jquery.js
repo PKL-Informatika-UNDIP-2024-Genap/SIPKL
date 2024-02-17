@@ -110,6 +110,9 @@ function datatableWithCustomFilter(id_filter, column_index) {
     }
   });
 
+	$(id_filter).on('change', function () {
+		table.draw();
+	});
 
   $('#myTable_filter input').css('width', '200px');
   table.on('order.dt search.dt', function () {

@@ -4,7 +4,7 @@ function update_tabel_mhs() {
     url: '/mhs/lelola_mhs/update_tabel_mhs',
     success: function(response) {
       $('#tabel-mhs').html(response.view);
-      simpleDatatable();
+      datatableWithCustomFilter("#status", 3);
     },
     error: function(response) {
       console.log('Error:', response);

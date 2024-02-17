@@ -136,9 +136,6 @@
   <script src="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.js"></script>
   <script type="text/javascript">
     let tabel = datatableWithCustomFilter("#status", 5);
-    $('#status').on('change', function () {
-      tabel.draw();
-    });
 
     // Register the plugin
     FilePond.registerPlugin(
