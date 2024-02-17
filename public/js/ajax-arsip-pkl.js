@@ -8,62 +8,6 @@ var arr_periode = $('#periode-pkl').find('option').map(function() {
 
 let tabel_arsip;
 
-function simpleDatatable() {
-	const table = new DataTable('#myTable', {
-    columnDefs: [
-      {
-        searchable: false,
-        orderable: false,
-        targets: [0, "action"]
-      },
-    ],
-    order: [[1, 'asc']],
-    lengthMenu: [5, 10, 25, 50],
-    pageLength: 10,
-    buttons: [
-      {
-        extend: 'excelHtml5',
-        text: 'Export to Excel',
-        filename: 'export_nilai',
-        exportOptions: {
-          columns: ':visible', // Ini akan mengekspor semua kolom yang terlihat
-          columns: ':not(:last-child)' // Ini akan mengekspor semua kolom kecuali kolom terakhir
-        }
-      }
-    ],
-    "initComplete": function (settings, json) {
-      $.fn.dataTable.ext.search.push(
-        function (settings, data, index) {
-          if (settings.nTable.id !== 'myTable') {
-            return true;
-          }
-          var selectedPeriode = $('#periode-pkl').val();
-          if (selectedPeriode == "") {
-            return true;
-          }
-          if (selectedPeriode == data[3]) {
-            return true;
-          }
-          return false;
-        }
-      )
-    }
-  });
-
-
-  $('#myTable_filter input').css('width', '210px');
-  table.on('order.dt search.dt', function () {
-    let i = 1;
-    table
-      .cells(null, 0, { search: 'applied', order: 'applied' })
-      .every(function (cell) {
-        this.data(i++);
-      });
-  }).draw();
-
-	return table;
-}
-
 $(document).on('click', '.btn-detail', function() {
   let data_arsip = JSON.parse($(this).attr('data-arsip'));
   

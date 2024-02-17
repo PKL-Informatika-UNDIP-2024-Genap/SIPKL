@@ -33,71 +33,73 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-auto mb-3 d-flex align-items-center gap-1">
-        {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
-        <div class="btn btn-sm btn-primary" id="btn-tambah-jadwal" data-bs-toggle="modal" data-bs-target="#modal-tambah-jadwal">
-          + Tambah
-        </div>
-        <div class="btn btn-sm btn-info" id="btn-import-jadwal" data-bs-toggle="modal" data-bs-target="#modal-import-jadwal">
-          <span class="bi bi-upload me-1"></span>
-          Import
-        </div>
-        <div class="btn btn-sm btn-success" id="btn-export-jadwal" data-bs-toggle="modal" data-bs-target="#modal-export-jadwal">
-          <span class="bi bi-download me-1"></span>
-          Export
-        </div>
-      </div>
-      <div class="col-auto mb-2 d-flex align-items-center mx-auto mr-md-0">
-        <strong class="mr-3 text-lightblue">Filter:</strong>
-        <label for="status" class="my-0 mr-2 fw-normal">Status/Jenis:</label for="status">
-        <div class="d-inline-block" style="width: 200px">
-          <select name="status" id="status" class="form-control">
-            <option value="" selected>Semua</option>
-            <option value="Terjadwal">Terjadwal</option>
-            <option value="Tak Terjadwal">Tak Terjadwal</option>
-          </select>
-        </div>
-      </div>
-    </div>
 
     <div class="card px-3">
-      <div class="card-body table-responsive px-0" id="tabel-jadwal">
-        <table class="table" id="myTable">
-          <thead>
-              <tr class="table-primary">
-                  <th>No</th>
-                  <th>Nama</th>
-                  <th>NIM</th>
-                  <th>Tanggal Seminar</th>
-                  <th>Waktu</th>
-                  <th>Jenis</th>
-                  <th class="action">Action</th>
-              </tr>
-          </thead>
-          <tbody>
-              @foreach ($data_jadwal as $jadwal)
-                  <tr>
-                      <td></td>
-                      <td>{{ $jadwal->nama_mhs }}</td>
-                      <td>{{ $jadwal->nim }}</td>
-                      {{-- <td>{{ Carbon\Carbon::parse($jadwal->tgl_seminar)->isoFormat('dddd, D MMMM Y') }}</td> --}}
-                      <td>{{ $jadwal->tgl_seminar }}</td>
-                      <td>{{ $jadwal->waktu_seminar }}</td>
-                      <td>{{ $jadwal->status }}</td>
-                      <td>
-                        <div class="btn btn-primary btn-sm btn-detail-jadwal" data-bs-toggle="modal" data-bs-target="#modal-detail-jadwal"
-                        data-jadwal="{{ $jadwal }}"
-                        data-tgl-jadwal="{{ $jadwal->created_at }}">Detail</div>
+      <div class="card-body px-0">
 
-                        <div class="btn btn-sm btn-danger btn-sm btn-delete-jadwal" data-nim="{{ $jadwal->nim }}">
-                          Delete
-                        </div>
-                      </td>
-                  </tr>
-              @endforeach
-          </tbody>
-        </table>
+        <div class="row">
+          <div class="col-auto mb-3 d-flex align-items-center gap-1">
+            <div class="btn btn-sm btn-primary" id="btn-tambah-jadwal" data-bs-toggle="modal" data-bs-target="#modal-tambah-jadwal">
+              + Tambah
+            </div>
+            <div class="btn btn-sm btn-info" id="btn-import-jadwal" data-bs-toggle="modal" data-bs-target="#modal-import-jadwal">
+              <span class="bi bi-upload me-1"></span>
+              Import
+            </div>
+            <div class="btn btn-sm btn-success" id="btn-export-jadwal" data-bs-toggle="modal" data-bs-target="#modal-export-jadwal">
+              <span class="bi bi-download me-1"></span>
+              Export
+            </div>
+          </div>
+          <div class="col-auto mb-2 d-flex align-items-center mx-auto mr-md-0">
+            <label for="status" class="my-0 mr-2 fw-normal">Status/Jenis:</label for="status">
+            <div class="d-inline-block" style="width: 200px">
+              <select name="status" id="status" class="form-control">
+                <option value="" selected>Semua</option>
+                <option value="Terjadwal">Terjadwal</option>
+                <option value="Tak Terjadwal">Tak Terjadwal</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="tabel-jadwal" class="table-responsive">
+          <table class="table" id="myTable">
+            <thead>
+                <tr class="table-primary">
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>NIM</th>
+                    <th>Tanggal Seminar</th>
+                    <th>Waktu</th>
+                    <th>Jenis</th>
+                    <th class="action">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($data_jadwal as $jadwal)
+                    <tr>
+                        <td></td>
+                        <td>{{ $jadwal->nama_mhs }}</td>
+                        <td>{{ $jadwal->nim }}</td>
+                        {{-- <td>{{ Carbon\Carbon::parse($jadwal->tgl_seminar)->isoFormat('dddd, D MMMM Y') }}</td> --}}
+                        <td>{{ $jadwal->tgl_seminar }}</td>
+                        <td>{{ $jadwal->waktu_seminar }}</td>
+                        <td>{{ $jadwal->status }}</td>
+                        <td>
+                          <div class="btn btn-primary btn-sm btn-detail-jadwal" data-bs-toggle="modal" data-bs-target="#modal-detail-jadwal"
+                          data-jadwal="{{ $jadwal }}"
+                          data-tgl-jadwal="{{ $jadwal->created_at }}">Detail</div>
+  
+                          <div class="btn btn-sm btn-danger btn-sm btn-delete-jadwal" data-nim="{{ $jadwal->nim }}">
+                            Delete
+                          </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -128,16 +130,15 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js" integrity="sha512-EC3CQ+2OkM+ZKsM1dbFAB6OGEPKRxi6EDRnZW9ys8LghQRAq6cXPUgXCCujmDrXdodGXX9bqaaCRtwj4h4wgSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/js/ajax-jadwal-seminar.js"></script>
-
-  <script type="text/javascript">
-    
-  </script>
   <script src="/js/datatables-jquery.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-type@1/dist/filepond-plugin-file-validate-type.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.js"></script>
   <script type="text/javascript">
-    let tabel = datatable_jadwal();
+    let tabel = datatableWithCustomFilter("#status", 5);
+    $('#status').on('change', function () {
+      tabel.draw();
+    });
 
     // Register the plugin
     FilePond.registerPlugin(
