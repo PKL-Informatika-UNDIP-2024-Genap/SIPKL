@@ -54,9 +54,9 @@
 										<th>Hari, Tanggal</th>
 										<th>Waktu</th>
 										<th>Ruang</th>
-										<th>Jenis</th>
 										<th>Nama</th>
 										<th>NIM</th>
+										<th>Jenis</th>
 										<th class="action">Action</th>
 								</tr>
 						</thead>
