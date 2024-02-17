@@ -49,7 +49,7 @@
 
         <li class="nav-item {{ Request::is('dospem*') ? 'menu-open' : '' }}">
           <a href="/" class="nav-link {{ Request::is('dospem*') ? 'active' : '' }}">
-            <i class="nav-icon fas bi bi-people-fill"></i>
+            <i class="nav-icon fas bi bi-person-vcard-fill"></i>
             <p>
               Dosen Pembimbing
               <i class="right fas bi bi-caret-left-fill"></i>
@@ -79,7 +79,7 @@
 
         <li class="nav-item {{ Request::is('mhs*') ? 'menu-open' : '' }}">
           <a href="#" class="nav-link {{ Request::is('mhs*') ? 'active' : '' }}">
-            <i class="nav-icon fas bi bi-person-fill"></i>
+            <i class="nav-icon fas bi bi-people-fill"></i>
             <p>
               Mahasiswa
               <i class="right fas bi bi-caret-left-fill"></i>

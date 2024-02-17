@@ -14,52 +14,6 @@ const options = {
   day: 'numeric',
 };
 
-function datatable_jadwal(){
-  const table = new DataTable('#myTable', {
-    columnDefs: [
-      {
-        searchable: false,
-        orderable: false,
-        targets: [0,"action"]
-      },
-    ],
-    order: [[3, 'asc'],[4, 'asc']],
-    lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
-    pageLength: 10,
-    "initComplete": function(settings, json) {
-      $.fn.dataTable.ext.search.push(
-      function (setting, data, index) {
-        // if (setting.nTable.id !== 'myTable') {
-        //   return true;
-        // }
-        var selectedStatus = $('#status').val();
-        if (selectedStatus == "") {
-          return true;
-        }
-        if (selectedStatus == data[5]) {
-          return true;
-        }
-        return false;
-      })
-    }
-  });
-  $('#myTable_filter input').css('width', '200px');
-  table.on('order.dt search.dt', function () {
-    let i = 1;
-    table
-      .cells(null, 0, { search: 'applied', order: 'applied' })
-      .every(function (cell) {
-          this.data(i++);
-      });
-  }).draw();
-  
-  $('#status').on('change', function() {
-    table.draw();
-  });
-
-  return table;
-}
-
 function update_tabel_jadwal() {
   $.ajax({
     type: 'GET',

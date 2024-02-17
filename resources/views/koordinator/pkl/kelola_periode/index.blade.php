@@ -14,55 +14,61 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-auto mb-3 d-flex align-items-center">
-        {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
-        <button type="button" id="btn-add" class="btn btn-primary btn-add" data-periode="{{ isset($data_periode[0]) ? $data_periode[0] : '' }}"  
-          data-bs-toggle="modal" data-bs-target="#modal-add-periode">
-          + Tambah Periode PKL
-        </button>
-      </div>
-    </div>
+    
     <div class="card px-3">
-      <div class="card-body table-responsive px-0" id="tabel-periode">
-        <table class="table" id="myTable">
-          <thead>
-              <tr class="table-primary">
-                  <th>No</th>
-                  <th>Periode</th>
-                  <th>Tanggal Mulai</th>
-                  <th>Tanggal Selesai</th>
-                  <th>Status</th>
-                  <th class="action">Action</th>
-              </tr>
-          </thead>
-          <tbody>
-              @foreach ($data_periode as $periode)
-                  <tr>
-                      <td></td>
-                      <td>{{ $periode->id_periode }}</td>
-                      <td>{{ $periode->tgl_mulai }}</td>
-                      <td>{{ $periode->tgl_selesai }}</td>
-                      <td>
-                        @if (date('Y-m-d') >= $periode->tgl_mulai && date('Y-m-d') <= $periode->tgl_selesai)
-                          <span class="badge bg-primary">Aktif</span>
-                        @elseif($periode->tgl_selesai < date('Y-m-d'))
-                          <span class="badge bg-success">Selesai</span>
-                        @else
-                          <span class="badge bg-secondary">Mendatang</span>
-                        @endif
-                      </td>
-                      <td>
-                          <div class="btn btn-sm btn-info btn-edit-periode" data-bs-toggle="modal" data-bs-target="#modal-edit-periode" 
-                          data-prev-periode="{{isset($data_periode[$loop->index + 1]) ? $data_periode[$loop->index + 1] : ""}}" data-periode="{{ $periode }}">Edit</div>
-                          <div class="btn btn-sm btn-danger btn-delete-periode {{ date('Y-m-d') > $periode->tgl_selesai ? 'disabled' : '' }}" data-id-periode="{{ $periode->id_periode }}">
-                            Delete
-                          </div>
-                      </td>
-                  </tr>
-              @endforeach
-          </tbody>
-        </table>
+      <div class="card-body px-0" >
+
+        <div class="row">
+          <div class="col-auto mb-3 d-flex align-items-center">
+            {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
+            <button type="button" id="btn-add" class="btn btn-primary btn-add" data-periode="{{ isset($data_periode[0]) ? $data_periode[0] : '' }}"  
+              data-bs-toggle="modal" data-bs-target="#modal-add-periode">
+              + Tambah Periode PKL
+            </button>
+          </div>
+        </div>
+
+        <div id="tabel-periode" class="table-responsive">
+          <table class="table" id="myTable">
+            <thead>
+                <tr class="table-primary">
+                    <th>No</th>
+                    <th>Periode</th>
+                    <th>Tanggal Mulai</th>
+                    <th>Tanggal Selesai</th>
+                    <th>Status</th>
+                    <th class="action">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($data_periode as $periode)
+                    <tr>
+                        <td></td>
+                        <td>{{ $periode->id_periode }}</td>
+                        <td>{{ $periode->tgl_mulai }}</td>
+                        <td>{{ $periode->tgl_selesai }}</td>
+                        <td>
+                          @if (date('Y-m-d') >= $periode->tgl_mulai && date('Y-m-d') <= $periode->tgl_selesai)
+                            <span class="badge bg-primary">Aktif</span>
+                          @elseif($periode->tgl_selesai < date('Y-m-d'))
+                            <span class="badge bg-success">Selesai</span>
+                          @else
+                            <span class="badge bg-secondary">Mendatang</span>
+                          @endif
+                        </td>
+                        <td>
+                            <div class="btn btn-sm btn-info btn-edit-periode" data-bs-toggle="modal" data-bs-target="#modal-edit-periode" 
+                            data-prev-periode="{{isset($data_periode[$loop->index + 1]) ? $data_periode[$loop->index + 1] : ""}}" data-periode="{{ $periode }}">Edit</div>
+                            <div class="btn btn-sm btn-danger btn-delete-periode {{ date('Y-m-d') > $periode->tgl_selesai ? 'disabled' : '' }}" data-id-periode="{{ $periode->id_periode }}">
+                              Delete
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+          </table>
+        </div>
+        
       </div>
     </div>
 
