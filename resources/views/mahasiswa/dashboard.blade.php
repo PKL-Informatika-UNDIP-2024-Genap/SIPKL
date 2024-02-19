@@ -345,7 +345,7 @@
                 </div>
               </div>
               <div class="table-responsive pt-1" id="tabel-pengumuman">
-                <table class="table" id="myTable">
+                <table class="table text-center" id="myTable">
                   <thead>
                       <tr class="table-primary">
                         <th>No</th>

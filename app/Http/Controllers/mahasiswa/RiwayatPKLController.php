@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mahasiswa;
 
+use App\Http\Controllers\Controller;
 use App\Models\RiwayatPKL;
 use App\Http\Requests\StoreRiwayatPKLRequest;
 use App\Http\Requests\UpdateRiwayatPKLRequest;
