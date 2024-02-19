@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mahasiswa;
 
+use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Models\SeminarPKL;
 use Illuminate\Support\Facades\Storage;

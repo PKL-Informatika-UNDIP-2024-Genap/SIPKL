@@ -173,7 +173,7 @@
           </div>
           <!-- /.card -->
 
-          <div class="card card-primary">
+          {{-- <div class="card card-primary">
             <div class="card-header">
               <h3 class="card-title">Jadwal Seminar PKL Terjadwal dan Tak Terjadwal</h3>
             </div>
@@ -184,10 +184,10 @@
               <p><strong class="text-teal">Jadwal Seminar Tak Terjadwal</strong></p>
             </div>
             <!-- /.card-body -->
-            {{-- <div class="card-footer">
+            <div class="card-footer">
               <button type="submit" class="btn btn-primary">Kirim</button>
-            </div> --}}
-          </div>
+            </div>
+          </div> --}}
           <!-- /.card -->
           
         </div>

@@ -10,7 +10,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img id="sidebar_fp" src="{{ ($user->foto_profil == null)?'/images/default.jpg':'/preview/'.$user->foto_profil }}" class="img-circle elevation-2" alt="User Image">
+        <img id="sidebar_fp" src="{{ ($user->foto_profil == null)?'/images/profile_default.svg':'/preview/'.$user->foto_profil }}" class="img-circle elevation-2 bg-white" alt="User Image">
       </div>
       <div class="info">
         <a href="/profile" class="d-block">{{ $mahasiswa->nama }}</a>
