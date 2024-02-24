@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($data_mhs as $mhs)
+        @foreach ($data_pkl as $mhs)
             <tr>
                 <td></td>
                 <td>{{ $mhs->nama }}</td>

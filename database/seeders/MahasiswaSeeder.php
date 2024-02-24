@@ -36,18 +36,21 @@ class MahasiswaSeeder extends Seeder
                 'nama' => 'Siti Nurul Hidayah',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
+                'id_dospem' => 2
             ],
             [
                 'nim' => '24060121130345',
                 'nama' => 'Agus Setiawan',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
+                'id_dospem' => 2
             ],
             [
                 'nim' => '24060121130456',
                 'nama' => 'Linda Pratiwi',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
+                'id_dospem' => 2
             ],
             [
                 'nim' => '24060121130567',
@@ -86,54 +89,63 @@ class MahasiswaSeeder extends Seeder
                 'nama' => 'Rudi Hartono',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
+                'id_dospem' => 2
             ],
             [
                 'nim' => '24060121131234',
                 'nama' => 'Eka Putri',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
+                'id_dospem' => 3
             ],
             [
                 'nim' => '24060121131345',
                 'nama' => 'Irfan Pratama',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
+                'id_dospem' => 1
             ],
             [
                 'nim' => '24060121131456',
                 'nama' => 'Siti Rahayu',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
+                'id_dospem' => 3
             ],
             [
                 'nim' => '24060120150001',
                 'nama' => 'Diana Sari',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
+                'id_dospem' => 2
             ],
             [
                 'nim' => '24060120150002',
                 'nama' => 'Ahmad Fauzi',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
+                'id_dospem' => 1
             ],
             [
                 'nim' => '24060120150003',
                 'nama' => 'Fitriani Hidayati',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
+                'id_dospem' => 2
             ],
             [
                 'nim' => '24060120150004',
                 'nama' => 'Agung Setiawan',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
+                'id_dospem' => 3
             ],
             [
                 'nim' => '24060120150005',
                 'nama' => 'Ratna Dewi',
                 'status' => 'Aktif',
                 'periode_pkl' => '2023/2024 Genap',
+                'id_dospem' => 2
             ],
             [
                 'nim' => '24060120150006',
@@ -199,7 +211,7 @@ class MahasiswaSeeder extends Seeder
             [
                 'nim' => '24060120150019',
                 'nama' => 'Dewi Anggraeni',
-                'status' => 'Aktif',
+                'status' => 'Nonaktif',
                 'periode_pkl' => '2023/2024 Ganjil',
                 'id_dospem' => 1,
             ],

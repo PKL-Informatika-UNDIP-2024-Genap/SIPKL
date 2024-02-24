@@ -79,10 +79,10 @@ class Mahasiswa extends Model
         return $arr_mhs;
     }
 
-    public static function get_mhs_blm_lulus(){
+    public static function get_mhs_blm_selesai(){
         $arr_mhs = self::join('periode_pkl', 'periode_pkl.id_periode', '=', 'mahasiswa.periode_pkl')
         ->where("tgl_selesai", "<", date('Y-m-d'))
-        ->where("mahasiswa.status", "=","Aktif")
+        ->whereRaw("mahasiswa.status = 'Aktif' OR mahasiswa.status = 'Nonaktif'")
         ->leftJoin("dosen_pembimbing", "dosen_pembimbing.id", "=", "mahasiswa.id_dospem")
         ->leftJoin("pkl", "pkl.nim", "=", "mahasiswa.nim")
         ->select('mahasiswa.*', 'dosen_pembimbing.nama as nama_dospem', 'pkl.judul', 'pkl.instansi', 'pkl.status as status_pkl')
@@ -143,11 +143,11 @@ class Mahasiswa extends Model
         }
     }
 
-    public static function reset_status_mhs_blm_lulus($arr_nim){
+    public static function reset_status_mhs_blm_selesai($arr_nim){
         $arr_mhs = self::whereIn('nim', $arr_nim);
-        $arr_mhs->update(['status' => 'Nonaktif']);
-
         RiwayatPKL::bulk_create($arr_mhs);
+        
+        $arr_mhs->update(['status' => 'Nonaktif']);
 
         PKL::bulk_reset_pkl_mhs($arr_nim);
     }

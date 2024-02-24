@@ -30,7 +30,7 @@
                 <td id="data-tgl-laporan"></td>
               </tr>
               <tr>
-                <td class="text-nowrap px-0" style="width: 15%"><strong>Dospem</strong></td>
+                <td class="text-nowrap px-0" style="width: 15%"><strong>Pembimbing</strong></td>
                 <td style="white-space: nowrap; width: 1%">:</td>
                 <td id="data-dospem">
                   <p class="placeholder-glow m-0">

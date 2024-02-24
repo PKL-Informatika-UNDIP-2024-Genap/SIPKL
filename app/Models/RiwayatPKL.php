@@ -21,7 +21,7 @@ class RiwayatPKL extends Model
             return [
                 'nim' => $item->nim,
                 'periode_pkl' => $item->periode_pkl,
-                'status' => 'Tidak Lulus',
+                'status' => $item->status == 'Aktif' ? 'Tidak Lulus' : 'Nonaktif',
                 'id_dospem' => $item->id_dospem,
             ];
         })->toArray());

@@ -97,9 +97,9 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/mhs/assign_dospem/', [AssignDospemController::class, 'index']);
     Route::post('/mhs/assign_dospem/{nim}/update_dospem', [AssignDospemController::class, 'update_dospem']);
 
-    Route::get('/mhs/daftar_mhs_belum_lulus/', [MahasiswaController::class, 'index_belum_lulus']);
-    Route::get('/mhs/daftar_mhs_belum_lulus/update_tabel_belum_lulus', [MahasiswaController::class, 'update_tabel_belum_lulus']);
-    Route::put('/mhs/daftar_mhs_belum_lulus/reset_status', [MahasiswaController::class, 'reset_status']);
+    Route::get('/mhs/daftar_mhs_belum_selesai/', [MahasiswaController::class, 'index_belum_selesai']);
+    Route::get('/mhs/daftar_mhs_belum_selesai/update_tabel_belum_selesai', [MahasiswaController::class, 'update_tabel_belum_selesai']);
+    Route::put('/mhs/daftar_mhs_belum_selesai/reset_status', [MahasiswaController::class, 'reset_status']);
 
     Route::get('/pkl/kelola_periode', [PeriodePKLController::class, 'index']);
     Route::post('/pkl/kelola_periode/tambah', [PeriodePKLController::class, 'store']);

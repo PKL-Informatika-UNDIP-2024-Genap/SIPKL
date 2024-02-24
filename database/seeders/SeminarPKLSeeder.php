@@ -45,7 +45,7 @@ class SeminarPKLSeeder extends Seeder
             ],
             [
                 'nim' => '24060121130234',
-                'status' => 'Pengajuan',
+                'status' => 'Terjadwal',
                 'tgl_seminar' => '2021-08-01',
                 'waktu_seminar' => '08:00-10:00',
                 'ruang' => 'A101',
@@ -55,7 +55,7 @@ class SeminarPKLSeeder extends Seeder
             ],
             [
                 'nim' => '24060121130345',
-                'status' => 'Pengajuan',
+                'status' => 'Terjadwal',
                 'tgl_seminar' => '2021-08-01',
                 'waktu_seminar' => '10:00-12:00',
                 'ruang' => 'A101',
@@ -65,7 +65,7 @@ class SeminarPKLSeeder extends Seeder
             ],
             [
                 'nim' => '24060121130456',
-                'status' => 'Pengajuan',
+                'status' => 'Tak Terjadwal',
                 'tgl_seminar' => '2021-08-01',
                 'waktu_seminar' => '13:00-15:00',
                 'ruang' => 'A101',

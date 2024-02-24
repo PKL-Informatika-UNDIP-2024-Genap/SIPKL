@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Daftar Mahasiswa Belum Lulus Periode Saat Ini</h1>
+        <h1 class="m-0">Daftar Mahasiswa Belum Selesai Periode Saat Ini</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -30,7 +30,7 @@
                 </button>
               </div>
             </div>
-            <div id="tabel-belum-lulus" class="table-responsive pt-1">
+            <div id="tabel-belum-selesai" class="table-responsive pt-1">
               <table class="table" id="myTable">
                 <thead>
                     <tr class="table-primary">
@@ -38,7 +38,7 @@
                       <th>Nama</th>
                       <th>NIM</th>
                       <th>Status</th>
-                      <th>Dospem</th>
+                      <th>Pembimbing</th>
                       <th class="action">Action</th>
                     </tr>
                 </thead>
@@ -76,12 +76,12 @@
 <!-- /.content -->
 
 
-@include('koordinator.mhs.belum_lulus.modal_detail')
+@include('koordinator.mhs.belum_selesai.modal_detail')
 
 @endsection
 
 @push('scripts')
-<script src="/js/ajax-mhs-blm-lulus.js"></script>
+<script src="/js/ajax-mhs-blm-selesai.js"></script>
 <script src="/js/datatables-jquery.js"></script>
 <script>
   let tabel = simpleDatatable();

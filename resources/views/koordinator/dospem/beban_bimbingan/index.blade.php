@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col">
-        <h1 class="m-0">Beban Bimbingan Dospem</h1>
+        <h1 class="m-0">Beban Bimbingan Pembimbing</h1>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
