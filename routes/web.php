@@ -137,8 +137,6 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::delete('/seminar/jadwal_seminar/{seminar_pkl}/delete', [KoordinatorSeminarPKLController::class, 'delete_jadwal_seminar']);
 
     Route::get('/arsip_pkl', [ArsipPKLController::class, 'index']);
-    Route::get('/arsip_pkl/update_tabel_arsip', [ArsipPKLController::class, 'update_tabel_arsip']);
-    // Route::post('/arsip_pkl/export_nilai', [ArsipPKLController::class, 'export_arsip_pkl']);
 
     Route::get('/cetak_sk', [CetakSKController::class, 'index']);
     Route::get('/cetak_sk/export', [CetakSKController::class, 'export']);

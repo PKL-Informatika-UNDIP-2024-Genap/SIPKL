@@ -12,11 +12,7 @@ class AssignMhsBimbinganController extends Controller
 {
   public function index()
   {
-    $data_dospem = DosenPembimbing::leftJoin('mahasiswa', 'dosen_pembimbing.id', '=', 'mahasiswa.id_dospem')
-    ->selectRaw('dosen_pembimbing.id, dosen_pembimbing.nip, dosen_pembimbing.nama, 
-                 COUNT(CASE WHEN mahasiswa.status = "Aktif" OR mahasiswa.status = "Nonaktif" THEN mahasiswa.id_dospem ELSE NULL END) as jumlah_bimbingan')
-    ->groupBy('dosen_pembimbing.id','dosen_pembimbing.nip', 'dosen_pembimbing.nama')
-    ->get();
+    $data_dospem = DosenPembimbing::count_bimbingan_aktif_per_dospem();
 
     return view('koordinator.dospem.assign_mhs_bimbingan.index',
       [
@@ -27,10 +23,7 @@ class AssignMhsBimbinganController extends Controller
 
   public function get_data_mhs($id_dospem)
   {
-    $data_mhs = Mahasiswa::whereRaw("(id_dospem = '$id_dospem' OR id_dospem IS NULL) AND (mahasiswa.status = 'Aktif' OR mahasiswa.status = 'Nonaktif')")
-    ->join('pkl', 'mahasiswa.nim', '=', 'pkl.nim')
-    ->select('mahasiswa.*', 'pkl.instansi', 'pkl.judul')
-    ->get();
+    $data_mhs = Mahasiswa::get_mhs_wwo_dospem($id_dospem);
 
     $view = view('koordinator.dospem.assign_mhs_bimbingan.tabel_mhs_modal', [
       'data_mhs' => $data_mhs,
@@ -43,13 +36,7 @@ class AssignMhsBimbinganController extends Controller
   }
 
   public function update_mhs_bimbingan($id_dospem, Request $request){
-    if (!empty($request->arr_nim_add_mhs)) {
-      Mahasiswa::whereIn('nim', $request->arr_nim_add_mhs)->update(['id_dospem' => $id_dospem]);
-    }
-
-    if (!empty($request->arr_nim_delete_mhs)) {
-        Mahasiswa::whereIn('nim', $request->arr_nim_delete_mhs)->update(['id_dospem' => null]);
-    }
+    Mahasiswa::bulk_update_dospem_mhs($id_dospem, $request->arr_nim_add_mhs, $request->arr_nim_delete_mhs);
 
     return response()->json([
       'status' => 200,
@@ -57,11 +44,7 @@ class AssignMhsBimbinganController extends Controller
   }
 
   public function update_tabel_dospem(){
-    $data_dospem = DosenPembimbing::leftJoin('mahasiswa', 'dosen_pembimbing.id', '=', 'mahasiswa.id_dospem')
-    ->selectRaw('dosen_pembimbing.id, dosen_pembimbing.nip, dosen_pembimbing.nama, 
-                 COUNT(CASE WHEN mahasiswa.status = "Aktif" OR mahasiswa.status = "Nonaktif" THEN mahasiswa.id_dospem ELSE NULL END) as jumlah_bimbingan')
-    ->groupBy('dosen_pembimbing.id','dosen_pembimbing.nip', 'dosen_pembimbing.nama')
-    ->get();
+    $data_dospem = DosenPembimbing::count_bimbingan_aktif_per_dospem();
 
     $view = view('koordinator.dospem.assign_mhs_bimbingan.update_tabel_dospem', [
       'data_dospem' => $data_dospem,

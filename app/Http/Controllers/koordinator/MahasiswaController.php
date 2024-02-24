@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Koordinator;
 
 use App\Http\Controllers\Controller;
-use App\Imports\MahasiswaImport;
-use App\Imports\UsersImport;
 use App\Models\DosenPembimbing;
 use App\Models\Mahasiswa;
 use App\Models\PKL;
-use App\Models\RiwayatPKL;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -75,18 +72,9 @@ class MahasiswaController extends Controller
         try {
             $file = $request->file('file');
 
-            $import = new MahasiswaImport;
-            $import->import($file);
-            // $importUsers = new UsersImport(Hash::make("12345"));
-            $importUsers = new UsersImport();
-            $importUsers->import($file);
+            $error = Mahasiswa::import($file);
 
-            $error_row = [];
-            $error_message = [];
-            foreach ($importUsers->failures() as $failure) {
-                array_push($error_row, $failure->row());
-                array_push($error_message, $failure->errors());
-            }
+            User::import($file);
         } catch (\PDOException $e) {
             return response()->json([
                 'status' => 500,
@@ -98,8 +86,8 @@ class MahasiswaController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Request successful',
-            'error_row' => $error_row,
-            'error_message' => $error_message,
+            'error_row' => $error['error_row'],
+            'error_message' => $error['error_message'],
         ], 200);
     }
 
@@ -131,9 +119,7 @@ class MahasiswaController extends Controller
     }
 
     public function reset_password($nim){
-        User::where('username', $nim)->update([
-            'password' => Hash::make($nim),
-        ]);
+        User::reset_password($nim);
 
         return response()->json([
             'status' => 200,
@@ -187,13 +173,7 @@ class MahasiswaController extends Controller
 
     public function index_belum_lulus()
     {
-        $arr_mhs = Mahasiswa::join('periode_pkl', 'periode_pkl.id_periode', '=', 'mahasiswa.periode_pkl')
-        ->where("tgl_selesai", "<", date('Y-m-d'))
-        ->where("mahasiswa.status", "=","Aktif")
-        ->leftJoin("dosen_pembimbing", "dosen_pembimbing.id", "=", "mahasiswa.id_dospem")
-        ->leftJoin("pkl", "pkl.nim", "=", "mahasiswa.nim")
-        ->select('mahasiswa.*', 'dosen_pembimbing.nama as nama_dospem', 'pkl.judul', 'pkl.instansi', 'pkl.status as status_pkl')
-        ->get();
+        $arr_mhs = Mahasiswa::get_mhs_blm_lulus();
 
         $arr_nim = $arr_mhs->pluck('nim')->toArray();
 
@@ -206,19 +186,8 @@ class MahasiswaController extends Controller
 
     public function reset_status(){
         $arr_nim = request('arr_nim');
-        $arr_mhs = Mahasiswa::whereIn('nim', $arr_nim);
-        $arr_mhs->update(['status' => 'Nonaktif']);
-
-        RiwayatPKL::create($arr_mhs->get()->map(function($item){
-            return [
-                'nim' => $item->nim,
-                'periode_pkl' => $item->periode_pkl,
-                'status' => 'Tidak Lulus',
-                'id_dospem' => $item->id_dospem,
-            ];
-        })->toArray());
-
-        PKL::whereIn('nim', $arr_nim)->update(['status' => 'Praregistrasi']);
+        
+        Mahasiswa::reset_status_mhs_blm_lulus($arr_nim);
 
         return response()->json([
             'status' => 200,

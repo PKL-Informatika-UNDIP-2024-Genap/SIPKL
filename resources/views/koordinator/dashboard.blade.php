@@ -49,9 +49,7 @@
         <h5>Rekap Periode Saat Ini</h5>
       </div>
     </div>
-@auth
-    
-@endauth
+
     <div class="row">
       <div class="col-3">
         <!-- small card -->
@@ -64,9 +62,6 @@
           <div class="icon">
             <i class="fas bi bi-mortarboard-fill"></i>
           </div>
-          <a href="#" class="small-box-footer">
-            More info <i class="fas fa-arrow-circle-right"></i>
-          </a>
         </div>
       </div>
       <div class="col-3">
@@ -80,9 +75,6 @@
           <div class="icon">
             <i class="fas bi bi-person-fill-check"></i>
           </div>
-          <a href="#" class="small-box-footer">
-            More info <i class="fas fa-arrow-circle-right"></i>
-          </a>
         </div>
       </div>
       <div class="col-3">
@@ -96,9 +88,6 @@
           <div class="icon">
             <i class="fas bi-person-fill-dash"></i>
           </div>
-          <a href="#" class="small-box-footer">
-            <span class="text-white">More info</span> <i class="fas fa-arrow-circle-right text-white"></i>
-          </a>
         </div>
       </div>
       <div class="col-3">
@@ -112,9 +101,6 @@
           <div class="icon">
             <i class="fas bi-person-fill-exclamation"></i>
           </div>
-          <a href="#" class="small-box-footer">
-            More info <i class="fas fa-arrow-circle-right"></i>
-          </a>
         </div>
       </div>
     </div>

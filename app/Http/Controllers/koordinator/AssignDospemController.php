@@ -10,11 +10,7 @@ use Illuminate\Http\Request;
 class AssignDospemController extends Controller
 {
     public function index(){
-        $data_mhs = Mahasiswa::select('mahasiswa.nim', 'mahasiswa.nama', 'mahasiswa.status', 'mahasiswa.id_dospem', 'dosen_pembimbing.nama as nama_dospem', 'pkl.instansi', 'pkl.judul')
-        ->whereRaw("mahasiswa.status = 'Nonaktif' OR mahasiswa.status = 'Aktif'")
-        ->leftJoin('dosen_pembimbing', 'dosen_pembimbing.id', '=', 'mahasiswa.id_dospem')
-        ->leftJoin('pkl', 'pkl.nim', '=', 'mahasiswa.nim')
-        ->get();
+        $data_mhs = Mahasiswa::get_mhs_with_pkl_dospem();
 
         $data_dospem = DosenPembimbing::select('id', 'nama')->get();
 
@@ -29,9 +25,7 @@ class AssignDospemController extends Controller
             'id_dospem' => 'required',
         ]);
 
-        Mahasiswa::where('nim', $nim)->update([
-            'id_dospem' => $validated_data['id_dospem'],
-        ]);
+        Mahasiswa::set_dospem($nim, $validated_data['id_dospem']);
 
         return response()->json([
             'message' => 'Data berhasil diupdate',
