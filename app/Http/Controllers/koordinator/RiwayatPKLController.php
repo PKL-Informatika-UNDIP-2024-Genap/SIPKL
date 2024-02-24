@@ -42,7 +42,7 @@ class RiwayatPKLController extends Controller
         if ($request->status == 'Aktif') {
             $data_pkl = [
                 'periode_pkl' => $request->periode_pkl,
-                'status' => 'Sedang',
+                'status' => 'Berjalan',
                 'nama_dospem' => '-',
                 'nip_dospem' => '-',
             ];

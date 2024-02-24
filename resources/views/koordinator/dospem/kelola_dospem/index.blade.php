@@ -15,48 +15,49 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-auto mb-3 d-flex align-items-center">
-        {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
-        <button type="button" id="btn-add" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add">
-          + Tambah Dosen Pembimbing
-        </button>
-      </div>
-    </div>
-    
-    <div class="row">
       <div class="col">
-        <div class="card px-3">
-          <div class="card-body table-responsive px-0" id="tabel-dospem">
-            <table class="table" id="myTable">
-              <thead>
-                  <tr class="table-primary">
-                      <th>No</th>
-                      <th>Nama</th>
-                      <th>NIP</th>
-                      <th>Golongan</th>
-                      <th>Jabatan</th>
-                      <th class="action">Action</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  @foreach ($dospem as $index => $dos)
-                      <tr>
-                          <td></td>
-                          <td>{{ $dos->nama }}</td>
-                          <td>{{ $dos->nip }}</td>
-                          <td>{{ $dos->golongan }}</td>
-                          <td>{{ $dos->jabatan }}</td>
-                          <td>
-                              <div class="btn btn-sm btn-primary btn-edit-dospem" data-bs-toggle="modal" data-bs-target="#modal_edit_dospem" 
-                              data-dospem="{{ $dos }}">Edit</div>
-                              <div class="btn btn-sm btn-danger btn-delete-dospem" data-id="{{ $dos->id }}" data-nip="{{ $dos->nip }}">
-                                Delete
-                              </div>
-                          </td>
-                      </tr>
-                  @endforeach
-              </tbody>
-            </table>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-auto mb-3 d-flex align-items-center">
+                {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
+                <button type="button" id="btn-add" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add">
+                  + Tambah Dosen Pembimbing
+                </button>
+              </div>
+            </div>
+            <div id="tabel-dospem" class="table-responsive pt-1">
+              <table class="table" id="myTable">
+                <thead>
+                    <tr class="table-primary">
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>NIP</th>
+                        <th>Golongan</th>
+                        <th>Jabatan</th>
+                        <th class="action">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($dospem as $index => $dos)
+                        <tr>
+                            <td></td>
+                            <td>{{ $dos->nama }}</td>
+                            <td>{{ $dos->nip }}</td>
+                            <td>{{ $dos->golongan }}</td>
+                            <td>{{ $dos->jabatan }}</td>
+                            <td>
+                                <div class="btn btn-sm btn-primary btn-edit-dospem" data-bs-toggle="modal" data-bs-target="#modal_edit_dospem" 
+                                data-dospem="{{ $dos }}">Edit</div>
+                                <div class="btn btn-sm btn-danger btn-delete-dospem" data-id="{{ $dos->id }}" data-nip="{{ $dos->nip }}">
+                                  Delete
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+              </table>
+            </div>
           </div>
       </div>
       </div>

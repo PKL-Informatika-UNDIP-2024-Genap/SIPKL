@@ -14,37 +14,41 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-    <div class="card px-3">
-      <div class="card-body table-responsive px-0" id="tabel-reg">
-        <table class="table" id="myTable">
-          <thead>
-              <tr class="table-primary">
-                  <th>No</th>
-                  <th>Nama Mhs</th>
-                  <th>NIM</th>
-                  <th>Tanggal Registrasi</th>
-                  <th class="action">Action</th>
-              </tr>
-          </thead>
-          <tbody>
-              @foreach ($data_pkl as $mhs)
-                  <tr>
-                      <td></td>
-                      <td>{{ $mhs->nama }}</td>
-                      <td>{{ $mhs->nim }}</td>
-                      <td>{{ $mhs->tgl_registrasi }}</td>
-                      <td>
-                        <div class="btn btn-sm btn-primary btn-detail-reg" data-bs-toggle="modal" data-bs-target="#modal-detail-reg"
-                        data-mhs="{{ $mhs }}">Detail</div>
-                      </td>
-                  </tr>
-              @endforeach
-          </tbody>
-        </table>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div id="tabel-reg" class="table-responsive pt-1">
+              <table class="table" id="myTable">
+                <thead>
+                    <tr class="table-primary">
+                        <th>No</th>
+                        <th>Nama Mhs</th>
+                        <th>NIM</th>
+                        <th>Tanggal Registrasi</th>
+                        <th class="action">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($data_mhs as $mhs)
+                        <tr>
+                            <td></td>
+                            <td>{{ $mhs->nama }}</td>
+                            <td>{{ $mhs->nim }}</td>
+                            <td>{{ $mhs->tgl_registrasi }}</td>
+                            <td>
+                              <div class="btn btn-sm btn-primary btn-detail-reg" data-bs-toggle="modal" data-bs-target="#modal-detail-reg"
+                              data-mhs="{{ $mhs }}">Detail</div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    
     <!-- /.row (main row) -->
   </div><!-- /.container-fluid -->
 </section>

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
@@ -24,8 +23,7 @@ use App\Http\Controllers\Koordinator\PeriodePKLController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\RiwayatPKLController;
 use App\Http\Controllers\SeminarPKLController;
-use App\Models\ArsipPKL;
-use App\Models\PeriodePKL;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,14 +37,7 @@ use App\Models\PeriodePKL;
 */
 
 route::middleware('guest')->group(function () {
-    Route::get('/', function () {
-        $data_pengumuman = DB::table('pengumuman')->select(['deskripsi','lampiran','updated_at'])->get();
-        $data_dokumen = DB::table('dokumen')->select(['deskripsi','lampiran','updated_at'])->get();
-        return view('landing',[
-            'data_pengumuman' => $data_pengumuman,
-            'data_dokumen' => $data_dokumen,
-        ]);
-    })->name('landing');
+    Route::get('/', [AuthController::class, 'landing'])->name('landing');
     Route::post('/login', [AuthController::class, 'authenticate']);
 });
 

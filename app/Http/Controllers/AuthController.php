@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokumen;
 use App\Models\DosenPembimbing;
 use App\Models\Mahasiswa;
+use App\Models\Pengumuman;
 use App\Models\PeriodePKL;
 use App\Models\PKL;
 use Illuminate\Http\Request;
@@ -31,6 +33,16 @@ class AuthController extends Controller
         }
 
         return back()->with('loginError', 'Login Gagal!')->withErrors(['password' => 'Password tidak sesuai!'])->withInput();
+    }
+
+    public function landing()
+    {
+        $data_pengumuman = Pengumuman::select(['deskripsi','lampiran','updated_at'])->get();
+        $data_dokumen = Dokumen::select(['deskripsi','lampiran','updated_at'])->get();
+        return view('landing',[
+            'data_pengumuman' => $data_pengumuman,
+            'data_dokumen' => $data_dokumen,
+        ]);
     }
 
     public function dashboard()
@@ -62,11 +74,15 @@ class AuthController extends Controller
         } else {
             $user = auth()->user();
             $mahasiswa = $user->mahasiswa;
+            $data_pengumuman = Pengumuman::select(['deskripsi','lampiran','updated_at'])->get();
+            $data_dokumen = Dokumen::select(['deskripsi','lampiran','updated_at'])->get();
             return view('mahasiswa.dashboard', [
                 'user' => $user,
                 'mahasiswa' => $mahasiswa,
                 'pkl' => $mahasiswa->pkl,
                 'created_at' => Carbon::parse($user->created_at)->diffForHumans(),
+                'data_pengumuman' => $data_pengumuman,
+                'data_dokumen' => $data_dokumen,
             ]);
         }
     }
