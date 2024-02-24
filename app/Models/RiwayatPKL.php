@@ -15,4 +15,15 @@ class RiwayatPKL extends Model
     public $incrementing = false;
     public $timestamps = false;
     protected $guarded = [];
+
+    public static function bulk_create($arr_mhs){
+        self::create($arr_mhs->get()->map(function($item){
+            return [
+                'nim' => $item->nim,
+                'periode_pkl' => $item->periode_pkl,
+                'status' => 'Tidak Lulus',
+                'id_dospem' => $item->id_dospem,
+            ];
+        })->toArray());
+    }
 }

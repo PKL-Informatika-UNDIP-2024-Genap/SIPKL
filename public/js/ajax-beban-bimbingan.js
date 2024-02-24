@@ -107,13 +107,13 @@ $(document).on('click', 'td.details-control', function() {
       '<div class="col-md-4">'+
       '<dl>' +
       '<dt>Instansi PKL:</dt>' +
-      '<dd>' + tr.data("pkl").instansi +'</dd>' +
+      '<dd>' + tr.data("instansi") +'</dd>' +
       '</dl>'+
       '</div>'+
       '<div class="col-md-8">'+
       '<dl>' +
       '<dt>Judul PKL:</dt>' +
-      '<dd>' + tr.data("pkl").judul +'</dd>' +
+      '<dd>' + tr.data("judul") +'</dd>' +
       '</dl>'+
       '</div>'+
       '</div>'

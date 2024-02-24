@@ -16,11 +16,7 @@ class SeminarPKLController extends Controller
 {
   public function index_verif_pengajuan()
   {
-    $data_pengajuan = SeminarPKL::whereRaw('seminar_pkl.status = "Pengajuan" AND pesan is NULL')
-    ->join('mahasiswa', 'seminar_pkl.nim', '=', 'mahasiswa.nim')
-    ->leftJoin('dosen_pembimbing', 'seminar_pkl.id_dospem', '=', 'dosen_pembimbing.id')
-    ->select('seminar_pkl.*', 'mahasiswa.nama as nama_mhs', 'dosen_pembimbing.nama as nama_dospem')
-    ->get();
+    $data_pengajuan = SeminarPKL::get_data_pengajuan();
 
     return view('koordinator.seminar.verifikasi_pengajuan.index', [
       'data_pengajuan' => $data_pengajuan
@@ -28,9 +24,7 @@ class SeminarPKLController extends Controller
   }
 
   public function terima_pengajuan(SeminarPKL $seminar_pkl){
-    $seminar_pkl->update([
-      'status' => 'Tak Terjadwal'
-    ]);
+    SeminarPKL::terima_pengajuan($seminar_pkl);
 
     return response()->json([
       'message' => 'Pengajuan Seminar PKL telah diterima'
@@ -38,10 +32,7 @@ class SeminarPKLController extends Controller
   }
 
   public function tolak_pengajuan(SeminarPKL $seminar_pkl){
-    $seminar_pkl->update([
-      'status' => 'Pengajuan',
-      'pesan' => request('alasan_menolak'),
-    ]);
+    SeminarPKL::tolak_pengajuan($seminar_pkl);
 
     return response()->json([
       'message' => 'Pengajuan Seminar PKL telah ditolak'
@@ -49,11 +40,7 @@ class SeminarPKLController extends Controller
   }
 
   public function update_tabel_pengajuan(){
-    $data_pengajuan = SeminarPKL::whereRaw('seminar_pkl.status = "Pengajuan" AND pesan is NULL')
-    ->join('mahasiswa', 'seminar_pkl.nim', '=', 'mahasiswa.nim')
-    ->leftJoin('dosen_pembimbing', 'seminar_pkl.id_dospem', '=', 'dosen_pembimbing.id')
-    ->select('seminar_pkl.*', 'mahasiswa.nama as nama_mhs', 'dosen_pembimbing.nama as nama_dospem')
-    ->get();
+    $data_pengajuan = SeminarPKL::get_data_pengajuan();
 
     $view = view('koordinator.seminar.verifikasi_pengajuan.update_tabel_pengajuan', [
       'data_pengajuan' => $data_pengajuan
@@ -68,11 +55,7 @@ class SeminarPKLController extends Controller
   // Jadwal Seminar
   public function index_jadwal_seminar()
   {
-    $data_jadwal = SeminarPKL::whereRaw('seminar_pkl.status = "Tak Terjadwal" OR seminar_pkl.status = "Terjadwal"')
-    ->join('mahasiswa', 'seminar_pkl.nim', '=', 'mahasiswa.nim')
-    ->leftJoin('dosen_pembimbing', 'seminar_pkl.id_dospem', '=', 'dosen_pembimbing.id')
-    ->select('seminar_pkl.*', 'mahasiswa.nama as nama_mhs', 'dosen_pembimbing.nama as nama_dospem')
-    ->get();
+    $data_jadwal = SeminarPKL::get_data_jadwal();
 
     return view('koordinator.seminar.jadwal_seminar.index', [
       'data_jadwal' => $data_jadwal
@@ -80,20 +63,7 @@ class SeminarPKLController extends Controller
   }
 
   public function tambah_jadwal_seminar(Request $request){
-    $arr_mhs = $request->arr_mhs;
-    $data = [];
-    foreach ($arr_mhs as $mhs) {
-      $data[] = [
-        'nim' => $mhs[0],
-        'tgl_seminar' => $request->tgl_seminar,
-        'waktu_seminar' => $request->waktu_seminar,
-        'ruang' => $request->ruang,
-        'status' => 'Terjadwal',
-        'id_dospem' => $mhs[1],
-      ];
-    }
-
-    SeminarPKL::insert($data);
+    SeminarPKL::tambah_jadwal_seminar($request);
 
     return response()->json([
       'message' => 'Jadwal Seminar PKL telah ditambahkan'
@@ -101,14 +71,7 @@ class SeminarPKLController extends Controller
   }
 
   public function get_mhs_aktif(){
-    $mhs_aktif = Mahasiswa::where('mahasiswa.status', 'Aktif')
-    ->whereNotIn('mahasiswa.nim', function($query) {
-        $query->select('seminar_pkl.nim')->from('seminar_pkl');
-    })
-    ->leftJoin('dosen_pembimbing', 'mahasiswa.id_dospem', '=', 'dosen_pembimbing.id')
-    ->leftJoin('pkl', 'mahasiswa.nim', '=', 'pkl.nim')
-    ->select('mahasiswa.nim', 'mahasiswa.nama', 'mahasiswa.id_dospem', 'dosen_pembimbing.nama as nama_dospem', 'pkl.judul', 'pkl.instansi')
-    ->get();
+    $mhs_aktif = Mahasiswa::get_mhs_aktif_blm_seminar();
 
     $view = view('koordinator.seminar.jadwal_seminar.tabel_modal_tambah', [
       'mhs_aktif' => $mhs_aktif
@@ -118,7 +81,6 @@ class SeminarPKLController extends Controller
       'view' => $view
     ]);
   }
-
 
   public function update_jadwal_seminar(SeminarPKL $seminar_pkl){
     $seminar_pkl->update([
@@ -133,11 +95,7 @@ class SeminarPKLController extends Controller
   }
 
   public function update_tabel_jadwal(){
-    $data_jadwal = SeminarPKL::whereRaw('seminar_pkl.status = "Tak Terjadwal" OR seminar_pkl.status = "Terjadwal"')
-    ->join('mahasiswa', 'seminar_pkl.nim', '=', 'mahasiswa.nim')
-    ->leftJoin('dosen_pembimbing', 'seminar_pkl.id_dospem', '=', 'dosen_pembimbing.id')
-    ->select('seminar_pkl.*', 'mahasiswa.nama as nama_mhs', 'dosen_pembimbing.nama as nama_dospem')
-    ->get();
+    $data_jadwal = SeminarPKL::get_data_jadwal();
 
     $view = view('koordinator.seminar.jadwal_seminar.update_tabel_jadwal', [
       'data_jadwal' => $data_jadwal
@@ -167,32 +125,21 @@ class SeminarPKLController extends Controller
 
     try {
       $file = $request->file('file');
-
-      $import = new JadwalSeminarImport;
-      $import->import($file);
-
-      $error_row = [];
-      $error_message = [];
-      foreach ($import->failures() as $failure) {
-        array_push($error_row, $failure->row());
-        array_push($error_message, $failure->errors());
-      }
+      $error = SeminarPKL::import_jadwal_seminar($file);
     } catch (\PDOException $e) {
         return response()->json([
-            'status' => 500,
-            'message' => 'Request failed',
-            'errors' => "Terdapat duplikasi data pada file excel",
+          'status' => 500,
+          'message' => 'Request failed',
+          'errors' => "Terdapat duplikasi data pada file excel",
         ], 500);
     }
 
     return response()->json([
         'status' => 200,
         'message' => 'Request successful',
-        'error_row' => $error_row,
-        'error_message' => $error_message,
-        'failures' => $import->failures(),
-    ], 200);
-    
+        'error_row' => $error['error_row'],
+        'error_message' => $error['error_message'],
+    ], 200); 
   }
 
   public function delete_jadwal_seminar(SeminarPKL $seminar_pkl){

@@ -9,7 +9,7 @@
   </thead>
   <tbody>
     @foreach ($arr_mhs as $mhs)
-      <tr data-nim="{{ $mhs->nim }}" data-pkl="{{ $mhs->pkl }}">
+      <tr data-nim="{{ $mhs->nim }}" data-instansi="{{ $mhs->instansi }}" data-judul="{{ $mhs->judul }}">
         <td></td>
         <td class="details-control">
           {{ $mhs->nama }}

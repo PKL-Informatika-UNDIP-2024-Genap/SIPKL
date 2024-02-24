@@ -73,8 +73,6 @@ class PeriodePKLController extends Controller
         ]);
     }
 
-
-
     public function destroy(Request $request){
         PeriodePKL::where('id_periode', $request->id_periode)->delete();
 
