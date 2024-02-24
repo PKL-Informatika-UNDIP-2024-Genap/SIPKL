@@ -4,8 +4,8 @@
 					<th>No</th>
 					<th>Periode PKL</th>
 					<th>Status</th>
-					<th>Nama Dosen Pembimbing</th>
-					<th>NIP Dospem</th>
+					<th>Nama Pembimbing</th>
+					<th>NIP Pembimbing</th>
 			</tr>
 	</thead>
 	<tbody>

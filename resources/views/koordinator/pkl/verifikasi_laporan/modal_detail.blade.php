@@ -30,13 +30,14 @@
                 <td id="data-tgl-laporan"></td>
               </tr>
               <tr>
-                <td class="text-nowrap px-0" style="width: 15%"><strong>Dospem</strong></td>
+                <td class="text-nowrap px-0" style="width: 15%"><strong>Pembimbing</strong></td>
                 <td style="white-space: nowrap; width: 1%">:</td>
-                <td id="data-dospem">
-                  <p class="placeholder-glow m-0">
-                    <span class="placeholder col-10" style="border-radius: 5px;"></span>
-                  </p>
-                </td>
+                <td id="data-dospem"></td>
+              </tr>
+              <tr>
+                <td class="text-nowrap px-0" style="width: 15%"><strong>Tanggal Seminar</strong></td>
+                <td style="white-space: nowrap; width: 1%">:</td>
+                <td id="data-tgl-seminar"></td>
               </tr>
               <tr>
                 <td class="text-nowrap px-0" style="width: 15%"><strong>Instansi</strong></td>
@@ -59,7 +60,7 @@
                 <td id="data-kata-kunci"></td>
               </tr>
               <tr>
-                <td class="text-nowrap px-0" style="width: 15%"><strong>Link Laporan</strong></td>
+                <td class="text-nowrap px-0" style="width: 15%"><strong>Link Berkas</strong></td>
                 <td style="white-space: nowrap; width: 1%">:</td>
                 <td>
                   <a id="data-link-laporan" target="__blank" href="//drive.google.com" style="text-decoration: none">

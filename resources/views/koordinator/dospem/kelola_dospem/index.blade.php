@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col">
-        <h1 class="m-0">Kelola Dosen Pembimbing</h1>
+        <h1 class="m-0">Kelola Pembimbing</h1>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
@@ -22,7 +22,7 @@
               <div class="col-auto mb-3 d-flex align-items-center">
                 {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
                 <button type="button" id="btn-add" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal_add">
-                  + Tambah Dosen Pembimbing
+                  + Tambah Pembimbing
                 </button>
               </div>
             </div>

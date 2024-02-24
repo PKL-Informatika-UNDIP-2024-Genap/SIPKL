@@ -51,7 +51,7 @@
           <a href="/" class="nav-link {{ Request::is('dospem*') ? 'active' : '' }}">
             <i class="nav-icon fas bi bi-person-vcard-fill"></i>
             <p>
-              Dosen Pembimbing
+              Pembimbing
               <i class="right fas bi bi-caret-left-fill"></i>
             </p>
           </a>
@@ -59,7 +59,7 @@
             <li class="nav-item">
               <a href="/dospem/kelola_dospem" class="nav-link {{ Request::is('dospem/kelola_dospem') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
-                <p>Kelola Dospem</p>
+                <p>Kelola Pembimbing</p>
               </a>
             </li>
             <li class="nav-item">
@@ -95,13 +95,13 @@
             <li class="nav-item">
               <a href="/mhs/assign_dospem" class="nav-link {{ Request::is('mhs/assign_dospem') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
-                <p>Assign Dospem</p>
+                <p>Assign Pembimbing</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/mhs/daftar_mhs_belum_lulus" class="nav-link {{ Request::is('mhs/daftar_mhs_belum_lulus') ? 'active' : '' }}">
+              <a href="/mhs/daftar_mhs_belum_selesai" class="nav-link {{ Request::is('mhs/daftar_mhs_belum_selesai') ? 'active' : '' }}">
                 <i class="far nav-icon bi bi-circle"></i>
-                <p>Daftar Mhs Belum Lulus</p>
+                <p>Daftar Mhs Belum Selesai</p>
               </a>
             </li>
           </ul>

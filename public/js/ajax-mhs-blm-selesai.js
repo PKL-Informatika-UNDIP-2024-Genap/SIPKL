@@ -1,9 +1,9 @@
 function update_tabel_mhs() {
   $.ajax({
     type: 'GET',
-    url: '/mhs/daftar_mhs_belum_lulus/update_tabel_belum_lulus',
+    url: '/mhs/daftar_mhs_belum_selesai/update_tabel_belum_selesai',
     success: function(response) {
-      $('#tabel-belum-lulus').html(response.view);
+      $('#tabel-belum-selesai').html(response.view);
       let tabel = simpleDatatable();
     },
     error: function(response) {
@@ -25,7 +25,7 @@ $(document).on('click', '#reset-status', function() {
     if (result.isConfirmed) {
       $.ajax({
         type: 'PUT',
-        url: '/mhs/daftar_mhs_belum_lulus/reset_status',
+        url: '/mhs/daftar_mhs_belum_selesai/reset_status',
         data:{
           arr_nim: $(this).data('arr-nim'),
         },

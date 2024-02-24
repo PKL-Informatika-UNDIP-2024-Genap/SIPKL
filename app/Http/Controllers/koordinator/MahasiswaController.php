@@ -171,14 +171,14 @@ class MahasiswaController extends Controller
         ]);
     }
 
-    public function index_belum_lulus()
+    public function index_belum_selesai()
     {
-        $arr_mhs = Mahasiswa::get_mhs_blm_lulus();
+        $arr_mhs = Mahasiswa::get_mhs_blm_selesai();
 
         $arr_nim = $arr_mhs->pluck('nim')->toArray();
 
         // dd($arr_nim);
-        return view('koordinator.mhs.belum_lulus.index', [
+        return view('koordinator.mhs.belum_selesai.index', [
             'arr_mhs' => $arr_mhs,
             'arr_nim' => $arr_nim,
         ]);
@@ -187,7 +187,7 @@ class MahasiswaController extends Controller
     public function reset_status(){
         $arr_nim = request('arr_nim');
         
-        Mahasiswa::reset_status_mhs_blm_lulus($arr_nim);
+        Mahasiswa::reset_status_mhs_blm_selesai($arr_nim);
 
         return response()->json([
             'status' => 200,

@@ -25,7 +25,8 @@ $(document).on('click', '.btn-detail-laporan', function() {
   $("#data-instansi").html(data_mhs.instansi);
   $("#data-judul-pkl").html(data_mhs.judul);
   $("#data-tgl-laporan").html(data_mhs.tgl_laporan);
-
+  $("#data-dospem").html(data_mhs.nama_dospem);
+  $("#data-tgl-seminar").html(data_mhs.tgl_seminar);
 
   let link = data_mhs.link_laporan;
   if (!link.startsWith('http://') || !link.startsWith('https://') || !link.startsWith('//')) {
@@ -68,32 +69,6 @@ $(document).on('click', '.btn-detail-laporan', function() {
       $dataAbstrak.addClass("collapsed");
     }
   });
-
-
-  if(data_mhs.nip_dospem == null){
-    $("#data-dospem").html("-");
-  }else{
-    $.ajax({
-      url: '/mhs/kelola_mhs/'+ data_mhs.nip_dospem +'/get_data_dospem',
-      type: 'GET',
-      success: function (response) {
-        dospem = response.nama_dospem;
-        $("#data-dospem").html(dospem);
-      },
-      error: function (error) {
-        console.error('Error:', error);
-        Swal.fire({
-          title: 'Error!',
-          text: 'Terjadi kesalahan saat mengambil data.',
-          icon: 'error',
-        });
-      },
-      complete: function () {
-        $(".spinner").addClass("d-none");
-        $(".content-modal").removeClass("d-none");
-      },
-    });
-  }
 });
 
 $(document).on('click', '.btn-terima', function() {

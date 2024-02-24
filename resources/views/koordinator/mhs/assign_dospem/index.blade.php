@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col">
-        <h1 class="m-0">Assign Dosen Pembimbing Mahasiswa PKL</h1>
+        <h1 class="m-0">Assign Pembimbing Mahasiswa PKL</h1>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
@@ -25,7 +25,7 @@
                       <th>No</th>
                       <th>Nama</th>
                       <th>NIM</th>
-                      <th>Dosen Pembimbing</th>
+                      <th>Pembimbing</th>
                       <th class="judul-pkl">Judul PKL</th>
                       <th class="instansi-pkl">Instansi</th>
                       <th class="action">Action</th>
@@ -43,7 +43,7 @@
                       <td>
                         <div class="btn btn-primary btn-sm btn-assign-dospem" data-bs-toggle="modal" data-bs-target="#modal-assign-dospem"
                           data-nim="{{ $mhs->nim }}" data-id-dospem="{{ $mhs->id_dospem }}">
-                          Assign Dospem
+                          Assign Pembimbing
                         </div>
                       </td>
                     </tr>

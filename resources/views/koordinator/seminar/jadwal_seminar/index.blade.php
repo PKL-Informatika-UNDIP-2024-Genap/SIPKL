@@ -67,7 +67,7 @@
             <thead>
                 <tr class="table-primary">
                     <th>No</th>
-                    <th>Dosen Pembimbing</th>
+                    <th>Pembimbing</th>
                     <th class="hari_tanggal">Hari, Tanggal</th>
                     <th>Waktu</th>
                     <th>Ruang</th>
