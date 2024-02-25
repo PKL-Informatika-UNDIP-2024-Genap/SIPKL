@@ -25,14 +25,8 @@
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
+        <div class="col">
           <h1 class="m-0">Registrasi PKL</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item active">Registrasi PKL</li>
-          </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -114,7 +108,7 @@
               <em>*Anda dapat mengubah isian Instansi dan Judul PKL lagi nanti.<br>Harap segera sesuaikan lagi dengan rencana PKL Anda.</em>
             </div>
             <div class="form-group">
-              <label for="scan_irs">Scan IRS</label>
+              <label for="scan_irs">Scan IRS (Max Gambar: 500KB)</label>
               @if ($pkl->scan_irs != null)
                 <div class="mb-2">
                   <a href="/preview/{{ $pkl->scan_irs }}" target="_blank" class="btn btn-outline-info btn-sm py-0">Lihat scan lama</a>
@@ -178,7 +172,7 @@
       acceptedFileTypes: ['image/jpg', 'image/jpeg', 'image/png'],
       labelFileTypeNotAllowed: 'File tidak sesuai format',
       fileValidateTypeLabelExpectedTypes: 'Hanya file JPG, JPEG, PNG yang diperbolehkan',
-      maxFileSize: '1500KB',
+      maxFileSize: '500KB',
       labelMaxFileSizeExceeded: 'Ukuran file terlalu besar',
       labelMaxFileSize: 'Total ukuran maksimum file adalah {filesize}',
       credits: false,

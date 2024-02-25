@@ -43,7 +43,7 @@
           </a>
         </li>
 
-        @if ($mahasiswa->status == "Nonaktif" && $pkl->status == "Praregistrasi")
+        @if ($mahasiswa->status == "Nonaktif" && $pkl->status == "Praregistrasi" && $mahasiswa->id_dospem != null)
 
         <li class="nav-item">
           <a href="/registrasi" class="nav-link {{ Request::is('registrasi')?'active':'' }}">

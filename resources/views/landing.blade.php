@@ -39,6 +39,8 @@
         }
       }
     </style>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
   </head>
   <body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -65,7 +67,6 @@
                   <li class="nav-item">
                     <a class="ud-menu-scroll" href="#home">Home</a>
                   </li>
-
                   <li class="nav-item">
                     <a class="ud-menu-scroll" href="#pengumuman">Pengumuman</a>
                   </li>
@@ -135,13 +136,13 @@
             </div>
           </div>
         </div>
-        <div class="row table-responsive">
-          <table class="table table-hover border-primary text-center" id="tabel-pengumuman">
+        <div class="row table-responsivee pt-1">
+          <table class="table table-hover border-primary text-center" id="tabelPengumuman">
             <thead>
               <tr>
-                <th>Tanggal</th>
-                <th>Deskripsi</th>
-                <th>Lampiran</th>
+                <th class="text-center tanggal">Tanggal</th>
+                <th class="text-center">Deskripsi</th>
+                <th class="text-center">Lampiran</th>
               </tr>
             </thead>
             @php
@@ -150,7 +151,7 @@
             <tbody>
             @foreach ($data_pengumuman as $pengumuman)
               <tr>
-                <td class="">{{ date('d M Y', strtotime($pengumuman->updated_at)) }}</td>
+                <td class="">{{ $pengumuman->updated_at }}</td>
                 <td>{{ $pengumuman->deskripsi }}</td>
                 <td><a class="btn btn-primary btn-sm" href="javascript:void(0)">Download</a></td>
               </tr>
@@ -173,13 +174,13 @@
             </div>
           </div>
         </div>
-        <div class="row table-responsive">
-          <table class="table table-hover border-primary text-center" id="tabel-dokumen">
+        <div class="row table-responsive pt-1">
+          <table class="table table-hover border-primary text-center" id="tabelDokumen" style="width: 100%">
             <thead>
               <tr>
-                <th>Tanggal</th>
-                <th>Deskripsi</th>
-                <th>Lampiran</th>
+                <th class="text-center tanggal hidden">Tanggal</th>
+                <th class="text-center">Deskripsi</th>
+                <th class="text-center">Lampiran</th>
               </tr>
             </thead>
             @php
@@ -188,7 +189,7 @@
             <tbody>
             @foreach ($data_dokumen as $dokumen)
               <tr>
-                <td>{{ date('d M Y', strtotime($dokumen->updated_at)) }}</td>
+                <td>{{ $dokumen->updated_at }}</td>
                 <td>{{ $dokumen->deskripsi }}</td>
                 <td><a class="btn btn-primary btn-sm" href="javascript:void(0)">Download</a></td>
               </tr>
@@ -901,6 +902,81 @@
 
       window.document.addEventListener("scroll", onScroll);
 
+    </script>
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="/lte/plugins/moment/moment.min.js"></script>
+    <script src="/lte/plugins/moment/locale/id.js"></script>
+    <script type="text/javascript">
+      function dataTableInit(idTable) {
+        const table = new DataTable(idTable, {
+          columnDefs: [
+            {
+              targets: ["lampiran"],
+              searchable: false,
+              orderable: false,
+            },
+            {
+              target: 'tanggal',
+              render: DataTable.render.datetime( "D MMMM YYYY", "id"),
+            },
+            {
+              target: 'hidden',
+              visible: false,
+              searchable: false
+            },
+          ],
+          order: [[0, 'asc']],
+          lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+          pageLength: 10,
+          // "initComplete": function(settings, json) {
+          // 	$.fn.dataTable.ext.search.push(
+          // 	function (setting, data, index) {
+          // 		if (setting.nTable.id !== 'myTable') {
+          // 			return true;
+          // 		}
+          // 		var selectedStatus = $('#status').val();
+          // 		if (selectedStatus == "") {
+          // 			return true;
+          // 		}
+          // 		if (selectedStatus == data[3]) {
+          // 			return true;
+          // 		}
+          // 		return false;
+          // 	})
+          // }
+        });
+        $(idTable+'_filter input').css('width', '200px');
+        // table.on('order.dt search.dt', function () {
+        //   let i = 1;
+        //   table
+        //     .cells(null, 0, { search: 'applied', order: 'applied' })
+        //     .every(function (cell) {
+        //         this.data(i++);
+        //     });
+        // }).draw();
+  
+        // $('#status').on('change', function() {
+        // 	table.draw();
+        // })
+      
+        // $.fn.dataTableExt.afnFiltering.push(
+        // 	function (setting, data, index) {
+        // 		var selectedStatus = $('#status').val();
+        // 		if (selectedStatus == "") {
+        // 			return true;
+        // 		}
+        // 		if (selectedStatus == data[3]) {
+        // 			return true;
+        // 		}
+        // 		return false;
+        // 	});
+      }
+  
+      $(document).ready(function() {
+        dataTableInit('#tabelPengumuman');
+        dataTableInit('#tabelDokumen');
+      });
     </script>
   </body>
 </html>

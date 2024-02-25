@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MailController;
 
 use App\Http\Controllers\Koordinator\ArsipPKLController;
 use App\Http\Controllers\Koordinator\AssignDospemController;
@@ -167,7 +166,7 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
     Route::put('/pkl/{pkl}/update', [MahasiswaPKLController::class, 'updateData']);
     Route::get('/riwayat', [MahasiswaRiwayatPKLController::class, 'index'])->middleware('data.updated');
 
-    Route::middleware('status.mhs:Nonaktif')->group(function () {
+    Route::middleware(['status.mhs:Nonaktif','has.pembimbing'])->group(function () {
         Route::get('/registrasi', [MahasiswaPKLController::class, 'registrasi'])->name('registrasi');
         Route::post('/registrasi', [MahasiswaPKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
     });
@@ -182,8 +181,6 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         Route::post('/laporan/kirim', [MahasiswaPKLController::class, 'kirimLaporan']);
     });
 
-    Route::get('/profile/verifikasi_email', [ProfileController::class, 'verifikasiEmail'])->name('profile.verifikasi_email');
-    Route::post('/email/send_otp', [MailController::class, 'sendOtp'])->name('send_otp');
-    Route::post('/email/verifikasi', [MailController::class, 'verifikasiOtp'])->name('verifikasi_email');
+    
 
 });

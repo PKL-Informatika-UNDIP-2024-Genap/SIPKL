@@ -84,15 +84,6 @@
 
             <div class="btn btn-primary btn-edit-password" data-bs-toggle="modal" data-bs-target="#modal_edit_password"><b>Edit Password</b></div>
 
-            @if (auth()->user()->email_verified_at == null)
-              <div class="mt-1">
-                <a href="{{ route('profile.verifikasi_email') }}" class="btn btn-primary "><b>Verifikasi Email</b></a>
-              </div>
-            @endif
-            {{-- <div class="mt-1">
-              <a href="{{ route('send_otp') }}" class="btn btn-primary "><b>Verifikasi Email</b></a>
-            </div> --}}
-
           </div>
           <div class="col-md-8">
   

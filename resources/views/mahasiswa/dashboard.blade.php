@@ -44,9 +44,9 @@
           <!-- The time line -->
           <div class="timeline">
             <!-- timeline time label -->
-            <div class="time-label">
-              <span class="bg-red">Terbaru</span>
-            </div>
+            {{-- <div class="time-label">
+              <span class="bg-blue">Terbaru</span>
+            </div> --}}
             <!-- /.timeline-label -->
 
             <!-- timeline item -->
@@ -305,7 +305,7 @@
             </div> --}}
             <!-- /.timeline-label -->
             <!-- timeline item -->
-            <div>
+            {{-- <div>
               <i class="fas bi bi-camera-video-fill bg-maroon"></i>
               <div class="timeline-item">
                 <span class="time"><i class="fas bi bi-clock"></i> {{ $created_at }}</span>
@@ -319,7 +319,7 @@
                   <a href="javascript:void(0)" class="btn btn-sm bg-maroon">Selamat Datang!</a>
                 </div>
               </div>
-            </div>
+            </div> --}}
             <!-- END timeline item -->
             
             <div>
@@ -345,11 +345,11 @@
                 </div>
               </div>
               <div class="table-responsive pt-1" id="tabel-pengumuman">
-                <table class="table text-center" id="myTable">
+                <table class="table text-center" id="tabelPengumuman">
                   <thead>
                       <tr class="table-primary">
                         <th>No</th>
-                        <th>Tanggal</th>
+                        <th class="tanggal">Tanggal</th>
                         <th>Deskripsi</th>
                         <th class="lampiran">Lampiran</th>
                       </tr>
@@ -388,11 +388,11 @@
                 </div>
               </div>
               <div class="table-responsive pt-1" id="tabel-dokumen">
-                <table class="table text-center" id="myTable2">
+                <table class="table text-center" id="tabelDokumen" style="width: 100%">
                   <thead>
                       <tr class="table-primary">
                         <th>No</th>
-                        <th>Tanggal</th>
+                        <th class="tanggal hidden">Tanggal</th>
                         <th>Deskripsi</th>
                         <th class="lampiran">Lampiran</th>
                       </tr>
@@ -432,35 +432,27 @@
       const table = new DataTable(idTable, {
 				columnDefs: [
 					{
+						targets: [0,"lampiran"],
 						searchable: false,
 						orderable: false,
-						targets: [0,"lampiran"]
 					},
           {
-            target: 1,
-            render: DataTable.render.datetime( "dddd, D MMM YYYY", "id"),
+            target: 'tanggal',
+            render: DataTable.render.datetime( "D MMMM YYYY", "id"),
+          },
+          {
+            target: 'hidden',
+            visible: false,
+            searchable: false
           },
 				],
 				order: [[1, 'asc']],
 				lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
 				pageLength: 10,
-				// "initComplete": function(settings, json) {
-				// 	$.fn.dataTable.ext.search.push(
-				// 	function (setting, data, index) {
-				// 		if (setting.nTable.id !== 'myTable') {
-				// 			return true;
-				// 		}
-				// 		var selectedStatus = $('#status').val();
-				// 		if (selectedStatus == "") {
-				// 			return true;
-				// 		}
-				// 		if (selectedStatus == data[3]) {
-				// 			return true;
-				// 		}
-				// 		return false;
-				// 	})
-				// }
-			});
+        // language: {
+        //   url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json',
+        // },
+      });
 			$(idTable+'_filter input').css('width', '200px');
 			table.on('order.dt search.dt', function () {
 				let i = 1;
@@ -470,27 +462,11 @@
 							this.data(i++);
 					});
 			}).draw();
-
-			// $('#status').on('change', function() {
-			// 	table.draw();
-			// })
-		
-			// $.fn.dataTableExt.afnFiltering.push(
-			// 	function (setting, data, index) {
-			// 		var selectedStatus = $('#status').val();
-			// 		if (selectedStatus == "") {
-			// 			return true;
-			// 		}
-			// 		if (selectedStatus == data[3]) {
-			// 			return true;
-			// 		}
-			// 		return false;
-			// 	});
     }
 
 		$(document).ready(function() {
-      dataTableInit('#myTable');
-      dataTableInit('#myTable2');
+      dataTableInit('#tabelPengumuman');
+      dataTableInit('#tabelDokumen');
 		});
 	</script>
 
