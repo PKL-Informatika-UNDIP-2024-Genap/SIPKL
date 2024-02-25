@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mahasiswa;
 
+use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Models\SeminarPKL;
 use Illuminate\Support\Facades\Storage;
@@ -92,13 +93,13 @@ class SeminarPKLController extends Controller
             'waktu_seminar_mulai' => 'required',
             'waktu_seminar_selesai' => 'required',
             'ruang' => 'required',
-            'scan_layak_seminar' => 'required|file|mimes:pdf|max:1500',
-            'scan_peminjaman_ruang' => 'required|file|mimes:pdf|max:1500',
+            'scan_layak_seminar' => 'required|image|mimes:jpeg,png,jpg|max:500',
+            'scan_peminjaman_ruang' => 'required|image|mimes:jpeg,png,jpg|max:500',
         ], [
             'required' => ':attribute harus diisi.',
             'date' => ':attribute harus berupa tanggal.',
-            'mimes' => ':attribute harus berupa file pdf.',
-            'max' => ':attribute maksimal 1.5MB.',
+            'mimes' => ':attribute harus berupa file gambar jpeg, jpg, atau png.',
+            'max' => ':attribute maksimal 0.5MB.',
         ], [
             'nim' => 'NIM',
             'id_dospem' => 'ID Dosen Pembimbing',
@@ -135,13 +136,13 @@ class SeminarPKLController extends Controller
             'waktu_seminar_mulai' => 'required',
             'waktu_seminar_selesai' => 'required',
             'ruang' => 'required',
-            'scan_layak_seminar' => 'sometimes|file|mimes:pdf|max:1500',
-            'scan_peminjaman_ruang' => 'sometimes|file|mimes:pdf|max:1500',
+            'scan_layak_seminar' => 'sometimes|image|mimes:jpeg,png,jpg|max:500',
+            'scan_peminjaman_ruang' => 'sometimes|image|mimes:jpeg,png,jpg|max:500',
         ], [
             'required' => ':attribute harus diisi.',
             'date' => ':attribute harus berupa tanggal.',
-            'mimes' => ':attribute harus berupa file pdf.',
-            'max' => ':attribute maksimal 1.5MB.',
+            'mimes' => ':attribute harus berupa file gambar jpeg, jpg, atau png.',
+            'max' => ':attribute maksimal 0.5MB.',
         ], [
             'id_dospem' => 'ID Dosen Pembimbing',
             'tgl_seminar' => 'Tanggal Seminar',

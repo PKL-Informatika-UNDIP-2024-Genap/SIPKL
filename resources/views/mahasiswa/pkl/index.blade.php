@@ -237,7 +237,7 @@
     var viewer = new Viewer(scanIRSImg, {
       inline: false,
       viewed: function() {
-        viewer.zoomTo(1);
+        // viewer.zoomTo(1);
       },
     });
     $('#scanIRSView').click(function(){

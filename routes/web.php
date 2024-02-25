@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\ProfileController;
+
 use App\Http\Controllers\Koordinator\ArsipPKLController;
 use App\Http\Controllers\Koordinator\AssignDospemController;
 use App\Http\Controllers\Koordinator\DokumenController;
@@ -12,17 +14,14 @@ use App\Http\Controllers\Koordinator\AssignMhsBimbinganController;
 use App\Http\Controllers\Koordinator\BebanBimbinganController;
 use App\Http\Controllers\Koordinator\CetakSKController;
 use App\Http\Controllers\Koordinator\MahasiswaController;
+use App\Http\Controllers\Koordinator\PeriodePKLController;
 use App\Http\Controllers\Koordinator\PKLController as KoordinatorPKLController;
 use App\Http\Controllers\Koordinator\SeminarPKLController as KoordinatorSeminarPKLController;
 use App\Http\Controllers\Koordinator\RiwayatPKLController as KoordinatorRiwayatPKLController;
 
-
-use App\Http\Controllers\PKLController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Koordinator\PeriodePKLController;
-use App\Http\Controllers\MailController;
-use App\Http\Controllers\RiwayatPKLController;
-use App\Http\Controllers\SeminarPKLController;
+use App\Http\Controllers\Mahasiswa\PKLController as MahasiswaPKLController ;
+use App\Http\Controllers\Mahasiswa\RiwayatPKLController as MahasiswaRiwayatPKLController;
+use App\Http\Controllers\Mahasiswa\SeminarPKLController as MahasiswaSeminarPKLController;
 
 
 /*
@@ -53,8 +52,8 @@ route::middleware('auth')->group(function () {
         Route::delete('/tmp_delete_foto_profil', [ProfileController::class, 'tmpDeleteFotoProfil']);
         Route::put('/profile/update_foto_profil', [ProfileController::class, 'updateFotoProfil']);
 
-        Route::post('/tmp_upload_irs', [PKLController::class, 'tmpUpload']);
-        Route::delete('/tmp_delete_irs', [PKLController::class, 'tmpDelete']);
+        Route::post('/tmp_upload_irs', [MahasiswaPKLController::class, 'tmpUpload']);
+        Route::delete('/tmp_delete_irs', [MahasiswaPKLController::class, 'tmpDelete']);
 
     });
 
@@ -163,27 +162,25 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         Route::put('/update_data', [AuthController::class, 'updateDataMahasiswa']);
     });
 
-    Route::get('/pkl', [PKLController::class, 'index'])->middleware('status.mhs:Nonaktif,Aktif')->name('pkl.index');
-    Route::put('/pkl/{pkl}/update', [PKLController::class, 'updateData']);
-    Route::get('/riwayat', [RiwayatPKLController::class, 'index'])->middleware('data.updated');
+    Route::get('/pkl', [MahasiswaPKLController::class, 'index'])->middleware('status.mhs:Nonaktif,Aktif')->name('pkl.index');
+    Route::put('/pkl/{pkl}/update', [MahasiswaPKLController::class, 'updateData']);
+    Route::get('/riwayat', [MahasiswaRiwayatPKLController::class, 'index'])->middleware('data.updated');
 
-    Route::middleware('status.mhs:Nonaktif')->group(function () {
-        Route::get('/registrasi', [PKLController::class, 'registrasi'])->name('registrasi');
-        Route::post('/registrasi', [PKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
+    Route::middleware(['status.mhs:Nonaktif','has.pembimbing'])->group(function () {
+        Route::get('/registrasi', [MahasiswaPKLController::class, 'registrasi'])->name('registrasi');
+        Route::post('/registrasi', [MahasiswaPKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
     });
 
     Route::middleware('status.mhs:Aktif')->group(function () {
-        Route::get('/seminar', [SeminarPKLController::class, 'index'])->name('seminar.index');
-        Route::post('/seminar/daftar', [SeminarPKLController::class, 'daftarSeminar']);
-        Route::post('/seminar/daftar_ulang', [SeminarPKLController::class, 'daftarUlangSeminar']);
-        Route::get('/seminar/jadwal', [SeminarPKLController::class, 'jadwalSeminar']);
+        Route::get('/seminar', [MahasiswaSeminarPKLController::class, 'index'])->name('seminar.index');
+        Route::post('/seminar/daftar', [MahasiswaSeminarPKLController::class, 'daftarSeminar']);
+        Route::post('/seminar/daftar_ulang', [MahasiswaSeminarPKLController::class, 'daftarUlangSeminar']);
+        Route::get('/seminar/jadwal', [MahasiswaSeminarPKLController::class, 'jadwalSeminar']);
 
-        Route::get('/laporan', [PKLController::class, 'laporan']);
-        Route::post('/laporan/kirim', [PKLController::class, 'kirimLaporan']);
+        Route::get('/laporan', [MahasiswaPKLController::class, 'laporan']);
+        Route::post('/laporan/kirim', [MahasiswaPKLController::class, 'kirimLaporan']);
     });
 
-    Route::get('/profile/verifikasi_email', [ProfileController::class, 'verifikasiEmail'])->name('profile.verifikasi_email');
-    Route::post('/email/send_otp', [MailController::class, 'sendOtp'])->name('send_otp');
-    Route::post('/email/verifikasi', [MailController::class, 'verifikasiOtp'])->name('verifikasi_email');
+    
 
 });
