@@ -111,7 +111,6 @@
 @include('koordinator.seminar.jadwal_seminar.modal_detail')
 @include('koordinator.seminar.jadwal_seminar.modal_tambah')
 @include('koordinator.seminar.jadwal_seminar.modal_import')
-@include('koordinator.seminar.jadwal_seminar.modal_export')
 
 @endsection
 

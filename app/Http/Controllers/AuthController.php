@@ -61,8 +61,10 @@ class AuthController extends Controller
                 ->get()
                 ->pluck('jumlah', 'status');
 
-                $total_mhs = $data_mhs->sum();;
+                $total_mhs = $data_mhs->sum();
             }
+            $mhs_blm_punya_pembimbing = Mahasiswa::whereNull('id_dospem')->count();
+            $mhs_sdh_punya_pembimbing = $total_mhs - $mhs_blm_punya_pembimbing;
 
             return view('koordinator.dashboard', [
                 'periode_aktif' => $periode_aktif,
@@ -70,6 +72,8 @@ class AuthController extends Controller
                 'data_mhs' => $data_mhs,
                 'total_mhs' => $total_mhs,
                 'total_dospem' => $total_dospem,
+                'mhs_blm_punya_pembimbing' => $mhs_blm_punya_pembimbing,
+                'mhs_sdh_punya_pembimbing' => $mhs_sdh_punya_pembimbing,
             ]);
         } else {
             $user = auth()->user();

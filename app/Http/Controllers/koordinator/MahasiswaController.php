@@ -18,8 +18,14 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
+        $status = '';
+        if(isset($_GET['status'])){
+            $status = $_GET['status'];
+        }
+
         return view('koordinator.mhs.kelola_mhs.index', [
-            'arr_mhs' => Mahasiswa::all()
+            'arr_mhs' => Mahasiswa::all(),
+            'status' => $status,
         ]);
     }
 
