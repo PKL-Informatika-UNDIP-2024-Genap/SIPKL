@@ -787,7 +787,6 @@ p {
 
 .ud-about-wrapper {
   background: var(--white);
-  border: 1px solid rgba(0, 0, 0, 0.08);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -802,10 +801,6 @@ p {
   }
 }
 
-.ud-about-content-wrapper {
-  padding: 70px;
-}
-
 @media (max-width: 767px) {
   .ud-about-content-wrapper {
     padding: 50px 30px;
@@ -816,10 +811,6 @@ p {
   .ud-about-content-wrapper {
     padding: 50px;
   }
-}
-
-.ud-about-content {
-  max-width: 500px;
 }
 
 .ud-about-content .tag {
@@ -1499,7 +1490,7 @@ p {
   line-height: 24px;
   color: #f3f4fe;
   margin-bottom: 30px;
-  max-width: 260px;
+  /* max-width: 260px; */
 }
 
 .ud-widget .ud-widget-socials {

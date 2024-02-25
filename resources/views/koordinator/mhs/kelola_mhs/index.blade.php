@@ -37,11 +37,11 @@
                 <label for="status" class="my-0 mr-2 fw-normal">Status:</label for="status">
                 <div class="d-inline-block" style="width: 200px">
                   <select name="status" id="status" class="form-control">
-                    <option value="" selected>Semua Status</option>
-                    <option value="Baru">Baru (Belum Pra-Reg)</option>
-                    <option value="Nonaktif">Nonaktif (Belum Reg)</option>
-                    <option value="Aktif">Aktif (Sudah Reg)</option>
-                    <option value="Lulus">Lulus</option>
+                    <option value="" {{ ($status == "")? "selected" : "" }}>Semua Status</option>
+                    <option value="Baru" {{ ($status == "Baru")? "selected" : "" }}>Baru (Belum Pra-Reg)</option>
+                    <option value="Nonaktif" {{ ($status == "Nonaktif")? "selected" : "" }}>Nonaktif (Belum Reg)</option>
+                    <option value="Aktif" {{ ($status == "Aktif")? "selected" : "" }}>Aktif (Sudah Reg)</option>
+                    <option value="Lulus" {{ ($status == "Lulus")? "selected" : "" }}>Lulus</option>
                   </select>
                 </div>
               </div>
@@ -55,6 +55,7 @@
                         <th>Nama</th>
                         <th>NIM</th>
                         <th>Status</th>
+                        <th>Periode</th>
                         <th class="action">Action</th>
                     </tr>
                 </thead>
@@ -65,6 +66,7 @@
                             <td>{{ $mhs->nama }}</td>
                             <td>{{ $mhs->nim }}</td>
                             <td>{{ $mhs->status }}</td>
+                            <td>{{ $mhs->periode_pkl ? $mhs->periode_pkl : "-" }}</td>
                             <td>
                                 <div class="btn btn-sm btn-primary btn-detail-mhs" data-bs-toggle="modal" data-bs-target="#modal_detail_mhs" data-mhs="{{ $mhs }}">
                                   Detail
@@ -115,5 +117,6 @@
 <script src="/js/datatables-jquery.js"></script>
 <script>
   let tabel = datatableWithCustomFilter("#status", 3);
+  tabel.order([[4, 'desc'], [1, 'asc'], [3, 'asc']]).draw();
 </script>
 @endpush

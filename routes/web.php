@@ -84,7 +84,7 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/dospem/beban_bimbingan/update_tabel_index', [BebanBimbinganController::class, 'update_tabel_index']);
     Route::get('/dospem/beban_bimbingan/get_bimbingan/', [BebanBimbinganController::class, 'get_bimbingan']);
 
-    Route::get('/mhs/kelola_mhs/', [MahasiswaController::class, 'index']);
+    Route::get('/mhs/kelola_mhs', [MahasiswaController::class, 'index']);
     Route::post('/mhs/kelola_mhs/tambah', [MahasiswaController::class, 'store']);
     Route::post('/mhs/kelola_mhs/import', [MahasiswaController::class, 'import']);
     Route::get('/mhs/lelola_mhs/update_tabel_mhs', [MahasiswaController::class, 'update_tabel_mhs']);

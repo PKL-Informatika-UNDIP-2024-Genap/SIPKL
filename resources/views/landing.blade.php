@@ -201,418 +201,26 @@
     </section>
     <!-- ====== dokumen End ====== -->
 
-    <!-- ====== Features Start ====== -->
-    {{-- <section id="features" class="ud-features">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-feature wow fadeInUp" data-wow-delay=".1s">
-              <div class="ud-feature-icon">
-                <i class="lni lni-gift"></i>
-              </div>
-              <div class="ud-feature-content">
-                <h3 class="ud-feature-title">Free and Open-Source</h3>
-                <p class="ud-feature-desc">
-                  Lorem Ipsum is simply dummy text of the printing and industry.
-                </p>
-                <a href="javascript:void(0)" class="ud-feature-link">
-                  Learn More
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> --}}
-    <!-- ====== Features End ====== -->
-
     <!-- ====== About Start ====== -->
-    <section id="grupwa" class="ud-about">
+    <section id="grupwa" class="ud-features">
       <div class="container">
-        <div class="ud-about-wrapper wow fadeInUp" data-wow-delay=".2s">
+        <div class="ud-about-wrapper wow fadeInUp d-flex justify-content-center text-center" data-wow-delay=".2s">
           <div class="ud-about-content-wrapper">
-            <div class="ud-about-content">
-              <span class="tag">Penting</span>
-              <h2>Grup WA</h2>
-              <p>
-                Gabung grup What's App berikut untuk mendapatkan informasi terbaru seputar PKL Informatika Undip!
-              </p>
-              <a href="javascript:void(0)" class="ud-main-btn">Gabung</a>
+            <div class="ud-about-content row d-flex text-center">
+              <div class="col-auto">
+                <span class="tag">Penting</span>
+                <h2>Grup WA</h2>
+                <p>
+                  Gabung grup WhatsApp berikut untuk mendapatkan informasi terbaru seputar PKL Informatika Undip!
+                </p>
+                <a href="javascript:void(0)" class="ud-main-btn">Gabung</a>
+              </div>
             </div>
-          </div>
-          <div class="ud-about-image">
-            <img src="/images/about/about-image.svg" alt="about-image" />
           </div>
         </div>
       </div>
     </section>
     <!-- ====== About End ====== -->
-
-    <!-- ====== FAQ Start ====== -->
-    <section id="faq" class="ud-faq">
-      <div class="shape">
-        <img src="/images/faq/shape.svg" alt="shape" />
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title text-center mx-auto">
-              <span>FAQ</span>
-              <h2>Any Questions? Answered</h2>
-              <p>
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
-              <div class="accordion">
-                <button
-                  class="ud-faq-btn collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                >
-                  <span class="icon flex-shrink-0">
-                    <i class="lni lni-chevron-down"></i>
-                  </span>
-                  <span>How to use UIdeck?</span>
-                </button>
-                <div id="collapseOne" class="accordion-collapse collapse">
-                  <div class="ud-faq-body">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ud-single-faq wow fadeInUp" data-wow-delay=".15s">
-              <div class="accordion">
-                <button
-                  class="ud-faq-btn collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo"
-                >
-                  <span class="icon flex-shrink-0">
-                    <i class="lni lni-chevron-down"></i>
-                  </span>
-                  <span>How to download icons from Lineicons?</span>
-                </button>
-                <div id="collapseTwo" class="accordion-collapse collapse">
-                  <div class="ud-faq-body">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ud-single-faq wow fadeInUp" data-wow-delay=".2s">
-              <div class="accordion">
-                <button
-                  class="ud-faq-btn collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree"
-                >
-                  <span class="icon flex-shrink-0">
-                    <i class="lni lni-chevron-down"></i>
-                  </span>
-                  <span>Is GrayGrids part of UIdeck?</span>
-                </button>
-                <div id="collapseThree" class="accordion-collapse collapse">
-                  <div class="ud-faq-body">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
-              <div class="accordion">
-                <button
-                  class="ud-faq-btn collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour"
-                >
-                  <span class="icon flex-shrink-0">
-                    <i class="lni lni-chevron-down"></i>
-                  </span>
-                  <span>Can I use this template for commercial project?</span>
-                </button>
-                <div id="collapseFour" class="accordion-collapse collapse">
-                  <div class="ud-faq-body">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ud-single-faq wow fadeInUp" data-wow-delay=".15s">
-              <div class="accordion">
-                <button
-                  class="ud-faq-btn collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseFive"
-                >
-                  <span class="icon flex-shrink-0">
-                    <i class="lni lni-chevron-down"></i>
-                  </span>
-                  <span>Do you have plan releasing Play Pro?</span>
-                </button>
-                <div id="collapseFive" class="accordion-collapse collapse">
-                  <div class="ud-faq-body">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ud-single-faq wow fadeInUp" data-wow-delay=".2s">
-              <div class="accordion">
-                <button
-                  class="ud-faq-btn collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseSix"
-                >
-                  <span class="icon flex-shrink-0">
-                    <i class="lni lni-chevron-down"></i>
-                  </span>
-                  <span>Where and how to host this template?</span>
-                </button>
-                <div id="collapseSix" class="accordion-collapse collapse">
-                  <div class="ud-faq-body">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== FAQ End ====== -->
-
-    <!-- ====== Testimonials Start ====== -->
-    <section id="testimonials" class="ud-testimonials">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-brands wow fadeInUp" data-wow-delay=".2s">
-              <div class="ud-title">
-                <h6>Trusted and Used by</h6>
-              </div>
-              <div class="ud-brands-logo">
-                <div class="ud-single-logo">
-                  <img src="/images/brands/ayroui.svg" alt="ayroui" />
-                </div>
-                <div class="ud-single-logo">
-                  <img src="/images/brands/uideck.svg" alt="uideck" />
-                </div>
-                <div class="ud-single-logo">
-                  <img
-                    src="/images/brands/graygrids.svg"
-                    alt="graygrids"
-                  />
-                </div>
-                <div class="ud-single-logo">
-                  <img
-                    src="/images/brands/lineicons.svg"
-                    alt="lineicons"
-                  />
-                </div>
-                <div class="ud-single-logo">
-                  <img
-                    src="/images/brands/ecommerce-html.svg"
-                    alt="ecommerce-html"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== Testimonials End ====== -->
-
-    <!-- ====== Team Start ====== -->
-    <section id="team" class="ud-team">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title mx-auto text-center">
-              <span>Our Team</span>
-              <h2>Meet The Team</h2>
-              <p>
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-team wow fadeInUp" data-wow-delay=".1s">
-              <div class="ud-team-image-wrapper">
-                <div class="ud-team-image">
-                  <img src="/images/team/team-01.png" alt="team" />
-                </div>
-                <img src="/images/team/dotted-shape.svg" alt="shape" class="shape shape-1"/>
-                <img src="/images/team/shape-2.svg" alt="shape" class="shape shape-2" />
-              </div>
-              <div class="ud-team-info">
-                <h5>Adveen Desuza</h5>
-                <h6>UI Designer</h6>
-              </div>
-              <ul class="ud-team-socials">
-                <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-                <li><a href="javascript:void(0)"><i class="lni lni-twitter-filled"></i></a></li>
-                <li><a href="javascript:void(0)"><i class="lni lni-instagram-filled"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-team wow fadeInUp" data-wow-delay=".15s">
-              <div class="ud-team-image-wrapper">
-                <div class="ud-team-image">
-                  <img src="/images/team/team-02.png" alt="team" />
-                </div>
-                <img src="/images/team/dotted-shape.svg" alt="shape" class="shape shape-1" />
-                <img src="/images/team/shape-2.svg" alt="shape" class="shape shape-2" />
-              </div>
-              <div class="ud-team-info">
-                <h5>Jezmin uniya</h5>
-                <h6>Product Designer</h6>
-              </div>
-              <ul class="ud-team-socials">
-                <li>
-                  <a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)"><i class="lni lni-twitter-filled"></i></a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)"><i class="lni lni-instagram-filled"></i></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== Team End ====== -->
-
-    <!-- ====== Contact Start ====== -->
-    <section id="contact" class="ud-contact">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-xl-8 col-lg-7">
-            <div class="ud-contact-content-wrapper">
-              <div class="ud-contact-title">
-                <span>CONTACT US</span>
-                <h2>
-                  Let’s talk about <br />
-                  Love to hear from you!
-                </h2>
-              </div>
-              <div class="ud-contact-info-wrapper">
-                <div class="ud-single-info">
-                  <div class="ud-info-icon">
-                    <i class="lni lni-map-marker"></i>
-                  </div>
-                  <div class="ud-info-meta">
-                    <h5>Our Location</h5>
-                    <p>401 Broadway, 24th Floor, Orchard Cloud View, London</p>
-                  </div>
-                </div>
-                <div class="ud-single-info">
-                  <div class="ud-info-icon">
-                    <i class="lni lni-envelope"></i>
-                  </div>
-                  <div class="ud-info-meta">
-                    <h5>How Can We Help?</h5>
-                    <p>info@yourdomain.com</p>
-                    <p>contact@yourdomain.com</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-5">
-            <div
-              class="ud-contact-form-wrapper wow fadeInUp"
-              data-wow-delay=".2s"
-            >
-              <h3 class="ud-contact-form-title">Kirim Masukan</h3>
-              <form class="ud-contact-form">
-                <div class="ud-form-group">
-                  <label for="fullName">Full Name*</label>
-                  <input
-                    type="text"
-                    name="fullName"
-                    placeholder="Adam Gelius"
-                  />
-                </div>
-                <div class="ud-form-group">
-                  <label for="email">Email*</label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="example@yourmail.com"
-                  />
-                </div>
-                <div class="ud-form-group">
-                  <label for="phone">Phone*</label>
-                  <input
-                    type="text"
-                    name="phone"
-                    placeholder="+885 1254 5211 552"
-                  />
-                </div>
-                <div class="ud-form-group">
-                  <label for="message">Message*</label>
-                  <textarea
-                    name="message"
-                    rows="1"
-                    placeholder="type your message here"
-                  ></textarea>
-                </div>
-                <div class="ud-form-group mb-0">
-                  <button type="submit" class="ud-main-btn">
-                    Send Message
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== Contact End ====== -->
 
     <!-- ====== Footer Start ====== -->
     <footer class="ud-footer wow fadeInLeft" data-wow-delay=".15s">
@@ -631,11 +239,13 @@
             <div class="col-xl-3 col-lg-4 col-md-6">
               <div class="ud-widget">
                 <a href="/" class="ud-footer-logo">
-                  <img src="/images/logo/logo.svg" alt="logo" />
+                  <div class="d-flex align-items-center">
+                    <img src="/images/logo_if.png" alt="Logo" style="height: 55px; width:55px">
+                    <h3 class="d-inline" id="navbar-brand-text" style="margin-left: 10px; color: white;">SIPKL</h3>
+                  </div>
                 </a>
                 <p class="ud-widget-desc">
-                  We create digital experiences for brands and companies by
-                  using technology.
+                  Sistem Informasi PKL Informatika UNDIP
                 </p>
                 <ul class="ud-widget-socials">
                   <li>
@@ -821,31 +431,6 @@
           </div>
         </div>
       </div>
-      <div class="ud-footer-bottom">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8">
-              <ul class="ud-footer-bottom-left">
-                <li>
-                  <a href="javascript:void(0)">Privacy policy</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)">Support policy</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)">Terms of service</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <p class="ud-footer-bottom-right">
-                Designed and Developed by
-                <a href="https://uideck.com" rel="nofollow">UIdeck</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </footer>
     <!-- ====== Footer End ====== -->
 
@@ -929,48 +514,8 @@
           order: [[0, 'asc']],
           lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
           pageLength: 10,
-          // "initComplete": function(settings, json) {
-          // 	$.fn.dataTable.ext.search.push(
-          // 	function (setting, data, index) {
-          // 		if (setting.nTable.id !== 'myTable') {
-          // 			return true;
-          // 		}
-          // 		var selectedStatus = $('#status').val();
-          // 		if (selectedStatus == "") {
-          // 			return true;
-          // 		}
-          // 		if (selectedStatus == data[3]) {
-          // 			return true;
-          // 		}
-          // 		return false;
-          // 	})
-          // }
         });
         $(idTable+'_filter input').css('width', '200px');
-        // table.on('order.dt search.dt', function () {
-        //   let i = 1;
-        //   table
-        //     .cells(null, 0, { search: 'applied', order: 'applied' })
-        //     .every(function (cell) {
-        //         this.data(i++);
-        //     });
-        // }).draw();
-  
-        // $('#status').on('change', function() {
-        // 	table.draw();
-        // })
-      
-        // $.fn.dataTableExt.afnFiltering.push(
-        // 	function (setting, data, index) {
-        // 		var selectedStatus = $('#status').val();
-        // 		if (selectedStatus == "") {
-        // 			return true;
-        // 		}
-        // 		if (selectedStatus == data[3]) {
-        // 			return true;
-        // 		}
-        // 		return false;
-        // 	});
       }
   
       $(document).ready(function() {
