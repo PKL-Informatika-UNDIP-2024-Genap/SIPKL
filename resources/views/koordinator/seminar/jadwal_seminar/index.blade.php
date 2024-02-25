@@ -45,7 +45,7 @@
               <span class="bi bi-upload me-1"></span>
               Import
             </div>
-            <div class="btn btn-sm btn-success" id="btn-export-jadwal" data-bs-toggle="modal" data-bs-target="#modal-export-jadwal">
+            <div class="btn btn-sm btn-success" id="btn-export-jadwal">
               <span class="bi bi-download me-1"></span>
               Export
             </div>
@@ -67,13 +67,13 @@
             <thead>
                 <tr class="table-primary">
                     <th>No</th>
-                    <th>Pembimbing</th>
                     <th class="hari_tanggal">Hari, Tanggal</th>
                     <th>Waktu</th>
                     <th>Ruang</th>
                     <th>Nama</th>
                     <th>NIM</th>
                     <th>Jenis</th>
+                    <th>Pembimbing</th>
                     <th class="action">Action</th>
                 </tr>
             </thead>
@@ -81,17 +81,20 @@
                 @foreach ($data_jadwal as $jadwal)
                     <tr>
                         <td></td>
-                        <td>{{ $jadwal->dosen_pembimbing->nama }}</td>
                         <td>{{ $jadwal->tgl_seminar }}</td>
                         <td>{{ $jadwal->waktu_seminar }}</td>
                         <td>{{ $jadwal->ruang }}</td>
                         <td>{{ $jadwal->mahasiswa->nama }}</td>
                         <td>{{ $jadwal->nim }}</td>
                         <td>{{ $jadwal->status }}</td>
+                        <td>{{ $jadwal->dosen_pembimbing->nama }}</td>
                         <td>
                           <div class="btn btn-primary btn-sm btn-detail-jadwal" data-bs-toggle="modal" data-bs-target="#modal-detail-jadwal"
                           data-mhs="{{ $jadwal->mahasiswa }}" data-jadwal="{{ $jadwal }}" data-dospem="{{ $jadwal->dosen_pembimbing }}"
                           data-tgl-jadwal="{{ $jadwal->created_at }}">Detail</div>
+                          <div class="btn btn-sm btn-danger btn-sm btn-delete-jadwal" data-nim="{{ $jadwal->nim }}">
+                            Delete
+                          </div>
                         </td>
                     </tr>
                 @endforeach
@@ -112,6 +115,10 @@
 
 @endsection
 
+@push('styles')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+@endpush
+
 @push('scripts')
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script type="text/javascript">
@@ -127,18 +134,26 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js" integrity="sha512-EC3CQ+2OkM+ZKsM1dbFAB6OGEPKRxi6EDRnZW9ys8LghQRAq6cXPUgXCCujmDrXdodGXX9bqaaCRtwj4h4wgSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/js/ajax-jadwal-seminar.js"></script>
   <script src="/js/datatables-jquery.js"></script>
+  
+  <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
 
   <script src="/lte/plugins/moment/moment.min.js"></script>
   <script src="/lte/plugins/moment/locale/id.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      let tabel = datatableWithCustomFilter("#status", 5);
-    });
-  </script>
-
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-type@1/dist/filepond-plugin-file-validate-type.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.js"></script>
   <script type="text/javascript">
+    let tabel = datatableWithCustomFilter("#status", 6);
+    tabel.order([[1, 'asc'], [2, 'asc'], [7, 'asc']]).draw();
+
+    $('#btn-export-jadwal').on('click', function () {
+      tabel.button(1).trigger();
+    })
+
     // Register the plugin
     FilePond.registerPlugin(
       FilePondPluginFileValidateType,

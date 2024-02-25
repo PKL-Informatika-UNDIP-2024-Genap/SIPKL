@@ -20,8 +20,8 @@ function update_tabel_jadwal() {
     url: '/seminar/jadwal_seminar/update_tabel_jadwal',
     success: function(response) {
       $('#tabel-jadwal').html(response.view);
-      let tabel = datatable_jadwal();
-      tabel.order([[3, 'asc'],[4, 'asc']]).draw();
+      let tabel = datatableWithCustomFilter("#status", 6);
+      tabel.order([[1, 'asc'], [2, 'asc'], [7, 'asc']]).draw();
     },
     error: function(response) {
       console.log('Error:', response);
@@ -332,18 +332,6 @@ $(document).on('click', '#btn-submit', function() {
       },
     });
   }
-});
-
-
-$(document).on('click', '#btn-submit-export', function() {
-  let jenis_seminar = $("#jenis-seminar").val();
-
-  // Membuat URL untuk export dengan parameter jenis_seminar
-  let exportUrl = "/seminar/jadwal_seminar/export?jenis_seminar=" + jenis_seminar;
-
-  // Membuka URL di tab baru
-  window.open(exportUrl, '_blank');
-
 });
 
 $(document).on('click', '#btn-import-jadwal', function(){
