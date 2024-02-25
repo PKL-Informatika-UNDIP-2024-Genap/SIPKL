@@ -35,25 +35,19 @@
                 <td id="data-dospem"></td>
               </tr>
               <tr>
-                <td class="text-nowrap px-0" style="width: 15%"><strong>Scan Layak Seminar</strong></td>
-                <td style="white-space: nowrap; width: 1%">:</td>
-                <td>
-                  <button class="badge text-bg-primary">
-                    <a id="data-scan-layak-seminar" href="" class="text-white" target="blank">
-                      Lihat Scan
-                    </a>
-                  </button>
+                <td class="text-nowrap px-0" style="width: 15%; border-bottom:none"><strong>Scan Layak Seminar</strong></td>
+                <td style="white-space: nowrap; width: 1%; border-bottom:none">:</td>
+                <td style="border-bottom:none">
+                  <button id="showButton1" class="badge text-bg-primary">Tampilkan Scan</button>
+                  <img id="data-scan-layak-seminar" src="/images/default.jpg" alt="Picture" style="display:none;">
                 </td>
               </tr>
               <tr>
-                <td class="text-nowrap px-0" style="width: 15%"><strong>Scan Peminjaman Ruang</strong></td>
-                <td style="white-space: nowrap; width: 1%">:</td>
-                <td>
-                  <button class="badge text-bg-primary">
-                    <a id="data-scan-peminjaman-ruang" href="" class="text-white" target="blank">
-                      Lihat Scan
-                    </a>
-                  </button>
+                <td class="text-nowrap px-0" style="width: 15%; border-bottom:none"><strong>Scan Peminjaman Ruang</strong></td>
+                <td style="white-space: nowrap; width: 1%; border-bottom:none">:</td>
+                <td style="border-bottom:none">
+                  <button id="showButton2" class="badge text-bg-primary">Tampilkan Scan</button>
+                  <img id="data-scan-peminjaman-ruang" src="/images/default.jpg" alt="Picture" style="display:none;">
                 </td>
               </tr>
             </tbody>

@@ -27,6 +27,13 @@ $(document).on('click', '.btn-detail-laporan', function() {
   $("#data-tgl-laporan").html(data_mhs.tgl_laporan);
   $("#data-dospem").html(data_mhs.nama_dospem);
   $("#data-tgl-seminar").html(data_mhs.tgl_seminar);
+  if(data_mhs.no_wa == null){
+    $("#link-wa").attr("href", "#");
+    $("#btn-wa").attr("disabled", "true");
+  } else {
+    $("#btn-wa").removeAttr("disabled");
+    $("#link-wa").attr("href", "https://wa.me/" + data_mhs.no_wa);
+  }
 
   let link = data_mhs.link_laporan;
   if (!link.startsWith('http://') || !link.startsWith('https://') || !link.startsWith('//')) {

@@ -24,6 +24,13 @@ $(document).on('click', '.btn-detail-nilai', function() {
   $("#data-judul-pkl").html(data_mhs.judul);
   $("#data-tgl-laporan").html(data_mhs.tgl_laporan);
   $("#data-dospem").html(data_mhs.nama_dospem);
+  if(data_mhs.no_wa == null){
+    $("#link-wa").attr("href", "#");
+    $("#btn-wa").attr("disabled", "true");
+  } else {
+    $("#btn-wa").removeAttr("disabled");
+    $("#link-wa").attr("href", "https://wa.me/" + data_mhs.no_wa);
+  }
 
 
   let link = data_mhs.link_laporan;
