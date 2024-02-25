@@ -83,7 +83,7 @@
           <div class="inner">
             <h3 class="text-white">{{ isset($data_mhs["Nonaktif"]) ? $data_mhs["Nonaktif"] : "0" }}</h3>
 
-            <p class="text-white">Mhs Belum Reg</p>
+            <p class="text-white">Mhs Belum Registrasi</p>
           </div>
           <div class="icon">
             <i class="fas bi-person-fill-dash"></i>
@@ -96,7 +96,7 @@
           <div class="inner">
             <h3>{{ isset($data_mhs["Baru"]) ? $data_mhs["Baru"] : "0" }}</h3>
 
-            <p>Mhs Belum Pra-Reg</p>
+            <p>Mhs Belum Pra-Registrasi</p>
           </div>
           <div class="icon">
             <i class="fas bi-person-fill-exclamation"></i>
@@ -125,7 +125,7 @@
           <div class="inner">
             <h3>{{ $total_dospem ? $total_dospem : "0" }}</h3>
 
-            <p>Total Dospem</p>
+            <p>Total Pembimbing</p>
           </div>
           <div class="icon">
             <i class="fas bi bi-person-vcard-fill"></i>

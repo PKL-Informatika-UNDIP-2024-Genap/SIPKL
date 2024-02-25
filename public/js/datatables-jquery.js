@@ -101,6 +101,15 @@ function datatableWithCustomFilter(id_filter, column_index) {
           columns: ':visible', // Ini akan mengekspor semua kolom yang terlihat
           columns: ':not(:last-child)' // Ini akan mengekspor semua kolom kecuali kolom terakhir
         }
+      },
+			{
+        extend: 'excelHtml5',
+        text: 'Export to Excel',
+        filename: 'export_jadwal_seminar',
+        exportOptions: {
+          columns: ':visible', // Ini akan mengekspor semua kolom yang terlihat
+          columns: ':not(:last-child)' // Ini akan mengekspor semua kolom kecuali kolom terakhir
+        }
       }
     ],
     "initComplete": function (settings, json) {
