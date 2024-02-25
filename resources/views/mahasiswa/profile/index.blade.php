@@ -69,7 +69,7 @@
           <div class="col-md-4 m-auto pb-4 pb-md-0">
             <div class="text-center position-relative">
               <img id="image_profile_preview" class="profile-user-img img-fluid img-circle"
-                src="{{ (auth()->user()->foto_profil == null)?'/images/default.jpg':'/preview/'.auth()->user()->foto_profil }}"
+                src="{{ (auth()->user()->foto_profil == null)?'/images/profile_default.svg':'/preview/'.auth()->user()->foto_profil }}"
                 alt="User profile picture" style="width: 170px">
               <input type="file" id="filepond"
                 class="filepond d-none"
@@ -83,15 +83,6 @@
             <p class="text-muted text-center">{{ $mahasiswa->nim }}</p>
 
             <div class="btn btn-primary btn-edit-password" data-bs-toggle="modal" data-bs-target="#modal_edit_password"><b>Edit Password</b></div>
-
-            @if (auth()->user()->email_verified_at == null)
-              <div class="mt-1">
-                <a href="{{ route('profile.verifikasi_email') }}" class="btn btn-primary "><b>Verifikasi Email</b></a>
-              </div>
-            @endif
-            {{-- <div class="mt-1">
-              <a href="{{ route('send_otp') }}" class="btn btn-primary "><b>Verifikasi Email</b></a>
-            </div> --}}
 
           </div>
           <div class="col-md-8">

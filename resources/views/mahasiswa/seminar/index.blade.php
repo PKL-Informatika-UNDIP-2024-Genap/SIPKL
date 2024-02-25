@@ -2,6 +2,7 @@
 
 @push('styles')
   <link href="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/filepond-plugin-image-preview@4/dist/filepond-plugin-image-preview.min.css" rel="stylesheet" />
   <style>
     /* .filepond--root, */
     .filepond--root .filepond--drop-label {
@@ -38,7 +39,7 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xl-6 col-md-7">
+        <div class="col-12">
           <div class="card card-primary card-outline">
             {{-- <div class="card-header">
             </div> --}}
@@ -53,7 +54,14 @@
               </div>
               @endif
 
-              <p><strong class="text-lightblue">Informasi Jadwal Seminar PKL Saya</strong></p>
+              <div class="row">
+                <div class="col d-flex align-items-center justify-content-between gap-1">
+                  <strong class="text-lightblue my-3">Informasi Jadwal Seminar PKL Saya</strong>
+                  @if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
+                    <button type="button" id="btn-daftar" class="btn  btn-primary">Daftar</button>
+                  @endif
+                </div>
+              </div>
               <div class="table-responsive p-0 mb-3">
                 <table class="table table-hover">
                   <tbody>
@@ -66,7 +74,11 @@
                     <tr>
                       <td class="text-nowrap px-0" style="width: 20%"><strong>Status</strong></td>
                       <td style="white-space: nowrap; width: 1%">:</td>
-                      <td><strong class="{{ ($seminar_pkl->status == 'Pengajuan')?'bg-primary':'bg-success' }} px-2 py-1 rounded-1">{{ $seminar_pkl->status }}</strong></td>
+                      @if ($seminar_pkl->status == 'Pengajuan')
+                        <td><strong class="bg-warning px-2 py-1 rounded-1 text-nowrap">Menunggu Persetujuan</strong></td>
+                      @else
+                        <td><strong class="bg-success px-2 py-1 rounded-1 text-nowrap">Terdaftar</strong></td>
+                      @endif
                     </tr>
                     <tr>
                       <td class="text-nowrap px-0"><strong>Hari, Tanggal Seminar</strong></td>
@@ -98,10 +110,10 @@
                       </td>
                     </tr> --}}
                     <tr>
-                      <td class="text-nowrap px-0" colspan="3"><strong>Scan Surat Layak Seminar</strong> &nbsp;<a href="/preview/{{ $seminar_pkl->scan_layak_seminar }}" target="_blank" class="btn btn-outline-info btn-sm py-0">Lihat File</a></td>
+                      <td class="text-nowrap px-0" colspan="3"><strong>Scan Surat Layak Seminar</strong> &nbsp;<a href="/preview/{{ $seminar_pkl->scan_layak_seminar }}" target="_blank" class="btn btn-outline-info btn-sm py-0">Lihat Scan</a></td>
                     </tr>
                     <tr>
-                      <td class="text-nowrap px-0" colspan="3"><strong>Scan Surat Peminjaman Ruang</strong> &nbsp;<a href="/preview/{{ $seminar_pkl->scan_peminjaman_ruang }}" target="_blank" class="btn btn-outline-info btn-sm py-0">Lihat File</a></td>
+                      <td class="text-nowrap px-0" colspan="3"><strong>Scan Surat Peminjaman Ruang</strong> &nbsp;<a href="/preview/{{ $seminar_pkl->scan_peminjaman_ruang }}" target="_blank" class="btn btn-outline-info btn-sm py-0">Lihat Scan</a></td>
                     </tr>
                     <tr>
                     @endif
@@ -139,10 +151,6 @@
               </div>
               <!-- /.table-responsive -->
 
-              @if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
-              <p>Ingin mengajukan Seminar PKL Tak Terjadwal? Silahkan daftar dengan mengisi form berikut ini. (Tidak wajib)</p><p>Anda akan dimasukkan ke Seminar Terjadwal jika tidak melakukan pendaftaran.</p>
-              <button type="button" id="btn-daftar" class="btn btn-primary">Daftar</button>
-              @endif
     
             </div>
           </div>
@@ -150,47 +158,6 @@
 
         </div>
 
-        <div class="col-xl-6 col-md-5">
-          <div class="card card-primary card-outline">
-            {{-- <div class="card-header">
-            </div> --}}
-            <div class="card-body">
-              <p><strong class="text-lightblue">Catatan</strong></p>
-              <dl>
-                <dt>Status <span class="text-primary">Pengajuan</span></dt>
-                <dd>Menunggu persetujuan dari Koordinator PKL mengenai pengajuan Seminar Tak Terjadwal.</dd>
-                <dt>Status <span class="text-success">TakTerjadwal</span></dt>
-                <dd>Terdaftar dalam Seminar Tak Terjadwal.</dd>
-                <dt>Status <span class="text-success">Terjadwal</span></dt>
-                <dd>Terdaftar dalam Seminar Terjadwal.</dd>
-              </dl>
-    
-              <blockquote>
-                <p><em>“Hope For The Best, Prepare For The Worst”</em></p>
-                <small>— <cite title="Source Title">Random dude</cite></small>
-              </blockquote>
-            </div>
-          </div>
-          <!-- /.card -->
-
-          <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Jadwal Seminar PKL Terjadwal dan Tak Terjadwal</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <p><strong class="text-teal">Jadwal Seminar Terjadwal</strong></p>
-              
-              <p><strong class="text-teal">Jadwal Seminar Tak Terjadwal</strong></p>
-            </div>
-            <!-- /.card-body -->
-            {{-- <div class="card-footer">
-              <button type="submit" class="btn btn-primary">Kirim</button>
-            </div> --}}
-          </div>
-          <!-- /.card -->
-          
-        </div>
 
         @if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
         <div class="col-12">
@@ -264,9 +231,9 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="bi bi-clock-fill"></i></span>
                         </div>
-                        <input type="time" class="form-control @error('waktu_seminar_mulai') is-invalid @enderror" id="waktu_seminar_mulai" name="waktu_seminar_mulai" value="{{ old('waktu_seminar_mulai') }}">
+                        <input type="time" step="600" class="form-control @error('waktu_seminar_mulai') is-invalid @enderror" id="waktu_seminar_mulai" name="waktu_seminar_mulai" value="{{ old('waktu_seminar_mulai') }}">
                         <span class="input-group-text"><i class="bi bi-dash"></i></span>
-                        <input type="time" class="form-control @error('waktu_seminar_selesai') is-invalid @enderror" id="waktu_seminar_selesai" name="waktu_seminar_selesai" value="{{ old('waktu_seminar_selesai') }}">
+                        <input type="time" step="600" class="form-control @error('waktu_seminar_selesai') is-invalid @enderror" id="waktu_seminar_selesai" name="waktu_seminar_selesai" value="{{ old('waktu_seminar_selesai') }}">
                         @error('waktu_seminar_mulai')
                           <div class="invalid-feedback">
                             {{ $message }}
@@ -303,7 +270,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="scan_layak_seminar">Scan Surat Layak Seminar (pdf)</label>
+                      <label for="scan_layak_seminar">Scan Surat Layak Seminar (Max Gambar: 500KB)</label>
                       <input type="file" class="@error('scan_layak_seminar') is-invalid @enderror" id="scan_layak_seminar" name="scan_layak_seminar">
                       @error('scan_layak_seminar')
                         <div class="invalid-feedback">
@@ -314,7 +281,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="scan_peminjaman_ruang">Scan Surat Peminjaman Ruang (pdf)</label>
+                      <label for="scan_peminjaman_ruang">Scan Surat Peminjaman Ruang (Max Gambar: 500KB)</label>
                       <input type="file" class="@error('scan_peminjaman_ruang') is-invalid @enderror" id="scan_peminjaman_ruang" name="scan_peminjaman_ruang">
                       @error('scan_peminjaman_ruang')
                         <div class="invalid-feedback">
@@ -424,7 +391,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="scan_layak_seminar">Scan Surat Layak Seminar (pdf)</label>
+                      <label for="scan_layak_seminar">Scan Surat Layak Seminar (Max Gambar: 500KB)</label>
   
                       @if ($seminar_pkl->scan_layak_seminar != null)
                       <input type="text" class="form-control" id="scan_layak_seminar_old" name="scan_layak_seminar_old" value="{{ $seminar_pkl->scan_layak_seminar }}" hidden>
@@ -443,7 +410,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="scan_peminjaman_ruang">Scan Surat Peminjaman Ruang (pdf)</label>
+                      <label for="scan_peminjaman_ruang">Scan Surat Peminjaman Ruang (Max Gambar: 500KB)</label>
 
                       @if ($seminar_pkl->scan_peminjaman_ruang != null)
                       <input type="text" class="form-control" id="scan_peminjaman_ruang_old" name="scan_peminjaman_ruang_old" value="{{ $seminar_pkl->scan_peminjaman_ruang }}" hidden>
@@ -497,6 +464,9 @@
 
 @if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
   <script type="text/javascript">
+    $('#waktu_seminar_mulai').step = 600;
+
+
     function goToForm() {
       setTimeout(() => {
         document.querySelector($('#btn-form').attr('href')).scrollIntoView({
@@ -584,14 +554,15 @@
 
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-type@1/dist/filepond-plugin-file-validate-type.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-size@2/dist/filepond-plugin-file-validate-size.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-image-preview@4/dist/filepond-plugin-image-preview.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.js"></script>
   <script type="text/javascript">
     // Register the plugin
     FilePond.registerPlugin(
+      FilePondPluginImagePreview,
       FilePondPluginFileValidateType,
       FilePondPluginFileValidateSize,
     );
-  
     // Get a reference to the file input element
     const inputElement = document.querySelector('input[id="scan_layak_seminar"]');
     const inputElement2 = document.querySelector('input[id="scan_peminjaman_ruang"]');
@@ -601,10 +572,10 @@
       storeAsFile: true,
       stylePanelLayout: 'compact',
       labelIdle: `<i class="bi bi-upload fs-2"></i><br>Drag & Drop file atau <span class="filepond--label-action">Browse</span>`,
-      acceptedFileTypes: ['application/pdf'],
+      acceptedFileTypes: ['image/jpg', 'image/jpeg', 'image/png'],
       labelFileTypeNotAllowed: 'File tidak sesuai format',
-      fileValidateTypeLabelExpectedTypes: 'Hanya file PDF yang diperbolehkan',
-      maxFileSize: '1500KB',
+      fileValidateTypeLabelExpectedTypes: 'Hanya file JPG, JPEG, PNG yang diperbolehkan',
+      maxFileSize: '500KB',
       labelMaxFileSizeExceeded: 'Ukuran file terlalu besar',
       labelMaxFileSize: 'Total ukuran maksimum file adalah {filesize}',
       credits: false,
@@ -614,10 +585,10 @@
       storeAsFile: true,
       stylePanelLayout: 'compact',
       labelIdle: `<i class="bi bi-upload fs-2"></i><br>Drag & Drop file atau <span class="filepond--label-action">Browse</span>`,
-      acceptedFileTypes: ['application/pdf'],
+      acceptedFileTypes: ['image/jpg', 'image/jpeg', 'image/png'],
       labelFileTypeNotAllowed: 'File tidak sesuai format',
-      fileValidateTypeLabelExpectedTypes: 'Hanya file PDF yang diperbolehkan',
-      maxFileSize: '1500KB',
+      fileValidateTypeLabelExpectedTypes: 'Hanya file JPG, JPEG, PNG yang diperbolehkan',
+      maxFileSize: '500KB',
       labelMaxFileSizeExceeded: 'Ukuran file terlalu besar',
       labelMaxFileSize: 'Total ukuran maksimum file adalah {filesize}',
       credits: false,
