@@ -95,6 +95,17 @@
               <div class="btn btn-primary btn-sm btn-simpan">Simpan Nilai</div>
             </div>
           </div>
+
+          <div class="row justify-content-center d-flex mt-2">
+            <div class="col-auto">
+              <button class="btn btn-sm btn-success btn-wa" id="btn-wa">
+                <a href="" target="__blank" style="text-decoration: none; color: white" id="link-wa">
+                  <i class="bi bi-whatsapp"></i>
+                  Hubungi Mhs
+                </a>
+              </button>
+            </div>
+          </div>
           
         </div>
       </div>

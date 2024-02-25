@@ -73,7 +73,17 @@
             </tbody>
           </table>
           
-          <div class="row justify-content-center d-flex mt-3">
+          <div class="row justify-content-center d-flex mt-2">
+            <div class="col-auto">
+              <button class="btn btn-sm btn-success btn-wa" id="btn-wa">
+                <a href="" target="__blank" style="text-decoration: none; color: white" id="link-wa">
+                  <i class="bi bi-whatsapp"></i>
+                  Hubungi Mhs
+                </a>
+              </button>
+            </div>
+          </div>
+          <div class="row justify-content-center d-flex mt-1">
             <div class="col-auto">
               <div class="btn btn-primary btn-sm btn-terima">Terima</div>
               <div class="btn btn-danger btn-sm btn-tolak">Tolak</div>

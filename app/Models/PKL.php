@@ -59,7 +59,7 @@ class PKL extends Model
         ->join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
         ->join('seminar_pkl', 'mahasiswa.nim', '=', 'seminar_pkl.nim')
         ->join('dosen_pembimbing', 'mahasiswa.id_dospem', '=', 'dosen_pembimbing.id')
-        ->select('mahasiswa.nama', 'pkl.*', 'seminar_pkl.tgl_seminar', 'dosen_pembimbing.nama as nama_dospem')
+        ->select('mahasiswa.nama', 'mahasiswa.no_wa', 'pkl.*', 'seminar_pkl.tgl_seminar', 'dosen_pembimbing.nama as nama_dospem')
         ->get();
 
         return $data_laporan;
@@ -69,7 +69,7 @@ class PKL extends Model
         $data_mhs = PKL::whereRaw("pkl.status = 'Selesai'")
         ->join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
         ->join('dosen_pembimbing', 'mahasiswa.id_dospem', '=', 'dosen_pembimbing.id')
-        ->select('mahasiswa.nama', 'pkl.*', 'dosen_pembimbing.nama as nama_dospem')
+        ->select('mahasiswa.nama', 'mahasiswa.no_wa', 'pkl.*', 'dosen_pembimbing.nama as nama_dospem')
         ->get();
 
         return $data_mhs;

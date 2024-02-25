@@ -71,5 +71,34 @@
   let tabel = simpleDatatable();
   tabel.order([3, 'asc']).draw();
 
+  var myImage1 = document.getElementById('data-scan-layak-seminar');
+  var showButton1 = document.getElementById('showButton1');
+  // Inisialisasi Viewer.js
+  var viewer1 = new Viewer(myImage1, {
+    inline: false,
+    viewed: function() {
+      viewer1.zoomTo(1);
+    },
+  });
+  // Tambahkan event listener pada tombol
+  showButton1.addEventListener('click', function() {
+    viewer1.show();
+  });
+
+  var myImage2 = document.getElementById('data-scan-peminjaman-ruang');
+  var showButton2 = document.getElementById('showButton2');
+  // Inisialisasi Viewer.js
+  var viewer2 = new Viewer(myImage2, {
+    inline: false,
+    viewed: function() {
+      viewer2.zoomTo(1);
+    },
+  });
+  // Tambahkan event listener pada tombol
+  showButton2.addEventListener('click', function() {
+    viewer2.show();
+  });
+
+
 </script>
 @endpush
