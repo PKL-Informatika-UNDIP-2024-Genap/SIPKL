@@ -1,6 +1,8 @@
 @extends('layouts.main_mhs')
 
 @push('styles')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.css" integrity="sha512-eG8C/4QWvW9MQKJNw2Xzr0KW7IcfBSxljko82RuSs613uOAg/jHEeuez4dfFgto1u6SRI/nXmTr9YPCjs1ozBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <link href="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/filepond-plugin-image-preview@4/dist/filepond-plugin-image-preview.min.css" rel="stylesheet" />
   <style>
@@ -21,14 +23,8 @@
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
+        <div class="col">
           <h1 class="m-0">Seminar PKL</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item active">Seminar PKL</li>
-          </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -41,17 +37,15 @@
       <div class="row">
         <div class="col-12">
           <div class="card card-primary card-outline">
-            {{-- <div class="card-header">
-            </div> --}}
-    
             <div class="card-body">
+
               @if ($seminar_pkl != null && $seminar_pkl->pesan != null)
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
-                <h5><strong><i class="icon bi bi-exclamation-triangle-fill"></i> Perhatian!</strong></h5>
-                Registrasi Seminar PKL Anda ditolak. Silahkan daftar ulang. Pesan: <strong><em>“{{ $seminar_pkl->pesan }}”</em></strong>&nbsp;&nbsp;
-                <button type="button" id="btn-daftar-ulang" class="btn btn-primary btn-sm py-0">Daftar Ulang</button>
-              </div>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
+                  <h5><strong><i class="icon bi bi-exclamation-triangle-fill"></i> Perhatian!</strong></h5>
+                  Registrasi Seminar PKL Anda ditolak. Silahkan daftar ulang. Pesan: <strong><em>“{{ $seminar_pkl->pesan }}”</em></strong>&nbsp;&nbsp;
+                  <button type="button" id="btn-daftar-ulang" class="btn btn-primary btn-sm py-0">Daftar Ulang</button>
+                </div>
               @endif
 
               <div class="row">
@@ -62,6 +56,7 @@
                   @endif
                 </div>
               </div>
+
               <div class="table-responsive p-0 mb-3">
                 <table class="table table-hover">
                   <tbody>
@@ -75,7 +70,11 @@
                       <td class="text-nowrap px-0" style="width: 20%"><strong>Status</strong></td>
                       <td style="white-space: nowrap; width: 1%">:</td>
                       @if ($seminar_pkl->status == 'Pengajuan')
-                        <td><strong class="bg-warning px-2 py-1 rounded-1 text-nowrap">Menunggu Persetujuan</strong></td>
+                        @if ($seminar_pkl->pesan == null)
+                          <td><strong class="bg-warning px-2 py-1 rounded-1 text-nowrap">Menunggu Persetujuan</strong></td>
+                        @else
+                          <td><strong class="bg-danger px-2 py-1 rounded-1 text-nowrap">Pengajuan Ditolak</strong></td>
+                        @endif
                       @else
                         <td><strong class="bg-success px-2 py-1 rounded-1 text-nowrap">Terdaftar</strong></td>
                       @endif
@@ -95,63 +94,85 @@
                       <td style="white-space: nowrap; width: 1%">:</td>
                       <td>{{ $seminar_pkl->ruang }}</td>
                     </tr>
-                    {{-- <tr>
-                      <td class="text-nowrap px-0"><strong>Keterangan</strong></td>
-                      <td style="white-space: nowrap; width: 1%">:</td>
-                      <td>@if ($seminar_pkl->status == 'Pengajuan' && $seminar_pkl->pesan == null)
-                        <strong class="text-primary">Menunggu persetujuan pengajuan Seminar Tak Terjadwal oleh Koordinator PKL.</strong>
-                        @elseif ($seminar_pkl->status == 'Pengajuan' && $seminar_pkl->pesan != null)
-                        <strong class="text-warning">Pengajuan Seminar Tak Terjadwal ditolak. Silahkan daftar lagi.</strong>
-                        @elseif ($seminar_pkl->status == 'TakTerjadwal')
-                        <strong class="text-success">Pengajuan Seminar Tak Terjadwal telah disetujui.</strong>
+                    <tr>
+                      <td class="text-nowrap px-0" colspan="3"><strong>Scan Surat Layak Seminar</strong> &nbsp;<a href="/preview/{{ $seminar_pkl->scan_layak_seminar }}" target="_blank" class="btn btn-outline-info btn-sm py-0 btnScanLayakSeminar">Lihat Scan</a></td>
+                    </tr>
+                    <tr>
+                      <td class="text-nowrap px-0" colspan="3"><strong>Scan Surat Peminjaman Ruang</strong> &nbsp;<a href="/preview/{{ $seminar_pkl->scan_peminjaman_ruang }}" target="_blank" class="btn btn-outline-info btn-sm py-0 scanPeminjamanRuang">Lihat Scan</a></td>
+                    </tr>
+                    <tr>
+                    @endif
+
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+
+              <img id="scanImg" src="" alt="Picture" style="display:none;">
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <p><strong class="text-lightblue">Dosen Pembimbing</strong></p>
+                  <div class="table-responsive p-0 mb-3">
+                    <table class="table table-hover">
+                      <tbody>
+        
+                        @if ($mahasiswa->id_dospem == null)
+                        <tr>
+                          <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-warning">Belum ada</strong></td>
+                        </tr>
                         @else
-                        <strong class="text-success">Anda terdaftar dalam Seminar Terjadwal.</strong>
+                        <tr>
+                          <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>NIP</strong></td>
+                          <td style="white-space: nowrap; width: 1%">:</td>
+                          <td>{{ $mahasiswa->dosen_pembimbing->nama }}</td>
+                        </tr>
+                        <tr>
+                          <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>Nama</strong></td>
+                          <td style="white-space: nowrap; width: 1%">:</td>
+                          <td>{{ $mahasiswa->dosen_pembimbing->nip }} </td>
+                        </tr>
                         @endif
-                      </td>
-                    </tr> --}}
-                    <tr>
-                      <td class="text-nowrap px-0" colspan="3"><strong>Scan Surat Layak Seminar</strong> &nbsp;<a href="/preview/{{ $seminar_pkl->scan_layak_seminar }}" target="_blank" class="btn btn-outline-info btn-sm py-0">Lihat Scan</a></td>
-                    </tr>
-                    <tr>
-                      <td class="text-nowrap px-0" colspan="3"><strong>Scan Surat Peminjaman Ruang</strong> &nbsp;<a href="/preview/{{ $seminar_pkl->scan_peminjaman_ruang }}" target="_blank" class="btn btn-outline-info btn-sm py-0">Lihat Scan</a></td>
-                    </tr>
-                    <tr>
-                    @endif
+        
+                      </tbody>
+                    </table>
+    
+                  </div>
+                  <!-- /.table-responsive -->
 
-                  </tbody>
-                </table>
+                </div>
+                <div class="col-md-6">
+                  <p><strong class="text-lightblue">Data PKL</strong></p>
+                  <div class="table-responsive p-0 mb-3">
+                    <table class="table table-hover">
+                      <tbody>
+        
+                        @if ($mahasiswa->pkl == null)
+                          <tr>
+                            <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-warning">Belum ada</strong></td>
+                          </tr>
+                        @else
+                          <tr>
+                            <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>Instansi</strong></td>
+                            <td style="white-space: nowrap; width: 1%">:</td>
+                            <td>{{ $mahasiswa->pkl->instansi }}</td>
+                          </tr>
+                          <tr>
+                            <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>Judul</strong></td>
+                            <td style="white-space: nowrap; width: 1%">:</td>
+                            <td>{{ $mahasiswa->pkl->judul }} </td>
+                          </tr>
+                        @endif
+        
+                      </tbody>
+                    </table>
+    
+                  </div>
+                  <!-- /.table-responsive -->
+
+                </div>
               </div>
-              <!-- /.table-responsive -->
 
-              <p><strong class="text-lightblue">Dosen Pembimbing</strong></p>
-              <div class="table-responsive p-0 mb-3">
-                <table class="table table-hover">
-                  <tbody>
-    
-                    @if ($mahasiswa->id_dospem == null)
-                    <tr>
-                      <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-warning">Belum ada</strong></td>
-                    </tr>
-                    @else
-                    <tr>
-                      <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>NIP</strong></td>
-                      <td style="white-space: nowrap; width: 1%">:</td>
-                      <td>{{ $mahasiswa->dosen_pembimbing->nama }}</td>
-                    </tr>
-                    <tr>
-                      <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>Nama</strong></td>
-                      <td style="white-space: nowrap; width: 1%">:</td>
-                      <td>{{ $mahasiswa->dosen_pembimbing->nip }} </td>
-                    </tr>
-                    @endif
-    
-                  </tbody>
-                </table>
-
-              </div>
-              <!-- /.table-responsive -->
-
-    
             </div>
           </div>
           <!-- /.card -->
@@ -396,7 +417,7 @@
                       @if ($seminar_pkl->scan_layak_seminar != null)
                       <input type="text" class="form-control" id="scan_layak_seminar_old" name="scan_layak_seminar_old" value="{{ $seminar_pkl->scan_layak_seminar }}" hidden>
                       <div class=" mb-2">
-                        <a href="/preview/{{ $seminar_pkl->scan_layak_seminar }}" target="_blank" class="btn btn-outline-info btn-sm">Lihat scan lama</a>
+                        <a href="/preview/{{ $seminar_pkl->scan_layak_seminar }}" target="_blank" class="btn btn-outline-info btn-sm btnScanLayakSeminar">Lihat scan lama</a>
                       </div>
                       @endif
 
@@ -415,7 +436,7 @@
                       @if ($seminar_pkl->scan_peminjaman_ruang != null)
                       <input type="text" class="form-control" id="scan_peminjaman_ruang_old" name="scan_peminjaman_ruang_old" value="{{ $seminar_pkl->scan_peminjaman_ruang }}" hidden>
                       <div class=" mb-2">
-                        <a href="/preview/{{ $seminar_pkl->scan_peminjaman_ruang }}" target="_blank" class="btn btn-outline-info btn-sm">Lihat scan lama</a>
+                        <a href="/preview/{{ $seminar_pkl->scan_peminjaman_ruang }}" target="_blank" class="btn btn-outline-info btn-sm scanPeminjamanRuang">Lihat scan lama</a>
                       </div>
                       @endif
 
@@ -461,6 +482,21 @@
 @endsection
 
 @push('scripts')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js" integrity="sha512-EC3CQ+2OkM+ZKsM1dbFAB6OGEPKRxi6EDRnZW9ys8LghQRAq6cXPUgXCCujmDrXdodGXX9bqaaCRtwj4h4wgSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript">
+    var scanImg = $('#scanImg')[0];
+    $('.btnScanLayakSeminar, .scanPeminjamanRuang').click(function(e){
+      e.preventDefault();
+      scanImg.src = $(this).attr('href');
+      // Inisialisasi Viewer.js
+      var viewer = new Viewer(scanImg, {
+        hidden: function () {
+          viewer.destroy();
+        },
+      });
+      viewer.show();
+    });
+  </script>
 
 @if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
   <script type="text/javascript">

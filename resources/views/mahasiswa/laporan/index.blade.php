@@ -5,14 +5,8 @@
   <div class="content-header">
     <div class="container-fluid">
 			<div class="row mb-2">
-        <div class="col-sm-6">
+        <div class="col">
           <h1 class="m-0">Laporan PKL</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item active">Laporan PKL</li>
-          </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
 		</div><!-- /.container-fluid -->
@@ -27,44 +21,45 @@
           <div class="card card-primary card-outline">
             <div class="card-body">
 
-            @if ($pkl->status == 'Aktif' && $pkl->pesan != null)
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
-                <h5><strong><i class="icon bi bi-exclamation-triangle-fill"></i> Perhatian!</strong></h5>
-                Laporan PKL Anda ditolak. Silahkan perbaiki dan kirim ulang. Pesan: <strong><em>“{{ $pkl->pesan }}”</em></strong>&nbsp;&nbsp;
-                <button type="button" id="btn-lapor-ulang" class="btn btn-primary btn-sm py-0">Kirim Ulang Laporan</button>
+              @if ($pkl->status == 'Aktif' && $pkl->pesan != null)
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
+                  <h5><strong><i class="icon bi bi-exclamation-triangle-fill"></i> Perhatian!</strong></h5>
+                  Laporan PKL Anda ditolak. Silahkan perbaiki dan kirim ulang. Pesan: <strong><em>“{{ $pkl->pesan }}”</em></strong>&nbsp;&nbsp;
+                  <button type="button" id="btn-lapor-ulang" class="btn btn-primary btn-sm py-0">Kirim Ulang Laporan</button>
+                </div>
+              @endif
+
+              <div class="row">
+                <div class="col d-flex align-items-center justify-content-between gap-1">
+                  <strong class="text-lightblue my-3">Data Laporan PKL Saya</strong>
+                  @if ($pkl->status == 'Aktif')
+                    <button type="button" id="btn-lapor" class="btn btn-primary">Buat Laporan</button>
+                  @endif
+                </div>
               </div>
-            @endif
-
-							<p><strong class="text-lightblue">Data Laporan PKL Saya</strong></p>
-							{{-- <div class="row">
-								<div class="col-md-6">
-
-								</div>
-							</div> --}}
+							
               <div class="table-responsive p-0 mb-3">
                 <table class="table table-hover">
                   <tbody>
 										<tr>
 											<td class="text-nowrap px-0" style="width: 20%"><strong>Status</strong></td>
 											<td style="white-space: nowrap; width: 1%">:</td>
-											<td><strong class="{{ ($pkl->status == 'Selesai')?'bg-success':'bg-primary' }} px-2 py-1 rounded-1">{{ $pkl->status }}</strong></td>
+                      
+                      @if ($pkl->status == 'Laporan')
+                        <td><strong class="bg-warning px-2 py-1 rounded-1 text-nowrap">Menunggu konfirmasi</strong></td>
+                      @elseif ($pkl->status == 'Selesai')
+                        <td><strong class="bg-success px-2 py-1 rounded-1 text-nowrap">Laporan diterima</strong></td>
+                      @else
+                        @if ($pkl->status == 'Aktif' && $pkl->pesan != null)
+                          <td><strong class="bg-danger px-2 py-1 rounded-1 text-nowrap">Laporan ditolak</strong></td>
+                        @else
+                          <td><strong class="bg-danger px-2 py-1 rounded-1 text-nowrap">Belum Mengirim Laporan</strong></td>
+                        @endif
+                      @endif
 										</tr>
-
                     <tr>
-                      <td class="px-0 text-center" colspan="3">
-												@if ($pkl->status == 'Aktif')
-													@if ($pkl->pesan == null)
-													<strong class="text-warning">Belum Mengirim Laporan</strong>
-													@else
-													<strong class="text-pink">Laporan ditolak. Silahkan diperbaiki.</strong>
-													@endif
-												@elseif ($pkl->status == 'Laporan')
-												<strong class="text-primary">Menunggu konfirmasi.</strong>
-												@elseif ($pkl->status == 'Selesai')
-												<strong class="text-success">Laporan diterima.</strong>
-												@endif
-											</td>
+                      <td class="text-nowrap px-0 text-center" colspan="3"><em class="text-success">Menunggu Input Nilai</em></td>
                     </tr>
 
                     <tr>
@@ -106,7 +101,6 @@
 												@endif
 											</td>
                     </tr>
-                    
                     <tr>
                       <td class="text-nowrap px-0" colspan="3"><strong>Link Laporan</strong> &nbsp;<a href="{{ $pkl->link_laporan }}" target="_blank" class="btn btn-outline-info btn-sm py-0 @if ($pkl->link_laporan == null) disabled @endif">Pergi ke link</a></td>
                     </tr>
@@ -115,12 +109,6 @@
                 </table>
               </div>
               <!-- /.table-responsive -->
-
-
-            @if ($pkl->status == 'Aktif')
-              <p>Kirim laporan sebelum Periode PKL berakhir. (Wajib)</p>
-              <button type="button" id="btn-lapor" class="btn btn-primary">Buat Laporan</button>
-            @endif
     
             </div>
           </div>
