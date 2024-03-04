@@ -16,6 +16,10 @@ class RiwayatPKL extends Model
     public $timestamps = false;
     protected $guarded = [];
 
+    public function dosen_pembimbing(){
+        return $this->hasOne(DosenPembimbing::class,'id','id_dospem');
+    }
+
     public static function bulk_create($arr_mhs){
         self::create($arr_mhs->get()->map(function($item){
             return [

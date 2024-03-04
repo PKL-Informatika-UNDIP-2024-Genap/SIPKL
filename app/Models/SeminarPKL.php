@@ -28,6 +28,11 @@ class SeminarPKL extends Model
         return $this->hasOne(DosenPembimbing::class,'id','id_dospem');
     }
 
+    public function pkl()
+    {
+        return $this->hasOne(PKL::class,'nim','nim');
+    }
+
     static public function get_data_pengajuan(){
         $data_pengajuan = self::whereRaw('seminar_pkl.status = "Pengajuan" AND pesan is NULL')
         ->join('mahasiswa', 'seminar_pkl.nim', '=', 'mahasiswa.nim')

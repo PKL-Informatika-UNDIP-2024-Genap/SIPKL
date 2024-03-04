@@ -62,7 +62,7 @@
                   <tbody>
                     @if ($seminar_pkl == null)
                     <tr>
-                      <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-warning">Belum ada</strong></td>
+                      <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-warning">Tidak tersedia</strong></td>
                     </tr>
 
                     @else
@@ -119,7 +119,7 @@
         
                         @if ($mahasiswa->id_dospem == null)
                         <tr>
-                          <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-warning">Belum ada</strong></td>
+                          <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-warning">Tidak tersedia</strong></td>
                         </tr>
                         @else
                         <tr>
@@ -149,7 +149,7 @@
         
                         @if ($mahasiswa->pkl == null)
                           <tr>
-                            <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-warning">Belum ada</strong></td>
+                            <td class="text-nowrap px-0 text-center" style="white-space: nowrap; width: 1%"><strong class="text-warning">Tidak tersedia</strong></td>
                           </tr>
                         @else
                           <tr>

@@ -18,6 +18,12 @@ class SeminarPKLController extends Controller
     {
         $user = auth()->user();
         $mahasiswa = $user->mahasiswa;
+        if ($mahasiswa->status == 'Lulus') {
+            return view('mahasiswa.seminar.index__lulus', [
+                'user' => $user,
+                'mahasiswa' => $mahasiswa,
+            ]);
+        }
         $seminar_pkl = $mahasiswa->seminar_pkl;
         // setlocale(LC_TIME, 'id_ID');
         // Carbon::setLocale('id');
@@ -184,7 +190,7 @@ class SeminarPKLController extends Controller
 
     public function jadwalSeminar ()
     {
-        $data_jadwal = SeminarPKL::whereRaw('status = "Tak Terjadwal" OR status = "Terjadwal"')->with(["mahasiswa", "dosen_pembimbing"])->get();
+        $data_jadwal = SeminarPKL::whereRaw('status = "Tak Terjadwal" OR status = "Terjadwal"')->with(["mahasiswa", "dosen_pembimbing", "pkl"])->get();
         return view('mahasiswa.seminar.jadwal_seminar', [
             'user' => auth()->user(),
             'mahasiswa' => auth()->user()->mahasiswa,
