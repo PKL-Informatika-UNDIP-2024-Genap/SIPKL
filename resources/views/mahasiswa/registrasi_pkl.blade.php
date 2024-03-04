@@ -1,6 +1,10 @@
 @extends('layouts.main_mhs')
 
 @push('styles')
+  @if ($pkl->scan_irs != null)
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.css" integrity="sha512-eG8C/4QWvW9MQKJNw2Xzr0KW7IcfBSxljko82RuSs613uOAg/jHEeuez4dfFgto1u6SRI/nXmTr9YPCjs1ozBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  @endif
+
   <link href="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/filepond-plugin-image-preview@4/dist/filepond-plugin-image-preview.min.css" rel="stylesheet" />
   <style>
@@ -47,6 +51,13 @@
         <form action="/registrasi" class="needs-validation" method="post" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
+            @if ($pkl->pesan != null)
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
+                <i class="icon bi bi-exclamation-triangle-fill"></i> Pesan: <strong><em>“{{ $pkl->pesan }}”</em></strong>
+              </div>
+						@endif
+
             <div class="form-group">
               <label for="nama">Nama</label>
               <div class="input-group">
@@ -111,7 +122,7 @@
               <label for="scan_irs">Scan IRS (Max Gambar: 500KB)</label>
               @if ($pkl->scan_irs != null)
                 <div class="mb-2">
-                  <a href="/preview/{{ $pkl->scan_irs }}" target="_blank" class="btn btn-outline-info btn-sm py-0">Lihat scan lama</a>
+                  <a href="/preview/{{ $pkl->scan_irs }}" target="_blank" id="btnScanIRS" class="btn btn-outline-info btn-sm py-0">Lihat Scan Lama</a>
                 </div>
               @endif
               {{-- <input type="file" class="custom-file-input @error('scan_irs') is-invalid @enderror" id="scan_irs" name="scan_irs" value="{{ old('scan_irs') }}"> --}}
@@ -123,13 +134,7 @@
                 </div>
               @enderror
             </div>
-
-            @if ($pkl->pesan != null)
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
-                <i class="icon bi bi-exclamation-triangle-fill"></i> Pesan: <strong><em>“{{ $pkl->pesan }}”</em></strong>
-              </div>
-						@endif
+            <img id="scanImg" src="" alt="Picture" style="display:none;">
 
             <div class="form-check ms-1">
               <input type="checkbox" class="form-check-input" id="checkbox1" name="checkbox1">
@@ -150,6 +155,24 @@
 @endsection
 
 @push('scripts')
+  @if ($pkl->scan_irs != null)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js" integrity="sha512-EC3CQ+2OkM+ZKsM1dbFAB6OGEPKRxi6EDRnZW9ys8LghQRAq6cXPUgXCCujmDrXdodGXX9bqaaCRtwj4h4wgSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+      var scanImg = $('#scanImg')[0];
+      $('#btnScanIRS').click(function(e){
+        e.preventDefault();
+        scanImg.src = $(this).attr('href');
+        // Inisialisasi Viewer.js
+        var viewer = new Viewer(scanImg, {
+          hidden: function () {
+            viewer.destroy();
+          },
+        });
+        viewer.show();
+      });
+    </script>
+  @endif
+
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-type@1/dist/filepond-plugin-file-validate-type.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-size@2/dist/filepond-plugin-file-validate-size.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-image-preview@4/dist/filepond-plugin-image-preview.min.js"></script>

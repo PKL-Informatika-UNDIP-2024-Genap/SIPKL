@@ -67,7 +67,7 @@
         </li>
         @endif
 
-        @if ($mahasiswa->status == "Aktif")
+        @if ($mahasiswa->status == "Aktif" || $mahasiswa->status == "Lulus")
 
         <li class="nav-item {{ Request::is('seminar*') ? 'menu-open' : '' }}">
           <a href="#" class="nav-link {{ Request::is('seminar*') ? 'active' : '' }}">
@@ -93,14 +93,16 @@
           </ul>
         </li>
 
-        <li class="nav-item">
-          <a href="/laporan" class="nav-link {{ Request::is('laporan')?'active':'' }}">
-            <i class="nav-icon bi bi-journal-text"></i>
-            <p>
-              Pengumpulan Laporan
-            </p>
-          </a>
-        </li>
+          @if ($mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status != 'Pengajuan')
+            <li class="nav-item">
+              <a href="/laporan" class="nav-link {{ Request::is('laporan')?'active':'' }}">
+                <i class="nav-icon bi bi-journal-text"></i>
+                <p>
+                  Pengumpulan Laporan
+                </p>
+              </a>
+            </li>
+          @endif
 
         @endif
 
