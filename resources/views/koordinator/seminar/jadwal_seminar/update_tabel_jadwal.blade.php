@@ -24,10 +24,10 @@
               <td>{{ $jadwal->status }}</td>
               <td>{{ $jadwal->dosen_pembimbing->nama }}</td>
               <td>
-                <div class="btn btn-primary btn-sm btn-detail-jadwal" data-bs-toggle="modal" data-bs-target="#modal-detail-jadwal"
+                <div class="btn btn-primary btn-sm btn-detail-jadwal mb-1" data-bs-toggle="modal" data-bs-target="#modal-detail-jadwal"
                 data-mhs="{{ $jadwal->mahasiswa }}" data-jadwal="{{ $jadwal }}" data-dospem="{{ $jadwal->dosen_pembimbing }}"
                 data-tgl-jadwal="{{ $jadwal->created_at }}">Detail</div>
-                <div class="btn btn-sm btn-danger btn-sm btn-delete-jadwal" data-nim="{{ $jadwal->nim }}">
+                <div class="btn btn-sm btn-danger btn-sm btn-delete-jadwal mb-1" data-nim="{{ $jadwal->nim }}">
                   Delete
                 </div>
               </td>

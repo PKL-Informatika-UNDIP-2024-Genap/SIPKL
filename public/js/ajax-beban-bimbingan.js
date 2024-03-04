@@ -67,6 +67,7 @@ $(document).on('click', '.btn-detail', function() {
 
 $(document).on('change', '#periode-pkl-modal', function() {
   periode_pkl_modal = $(this).val();
+  $("#tabel-modal").html('<div class="d-flex align-items-center"><div class="spinner-border spinner-border-lg me-2" role="status" aria-hidden="true"></div><div class="fs-5">Mengambil Data Bimbingan...</div></div>')
 
   $.ajax({
     type: "GET",

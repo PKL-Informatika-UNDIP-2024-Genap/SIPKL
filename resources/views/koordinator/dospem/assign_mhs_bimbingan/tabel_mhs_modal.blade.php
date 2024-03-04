@@ -6,7 +6,7 @@
       <th>NIM</th>
       <th class="judul-pkl">Judul PKL</th>
       <th class="instansi-pkl">Instansi</th>
-      <th class="action assign">Assign</th>
+      <th class="assign">Assign</th>
     </tr>
   </thead>
   <tbody>
@@ -25,6 +25,9 @@
             data-nim="{{ $mhs->nim }}" type="checkbox" {{ $mhs->id_dospem ? 'checked' : '' }} 
             id="flexCheckDefault" disabled>
           </div>
+          @if ($mhs->id_dospem)
+            <p class="d-none">checked</p>
+          @endif
         </td>
       </tr>
     @endforeach

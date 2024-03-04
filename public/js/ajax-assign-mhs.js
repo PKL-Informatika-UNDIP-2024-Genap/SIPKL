@@ -48,6 +48,7 @@ $(document).ready(function() {
           table_modal.destroy();
         }
         table_modal = simpleDatatable2();
+        table_modal.order([[5, 'asc'], [1, 'asc']]).draw();
       }
     });
   });
