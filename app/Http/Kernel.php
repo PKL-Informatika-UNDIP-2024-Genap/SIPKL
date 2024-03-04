@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'data.updated' => \App\Http\Middleware\EnsureDataIsUpdated::class,
         'status.mhs' => \App\Http\Middleware\StatusMahasiswa::class,
         'has.pembimbing' => \App\Http\Middleware\HasPembimbing::class,
+        'has.seminar' => \App\Http\Middleware\HasSeminar::class,
     ];
 }

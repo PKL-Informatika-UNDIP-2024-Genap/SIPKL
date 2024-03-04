@@ -170,14 +170,17 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         Route::post('/registrasi', [MahasiswaPKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
     });
 
-    Route::middleware('status.mhs:Aktif')->group(function () {
+    Route::middleware('status.mhs:Aktif,Lulus')->group(function () {
         Route::get('/seminar', [MahasiswaSeminarPKLController::class, 'index'])->name('seminar.index');
         Route::post('/seminar/daftar', [MahasiswaSeminarPKLController::class, 'daftarSeminar']);
         Route::post('/seminar/daftar_ulang', [MahasiswaSeminarPKLController::class, 'daftarUlangSeminar']);
         Route::get('/seminar/jadwal', [MahasiswaSeminarPKLController::class, 'jadwalSeminar']);
 
-        Route::get('/laporan', [MahasiswaPKLController::class, 'laporan']);
-        Route::post('/laporan/kirim', [MahasiswaPKLController::class, 'kirimLaporan']);
+        Route::middleware('has.seminar')->group(function () {
+            Route::get('/laporan', [MahasiswaPKLController::class, 'laporan']);
+            Route::post('/laporan/kirim', [MahasiswaPKLController::class, 'kirimLaporan']);
+        });
+        
     });
 
     
