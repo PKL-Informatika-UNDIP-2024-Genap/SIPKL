@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="m-0">Assign Mahasiswa Bimbingan</h5>
+        <h5 class="m-0">Beban Bimbingan Pembimbing</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -25,7 +25,7 @@
           <div class="col" style="max-width: 150px">Periode PKL</div>
           <div class="col-auto" >:</div>
           <div class="col-auto" id="data-periode-pkl">
-            <select name="periode-pkl-modal" id="periode-pkl-modal" style="cursor: pointer;">
+            <select name="periode-pkl-modal" id="periode-pkl-modal" style="cursor: pointer; border-color:lightgray; border-radius: 5px">
               <option value="">Semua</option>
               <option value="belum">Belum Memiliki Periode</option>
               @foreach ($arr_periode as $periode)
@@ -37,7 +37,7 @@
 
         
         <div class="row">
-          <div class="col" id="tabel-modal">
+          <div class="col table-responsive" id="tabel-modal">
             
           </div>
         </div>

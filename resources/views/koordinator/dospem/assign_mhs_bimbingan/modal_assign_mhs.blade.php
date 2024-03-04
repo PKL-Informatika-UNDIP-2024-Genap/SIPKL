@@ -24,7 +24,7 @@
         </div>
         
         <div class="row">
-          <div class="col" id="tabel-modal">
+          <div class="col table-responsive" id="tabel-modal">
             
           </div>
         </div>

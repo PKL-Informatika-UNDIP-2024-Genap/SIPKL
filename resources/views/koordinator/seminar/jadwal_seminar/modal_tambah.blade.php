@@ -57,7 +57,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col" id="container-tabel-modal">
+            <div class="col table-responsive" id="container-tabel-modal">
 
             </div>
           </div>

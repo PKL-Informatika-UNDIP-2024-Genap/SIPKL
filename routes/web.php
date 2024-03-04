@@ -77,7 +77,6 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/dospem/assign_mhs_bimbingan/', [AssignMhsBimbinganController::class, 'index']);
     Route::get('/dospem/assign_mhs_bimbingan/update_tabel_dospem', [AssignMhsBimbinganController::class, 'update_tabel_dospem']);
     Route::get('/dospem/assign_mhs_bimbingan/{id_dospem}/get_data_mhs', [AssignMhsBimbinganController::class, 'get_data_mhs']);
-    Route::get('/dospem/assign_mhs_bimbingan/{nim}/get_data_pkl', [AssignMhsBimbinganController::class, 'get_data_pkl']);
     Route::post('/dospem/assign_mhs_bimbingan/{id_dospem}/update_mhs_bimbingan', [AssignMhsBimbinganController::class, 'update_mhs_bimbingan']);
 
     Route::get('/dospem/beban_bimbingan/', [BebanBimbinganController::class, 'index']);
