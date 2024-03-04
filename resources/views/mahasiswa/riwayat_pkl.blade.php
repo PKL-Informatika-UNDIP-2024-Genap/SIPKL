@@ -40,10 +40,10 @@
                       @foreach ($data_riwayat_pkl as $index => $riwayat_pkl)
                           <tr>
                               <td>{{ $index+1 }}</td>
-                              <td>{{ $riwayat_pkl->periode }}</td>
+                              <td>{{ $riwayat_pkl->periode_pkl }}</td>
                               <td>{{ $riwayat_pkl->status }}</td>
-                              <td>{{ $riwayat_pkl->nama_dospem }}</td>
-                              <td>{{ $riwayat_pkl->nip_dospem }}</td>
+                              <td>{{ $riwayat_pkl->dosen_pembimbing->nama }}</td>
+                              <td>{{ $riwayat_pkl->dosen_pembimbing->nip }}</td>
                           </tr>
                       @endforeach
                     @endif

@@ -32,12 +32,12 @@
 						</div>
 						<div class="col-auto mb-2 d-flex align-items-center flex-wrap">
 							{{-- <strong class="mr-3 text-lightblue">Filter:</strong> --}}
-							<label for="status" class="my-0 mr-2 fw-normal">Status/Jenis:</label for="status">
+							<label for="jadwal" class="my-0 mr-2 fw-normal">Jadwal:</label for="jadwal">
 							<div class="d-inline-block" style="width: 200px">
-								<select name="status" id="status" class="form-control">
-									<option value="" selected>Semua</option>
-									<option value="Terjadwal">Terjadwal</option>
-									<option value="Tak Terjadwal">Tak Terjadwal</option>
+								<select name="jadwal" id="jadwal" class="form-control">
+									<option value="">Semua</option>
+									<option value="Mendatang" selected>Mendatang</option>
+									<option value="Terlewat">Terlewat</option>
 								</select>
 							</div>
 						</div>
@@ -47,13 +47,13 @@
 							<thead>
 									<tr class="table-primary">
 											<th>No</th>
-											<th>Dosen Pembimbing</th>
-											<th>Hari, Tanggal</th>
+											<th class="hari_tanggal">Hari, Tanggal</th>
 											<th>Waktu</th>
 											<th>Ruang</th>
 											<th>Nama</th>
 											<th>NIM</th>
-											<th>Jenis</th>
+											<th>Judul PKL</th>
+											<th>Pembimbing</th>
 											<th class="action">Action</th>
 									</tr>
 							</thead>
@@ -61,18 +61,16 @@
 									@foreach ($data_jadwal as $jadwal)
 											<tr>
 													<td></td>
-													<td>{{ $jadwal->dosen_pembimbing->nama }}</td>
-													{{-- <td>{{ Carbon\Carbon::parse($jadwal->tgl_seminar)->isoFormat('dddd, D MMMM Y') }}</td> --}}
 													<td>{{ $jadwal->tgl_seminar }}</td>
 													<td>{{ $jadwal->waktu_seminar }}</td>
 													<td>{{ $jadwal->ruang }}</td>
 													<td>{{ $jadwal->mahasiswa->nama }}</td>
 													<td>{{ $jadwal->nim }}</td>
-													<td>{{ $jadwal->status }}</td>
+													<td>{{ $jadwal->pkl->judul }}</td>
+													<td>{{ $jadwal->dosen_pembimbing->nama }}</td>
 													<td>
 														<div class="btn btn-primary btn-sm btn-detail-jadwal" data-bs-toggle="modal" data-bs-target="#modal-detail-jadwal"
-														data-mhs="{{ $jadwal->mahasiswa }}" data-jadwal="{{ $jadwal }}" data-dospem="{{ $jadwal->dosen_pembimbing }}"
-														data-tgl-jadwal="{{ $jadwal->created_at }}">Detail</div>
+														data-jadwal="{{ $jadwal }}">Detail</div>
 													</td>
 											</tr>
 									@endforeach
@@ -87,13 +85,15 @@
 	</section>
 	<!-- /.content -->
 
+	@include('mahasiswa.seminar.modal_detail')
+
 @endsection
 
 
 @push('scripts')
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script type="text/javascript">
-    $('#status').select2({
+    $('#jadwal').select2({
       theme: 'bootstrap-5',
       // allowClear: true,
       minimumResultsForSearch: Infinity,
@@ -116,11 +116,11 @@
             targets: [0,"action"]
           },
 					{
-            target: 2,
+            target: 'hari_tanggal',
             render: DataTable.render.datetime( "dddd, D MMMM YYYY", "id"),
 					},
         ],
-        order: [[2, 'asc'],[3, 'asc']],
+        order: [[1, 'asc'],[2, 'asc']],
         lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
         pageLength: 10,
         "initComplete": function(settings, json) {
@@ -129,13 +129,17 @@
             // if (setting.nTable.id !== 'myTable') {
             //   return true;
             // }
-            var selectedStatus = $('#status').val();
-            if (selectedStatus == "") {
+            var selectedJadwal = $('#jadwal').val();
+						let dataTgl = moment(data[2], "dddd, D MMMM YYYY").format("YYYY-MM-DD");
+            if (selectedJadwal == "") {
               return true;
             }
-            if (selectedStatus == data[7]) {
+            if (selectedJadwal == "Mendatang" && dataTgl >= moment().format("YYYY-MM-DD")) {
               return true;
             }
+						if (selectedJadwal == "Terlewat" && dataTgl < moment().format("YYYY-MM-DD")) {
+							return true;
+						}
             return false;
           })
         }
@@ -150,21 +154,56 @@
           });
       }).draw();
       
-      $('#status').on('change', function() {
+      $('#jadwal').on('change', function() {
         table.draw();
       })
     
       // $.fn.dataTableExt.afnFiltering.push(
       // 	function (setting, data, index) {
-      // 		var selectedStatus = $('#status').val();
-      // 		if (selectedStatus == "") {
+      // 		var selectedJadwal = $('#jadwal').val();
+      // 		if (selectedJadwal == "") {
       // 			return true;
       // 		}
-      // 		if (selectedStatus == data[5]) {
+      // 		if (selectedJadwal == data[5]) {
       // 			return true;
       // 		}
       // 		return false;
       // 	});
+
     });
+
+		let data_nim;
+		let data_tgl_seminar;
+		let data_waktu_seminar;
+		let data_ruang;
+		const options = {
+			weekday: 'long',
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		};
+
+		$(document).on('click', '.btn-detail-jadwal', function() {
+				let data_jadwal = JSON.parse($(this).attr('data-jadwal'));
+				// console.log(data_jadwal)
+				data_nim = data_jadwal.nim;
+				data_tgl_seminar = data_jadwal.tgl_seminar;
+				data_waktu_seminar = data_jadwal.waktu_seminar;
+				data_ruang = data_jadwal.ruang;
+				
+				let tanggal_seminar = new Date(data_jadwal.tgl_seminar);
+				tanggal_seminar = tanggal_seminar.toLocaleDateString('id-ID', options);
+
+				$("#data-nama").html(data_jadwal.mahasiswa.nama);
+				$("#data-nim").html(data_jadwal.nim);
+				$("#data-dospem").html(data_jadwal.dosen_pembimbing.nama);
+				$("#data-tgl-seminar").html(tanggal_seminar);
+				$("#data-waktu-seminar").html(data_jadwal.waktu_seminar);
+				$("#data-ruang").html(data_jadwal.ruang);
+				$("#data-jenis-seminar").html(data_jadwal.status);
+				$('#data-instansi').html(data_jadwal.pkl.instansi);
+				$('#data-judul').html(data_jadwal.pkl.judul);
+
+			});
   </script>
 @endpush

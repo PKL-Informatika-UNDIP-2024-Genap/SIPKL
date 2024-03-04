@@ -339,19 +339,19 @@
               <div class="row">
                 <div class="col-auto mb-2 d-flex align-items-center">
                   {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
-                  <button type="button" id="refreshPengumumanBtn" class="btn btn-primary btn-sm">
+                  {{-- <button type="button" id="refreshPengumumanBtn" class="btn btn-primary btn-sm">
                     Refresh
-                  </button>
+                  </button> --}}
                 </div>
               </div>
               <div class="table-responsive pt-1" id="tabel-pengumuman">
                 <table class="table text-center" id="tabelPengumuman">
                   <thead>
                       <tr class="table-primary">
-                        <th>No</th>
+                        <th style="white-space: nowrap; width: 1%">No</th>
                         <th class="tanggal">Tanggal</th>
                         <th>Deskripsi</th>
-                        <th class="lampiran">Lampiran</th>
+                        <th class="lampiran" style="white-space: nowrap; width: 1%">Lampiran</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -382,19 +382,19 @@
               <div class="row">
                 <div class="col-auto mb-2 d-flex align-items-center">
                   {{-- <strong class="mr-3 text-lightblue">Action:</strong> --}}
-                  <button type="button" id="refreshDokumenBtn" class="btn btn-primary btn-sm">
+                  {{-- <button type="button" id="refreshDokumenBtn" class="btn btn-primary btn-sm">
                     Refresh
-                  </button>
+                  </button> --}}
                 </div>
               </div>
               <div class="table-responsive pt-1" id="tabel-dokumen">
                 <table class="table text-center" id="tabelDokumen" style="width: 100%">
                   <thead>
                       <tr class="table-primary">
-                        <th>No</th>
+                        <th style="white-space: nowrap; width: 1%">No</th>
                         <th class="tanggal hidden">Tanggal</th>
                         <th>Deskripsi</th>
-                        <th class="lampiran">Lampiran</th>
+                        <th class="lampiran" style="white-space: nowrap; width: 1%">Lampiran</th>
                       </tr>
                   </thead>
                   <tbody>
