@@ -49,14 +49,8 @@
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
+        <div class="col">
           <h1 class="m-0">Profil Saya</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item active">Profile</li>
-          </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -72,7 +66,7 @@
           <div class="col-md-4 m-auto pb-4 pb-md-0">
             <div class="text-center position-relative">
               <img id="image_profile_preview" class="profile-user-img img-fluid img-circle"
-                src="{{ (auth()->user()->foto_profil == null)?'/images/default.jpg':'/preview/'.auth()->user()->foto_profil }}"
+                src="{{ (auth()->user()->foto_profil == null)?'/images/default.jpg':auth()->user()->foto_profil }}"
                 alt="User profile picture" style="width: 170px">
               <input type="file" id="filepond"
                 class="filepond d-none"
@@ -603,6 +597,7 @@
     FilePond.create(
       document.querySelector('.filepond'),
       {
+        storeAsFile: true,
         labelIdle: `<i class="bi bi-upload fs-3"></i><br>Drag & Drop atau <span class="filepond--label-action">Browse</span>`,
         imagePreviewHeight: 170,
         imageCropAspectRatio: '1:1',
@@ -627,37 +622,29 @@
       }
     );
 
-    FilePond.setOptions({
-      server: {
-        process: '/tmp_upload_foto_profil',
-        revert: '/tmp_delete_foto_profil',
-
-        headers: {
-          'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        }
-      },
-    });
-
     $('#saveImageBtn').click(function (e) {
       e.preventDefault();
       var preview = $('#image_profile_preview');
 
       if ($('input[name="filepond"]').val() != '') {
+        var formData = new FormData();
+        formData.append('foto_profil', $('input[name="filepond"]').prop('files')[0]);
         $.ajaxSetup({
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           }
         });
         $.ajax({
-          type: "put",
+          type: "post",
           url: "/profile/update_foto_profil",
-          data: {
-            foto_profil: $('input[name="filepond"]').val(),
-          },
-          dataType: "json",
+          data: formData,
+          contentType: false,
+          cache: false,
+          processData: false,
+          // dataType: "json",
           success: function (response) {
-            preview.attr('src', '/preview/'+response.foto_profil);
-            $('#sidebar_fp').attr('src', '/preview/'+response.foto_profil);
+            preview.attr('src', '/'+response.foto_profil);
+            $('#sidebar_fp').attr('src', '/'+response.foto_profil);
             $('.filepond').addClass('d-none');
             preview.removeClass('d-none');
             $('#editImageBtn').html('<i class="bi bi-pencil-square"></i>');

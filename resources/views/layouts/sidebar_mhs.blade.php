@@ -10,7 +10,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img id="sidebar_fp" src="{{ ($user->foto_profil == null)?'/images/profile_default.svg':'/preview/'.$user->foto_profil }}" class="img-circle elevation-2 bg-white" alt="User Image">
+        <img id="sidebar_fp" src="{{ ($user->foto_profil == null)?'/images/profile_default.svg':$user->foto_profil }}" class="img-circle elevation-2 bg-white" alt="User Image">
       </div>
       <div class="info">
         <a href="/profile" class="d-block">{{ $mahasiswa->nama }}</a>
@@ -114,6 +114,18 @@
             </p>
           </a>
         </li>
+
+        @if ($mahasiswa->status == "Lulus")
+        <li class="nav-item">
+          <a href="/arsip" class="nav-link {{ Request::is('arsip')?'active':'' }}">
+            <i class="nav-icon bi bi-file-earmark-zip-fill"></i>
+            <p>
+              Arsip PKL
+            </p>
+          </a>
+        </li>
+        @endif
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

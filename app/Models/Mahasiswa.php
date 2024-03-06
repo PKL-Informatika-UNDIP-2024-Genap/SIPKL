@@ -34,6 +34,10 @@ class Mahasiswa extends Model
         return $this->hasOne(RiwayatPKL::class,'nim','nim');
     }
 
+    public function arsip_pkl(){
+        return $this->hasOne(ArsipPKL::class,'nim','nim');
+    }
+
     public static function import($file){
         $import = new MahasiswaImport;
         $import->import($file);

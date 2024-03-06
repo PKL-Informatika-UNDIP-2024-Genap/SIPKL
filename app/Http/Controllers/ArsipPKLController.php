@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Koordinator;
+namespace App\Http\Controllers;
 
 use App\Exports\ArsipPKLExport;
 use App\Http\Controllers\Controller;
@@ -8,8 +8,6 @@ use App\Models\ArsipPKL;
 use App\Http\Requests\StoreArsipPKLRequest;
 use App\Http\Requests\UpdateArsipPKLRequest;
 use App\Models\PeriodePKL;
-use Carbon\Carbon;
-use Maatwebsite\Excel\Facades\Excel;
 
 class ArsipPKLController extends Controller
 {
@@ -18,13 +16,22 @@ class ArsipPKLController extends Controller
      */
     public function index()
     {
-        $arr_periode = PeriodePKL::get_arr_all_periode();
-
-        $arr_arsip = ArsipPKL::all();
-        return view('koordinator.arsip_pkl.index', [
-            'arr_arsip' => $arr_arsip,
-            'arr_periode' => $arr_periode,
-        ]);
+        if (auth()->user()->is_admin == 1) {
+            $arr_periode = PeriodePKL::get_arr_all_periode();
+    
+            $arr_arsip = ArsipPKL::all();
+            return view('koordinator.arsip_pkl.index', [
+                'arr_arsip' => $arr_arsip,
+                'arr_periode' => $arr_periode,
+            ]);
+            
+        } else {
+            return view('mahasiswa.arsip_pkl', [
+                'user' => auth()->user(),
+                'mahasiswa' => auth()->user()->mahasiswa,
+                'arsip_pkl' => auth()->user()->mahasiswa->arsip_pkl,
+            ]);
+        }
     }
 
     // public function update_tabel_arsip(){
