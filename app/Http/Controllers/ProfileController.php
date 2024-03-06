@@ -102,58 +102,42 @@ class ProfileController extends Controller
         ], 200);
     }
 
-    public function tmpUploadFotoProfil(Request $request)
-    {
-        if ($request->hasFile('filepond')) {
-            $file = $request->file('filepond');
-            $folder = uniqid('fp-') . '-' . now()->timestamp;
-            $filename = auth()->user()->username . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('private/foto_profil/tmp/' . $folder, $filename);
-            TemporaryFile::create([
-                'folder' => $folder,
-                'filename' => $filename,
-            ]);
-            return $folder;
-        }
-    }
-
-    public function tmpDeleteFotoProfil(Request $request)
-    {
-        $tmp_file = TemporaryFile::where('folder', request()->getContent())->first();
-        if ($tmp_file) {
-            Storage::deleteDirectory('private/foto_profil/tmp/' . $tmp_file->folder);
-            $tmp_file->delete();
-        }
-        return response('');
-    }
-
     public function updateFotoProfil(Request $request)
     {
-        $user = auth()->user();
-        $tmp_file = TemporaryFile::where('folder', $request->foto_profil)->first();
-        if ($tmp_file) {
-            if ($user->foto_profil != null) {
-                Storage::delete($user->foto_profil);
-            }
-            $extension = pathinfo(storage_path('/private/foto_profil/tmp/' . $tmp_file->folder . '/' . $tmp_file->filename), PATHINFO_EXTENSION);
-            $new_filename = auth()->user()->username.'-'.now()->timestamp.'-'.uniqid().'.'.$extension;
-            Storage::move('private/foto_profil/tmp/'.$tmp_file->folder.'/'.$tmp_file->filename, 'private/foto_profil/'.$new_filename);
+        $validator = validator($request->all(), [
+            'foto_profil' => 'required|image|mimes:jpeg,png,jpg|max:500',
+        ], [
+            'foto_profil.required' => 'Foto profil harus diisi',
+            'foto_profil.image' => 'Foto profil harus berupa file gambar',
+            'foto_profil.mimes' => 'Foto profil harus berupa file gambar jpeg, jpg, atau png',
+            'foto_profil.max' => 'Foto profil maksimal 500KB',
+        ]);
 
-            $user->update([
-                'foto_profil' => 'private/foto_profil/' . $new_filename,
-            ]);
-            Storage::deleteDirectory('private/foto_profil/tmp/' . $tmp_file->folder);
-            $tmp_file->delete();
+        if ($validator->fails()) {
             return response()->json([
-                'status' => 200,
-                'message' => 'Request successful',
-                'foto_profil' => $user->foto_profil,
-            ], 200);
+                'status' => 400,
+                'message' => 'Request failed',
+            ], 400);
         }
+
+        if (auth()->user()->foto_profil != null){
+            $old_foto_profil = auth()->user()->foto_profil;
+            if (file_exists(public_path('/'.$old_foto_profil))) {
+                unlink(public_path('/'.$old_foto_profil));
+            }
+        }
+        $extension = $request->file('foto_profil')->getClientOriginalExtension();
+        $new_filename = auth()->user()->username.'-'.now()->timestamp.'-'.uniqid().'.'.$extension;
+        $request->file('foto_profil')->move(public_path('/images/foto_profil'), $new_filename);
+        auth()->user()->update([
+            'foto_profil' => 'images/foto_profil/' . $new_filename,
+        ]);
+
         return response()->json([
-            'status' => 400,
-            'message' => 'Request failed',
-        ], 400);
+            'status' => 200,
+            'message' => 'Request successful',
+            'foto_profil' => auth()->user()->foto_profil,
+        ], 200);
     }
 
 

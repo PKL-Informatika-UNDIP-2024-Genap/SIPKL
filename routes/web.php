@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ArsipPKLController;
 
-use App\Http\Controllers\Koordinator\ArsipPKLController;
 use App\Http\Controllers\Koordinator\AssignDospemController;
 use App\Http\Controllers\Koordinator\DokumenController;
 use App\Http\Controllers\Koordinator\PengumumanController;
@@ -22,7 +22,6 @@ use App\Http\Controllers\Koordinator\RiwayatPKLController as KoordinatorRiwayatP
 use App\Http\Controllers\Mahasiswa\PKLController as MahasiswaPKLController ;
 use App\Http\Controllers\Mahasiswa\RiwayatPKLController as MahasiswaRiwayatPKLController;
 use App\Http\Controllers\Mahasiswa\SeminarPKLController as MahasiswaSeminarPKLController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -48,9 +47,9 @@ route::middleware('auth')->group(function () {
         Route::put('/profile/update_nowa', [ProfileController::class, 'updateNoWa']);
         Route::put('/profile/update_email', [ProfileController::class, 'updateEmail']);
 
-        Route::post('/tmp_upload_foto_profil', [ProfileController::class, 'tmpUploadFotoProfil']);
-        Route::delete('/tmp_delete_foto_profil', [ProfileController::class, 'tmpDeleteFotoProfil']);
-        Route::put('/profile/update_foto_profil', [ProfileController::class, 'updateFotoProfil']);
+        // Route::post('/tmp_upload_foto_profil', [ProfileController::class, 'tmpUploadFotoProfil']);
+        // Route::delete('/tmp_delete_foto_profil', [ProfileController::class, 'tmpDeleteFotoProfil']);
+        Route::post('/profile/update_foto_profil', [ProfileController::class, 'updateFotoProfil']);
 
         Route::post('/tmp_upload_irs', [MahasiswaPKLController::class, 'tmpUpload']);
         Route::delete('/tmp_delete_irs', [MahasiswaPKLController::class, 'tmpDelete']);
@@ -183,6 +182,9 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         
     });
 
+    Route::middleware('status.mhs:Lulus')->group(function () {
+        Route::get('/arsip', [ArsipPKLController::class, 'index']);
+    });
     
 
 });

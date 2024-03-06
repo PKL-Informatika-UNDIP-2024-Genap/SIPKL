@@ -58,9 +58,11 @@
                         @endif
                       @endif
 										</tr>
-                    <tr>
-                      <td class="text-nowrap px-0 text-center" colspan="3"><em class="text-success">Menunggu Input Nilai</em></td>
-                    </tr>
+                    @if ($pkl->status == 'Selesai')
+                      <tr>
+                        <td class="text-nowrap px-0 text-center" colspan="3"><em class="text-success">Menunggu Input Nilai</em></td>
+                      </tr>
+                    @endif
 
                     <tr>
                       <td class="text-nowrap px-0"><strong>Instansi</strong></td>
@@ -73,12 +75,12 @@
                       <td>{{ $pkl->judul }}</td>
                     </tr>
                     <tr>
-                      <td class="text-nowrap px-0"><strong>Abstrak</strong></td>
-                      <td style="white-space: nowrap; width: 1%">:</td>
-                      <td></td>
+                      <td class="text-nowrap px-0" style="border-bottom:none"><strong>Abstrak</strong></td>
+                      <td style="white-space: nowrap; width: 1%; border-bottom: none">:</td>
+                      <td style="border-bottom:none"></td>
                     </tr>
                     <tr>
-                      <td class="px-0" colspan="3">{{ $pkl->abstrak }}</td>
+                      <td class="px-0" colspan="3" style="border-top:none">{{ $pkl->abstrak }}</td>
                     </tr>
                     <tr>
                       <td class="text-nowrap px-0"><strong>Kata Kunci</strong></td>

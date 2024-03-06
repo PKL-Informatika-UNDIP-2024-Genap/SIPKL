@@ -80,6 +80,7 @@ class AuthController extends Controller
             $mahasiswa = $user->mahasiswa;
             $data_pengumuman = Pengumuman::select(['deskripsi','lampiran','updated_at'])->get();
             $data_dokumen = Dokumen::select(['deskripsi','lampiran','updated_at'])->get();
+
             return view('mahasiswa.dashboard', [
                 'user' => $user,
                 'mahasiswa' => $mahasiswa,
