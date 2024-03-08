@@ -384,8 +384,8 @@
                   </button> --}}
                 </div>
               </div>
-              <div class="table-responsive pt-1" id="tabel-pengumuman">
-                <table class="table text-center" id="tabelPengumuman">
+              <div class="table-responsive pt-1">
+                <table class="table table-hover text-center" id="tabelPengumuman">
                   <thead>
                       <tr class="table-primary">
                         <th style="white-space: nowrap; width: 1%">No</th>
@@ -427,8 +427,8 @@
                   </button> --}}
                 </div>
               </div>
-              <div class="table-responsive pt-1" id="tabel-dokumen">
-                <table class="table text-center" id="tabelDokumen" style="width: 100%">
+              <div class="table-responsive pt-1">
+                <table class="table table-hover text-center" id="tabelDokumen" style="width: 100%">
                   <thead>
                       <tr class="table-primary">
                         <th style="white-space: nowrap; width: 1%">No</th>
