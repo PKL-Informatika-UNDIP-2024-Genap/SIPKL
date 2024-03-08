@@ -47,6 +47,16 @@
                           </tr>
                       @endforeach
                     @endif
+
+                    @if ($data_pkl)
+                      <tr>
+                          <td class="text-success"></td>
+                          <td class="text-success">{{ $data_pkl['periode_pkl'] }}</td>
+                          <td class="text-success">{{ $data_pkl['status'] }}</td>
+                          <td class="text-success">{{ $data_pkl['nama_dospem'] }}</td>
+                          <td class="text-success">{{ $data_pkl['nip_dospem'] }}</td>
+                      </tr>
+                    @endif
                   </tbody>
                 </table>
               </div>
@@ -66,7 +76,24 @@
   <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
   <script type="text/javascript">
     $(document).ready( function () {
-      $('#myTable').DataTable();
+      let table = new DataTable('#myTable',{
+        columnDefs: [
+          {
+            searchable: false,
+            orderable: false,
+            targets: [0,"action"]
+          },
+        ],
+        order: [[1, 'asc']],
+        lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+        pageLength: 5,
+      });
+      // $('#myTable_filter input').css('width', '200px');
+      table.on( 'order.dt search.dt', function () {
+        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+          cell.innerHTML = i+1;
+        });
+      }).draw();
     });
   </script>
 

@@ -164,6 +164,7 @@ class SeminarPKLController extends Controller
         }
 
         $new_data = [
+            'status' => 'Pengajuan',
             'id_dospem' => $request->id_dospem,
             'tgl_seminar' => $request->tgl_seminar,
             'waktu_seminar' => $request->waktu_seminar_mulai . '-' . $request->waktu_seminar_selesai,
