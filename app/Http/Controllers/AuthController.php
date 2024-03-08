@@ -16,6 +16,16 @@ use Carbon\Carbon;
 
 class AuthController extends Controller
 {
+    public function landing()
+    {
+        $data_pengumuman = Pengumuman::select(['deskripsi','lampiran','updated_at'])->get();
+        $data_dokumen = Dokumen::select(['deskripsi','lampiran','updated_at'])->get();
+        return view('landing',[
+            'data_pengumuman' => $data_pengumuman,
+            'data_dokumen' => $data_dokumen,
+        ]);
+    }
+
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
@@ -29,20 +39,13 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard')->with('success', 'Berhasil login!');
+            if (auth()->user()->is_admin == 0){
+                session(['buka_pesan' => 1]);
+            }
+            return redirect()->intended('/dashboard');
         }
 
         return back()->with('loginError', 'Login Gagal!')->withErrors(['password' => 'Password tidak sesuai!'])->withInput();
-    }
-
-    public function landing()
-    {
-        $data_pengumuman = Pengumuman::select(['deskripsi','lampiran','updated_at'])->get();
-        $data_dokumen = Dokumen::select(['deskripsi','lampiran','updated_at'])->get();
-        return view('landing',[
-            'data_pengumuman' => $data_pengumuman,
-            'data_dokumen' => $data_dokumen,
-        ]);
     }
 
     public function dashboard()
@@ -90,6 +93,12 @@ class AuthController extends Controller
                 'data_dokumen' => $data_dokumen,
             ]);
         }
+    }
+
+    public function tutupPesan()
+    {
+        session()->forget('buka_pesan');
+        return response()->json(['success' => 'Pesan berhasil ditutup']);
     }
 
     public function editData()

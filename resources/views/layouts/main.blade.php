@@ -23,7 +23,11 @@
   @stack('styles')
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="/css/additional.css">
-
+  <style>
+    table td, table th {
+      background-color: transparent !important;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">

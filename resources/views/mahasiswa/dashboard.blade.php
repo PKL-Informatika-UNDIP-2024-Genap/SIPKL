@@ -17,9 +17,6 @@
     .no-border {
       border-bottom: none !important;
     }
-    /* #timeline-section {
-      box-shadow: none !important;
-    } */
   </style>
 
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
@@ -520,8 +517,64 @@
     });
 	</script>
 
+  @if (session()->has('buka_pesan'))
+    @php
+      if (($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus') && $pkl != null && $pkl->status == 'Selesai') {
+        $pesan = "Koordinator telah menerima Laporan PKL Anda.";
+      } elseif ($pkl != null && $pkl->status == 'Aktif' && $pkl->pesan != null) {
+        $pesan = "Koordinator telah menolak Laporan PKL Anda. Pesan: “".$pkl->pesan."”";
+      } elseif (($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus') && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'Terjadwal') {
+        $pesan = "Koordinator telah memasukkan Anda ke dalam Seminar PKL Terjadwal.";
+      } elseif (($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus') && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'TakTerjadwal') {
+        $pesan = "Koordinator telah menerima pengajuan Seminar PKL Tak Terjadwal Anda.";
+      } elseif ($mahasiswa->seminar_pkl != null && ($mahasiswa->seminar_pkl->status == 'Pengajuan' && $mahasiswa->seminar_pkl->pesan != null)) {
+        $pesan = "Koordinator telah menolak pendaftaran Seminar PKL Tak Terjadwal Anda. Pesan: “".$mahasiswa->seminar_pkl->pesan."”";
+      } elseif ($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus') {
+        $pesan = "Koordinator telah menerima Registrasi PKL Anda.";
+      } elseif ($mahasiswa->status == 'Nonaktif' && $pkl->status == 'Praregistrasi' && $pkl->pesan != null) {
+        $pesan = "Koordinator telah menolak Registrasi PKL Anda. Pesan: “".$pkl->pesan."”";
+      }
+    @endphp
 
-  @if (session()->has('success'))
+    @if (isset($pesan))
+      <script type="text/javascript">
+        Swal.fire({
+          icon: 'info',
+          title: 'Pesan',
+          text: '{{ $pesan }}',
+          showCloseButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Tutup',
+          cancelButtonText: 'Jangan Tampilkan Lagi',
+          cancelButtonColor: '#d33',
+          confirmButtonColor: '#3085d6',
+          // allowOutsideClick: false,
+          // allowEscapeKey: false,
+          // allowEnterKey: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // do nothing
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            $.ajax({
+              url: '/dashboard/tutup_pesan',
+              type: 'POST',
+              data: {
+                _token: '{{ csrf_token() }}',
+              },
+              success: function (response) {
+                // console.log(response);
+              }
+            });
+          }
+        });
+      </script>
+
+    @endif
+
+  @endif
+
+
+  {{-- @if (session()->has('success'))
     <script type="text/javascript">
       const Toast = Swal.mixin({
         toast: true,
@@ -539,5 +592,5 @@
         title: '{{ session('success') }}',
       })
     </script>
-  @endif
+  @endif --}}
 @endpush

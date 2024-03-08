@@ -1,9 +1,7 @@
 @extends('layouts.main_mhs')
 
 @push('styles')
-  @if ($pkl->scan_irs != null)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.css" integrity="sha512-eG8C/4QWvW9MQKJNw2Xzr0KW7IcfBSxljko82RuSs613uOAg/jHEeuez4dfFgto1u6SRI/nXmTr9YPCjs1ozBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  @endif
 
   <link href="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.css" rel="stylesheet" />
   {{-- filepond-plugin-image-preview --}}
@@ -41,138 +39,143 @@
   <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
-      <!-- /.row (main row) -->
-      <!-- general form elements -->
-      <div class="card card-primary">
-        <div class="card-header">
-          <h3 class="card-title"><em>Isi data dan scan IRS untuk menyatakan bahwa Anda mengikuti PKL pada periode/semester ini.</em></h3>
+      <div class="row">
+        <div class="col">
+          
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title"><em>Isi data dan scan IRS untuk menyatakan bahwa Anda mengikuti PKL pada periode/semester ini.</em></h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="/registrasi" class="needs-validation" method="post" enctype="multipart/form-data">
+              @csrf
+              <div class="card-body">
+                @if ($pkl->pesan != null)
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
+                    <i class="icon bi bi-exclamation-triangle-fill"></i> Pesan: <strong><em>“{{ $pkl->pesan }}”</em></strong>
+                  </div>
+                @endif
+    
+                <div class="form-group">
+                  <label for="nama">Nama</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="nama" placeholder="Nama" value="{{ $mahasiswa->nama }}" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="nim">NIM</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="nim" name="nim" placeholder="NIM" value="{{ $mahasiswa->nim }}" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="periode">Periode PKL Target</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="bi bi-hourglass-top"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="periode" name="periode" placeholder="Periode" value="{{ $periode_sekarang }}" readonly>
+    
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="instansi">Instansi</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="bi bi-building-fill"></i></span>
+                    </div>
+                    <input type="text" class="form-control @error('instansi') is-invalid @enderror" id="instansi" name="instansi" placeholder="Masukkan nama Instansi sementara" value="{{ old('instansi',$pkl->instansi) }}">
+                    @error('instansi')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="judul">Judul PKL</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="bi bi-fonts"></i></span>
+                    </div>
+                    <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" placeholder="Masukkan Judul PKL sementara" value="{{ old('judul', $pkl->judul) }}">
+                    @error('judul')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                  </div>
+                </div>
+                <div class="callout callout-warning text-secondary">
+                  {{-- <p>Follow the steps to continue to payment.</p> --}}
+                  <em>*Anda dapat mengubah isian Instansi dan Judul PKL lagi nanti.<br>Harap segera sesuaikan lagi dengan rencana PKL Anda.
+                  <br>*Scan IRS boleh belum maupun sudah disetujui.</em>
+                </div>
+                <div class="form-group">
+                  <label for="scan_irs">Scan IRS (Ukuran maks gambar: 500KB)</label>
+                  <div class="mb-2 d-flex">
+                    @if ($pkl->scan_irs != null)
+                      <a href="/preview/{{ $pkl->scan_irs }}" target="_blank" class="btn btn-outline-info btn-sm py-0 btnScanIRS">Lihat Scan Lama</a>
+                    @endif
+                      <a href="/preview/private/template/scan_irs_example.jpg" target="_blank" class="btn btn-outline-info btn-sm py-0 ms-auto btnScanIRS">Contoh Scan</a>
+                  </div>
+                  {{-- <input type="file" class="custom-file-input @error('scan_irs') is-invalid @enderror" id="scan_irs" name="scan_irs" value="{{ old('scan_irs') }}"> --}}
+                  {{-- <label class="custom-file-label" for="scan_irs">Choose file</label> --}}
+                  <input type="file" class="@error('scan_irs') is-invalid @enderror" id="scan_irs" name="scan_irs">
+                  @error('scan_irs')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
+                </div>
+                <img id="scanImg" src="" alt="Picture" style="display:none;">
+    
+                <div class="form-check ms-1">
+                  <input type="checkbox" class="form-check-input" id="checkbox1" name="checkbox1">
+                  <label class="form-check-label" for="checkbox1"><em>Pastikan sudah mengambil PKL di IRS.</em></label>
+                </div>
+              </div>
+              <!-- /.card-body -->
+    
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Kirim</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.card -->
+          
         </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form action="/registrasi" class="needs-validation" method="post" enctype="multipart/form-data">
-          @csrf
-          <div class="card-body">
-            @if ($pkl->pesan != null)
-              <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
-                <i class="icon bi bi-exclamation-triangle-fill"></i> Pesan: <strong><em>“{{ $pkl->pesan }}”</em></strong>
-              </div>
-						@endif
-
-            <div class="form-group">
-              <label for="nama">Nama</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                </div>
-                <input type="text" class="form-control" id="nama" placeholder="Nama" value="{{ $mahasiswa->nama }}" readonly>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="nim">NIM</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
-                </div>
-                <input type="text" class="form-control" id="nim" name="nim" placeholder="NIM" value="{{ $mahasiswa->nim }}" readonly>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="periode">Periode PKL Target</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="bi bi-hourglass-top"></i></span>
-                </div>
-                <input type="text" class="form-control" id="periode" name="periode" placeholder="Periode" value="{{ $periode_sekarang }}" readonly>
-
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="instansi">Instansi</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="bi bi-building-fill"></i></span>
-                </div>
-                <input type="text" class="form-control @error('instansi') is-invalid @enderror" id="instansi" name="instansi" placeholder="Masukkan nama Instansi sementara" value="{{ old('instansi',$pkl->instansi) }}">
-                @error('instansi')
-                  <div class="invalid-feedback">
-                    {{ $message }}
-                  </div>
-                @enderror
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="judul">Judul PKL</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="bi bi-fonts"></i></span>
-                </div>
-                <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" placeholder="Masukkan Judul PKL sementara" value="{{ old('judul', $pkl->judul) }}">
-                @error('judul')
-                  <div class="invalid-feedback">
-                    {{ $message }}
-                  </div>
-                @enderror
-              </div>
-            </div>
-            <div class="callout callout-warning text-secondary">
-              {{-- <p>Follow the steps to continue to payment.</p> --}}
-              <em>*Anda dapat mengubah isian Instansi dan Judul PKL lagi nanti.<br>Harap segera sesuaikan lagi dengan rencana PKL Anda.</em>
-            </div>
-            <div class="form-group">
-              <label for="scan_irs">Scan IRS (Max Gambar: 500KB)</label>
-              @if ($pkl->scan_irs != null)
-                <div class="mb-2">
-                  <a href="/preview/{{ $pkl->scan_irs }}" target="_blank" id="btnScanIRS" class="btn btn-outline-info btn-sm py-0">Lihat Scan Lama</a>
-                </div>
-              @endif
-              {{-- <input type="file" class="custom-file-input @error('scan_irs') is-invalid @enderror" id="scan_irs" name="scan_irs" value="{{ old('scan_irs') }}"> --}}
-              {{-- <label class="custom-file-label" for="scan_irs">Choose file</label> --}}
-              <input type="file" class="@error('scan_irs') is-invalid @enderror" id="scan_irs" name="scan_irs">
-              @error('scan_irs')
-                <div class="invalid-feedback">
-                  {{ $message }}
-                </div>
-              @enderror
-            </div>
-            <img id="scanImg" src="" alt="Picture" style="display:none;">
-
-            <div class="form-check ms-1">
-              <input type="checkbox" class="form-check-input" id="checkbox1" name="checkbox1">
-              <label class="form-check-label" for="checkbox1"><em>Pastikan sudah mengambil PKL di IRS.</em></label>
-            </div>
-          </div>
-          <!-- /.card-body -->
-
-          <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Kirim</button>
-          </div>
-        </form>
       </div>
-      <!-- /.card -->
+      <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
 @endsection
 
 @push('scripts')
-  @if ($pkl->scan_irs != null)
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js" integrity="sha512-EC3CQ+2OkM+ZKsM1dbFAB6OGEPKRxi6EDRnZW9ys8LghQRAq6cXPUgXCCujmDrXdodGXX9bqaaCRtwj4h4wgSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript">
-      var scanImg = $('#scanImg')[0];
-      $('#btnScanIRS').click(function(e){
-        e.preventDefault();
-        scanImg.src = $(this).attr('href');
-        // Inisialisasi Viewer.js
-        var viewer = new Viewer(scanImg, {
-          hidden: function () {
-            viewer.destroy();
-          },
-        });
-        viewer.show();
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js" integrity="sha512-EC3CQ+2OkM+ZKsM1dbFAB6OGEPKRxi6EDRnZW9ys8LghQRAq6cXPUgXCCujmDrXdodGXX9bqaaCRtwj4h4wgSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript">
+    var scanImg = $('#scanImg')[0];
+    $('.btnScanIRS').click(function(e){
+      e.preventDefault();
+      scanImg.src = $(this).attr('href');
+      // Inisialisasi Viewer.js
+      var viewer = new Viewer(scanImg, {
+        hidden: function () {
+          viewer.destroy();
+        },
       });
-    </script>
-  @endif
+      viewer.show();
+    });
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-type@1/dist/filepond-plugin-file-validate-type.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/filepond-plugin-file-validate-size@2/dist/filepond-plugin-file-validate-size.min.js"></script>

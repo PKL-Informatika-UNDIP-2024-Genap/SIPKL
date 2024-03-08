@@ -51,9 +51,7 @@
               <div class="row">
                 <div class="col d-flex align-items-center justify-content-between gap-1">
                   <strong class="text-lightblue my-3">Informasi Jadwal Seminar PKL Saya</strong>
-                  @if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
-                    <button type="button" id="btn-daftar" class="btn  btn-primary">Daftar</button>
-                  @endif
+                  <button type="button" id="btn-daftar" class="btn btn-primary @if ($seminar_pkl != null && $seminar_pkl->pesan == null) d-none @endif">Daftar</button>
                 </div>
               </div>
 
@@ -180,12 +178,15 @@
         </div>
 
 
-        @if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
+        
         <div class="col-12">
           <div class="card card-primary collapsed-card" id="form-section">
             <div class="card-header">
-              <h3 class="card-title">Form Pendaftaran Seminar PKL Tak Terjadwal</h3>
-      
+              @if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
+              <h3 class="card-title">Form Pendaftaran Seminar PKL</h3>
+              @else
+              <h3 class="card-title">Ganti Jadwal Seminar</h3>
+              @endif
               <div class="card-tools">
                 <a href="#form-section" class="btn btn-tool" id="btn-form" data-card-widget="collapse"><i class="bi bi-plus fs-4"></i>
                 </a>
@@ -291,7 +292,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="scan_layak_seminar">Scan Surat Layak Seminar (Max Gambar: 500KB)</label>
+                      <label for="scan_layak_seminar">Scan Surat Layak Seminar (Ukuran maks gambar: 500KB)</label>
                       <input type="file" class="@error('scan_layak_seminar') is-invalid @enderror" id="scan_layak_seminar" name="scan_layak_seminar">
                       @error('scan_layak_seminar')
                         <div class="invalid-feedback">
@@ -302,7 +303,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="scan_peminjaman_ruang">Scan Surat Peminjaman Ruang (Max Gambar: 500KB)</label>
+                      <label for="scan_peminjaman_ruang">Scan Surat Peminjaman Ruang (Ukuran maks gambar: 500KB)</label>
                       <input type="file" class="@error('scan_peminjaman_ruang') is-invalid @enderror" id="scan_peminjaman_ruang" name="scan_peminjaman_ruang">
                       @error('scan_peminjaman_ruang')
                         <div class="invalid-feedback">
@@ -324,6 +325,16 @@
               <!-- form start -->
               <form action="/seminar/daftar_ulang" class="needs-validation" method="post" enctype="multipart/form-data">
                 @csrf
+                @if ($seminar_pkl->pesan != null)
+                <div class="row">
+                  <div class="col">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
+                      <i class="icon bi bi-exclamation-triangle-fill"></i>Pesan: <strong><em>“{{ $seminar_pkl->pesan }}”</em></strong>
+                    </div>
+                  </div>
+                </div>
+                @endif
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -412,7 +423,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="scan_layak_seminar">Scan Surat Layak Seminar (Max Gambar: 500KB)</label>
+                      <label for="scan_layak_seminar">Scan Surat Layak Seminar (Ukuran maks gambar: 500KB)</label>
   
                       @if ($seminar_pkl->scan_layak_seminar != null)
                       <input type="text" class="form-control" id="scan_layak_seminar_old" name="scan_layak_seminar_old" value="{{ $seminar_pkl->scan_layak_seminar }}" hidden>
@@ -431,7 +442,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="scan_peminjaman_ruang">Scan Surat Peminjaman Ruang (Max Gambar: 500KB)</label>
+                      <label for="scan_peminjaman_ruang">Scan Surat Peminjaman Ruang (Ukuran maks gambar: 500KB)</label>
 
                       @if ($seminar_pkl->scan_peminjaman_ruang != null)
                       <input type="text" class="form-control" id="scan_peminjaman_ruang_old" name="scan_peminjaman_ruang_old" value="{{ $seminar_pkl->scan_peminjaman_ruang }}" hidden>
@@ -450,11 +461,6 @@
                   </div>
                 </div>
 
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                  <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
-                  <i class="icon bi bi-exclamation-triangle-fill"></i>Pesan: <strong><em>“{{ $seminar_pkl->pesan }}”</em></strong>
-                </div>
-
                 <div class="form-check ms-1 mb-3">
                   <input type="checkbox" class="form-check-input" id="checkbox1">
                   <label class="form-check-label" for="checkbox1"><em>Pastikan semua data sudah benar, dan scan dapat dibaca dengan jelas.</em></label>
@@ -471,7 +477,7 @@
           </div>
           <!-- /.card -->
         </div>
-        @endif
+        
         
       </div>
 
@@ -498,7 +504,7 @@
     });
   </script>
 
-@if ($seminar_pkl == null || ($seminar_pkl->pesan != null))
+{{-- @if ($seminar_pkl == null || ($seminar_pkl->pesan != null)) --}}
   <script type="text/javascript">
     $('#waktu_seminar_mulai').step = 600;
 
@@ -630,7 +636,7 @@
       credits: false,
     });
   </script>
-@endif
+{{-- @endif --}}
   
 @if (session()->has('fails'))
   <script>

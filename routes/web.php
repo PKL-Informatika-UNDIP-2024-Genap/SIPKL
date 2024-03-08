@@ -160,6 +160,8 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         Route::put('/update_data', [AuthController::class, 'updateDataMahasiswa']);
     });
 
+    Route::post('/dashboard/tutup_pesan', [AuthController::class, 'tutupPesan']);
+
     Route::get('/pkl', [MahasiswaPKLController::class, 'index'])->middleware('status.mhs:Nonaktif,Aktif')->name('pkl.index');
     Route::put('/pkl/{pkl}/update', [MahasiswaPKLController::class, 'updateData']);
     Route::get('/riwayat', [MahasiswaRiwayatPKLController::class, 'index'])->middleware('data.updated');

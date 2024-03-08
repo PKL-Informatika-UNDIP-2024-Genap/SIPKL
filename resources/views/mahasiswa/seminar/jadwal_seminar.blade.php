@@ -130,7 +130,7 @@
             //   return true;
             // }
             var selectedJadwal = $('#jadwal').val();
-						let dataTgl = moment(data[2], "dddd, D MMMM YYYY").format("YYYY-MM-DD");
+						let dataTgl = moment(data[1], "dddd, D MMMM YYYY").format("YYYY-MM-DD");
             if (selectedJadwal == "") {
               return true;
             }
