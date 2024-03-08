@@ -9,14 +9,8 @@
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-        <div class="col-sm-6">
+        <div class="col">
           <h1 class="m-0">Data PKL</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item active">Data PKL</li>
-          </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -30,30 +24,30 @@
       @if ($pkl->status == "Praregistrasi")
       <div class="card card-danger">
         <div class="card-header">
-          <h3 class="card-title"><em>Anda belum registrasi PKL.</em></h3>
+          <h3 class="card-title"><em>Anda belum registrasi PKL</em></h3>
       @elseif ($pkl->status == 'Registrasi')
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title"><em>Menunggu diterima...</em></h3>
+          <h3 class="card-title"><em>Menunggu registrasi PKL diterima...</em></h3>
       @else
       <div class="card card-success">
         <div class="card-header">
-          <h3 class="card-title"><em>Selamat! Anda sudah berstatus Aktif mengikuti PKL pada semester ini.</em></h3>
+          <h3 class="card-title"><em>Anda sudah registrasi (Aktif) mengikuti PKL pada semester ini</em></h3>
       @endif
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <div class="row">
 
-            @if ($pkl->status == "Praregistrasi" && $pkl->pesan != null)
+          @if ($pkl->status == "Praregistrasi" && $pkl->pesan != null)
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
               <button type="button" class="close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close">&times;</button>
               <h5><strong><i class="icon bi bi-exclamation-triangle-fill"></i> Perhatian!</strong></h5>
               Registrasi PKL Anda ditolak. Silahkan registrasi ulang. Pesan: <strong><em>“{{ $pkl->pesan }}”</em></strong>&nbsp;&nbsp;
               <a href="/registrasi" class="btn btn-primary btn-sm text-decoration-none">Registrasi Ulang</a>
             </div>
-            @endif
-              
+          @endif
+
+          <div class="row">
             <div class="col-sm-5">
               <div class="form-group">
                 <label for="status">Status PKL Anda</label>
@@ -61,7 +55,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="bi bi-hand-index-thumb-fill"></i></span>
                   </div>
-                  <input type="text" class="form-control text-bold" id="status" value="{{ $mahasiswa->status }}" readonly>
+                  <input type="text" class="form-control text-bold" id="status" value="{{ $mahasiswa->status }}" disabled>
                 </div>
               </div>
               <div class="form-group">
@@ -70,7 +64,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="bi bi-hourglass-top"></i></span>
                   </div>
-                  <input type="text" class="form-control" id="periode" name="periode" placeholder="Tidak tersedia" value="{{ $mahasiswa->periode_pkl }}" readonly>
+                  <input type="text" class="form-control" id="periode" name="periode" placeholder="Tidak tersedia" value="{{ $mahasiswa->periode_pkl }}" disabled>
                 </div>
               </div>
             </div>
@@ -81,7 +75,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
                   </div>
-                  <input type="text" class="form-control" id="nama" value="{{ $mahasiswa->nama }}" readonly>
+                  <input type="text" class="form-control" id="nama" value="{{ $mahasiswa->nama }}" disabled>
                 </div>
               </div>
               <div class="form-group">
@@ -90,7 +84,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
                   </div>
-                  <input type="text" class="form-control" id="nim" value="{{ $mahasiswa->nim }}" readonly>
+                  <input type="text" class="form-control" id="nim" value="{{ $mahasiswa->nim }}" disabled>
                 </div>
               </div>
             </div>            
@@ -111,7 +105,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="bi bi-building-fill"></i></span>
               </div>
-              <input type="text" class="form-control @error('instansi') is-invalid @enderror" id="instansi" name="instansi" placeholder="Masukkan nama Instansi sementara" value="{{ $pkl->instansi }}" readonly>
+              <input type="text" class="form-control @error('instansi') is-invalid @enderror" id="instansi" name="instansi" placeholder="Masukkan nama Instansi sementara" value="{{ $pkl->instansi }}" disabled>
             </div>
           </div>
           <div class="form-group">
@@ -120,7 +114,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="bi bi-fonts"></i></span>
               </div>
-              <textarea class="form-control" name="judul" id="judul" cols="" rows="2" readonly>{{ $pkl->judul }}</textarea>
+              <textarea class="form-control" name="judul" id="judul" cols="" rows="2" disabled>{{ $pkl->judul }}</textarea>
             </div>
           </div>
           <div class="form-group">
@@ -128,17 +122,17 @@
             <input type="hidden" id="scanIRSSrc" name="scanIRSSrc" value="{{ $pkl->scan_irs }}">
             <img id="scanIRSImg" src="" alt="Picture" style="display:none;">
             <div class="input-group">
-              @if ($pkl->scan_irs != null)
-              <button type="button" id="scanIRSView" class="btn btn-outline-info btn-sm" >Lihat Scan IRS</button>
-              @else
+              <button type="button" id="scanIRSView" class="btn btn-outline-info btn-sm" @if ($pkl->scan_irs == null) disabled @endif>Lihat Scan IRS</button>
+              {{-- @if ($pkl->scan_irs != null)
               <div>
-                  Tidak tersedia <br><a href="/registrasi" class="btn btn-outline-warning btn-sm" >Registrasi Sekarang</a>
+                Tidak tersedia <br><a href="/registrasi" class="btn btn-outline-warning btn-sm" >Registrasi Sekarang</a>
               </div>
-              @endif
+              @else
+              @endif --}}
             </div>
           </div>
           <div class="callout callout-warning text-muted">
-            <em>*Sesuaikan Instansi dan Judul PKL dengan rencana PKL Anda kapan pun, selama laporan belum dikirim.</em>
+            <em>*Sesuaikan Instansi dan Judul PKL dengan rencana PKL Anda, selama laporan belum dikirim.</em>
           </div>
         </div>
         <!-- /.card-body -->

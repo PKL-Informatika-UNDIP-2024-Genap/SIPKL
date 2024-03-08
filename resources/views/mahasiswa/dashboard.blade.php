@@ -47,7 +47,7 @@
           <div class="col">
             <div class="alert alert-success alert-dismissible">
               <h5><i class="bi bi-check-square"></i> Selamat!</h5>
-              Anda telah menyelesaikan PKL Anda.
+              Anda telah menyelesaikan PKL.
             </div>
           </div>
         </div>
@@ -276,7 +276,7 @@
               <!-- END timeline item -->
               
               <!-- timeline item -->
-              {{-- @if ($mahasiswa->status == 'Nonaktif') --}}
+              @if ($mahasiswa->id_dospem != null)
               <div>
                 <i class="fas bi bi-info-circle-fill bg-info"></i>
                 <div class="timeline-item">
@@ -290,7 +290,7 @@
                   </div> --}}
                 </div>
               </div>
-              {{-- @endif --}}
+              @endif
               <!-- END timeline item -->
               
               <!-- timeline item -->
@@ -306,6 +306,24 @@
                   <div class="timeline-footer">
                     <a href="/profile" class="btn btn-primary btn-sm">Periksa Profil</a>
                   </div>
+                </div>
+              </div>
+              @endif
+              <!-- END timeline item -->
+
+              <!-- timeline item -->
+              @if ($mahasiswa->id_dospem == null)
+              <div>
+                <i class="fas bi bi-info-circle-fill bg-info"></i>
+                <div class="timeline-item">
+                  <span class="time"><i class="fas bi bi-clock"></i> ~</span>
+                  <h3 class="timeline-header"><a href="javascript:void(0)" class="text-info">Pengumuman</a></h3>
+                  <div class="timeline-body">
+                    Anda belum memiliki Dosen Pembimbing, silahkan hubungi koordinator PKL.
+                  </div>
+                  {{-- <div class="timeline-footer">
+                    <a href="/registrasi" class="btn btn-primary btn-sm">Registrasi Sekarang</a>
+                  </div> --}}
                 </div>
               </div>
               @endif

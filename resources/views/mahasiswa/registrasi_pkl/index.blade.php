@@ -6,6 +6,7 @@
   @endif
 
   <link href="https://cdn.jsdelivr.net/npm/filepond@4/dist/filepond.min.css" rel="stylesheet" />
+  {{-- filepond-plugin-image-preview --}}
   <link href="https://cdn.jsdelivr.net/npm/filepond-plugin-image-preview@4/dist/filepond-plugin-image-preview.min.css" rel="stylesheet" />
   <style>
     /* .filepond--root, */
@@ -42,7 +43,7 @@
     <div class="container-fluid">
       <!-- /.row (main row) -->
       <!-- general form elements -->
-      <div class="card card-primary card-outline">
+      <div class="card card-primary">
         <div class="card-header">
           <h3 class="card-title"><em>Isi data dan scan IRS untuk menyatakan bahwa Anda mengikuti PKL pada periode/semester ini.</em></h3>
         </div>
@@ -190,8 +191,9 @@
 
     // Create a FilePond instance
     const pond = FilePond.create(inputElement,{
+      storeAsFile: true,
       stylePanelLayout: 'compact',
-      labelIdle: `<i class="bi bi-upload fs-2"></i><br>Drag & Drop file atau <span class="filepond--label-action">Browse</span>`,
+      labelIdle: `<i class="bi bi-upload fs-2"></i><br>Drag & Drop atau <span class="filepond--label-action">Browse</span>`,
       acceptedFileTypes: ['image/jpg', 'image/jpeg', 'image/png'],
       labelFileTypeNotAllowed: 'File tidak sesuai format',
       fileValidateTypeLabelExpectedTypes: 'Hanya file JPG, JPEG, PNG yang diperbolehkan',
@@ -199,19 +201,6 @@
       labelMaxFileSizeExceeded: 'Ukuran file terlalu besar',
       labelMaxFileSize: 'Total ukuran maksimum file adalah {filesize}',
       credits: false,
-    });
-
-    FilePond.setOptions({
-      server: {
-        process: '/tmp_upload_irs',
-        revert: '/tmp_delete_irs',
-        // restore: '/restore',
-        // load: './load/',
-        // fetch: './fetch/',
-        headers: {
-          'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        }
-      },
     });
 
     if ($("#checkbox1").checked) {
