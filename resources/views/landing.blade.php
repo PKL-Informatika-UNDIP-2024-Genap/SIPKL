@@ -38,6 +38,10 @@
           border-radius: 100vw;
         }
       }
+
+      table td, table th {
+        background-color: transparent !important;
+      }
     </style>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
@@ -137,23 +141,20 @@
           </div>
         </div>
         <div class="row table-responsivee pt-1">
-          <table class="table table-hover border-primary text-center" id="tabelPengumuman">
+          <table class="table table-hover text-center border-primary" id="tabelPengumuman">
             <thead>
               <tr>
-                <th class="text-center tanggal">Tanggal</th>
+                <th class="tanggal text-center">Tanggal</th>
                 <th class="text-center">Deskripsi</th>
-                <th class="text-center">Lampiran</th>
+                <th class="lampiran text-center" style="white-space: nowrap; width: 1%">Lampiran</th>
               </tr>
             </thead>
-            @php
-              $i = 0;
-            @endphp
             <tbody>
             @foreach ($data_pengumuman as $pengumuman)
               <tr>
-                <td class="">{{ $pengumuman->updated_at }}</td>
+                <td>{{ $pengumuman->updated_at }}</td>
                 <td>{{ $pengumuman->deskripsi }}</td>
-                <td><a class="btn btn-primary btn-sm" href="javascript:void(0)">Download</a></td>
+                <td class="py-0 align-middle"><a href="{{ $pengumuman->lampiran }}" class="btn btn-primary btn-sm">Download</a></td>
               </tr>
             @endforeach
             </tbody>
@@ -175,23 +176,20 @@
           </div>
         </div>
         <div class="row table-responsive pt-1">
-          <table class="table table-hover border-primary text-center" id="tabelDokumen" style="width: 100%">
+          <table class="table table-hover text-center border-primary" id="tabelDokumen" style="width: 100%">
             <thead>
               <tr>
-                <th class="text-center tanggal hidden">Tanggal</th>
+                <th class="tanggal hidden text-center">Tanggal</th>
                 <th class="text-center">Deskripsi</th>
-                <th class="text-center">Lampiran</th>
+                <th class="lampiran text-center" style="white-space: nowrap; width: 1%">Lampiran</th>
               </tr>
             </thead>
-            @php
-              $i = 0;
-            @endphp
             <tbody>
             @foreach ($data_dokumen as $dokumen)
               <tr>
                 <td>{{ $dokumen->updated_at }}</td>
                 <td>{{ $dokumen->deskripsi }}</td>
-                <td><a class="btn btn-primary btn-sm" href="javascript:void(0)">Download</a></td>
+                <td class="py-0 align-middle"><a href="{{ $dokumen->lampiran }}" class="btn btn-primary btn-sm">Download</a></td>
               </tr>
             @endforeach
             </tbody>
@@ -514,6 +512,9 @@
           order: [[0, 'asc']],
           lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
           pageLength: 10,
+          // language: {
+          //   url: 'https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json',
+          // },
         });
         $(idTable+'_filter input').css('width', '200px');
       }
@@ -521,6 +522,11 @@
       $(document).ready(function() {
         dataTableInit('#tabelPengumuman');
         dataTableInit('#tabelDokumen');
+
+        $('.ud-footer-logo').on('click', function(e) {
+          e.preventDefault();
+          location.reload();
+        })
       });
     </script>
   </body>

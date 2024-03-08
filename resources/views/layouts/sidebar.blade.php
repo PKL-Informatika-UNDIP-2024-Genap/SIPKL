@@ -169,14 +169,29 @@
             </li>
           </ul>
         </li>
-
-        <li class="nav-item">
-          <a href="/cetak_sk" class="nav-link {{ Request::is('cetak_sk') ? 'active' : '' }}">
+        
+        <li class="nav-item {{ Request::is('cetak_sk*') ? 'menu-open' : '' }}">
+          <a href="#" class="nav-link {{ Request::is('cetak_sk*') ? 'active' : '' }}">
             <i class="nav-icon fas bi bi-file-earmark-spreadsheet-fill"></i>
             <p>
-              Cetak SK PKL
+              SK PKL
+              <i class="right fas bi bi-caret-left-fill"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/cetak_sk" class="nav-link {{ Request::is('cetak_sk') ? 'active' : '' }}">
+                <i class="far nav-icon bi bi-circle"></i>
+                <p>Cetak SK</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/cetak_sk/riwayat" class="nav-link {{ Request::is('cetak_sk/riwayat*') ? 'active' : '' }}">
+                <i class="far nav-icon bi bi-circle"></i>
+                <p>Riwayat Cetak SK</p>
+              </a>
+            </li>
+          </ul>
         </li>
 
         <li class="nav-item">
