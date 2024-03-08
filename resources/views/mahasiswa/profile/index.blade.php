@@ -57,7 +57,7 @@
           <div class="col-md-4 m-auto pb-4 pb-md-0">
             <div class="text-center position-relative">
               <img id="image_profile_preview" class="profile-user-img img-fluid img-circle"
-                src="{{ (auth()->user()->foto_profil == null)?'/images/profile_default.svg':auth()->user()->foto_profil }}"
+                src="{{ (auth()->user()->foto_profil == null)?'/images/profile_default2.svg':auth()->user()->foto_profil }}"
                 alt="User profile picture" style="width: 170px">
               <input type="file" id="filepond"
                 class="filepond d-none"
@@ -86,7 +86,7 @@
                 <b>Status</b> <span class="float-right">{{ $mahasiswa->status }}</span>
               </li>
             </ul> --}}
-            <p><strong class="text-lightblue">Status dan Data Pribadi</strong></p>
+            <p><strong class="text-lightblue">Data Status dan Kontak</strong></p>
             <div class="table-responsive p-0 mb-3">
               <table class="table table-hover">
                 <tbody>

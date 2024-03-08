@@ -27,6 +27,9 @@
     body {
       padding-right: 0px !important; /*prevent content shift to left when open modal*/
     }
+    table td, table th {
+      background-color: transparent !important;
+    }
   </style>
   @stack('styles')
 </head>

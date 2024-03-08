@@ -66,7 +66,7 @@
           <div class="col-md-4 m-auto pb-4 pb-md-0">
             <div class="text-center position-relative">
               <img id="image_profile_preview" class="profile-user-img img-fluid img-circle"
-                src="{{ (auth()->user()->foto_profil == null)?'/images/default.jpg':auth()->user()->foto_profil }}"
+                src="{{ (auth()->user()->foto_profil == null)?'/images/profile_default2.svg':auth()->user()->foto_profil }}"
                 alt="User profile picture" style="width: 170px">
               <input type="file" id="filepond"
                 class="filepond d-none"
@@ -96,7 +96,7 @@
                     <td class="px-0 pb-0 pt-1">
                       <div class="input-group">
                         <select class="form-control bg-transparent border-transparent" id="golongan" name="golongan" disabled>
-                          <option value="" disabled selected>Pilih Golongan</option>
+                          <option value="" disabled selected>Pilih golongan</option>
                           <option value="III/a" @if ($koordinator->golongan == "III/a") selected @endif>III/a</option>
                           <option value="III/b" @if ($koordinator->golongan == "III/b") selected @endif>III/b</option>
                           <option value="III/c" @if ($koordinator->golongan == "III/c") selected @endif>III/c</option>
@@ -119,7 +119,7 @@
                     <td class="px-0 pb-0 pt-1">
                       <div class="input-group">
                         <select class="form-control bg-transparent border-transparent" id="jabatan" name="jabatan" disabled>
-                          <option value="" disabled selected>Pilih Jabatan</option>
+                          <option value="" disabled selected>Pilih jabatan</option>
                           <option value="Pengajar" @if ($koordinator->jabatan == "Pengajar") selected @endif>Pengajar</option>
                           <option value="Asisten Ahli" @if ($koordinator->jabatan == "Asisten Ahli") selected @endif>Asisten Ahli</option>
                           <option value="Lektor" @if ($koordinator->jabatan == "Lektor") selected @endif>Lektor</option>
@@ -149,17 +149,17 @@
             </div>
             <!-- /.table-responsive -->
   
-            <p><strong class="text-lightblue">Others?</strong></p>
+            {{-- <p><strong class="text-lightblue">Lainnya</strong></p>
             <div class="table-responsive p-0 mb-3">
               <table class="table table-hover">
                 <tbody>
                   <tr>
-                    <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%">Nothing</td>
+                    <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%">-</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <!-- /.table-responsive -->
+            <!-- /.table-responsive --> --}}
 
           </div>
 
@@ -183,13 +183,13 @@
     $('#golongan').select2({
       theme: 'bootstrap-5',
       // allowClear: true,
-      placeholder: 'Pilih Golongan',
+      placeholder: 'Pilih golongan',
       // dropdownCssClass: "select2--small",
     });
     $('#jabatan').select2({
       theme: 'bootstrap-5',
       // allowClear: true,
-      placeholder: 'Pilih Jabatan',
+      placeholder: 'Pilih jabatan',
       // dropdownCssClass: "select2--small",
     });
 
