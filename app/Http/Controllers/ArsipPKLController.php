@@ -17,7 +17,7 @@ class ArsipPKLController extends Controller
     public function index()
     {
         if (auth()->user()->is_admin == 1) {
-            $arr_periode = PeriodePKL::get_arr_all_periode();
+            $arr_periode = PeriodePKL::get_arr_id_periode();
     
             $arr_arsip = ArsipPKL::all();
             return view('koordinator.arsip_pkl.index', [
