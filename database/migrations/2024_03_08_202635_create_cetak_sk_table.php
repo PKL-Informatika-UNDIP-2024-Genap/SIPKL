@@ -16,9 +16,9 @@ return new class extends Migration
             $table->enum('status', ['Belum','Sudah'])->default('Belum');
             $table->string('nama', 100);
             $table->string('judul');
-            $table->int('id_dospem');
-            $table->date('tgl_mulai');
-            $table->date('tgl_selesai');
+            $table->integer('id_dospem')->unsigned();
+            $table->date('tgl_mulai')->nullable();
+            $table->date('tgl_selesai')->nullable();
         });
     }
 
