@@ -80,6 +80,15 @@ class PKL extends Model
         $pkl->pesan = null;
         $pkl->tgl_verif_laporan = now();
         $pkl->save();
+
+        CetakSK::create([
+            'nim' => $pkl->nim,
+            'nama' => $pkl->mahasiswa->nama,
+            'tgl_verif_laporan' => $pkl->tgl_verif_laporan,
+            'judul' => $pkl->judul,
+            'id_dospem' => $pkl->mahasiswa->id_dospem,
+            'status' => 'Belum',
+        ]);
     
         Mahasiswa::set_status($pkl->nim, 'Lulus');
     }

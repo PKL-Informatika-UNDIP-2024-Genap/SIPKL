@@ -26,7 +26,7 @@ class PeriodePKL extends Model
         return $periode;
     }
 
-    public static function get_arr_all_periode(){
+    public static function get_arr_id_periode(){
         $periode = self::orderByDesc('id_periode')
         ->pluck('id_periode')
         ->toArray();
