@@ -3,7 +3,7 @@
 	<thead>
 		<tr>
 				<th >NO</th>
-				<th >NAMA DOSEN<br>NIP</th>
+				<th >NAMA PEMBIMBING<br>NIP</th>
 				<th >GOLONGAN<br>JABATAN</th>
 				<th >NAMA MAHASISWA<br>NIM</th>
 				<th >JUDUL LAPORAN PKL</th>

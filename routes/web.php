@@ -136,8 +136,9 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/arsip_pkl', [ArsipPKLController::class, 'index']);
 
     Route::get('/cetak_sk', [CetakSKController::class, 'index']);
-    Route::get('/cetak_sk/export', [CetakSKController::class, 'export']);
+    Route::post('/cetak_sk/export', [CetakSKController::class, 'export']);
     Route::get('/cetak_sk/riwayat', [CetakSKController::class, 'riwayat']);
+    Route::post('/cetak_sk/riwayat/export', [CetakSKController::class, 'exportRiwayat']);
 
     Route::get('/riwayat_pkl', [KoordinatorRiwayatPKLController::class, 'index']);
     Route::get('/riwayat_pkl/{nim}/get_data_riwayat', [KoordinatorRiwayatPKLController::class, 'getDataRiwayat']);

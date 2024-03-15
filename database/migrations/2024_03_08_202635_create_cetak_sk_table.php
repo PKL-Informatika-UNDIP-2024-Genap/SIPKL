@@ -19,6 +19,9 @@ return new class extends Migration
             $table->integer('id_dospem')->unsigned();
             $table->date('tgl_mulai')->nullable();
             $table->date('tgl_selesai')->nullable();
+
+            $table->foreign('id_dospem')->references('id')->on('dosen_pembimbing')->onDelete('cascade');
+            $table->index('status');
         });
     }
 

@@ -2,9 +2,10 @@
 
 namespace App\Exports;
 
-use App\Models\PKL;
+use App\Models\CetakSK;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Events\AfterSheet;
 use PhpOffice\PhpSpreadsheet\Style\Style;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithEvents;
@@ -12,7 +13,6 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithDefaultStyles;
-use Maatwebsite\Excel\Events\AfterSheet;
 
 class SKExport implements FromView, WithColumnWidths, ShouldAutoSize, WithStyles, WithDefaultStyles, WithEvents
 {
@@ -21,20 +21,29 @@ class SKExport implements FromView, WithColumnWidths, ShouldAutoSize, WithStyles
     public $data_sk;
     public $counter;
 
-    public function __construct()
+    public function __construct($status = "Belum", $tgl_mulai = null, $tgl_selesai = null)
     {
-        $data_sk = PKL::select('dosen_pembimbing.id as id_dospem' ,'dosen_pembimbing.nama as nama_dospem', 'dosen_pembimbing.nip as nip_dospem', 'dosen_pembimbing.golongan as gol_dospem', 'dosen_pembimbing.jabatan as jabatan_dospem', 'mahasiswa.nama as nama_mhs', 'mahasiswa.nim as nim_mhs', 'pkl.judul as judul_pkl')->whereRaw("pkl.status = 'Selesai' OR pkl.status = 'Laporan'")->join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')->join('dosen_pembimbing', 'mahasiswa.id_dospem', '=', 'dosen_pembimbing.id')->get();
+        $data_sk = CetakSK::select('dosen_pembimbing.id as id_dospem' ,'dosen_pembimbing.nama as nama_dospem', 'dosen_pembimbing.nip as nip_dospem', 'dosen_pembimbing.golongan as gol_dospem', 'dosen_pembimbing.jabatan as jabatan_dospem', 'cetak_sk.nama as nama_mhs', 'cetak_sk.nim as nim_mhs', 'judul as judul_pkl')->join('dosen_pembimbing', 'cetak_sk.id_dospem', '=', 'dosen_pembimbing.id')->where('status', $status);
+        if ($status == "Sudah") {
+            $data_sk = $data_sk->where("tgl_mulai", $tgl_mulai)->where("tgl_selesai", $tgl_selesai);
+        }
+        $data_sk = $data_sk->get();
         $data_sk = $data_sk->sortBy('nama_dospem');
         $counter = $data_sk->groupBy('id_dospem')->map->count()->values();
         $this->data_sk = $data_sk;
         $this->counter = $counter;
+
+        if ($status == "Belum") {
+            CetakSK::where('status', 'Belum')->update([
+                'status' => 'Sudah',
+                'tgl_mulai' => $tgl_mulai,
+                'tgl_selesai' => $tgl_selesai,
+            ]);
+        }
     }
     
     public function view(): View
     {
-        // $data_sk = PKL::select('dosen_pembimbing.id as id_dospem' ,'dosen_pembimbing.nama as nama_dospem', 'dosen_pembimbing.nip as nip_dospem', 'dosen_pembimbing.golongan as gol_dospem', 'dosen_pembimbing.jabatan as jabatan_dospem', 'mahasiswa.nama as nama_mhs', 'mahasiswa.nim as nim_mhs', 'pkl.judul as judul_pkl')->whereRaw("pkl.status = 'Selesai' OR pkl.status = 'Laporan'")->join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')->join('dosen_pembimbing', 'mahasiswa.id_dospem', '=', 'dosen_pembimbing.id')->get();
-        // $data_sk = $data_sk->sortBy('nama_dospem');
-        // $counter = $data_sk->groupBy('id_dospem')->map->count()->values();
         return view('koordinator.cetak_sk.export', [
             'data_sk' => $this->data_sk,
             'counter' => $this->counter,
