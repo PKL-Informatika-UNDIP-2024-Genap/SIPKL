@@ -110,22 +110,22 @@
 				order: [[1, 'asc']],
 				lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
 				pageLength: 10,
-				"initComplete": function(settings, json) {
-					$.fn.dataTable.ext.search.push(
-					function (setting, data, index) {
-						if (setting.nTable.id !== 'myTable') {
-							return true;
-						}
-						var selectedStatus = $('#status').val();
-						if (selectedStatus == "") {
-							return true;
-						}
-						if (selectedStatus == data[3]) {
-							return true;
-						}
-						return false;
-					})
-				}
+				// "initComplete": function(settings, json) {
+				// 	$.fn.dataTable.ext.search.push(
+				// 	function (setting, data, index) {
+				// 		if (setting.nTable.id !== 'myTable') {
+				// 			return true;
+				// 		}
+				// 		var selectedStatus = $('#status').val();
+				// 		if (selectedStatus == "") {
+				// 			return true;
+				// 		}
+				// 		if (selectedStatus == data[3]) {
+				// 			return true;
+				// 		}
+				// 		return false;
+				// 	})
+				// }
 			});
 			$('#myTable_filter input').css('width', '200px');
 			table.on('order.dt search.dt', function () {
@@ -137,9 +137,9 @@
 					});
 			}).draw();
 
-			$('#status').on('change', function() {
-				table.draw();
-			})
+			// $('#status').on('change', function() {
+			// 	table.draw();
+			// });
 		
 			// $.fn.dataTableExt.afnFiltering.push(
 			// 	function (setting, data, index) {
