@@ -9,13 +9,12 @@
     <!-- Primary Meta Tags -->
     <meta name="title" content="SIPKL">
 
-    <!--====== Favicon Icon ======-->
+    <!--====== logo Icon ======-->
     <link rel="shortcut icon" href="/images/logo_if.png"/>
 
     <!-- ===== All CSS files ===== -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/animate.css" />
-    <link rel="stylesheet" href="/css/lineicons.css" />
     <link rel="stylesheet" href="/css/ud-styles.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -45,9 +44,6 @@
     </style>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" /> --}}
-    {{-- <link rel="stylesheet" href="/plugins/select2-bootstrap5-theme/select2-bootstrap5.min.css"> --}}
   </head>
   <body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -234,27 +230,11 @@
             </div>
           </div>
         </div>
-        {{-- <div class="row justify-content-center">
-          <div class="col-auto mb-2 d-flex align-items-center">
-            <strong class="m-0 text-lightblue">Filter:</strong>
-          </div>
-          <div class="col-auto mb-2 d-flex align-items-center flex-wrap gap-2">
-            <strong class="mr-3 text-lightblue">Filter:</strong>
-            <label for="jadwal" class="my-0 fw-normal">Jadwal:</label>
-            <div class="d-inline-block" style="width: 200px">
-              <select name="jadwal" id="jadwal" class="form-control">
-                <option value="">Semua</option>
-                <option value="Mendatang" selected>Mendatang</option>
-                <option value="Terlewat">Terlewat</option>
-              </select>
-            </div>
-          </div>
-        </div> --}}
-        <div id="tabel-jadwal" class="table-responsive pt-1">
+        <div id="tabel-jadwal" class="row table-responsive pt-1">
           <table class="table table-hover" id="tabelJadwal">
             <thead>
                 <tr class="table-primary">
-                    <th>No</th>
+                    <th class="no">No</th>
                     <th class="hari_tanggal">Hari, Tanggal</th>
                     <th>Waktu</th>
                     <th>Ruang</th>
@@ -303,7 +283,7 @@
       <div class="ud-footer-widgets">
         <div class="container">
           <div class="row">
-            <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="col-xl-5 col-lg-5 col-md-6">
               <div class="ud-widget">
                 <a href="/" class="ud-footer-logo">
                   <div class="d-flex align-items-center">
@@ -314,25 +294,31 @@
                 <p class="ud-widget-desc">
                   Sistem Informasi PKL Informatika UNDIP
                 </p>
+                <p class="ud-widget-desc">
+                  Jl. Prof. Soedarto No.50275, Tembalang, Kec. Tembalang, Kota Semarang, Jawa Tengah 50275
+                </p>
+                <p class="ud-widget-desc">
+                  Email: sipklinformatikaundip@gmail.com
+                </p>
                 <ul class="ud-widget-socials">
                   <li>
-                    <a href="https://twitter.com/MusharofChy">
-                      <i class="lni lni-facebook-filled"></i>
+                    <a href="https://facebook.com">
+                      <i class="bi bi-facebook"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="https://twitter.com/MusharofChy">
-                      <i class="lni lni-twitter-filled"></i>
+                    <a href="https://twitter.com">
+                      <i class="bi bi-twitter-x"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="https://twitter.com/MusharofChy">
-                      <i class="lni lni-instagram-filled"></i>
+                    <a href="https://instagram.com">
+                      <i class="bi bi-instagram"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="https://twitter.com/MusharofChy">
-                      <i class="lni lni-linkedin-original"></i>
+                    <a href="https://linkedin.com">
+                      <i class="bi bi-linkedin"></i>
                     </a>
                   </li>
                 </ul>
@@ -341,158 +327,54 @@
 
             <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
               <div class="ud-widget">
-                <h5 class="ud-widget-title">About Us</h5>
+                <h5 class="ud-widget-title">Informasi</h5>
                 <ul class="ud-widget-links">
                   <li>
-                    <a href="javascript:void(0)">Home</a>
+                    <a class="ud-menu-scroll" href="#pengumuman">Pengumuman</a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)">Features</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">About</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">Testimonial</a>
+                    <a class="ud-menu-scroll" href="#dokumen">Dokumen</a>
                   </li>
                 </ul>
               </div>
             </div>
             <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
               <div class="ud-widget">
-                <h5 class="ud-widget-title">Features</h5>
+                <h5 class="ud-widget-title">Grup & Jadwal</h5>
                 <ul class="ud-widget-links">
                   <li>
-                    <a href="javascript:void(0)">How it works</a>
+                    <a class="ud-menu-scroll" href="#grupwa">Group WA</a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)">Privacy policy</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">Terms of service</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">Refund policy</a>
+                    <a class="ud-menu-scroll" href="#seminar">Jadwal Seminar</a>
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
+            <div class="col-xl-3 col-lg-2 col-md-6 col-sm-10">
               <div class="ud-widget">
-                <h5 class="ud-widget-title">Our Products</h5>
-                <ul class="ud-widget-links">
-                  <li>
-                    <a
-                      href="https://lineicons.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                      >Lineicons
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://ecommercehtml.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                      >Ecommerce HTML</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://ayroui.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                      >Ayro UI</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://graygrids.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                      >Plain Admin</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-8 col-sm-10">
-              <div class="ud-widget">
-                <h5 class="ud-widget-title">Partners</h5>
+                <h5 class="ud-widget-title">Lain-lain</h5>
                 <ul class="ud-widget-brands">
                   <li>
-                    <a
-                      href="https://ayroui.com/"
+                    <a href="https://lineicons.com/"
                       rel="nofollow noopner"
-                      target="_blank"
-                    >
-                      <img
-                        src="/images/footer/brands/ayroui.svg"
-                        alt="ayroui"
-                      />
+                      target="_blank">
+                      <img src="/images/footer/brands/lineicons.svg" alt="lineicons"/>
                     </a>
                   </li>
-                  <li>
-                    <a
-                      href="https://ecommercehtml.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                    >
-                      <img
-                        src="/images/footer/brands/ecommerce-html.svg"
-                        alt="ecommerce-html"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://graygrids.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                    >
-                      <img
-                        src="/images/footer/brands/graygrids.svg"
-                        alt="graygrids"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://lineicons.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                    >
-                      <img
-                        src="/images/footer/brands/lineicons.svg"
-                        alt="lineicons"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://uideck.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                    >
-                      <img
-                        src="/images/footer/brands/uideck.svg"
-                        alt="uideck"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://tailwindtemplates.co/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                    >
-                      <img
-                        src="/images/footer/brands/tailwindtemplates.svg"
-                        alt="tailwindtemplates"
-                      />
-                    </a>
-                  </li>
+                  
                 </ul>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="ud-footer-bottom">
+                {{-- <p class="m-0">
+                  &copy; 2021 SIPKL. All Rights Reserved.
+                </p> --}}
+                <strong>Copyright &copy; 2024 <a href="javascript:void(0)">Under development</a>.</strong>
+                All rights reserved.
               </div>
             </div>
           </div>
@@ -503,7 +385,7 @@
 
     <!-- ====== Back To Top Start ====== -->
     <a href="javascript:void(0)" class="back-to-top">
-      <i class="lni lni-chevron-up"> </i>
+      <i class="bi bi-chevron-up"> </i>
     </a>
     <!-- ====== Back To Top End ====== -->
 
@@ -556,17 +438,6 @@
 
     </script>
 
-    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script type="text/javascript">
-      $('#jadwal').select2({
-        theme: 'bootstrap-5',
-        // allowClear: true,
-        minimumResultsForSearch: Infinity,
-        // placeholder: 'Semua',
-        // width: '100%',
-      });
-    </script> --}}
-
     <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
     <script src="/lte/plugins/moment/moment.min.js"></script>
@@ -576,7 +447,7 @@
         const table = new DataTable(idTable, {
           columnDefs: [
             {
-              targets: ["lampiran"],
+              targets: ["no" ,"lampiran"],
               searchable: false,
               orderable: false,
             },

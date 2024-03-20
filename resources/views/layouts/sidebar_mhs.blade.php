@@ -10,7 +10,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img id="sidebar_fp" src="{{ ($user->foto_profil == null)?'/images/profile_default2.svg':'/'.$user->foto_profil }}" class="img-circle elevation-2 bg-white" alt="User Image">
+        <img id="sidebar_fp" src="{{ ($user->foto_profil == null)?'/images/default/profile_default2.svg':'/'.$user->foto_profil }}" class="img-circle elevation-2 bg-white" alt="User Image">
       </div>
       <div class="info">
         <a href="/profile" class="d-block">{{ $mahasiswa->nama }}</a>
@@ -67,7 +67,7 @@
 
         {{-- all status --}}
         <li class="nav-item {{ Request::is('seminar*') ? 'menu-open' : '' }}">
-          <a href="#" class="nav-link {{ Request::is('seminar*') ? 'active' : '' }}">
+          <a href="" class="nav-link {{ Request::is('seminar*') ? 'active' : '' }}">
             <i class="nav-icon bi bi-calendar2-week"></i>
             <p>
               Seminar PKL
