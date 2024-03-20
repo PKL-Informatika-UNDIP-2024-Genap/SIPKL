@@ -230,7 +230,7 @@
 
 			$('#periode_sk option').each(function() {
 				var dates = $(this).text().split(' - ');
-				$(this).text(moment(dates[0],"YYYY-MM-DD").format('D MMMM YYYY') + ' - ' + moment(dates[1],"YYYY-MM-DD").format('D MMMM YYYY'));
+				$(this).text(moment(dates[0],"YYYY-MM-DD").format('D MMM YYYY') + ' - ' + moment(dates[1],"YYYY-MM-DD").format('D MMM YYYY'));
 			});
 
 			$('#periode_sk').on('change', function() {

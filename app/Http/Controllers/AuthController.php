@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\SeminarPKL;
 
 class AuthController extends Controller
 {
@@ -20,9 +21,12 @@ class AuthController extends Controller
     {
         $data_pengumuman = Pengumuman::select(['deskripsi','lampiran','updated_at'])->get();
         $data_dokumen = Dokumen::select(['deskripsi','lampiran','updated_at'])->get();
+
+        $data_jadwal = SeminarPKL::whereRaw('tgl_seminar >= CURDATE() AND (status = "Tak Terjadwal" OR status = "Terjadwal")')->with(["mahasiswa", "dosen_pembimbing", "pkl"])->get();
         return view('landing',[
             'data_pengumuman' => $data_pengumuman,
             'data_dokumen' => $data_dokumen,
+            'data_jadwal' => $data_jadwal,
         ]);
     }
 

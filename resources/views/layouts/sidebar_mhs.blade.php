@@ -43,8 +43,7 @@
           </a>
         </li>
 
-        @if ($mahasiswa->status == "Nonaktif" && $pkl->status == "Praregistrasi")
-
+        @if ($mahasiswa->status == "Nonaktif" && isset($pkl) && $pkl->status == "Praregistrasi")
         <li class="nav-item">
           <a href="/registrasi" class="nav-link {{ Request::is('registrasi')?'active':'' }}">
             <i class="nav-icon bi bi-people-fill"></i>
@@ -53,7 +52,6 @@
             </p>
           </a>
         </li>
-
         @endif
 
         @if ($mahasiswa->status != "Lulus")
@@ -67,8 +65,7 @@
         </li>
         @endif
 
-        @if ($mahasiswa->status == "Aktif" || $mahasiswa->status == "Lulus")
-
+        {{-- all status --}}
         <li class="nav-item {{ Request::is('seminar*') ? 'menu-open' : '' }}">
           <a href="#" class="nav-link {{ Request::is('seminar*') ? 'active' : '' }}">
             <i class="nav-icon bi bi-calendar2-week"></i>
@@ -93,18 +90,18 @@
           </ul>
         </li>
 
-          @if ($mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status != 'Pengajuan')
-            <li class="nav-item">
-              <a href="/laporan" class="nav-link {{ Request::is('laporan')?'active':'' }}">
-                <i class="nav-icon bi bi-journal-text"></i>
-                <p>
-                  Pengumpulan Laporan
-                </p>
-              </a>
-            </li>
-          @endif
-
+        {{-- have seminar pkl selain status Pengajuan --}}
+        @if ($mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status != 'Pengajuan')
+          <li class="nav-item">
+            <a href="/laporan" class="nav-link {{ Request::is('laporan')?'active':'' }}">
+              <i class="nav-icon bi bi-journal-text"></i>
+              <p>
+                Pengumpulan Laporan
+              </p>
+            </a>
+          </li>
         @endif
+
 
         <li class="nav-item">
           <a href="/riwayat" class="nav-link {{ Request::is('riwayat')?'active':'' }}">

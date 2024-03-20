@@ -24,6 +24,12 @@ class SeminarPKLController extends Controller
                 'mahasiswa' => $mahasiswa,
             ]);
         }
+        if ($mahasiswa->status == 'Nonaktif') {
+            return view('mahasiswa.seminar.index__nonaktif', [
+                'user' => $user,
+                'mahasiswa' => $mahasiswa,
+            ]);
+        }
         $seminar_pkl = $mahasiswa->seminar_pkl;
         // setlocale(LC_TIME, 'id_ID');
         // Carbon::setLocale('id');

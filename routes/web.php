@@ -166,6 +166,8 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
 
     Route::get('/pkl', [MahasiswaPKLController::class, 'index'])->middleware('status.mhs:Nonaktif,Aktif')->name('pkl.index');
     Route::put('/pkl/{pkl}/update', [MahasiswaPKLController::class, 'updateData']);
+    Route::get('/seminar', [MahasiswaSeminarPKLController::class, 'index'])->name('seminar.index');
+    Route::get('/seminar/jadwal', [MahasiswaSeminarPKLController::class, 'jadwalSeminar']);
     Route::get('/riwayat', [MahasiswaRiwayatPKLController::class, 'index'])->middleware('data.updated');
 
     Route::get('/registrasi', [MahasiswaPKLController::class, 'registrasi'])->name('registrasi');
@@ -174,10 +176,8 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
     });
 
     Route::middleware('status.mhs:Aktif,Lulus')->group(function () {
-        Route::get('/seminar', [MahasiswaSeminarPKLController::class, 'index'])->name('seminar.index');
         Route::post('/seminar/daftar', [MahasiswaSeminarPKLController::class, 'daftarSeminar']);
         Route::post('/seminar/daftar_ulang', [MahasiswaSeminarPKLController::class, 'daftarUlangSeminar']);
-        Route::get('/seminar/jadwal', [MahasiswaSeminarPKLController::class, 'jadwalSeminar']);
 
         Route::middleware('has.seminar')->group(function () {
             Route::get('/laporan', [MahasiswaPKLController::class, 'laporan']);
