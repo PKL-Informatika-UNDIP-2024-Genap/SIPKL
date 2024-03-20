@@ -89,7 +89,7 @@ class CetakSKController extends Controller
                         $latestTglSelesai = CetakSK::max('tgl_selesai');
                         if ($latestTglSelesai) {
                             if ($value <= $latestTglSelesai) {
-                                $fail('Tanggal mulai tidak boleh overlap dengan tanggal selesai sebelumnya');
+                                $fail('Tanggal mulai tidak boleh overlap dengan tanggal selesai sebelumnya. Tanggal selesai terakhir: '.Carbon::parse($latestTglSelesai)->isoFormat('D/MM/Y'));
                             }
                         }
                     }

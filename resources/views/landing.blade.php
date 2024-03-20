@@ -45,6 +45,9 @@
     </style>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" /> --}}
+    {{-- <link rel="stylesheet" href="/plugins/select2-bootstrap5-theme/select2-bootstrap5.min.css"> --}}
   </head>
   <body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -81,7 +84,7 @@
                     <a class="ud-menu-scroll" href="#grupwa">Grup WA</a>
                   </li>
                   <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#contact">Jadwal Seminar</a>
+                    <a class="ud-menu-scroll" href="#seminar">Jadwal Seminar</a>
                   </li>
                 </ul>
               </div>
@@ -219,6 +222,72 @@
       </div>
     </section>
     <!-- ====== About End ====== -->
+
+    <!-- ====== Dokumen Start ====== -->
+    <section id="seminar" class="ud-about">
+      <div class="container wow fadeInUp" data-wow-delay=".2s">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-section-title">
+              <span>seminar schedule</span>
+              <h2>Jadwal Seminar</h2>
+            </div>
+          </div>
+        </div>
+        {{-- <div class="row justify-content-center">
+          <div class="col-auto mb-2 d-flex align-items-center">
+            <strong class="m-0 text-lightblue">Filter:</strong>
+          </div>
+          <div class="col-auto mb-2 d-flex align-items-center flex-wrap gap-2">
+            <strong class="mr-3 text-lightblue">Filter:</strong>
+            <label for="jadwal" class="my-0 fw-normal">Jadwal:</label>
+            <div class="d-inline-block" style="width: 200px">
+              <select name="jadwal" id="jadwal" class="form-control">
+                <option value="">Semua</option>
+                <option value="Mendatang" selected>Mendatang</option>
+                <option value="Terlewat">Terlewat</option>
+              </select>
+            </div>
+          </div>
+        </div> --}}
+        <div id="tabel-jadwal" class="table-responsive pt-1">
+          <table class="table table-hover" id="tabelJadwal">
+            <thead>
+                <tr class="table-primary">
+                    <th>No</th>
+                    <th class="hari_tanggal">Hari, Tanggal</th>
+                    <th>Waktu</th>
+                    <th>Ruang</th>
+                    <th>Nama</th>
+                    <th>NIM</th>
+                    <th>Judul PKL</th>
+                    {{-- <th>Pembimbing</th> --}}
+                    {{-- <th class="action">Action</th> --}}
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($data_jadwal as $jadwal)
+                    <tr>
+                        <td></td>
+                        <td>{{ $jadwal->tgl_seminar }}</td>
+                        <td>{{ $jadwal->waktu_seminar }}</td>
+                        <td>{{ $jadwal->ruang }}</td>
+                        <td>{{ $jadwal->mahasiswa->nama }}</td>
+                        <td>{{ $jadwal->nim }}</td>
+                        <td>{{ $jadwal->pkl->judul }}</td>
+                        {{-- <td>{{ $jadwal->dosen_pembimbing->nama }}</td> --}}
+                        {{-- <td>
+                          <div class="btn btn-primary btn-sm btn-detail-jadwal" data-bs-toggle="modal" data-bs-target="#modal-detail-jadwal"
+                          data-jadwal="{{ $jadwal }}">Detail</div>
+                        </td> --}}
+                    </tr>
+                @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <!-- ====== dokumen End ====== -->
 
     <!-- ====== Footer Start ====== -->
     <footer class="ud-footer wow fadeInLeft" data-wow-delay=".15s">
@@ -486,6 +555,18 @@
       window.document.addEventListener("scroll", onScroll);
 
     </script>
+
+    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="text/javascript">
+      $('#jadwal').select2({
+        theme: 'bootstrap-5',
+        // allowClear: true,
+        minimumResultsForSearch: Infinity,
+        // placeholder: 'Semua',
+        // width: '100%',
+      });
+    </script> --}}
+
     <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
     <script src="/lte/plugins/moment/moment.min.js"></script>
@@ -504,6 +585,10 @@
               render: DataTable.render.datetime( "D MMMM YYYY", "id"),
             },
             {
+              target: 'hari_tanggal',
+              render: DataTable.render.datetime( "dddd, D MMMM YYYY", "id"),
+            },
+            {
               target: 'hidden',
               visible: false,
               searchable: false
@@ -517,11 +602,24 @@
           // },
         });
         $(idTable+'_filter input').css('width', '200px');
+        return table;
       }
   
       $(document).ready(function() {
         dataTableInit('#tabelPengumuman');
         dataTableInit('#tabelDokumen');
+        const table = dataTableInit('#tabelJadwal');
+
+        table.order([[1, 'asc'], [2, 'asc']]).draw();
+        table.on('order.dt search.dt', function () {
+          let i = 1;
+          table
+            .cells(null, 0, { search: 'applied', order: 'applied' })
+            .every(function (cell) {
+                this.data(i++);
+            });
+        }).draw();
+        
 
         $('.ud-footer-logo').on('click', function(e) {
           e.preventDefault();

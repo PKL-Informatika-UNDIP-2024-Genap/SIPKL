@@ -52,16 +52,29 @@
                   Export
                 </div>
               </div>
-              <div class="col-auto mb-2 d-flex align-items-center mx-auto mr-md-0">
-                <strong class="mr-3 text-lightblue">Filter:</strong>
-                <label for="status" class="my-0 mr-2 fw-normal">Status/Jenis:</label>
-                <div class="d-inline-block" style="width: 200px">
-                  <select name="status" id="status" class="form-control">
-                    <option value="" selected>Semua</option>
-                    <option value="Terjadwal">Terjadwal</option>
-                    <option value="Tak Terjadwal">Tak Terjadwal</option>
-                  </select>
+              <div class="col-auto mb-2 d-flex justify-content-center align-items-center flex-wrap gap-3 ml-auto">
+                <strong class="text-lightblue">Filter:</strong>
+                <div class="d-flex align-items-center">
+                  <label for="status" class="my-0 mr-2 fw-normal">Status/Jenis:</label>
+                  <div class="d-inline-block" style="width: 200px">
+                    <select name="status" id="status" class="form-control">
+                      <option value="" selected>Semua</option>
+                      <option value="Terjadwal">Terjadwal</option>
+                      <option value="Tak Terjadwal">Tak Terjadwal</option>
+                    </select>
+                  </div>
                 </div>
+                <div class="d-flex align-items-center">
+                  <label for="jadwal" class="my-0 mr-2 fw-normal">Jadwal:</label>
+                  <div class="d-inline-block" style="width: 200px">
+                    <select name="jadwal" id="jadwal" class="form-control">
+                      <option value="">Semua</option>
+                      <option value="Mendatang" selected>Mendatang</option>
+                      <option value="Terlewat">Terlewat</option>
+                    </select>
+                  </div>
+                </div>
+
               </div>
             </div>
             <div id="tabel-jadwal" class="table-responsive pt-1">
@@ -126,7 +139,7 @@
 @push('scripts')
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script type="text/javascript">
-    $('#status').select2({
+    $('#status, #jadwal').select2({
       theme: 'bootstrap-5',
       // allowClear: true,
       minimumResultsForSearch: Infinity,

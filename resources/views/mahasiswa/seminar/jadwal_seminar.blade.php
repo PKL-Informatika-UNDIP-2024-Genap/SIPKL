@@ -32,7 +32,7 @@
 						</div>
 						<div class="col-auto mb-2 d-flex align-items-center flex-wrap">
 							{{-- <strong class="mr-3 text-lightblue">Filter:</strong> --}}
-							<label for="jadwal" class="my-0 mr-2 fw-normal">Jadwal:</label for="jadwal">
+							<label for="jadwal" class="my-0 mr-2 fw-normal">Jadwal:</label>
 							<div class="d-inline-block" style="width: 200px">
 								<select name="jadwal" id="jadwal" class="form-control">
 									<option value="">Semua</option>
@@ -53,7 +53,7 @@
 											<th>Nama</th>
 											<th>NIM</th>
 											<th>Judul PKL</th>
-											<th>Pembimbing</th>
+											{{-- <th>Pembimbing</th> --}}
 											<th class="action">Action</th>
 									</tr>
 							</thead>
@@ -67,7 +67,7 @@
 													<td>{{ $jadwal->mahasiswa->nama }}</td>
 													<td>{{ $jadwal->nim }}</td>
 													<td>{{ $jadwal->pkl->judul }}</td>
-													<td>{{ $jadwal->dosen_pembimbing->nama }}</td>
+													{{-- <td>{{ $jadwal->dosen_pembimbing->nama }}</td> --}}
 													<td>
 														<div class="btn btn-primary btn-sm btn-detail-jadwal" data-bs-toggle="modal" data-bs-target="#modal-detail-jadwal"
 														data-jadwal="{{ $jadwal }}">Detail</div>
