@@ -26,11 +26,24 @@ class ArsipPKLController extends Controller
             ]);
             
         } else {
-            return view('mahasiswa.arsip_pkl', [
-                'user' => auth()->user(),
-                'mahasiswa' => auth()->user()->mahasiswa,
-                'arsip_pkl' => auth()->user()->mahasiswa->arsip_pkl,
-            ]);
+            $user = auth()->user();
+            $mahasiswa = $user->mahasiswa;
+            $arsip_pkl = $mahasiswa->arsip_pkl;
+            if ($arsip_pkl == null) {
+                return view('mahasiswa.arsip_pkl.index__nodata', [
+                    'user' => $user,
+                    'mahasiswa' => $mahasiswa,
+                ]);
+            } else {
+                if ($arsip_pkl->link_laporan != null && $arsip_pkl->link_laporan.substr(0, 7) != 'http://' && $arsip_pkl->link_laporan.substr(0, 8) != 'https://' && $arsip_pkl->link_laporan.substr(0, 2) != '//') {
+                    $arsip_pkl->link_laporan = 'http://'.$arsip_pkl->link_laporan;
+                }
+                return view('mahasiswa.arsip_pkl.index', [
+                    'user' => $user,
+                    'mahasiswa' => $mahasiswa,
+                    'arsip_pkl' => $arsip_pkl,
+                ]);
+            }
         }
     }
 

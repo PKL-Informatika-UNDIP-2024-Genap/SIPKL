@@ -66,7 +66,7 @@
           <div class="col-md-4 m-auto pb-4 pb-md-0">
             <div class="text-center position-relative">
               <img id="image_profile_preview" class="profile-user-img img-fluid img-circle"
-                src="{{ (auth()->user()->foto_profil == null)?'/images/profile_default2.svg':auth()->user()->foto_profil }}"
+                src="{{ (auth()->user()->foto_profil == null)?'/images/default/profile_default2.svg':auth()->user()->foto_profil }}"
                 alt="User profile picture" style="width: 170px">
               <input type="file" id="filepond"
                 class="filepond d-none"

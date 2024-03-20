@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5>Login</h5>
+        <h5 class="modal-title">Login</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -46,6 +46,9 @@
             @error('password')
             <div class="invalid-feedback d-block">{{ $message }}</div>
             @enderror
+          </div>
+          <div class="my-3">
+            <em>*Hubungi koordinator PKL jika lupa password</em>
           </div>
           <div class="mt-4 d-flex justify-content-center">
             <div class="col-auto">

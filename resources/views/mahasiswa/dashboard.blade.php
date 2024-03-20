@@ -523,13 +523,13 @@
         $pesan = "Koordinator telah menerima Laporan PKL Anda.";
       } elseif ($pkl != null && $pkl->status == 'Aktif' && $pkl->pesan != null) {
         $pesan = "Koordinator telah menolak Laporan PKL Anda. Pesan: “".$pkl->pesan."”";
-      } elseif (($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus') && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'Terjadwal') {
+      } elseif (($mahasiswa->status == 'Aktif' ) && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'Terjadwal') {
         $pesan = "Koordinator telah memasukkan Anda ke dalam Seminar PKL Terjadwal.";
-      } elseif (($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus') && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'TakTerjadwal') {
+      } elseif (($mahasiswa->status == 'Aktif' ) && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'TakTerjadwal') {
         $pesan = "Koordinator telah menerima pengajuan Seminar PKL Tak Terjadwal Anda.";
       } elseif ($mahasiswa->seminar_pkl != null && ($mahasiswa->seminar_pkl->status == 'Pengajuan' && $mahasiswa->seminar_pkl->pesan != null)) {
         $pesan = "Koordinator telah menolak pendaftaran Seminar PKL Tak Terjadwal Anda. Pesan: “".$mahasiswa->seminar_pkl->pesan."”";
-      } elseif ($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus') {
+      } elseif ($mahasiswa->status == 'Aktif' ) {
         $pesan = "Koordinator telah menerima Registrasi PKL Anda.";
       } elseif ($mahasiswa->status == 'Nonaktif' && $pkl->status == 'Praregistrasi' && $pkl->pesan != null) {
         $pesan = "Koordinator telah menolak Registrasi PKL Anda. Pesan: “".$pkl->pesan."”";

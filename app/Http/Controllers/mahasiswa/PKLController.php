@@ -132,6 +132,9 @@ class PKLController extends Controller
             $tgl_laporan = $carbon->isoFormat('D MMMM YYYY');
             $waktu_laporan = $carbon->format('H.i');
         }
+        if ($pkl->link_laporan != null && $pkl->link_laporan.substr(0, 7) != 'http://' && $pkl->link_laporan.substr(0, 8) != 'https://' && $pkl->link_laporan.substr(0, 2) != '//') {
+            $pkl->link_laporan = 'http://'.$pkl->link_laporan;
+        }
         return view('mahasiswa.laporan.index', [
             'user' => $user,
             'mahasiswa' => $mahasiswa,

@@ -63,7 +63,7 @@
                 <td class="text-nowrap px-0" style="width: 15%"><strong>Link Berkas</strong></td>
                 <td style="white-space: nowrap; width: 1%">:</td>
                 <td>
-                  <a id="data-link-laporan" target="__blank" href="//drive.google.com" style="text-decoration: none">
+                  <a id="data-link-laporan" target="_blank" href="" style="text-decoration: none">
                     <button class="badge text-bg-primary">
                       Tampilkan Laporan
                     </button>
