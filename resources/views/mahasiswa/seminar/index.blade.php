@@ -388,9 +388,9 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="bi bi-clock-fill"></i></span>
                         </div>
-                        <input type="time" class="form-control @error('waktu_seminar_mulai') is-invalid @enderror" id="waktu_seminar_mulai" name="waktu_seminar_mulai" value="{{ old('waktu_seminar_mulai',substr($seminar_pkl->waktu_seminar,0,5)) }}">
+                        <input type="time" step="600" class="form-control @error('waktu_seminar_mulai') is-invalid @enderror" id="waktu_seminar_mulai" name="waktu_seminar_mulai" value="{{ old('waktu_seminar_mulai',substr($seminar_pkl->waktu_seminar,0,5)) }}">
                         <span class="input-group-text"><i class="bi bi-dash"></i></span>
-                        <input type="time" class="form-control @error('waktu_seminar_selesai') is-invalid @enderror" id="waktu_seminar_selesai" name="waktu_seminar_selesai" value="{{ old('waktu_seminar_selesai',substr($seminar_pkl->waktu_seminar,6,10)) }}">
+                        <input type="time" step="600" class="form-control @error('waktu_seminar_selesai') is-invalid @enderror" id="waktu_seminar_selesai" name="waktu_seminar_selesai" value="{{ old('waktu_seminar_selesai',substr($seminar_pkl->waktu_seminar,6,10)) }}">
                         @error('waktu_seminar_mulai')
                           <div class="invalid-feedback">
                             {{ $message }}

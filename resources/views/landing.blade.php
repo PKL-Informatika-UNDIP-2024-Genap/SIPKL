@@ -283,7 +283,7 @@
       <div class="ud-footer-widgets">
         <div class="container">
           <div class="row">
-            <div class="col-xl-5 col-lg-5 col-md-6">
+            <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7">
               <div class="ud-widget">
                 <a href="/" class="ud-footer-logo">
                   <div class="d-flex align-items-center">
@@ -325,7 +325,7 @@
               </div>
             </div>
 
-            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+            <div class="col-xl-4 col-lg-5 col-md-5 col-sm-5">
               <div class="ud-widget">
                 <h5 class="ud-widget-title">Informasi</h5>
                 <ul class="ud-widget-links">
@@ -335,19 +335,20 @@
                   <li>
                     <a class="ud-menu-scroll" href="#dokumen">Dokumen</a>
                   </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
-              <div class="ud-widget">
-                <h5 class="ud-widget-title">Grup & Jadwal</h5>
-                <ul class="ud-widget-links">
                   <li>
                     <a class="ud-menu-scroll" href="#grupwa">Group WA</a>
                   </li>
                   <li>
                     <a class="ud-menu-scroll" href="#seminar">Jadwal Seminar</a>
                   </li>
+                </ul>
+              </div>
+            </div>
+            {{-- <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title">Grup & Jadwal</h5>
+                <ul class="ud-widget-links">
+                  
                 </ul>
               </div>
             </div>
@@ -365,7 +366,7 @@
                   
                 </ul>
               </div>
-            </div>
+            </div> --}}
           </div>
           <div class="row">
             <div class="col-lg-12">

@@ -113,6 +113,8 @@
 @endsection
 
 @push('scripts')
+<script src="/lte/plugins/moment/moment.min.js"></script>
+<script src="/lte/plugins/moment/locale/id.js"></script>
 <script src="/js/ajax-mhs.js"></script>
 <script src="/js/datatables-jquery.js"></script>
 <script>
