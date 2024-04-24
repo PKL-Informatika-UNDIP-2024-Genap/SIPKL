@@ -44,7 +44,7 @@
           <div class="col">
             <div class="alert alert-success alert-dismissible">
               <h5><i class="bi bi-check-square"></i> Selamat!</h5>
-              Anda telah menyelesaikan PKL.
+              Anda dinyatakan lulus PKL.
             </div>
           </div>
         </div>
@@ -524,11 +524,11 @@
       } elseif ($pkl != null && $pkl->status == 'Aktif' && $pkl->pesan != null) {
         $pesan = "Koordinator telah menolak Laporan PKL Anda. Pesan: “".$pkl->pesan."”";
       } elseif (($mahasiswa->status == 'Aktif' ) && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'Terjadwal') {
-        $pesan = "Koordinator telah memasukkan Anda ke dalam Seminar PKL Terjadwal.";
+        $pesan = "Koordinator telah memasukkan Anda ke dalam Jadwal Seminar PKL.";
       } elseif (($mahasiswa->status == 'Aktif' ) && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'TakTerjadwal') {
-        $pesan = "Koordinator telah menerima pengajuan Seminar PKL Tak Terjadwal Anda.";
+        $pesan = "Koordinator telah menerima Pengajuan Seminar PKL Anda.";
       } elseif ($mahasiswa->seminar_pkl != null && ($mahasiswa->seminar_pkl->status == 'Pengajuan' && $mahasiswa->seminar_pkl->pesan != null)) {
-        $pesan = "Koordinator telah menolak pendaftaran Seminar PKL Tak Terjadwal Anda. Pesan: “".$mahasiswa->seminar_pkl->pesan."”";
+        $pesan = "Koordinator telah menolak Pengajuan Seminar PKL Anda. Pesan: “".$mahasiswa->seminar_pkl->pesan."”";
       } elseif ($mahasiswa->status == 'Aktif' ) {
         $pesan = "Koordinator telah menerima Registrasi PKL Anda.";
       } elseif ($mahasiswa->status == 'Nonaktif' && $pkl->status == 'Praregistrasi' && $pkl->pesan != null) {

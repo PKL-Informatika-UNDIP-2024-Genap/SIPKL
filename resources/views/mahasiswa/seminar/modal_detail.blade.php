@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg ">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="m-0">Detail Seminar Mahasiswa</h5>
+        <h5 class="m-0">Detail Seminar PKL Mahasiswa</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -48,11 +48,6 @@
                   <div id="data-ruang" style="padding: 0.75rem"></div>
 
                 </td>
-              </tr>
-              <tr>
-                <td class="text-nowrap px-0" style="width: 15%"><strong>Jenis Seminar</strong></td>
-                <td style="white-space: nowrap; width: 1%">:</td>
-                <td id="data-jenis-seminar"></td>
               </tr>
               <tr>
                 <td class="text-nowrap px-0" style="width: 15%"><strong>Instansi</strong></td>

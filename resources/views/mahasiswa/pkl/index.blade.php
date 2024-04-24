@@ -118,11 +118,11 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="scan_irs">Scan IRS</label>
+            <label for="scan_irs">Scan/Screenshot IRS</label>
             <input type="hidden" id="scanIRSSrc" name="scanIRSSrc" value="{{ $pkl->scan_irs }}">
             <img id="scanIRSImg" src="" alt="Picture" style="display:none;">
             <div class="input-group">
-              <button type="button" id="scanIRSView" class="btn btn-outline-info btn-sm" @if ($pkl->scan_irs == null) disabled @endif>Lihat Scan IRS</button>
+              <button type="button" id="scanIRSView" class="btn btn-info btn-sm border" @if ($pkl->scan_irs == null) disabled @endif>Lihat Scan/Screenshot IRS</button>
               {{-- @if ($pkl->scan_irs != null)
               <div>
                 Tidak tersedia <br><a href="/registrasi" class="btn btn-outline-warning btn-sm" >Registrasi Sekarang</a>
