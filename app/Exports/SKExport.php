@@ -26,6 +26,8 @@ class SKExport implements FromView, WithColumnWidths, ShouldAutoSize, WithStyles
         $data_sk = CetakSK::select('dosen_pembimbing.id as id_dospem' ,'dosen_pembimbing.nama as nama_dospem', 'dosen_pembimbing.nip as nip_dospem', 'dosen_pembimbing.golongan as gol_dospem', 'dosen_pembimbing.jabatan as jabatan_dospem', 'cetak_sk.nama as nama_mhs', 'cetak_sk.nim as nim_mhs', 'judul as judul_pkl')->join('dosen_pembimbing', 'cetak_sk.id_dospem', '=', 'dosen_pembimbing.id')->where('status', $status);
         if ($status == "Sudah") {
             $data_sk = $data_sk->where("tgl_mulai", $tgl_mulai)->where("tgl_selesai", $tgl_selesai);
+        } else {
+            $data_sk = $data_sk->whereRaw("tgl_verif_laporan >= '$tgl_mulai' AND tgl_verif_laporan <= '$tgl_selesai'");
         }
         $data_sk = $data_sk->get();
         $data_sk = $data_sk->sortBy('nama_dospem');
@@ -34,7 +36,7 @@ class SKExport implements FromView, WithColumnWidths, ShouldAutoSize, WithStyles
         $this->counter = $counter;
 
         if ($status == "Belum") {
-            CetakSK::where('status', 'Belum')->update([
+            CetakSK::where('status', 'Belum')->whereRaw("tgl_verif_laporan >= '$tgl_mulai' AND tgl_verif_laporan <= '$tgl_selesai'")->update([
                 'status' => 'Sudah',
                 'tgl_mulai' => $tgl_mulai,
                 'tgl_selesai' => $tgl_selesai,

@@ -197,7 +197,7 @@ class SeminarPKLController extends Controller
 
     public function jadwalSeminar ()
     {
-        $data_jadwal = SeminarPKL::whereRaw('status = "Tak Terjadwal" OR status = "Terjadwal"')->with(["mahasiswa", "dosen_pembimbing", "pkl"])->get();
+        $data_jadwal = SeminarPKL::whereRaw('tgl_seminar >= CURDATE() AND (status = "Tak Terjadwal" OR status = "Terjadwal")')->with(["mahasiswa", "dosen_pembimbing", "pkl"])->get();
         return view('mahasiswa.seminar.jadwal_seminar', [
             'user' => auth()->user(),
             'mahasiswa' => auth()->user()->mahasiswa,

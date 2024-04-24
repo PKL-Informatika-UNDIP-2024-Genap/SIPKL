@@ -14,13 +14,115 @@ class CetakSKSeeder extends Seeder
     {
         $data_cetak_sk = [
             [
+                'nim' => '24060121100071',
+                'status' => 'Belum',
+                'nama' => 'Abigail Gonzalez',
+                'judul' => 'Pengembangan Aplikasi Manajemen Keuangan',
+                'id_dospem' => 1,
+                'tgl_mulai' => null,
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-16',
+            ],
+            [
+                'nim' => '24060121100072',
+                'status' => 'Belum',
+                'nama' => 'Noah Lewis',
+                'judul' => 'Analisis Sistem Informasi Penjualan',
+                'id_dospem' => 2,
+                'tgl_mulai' => null,
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-16',
+            ],
+            [
+                'nim' => '24060121100073',
+                'status' => 'Belum',
+                'nama' => 'Emily Baker',
+                'judul' => 'Pengembangan Aplikasi Mobile Banking',
+                'id_dospem' => 3,
+                'tgl_mulai' => null,
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-17',
+            ],
+            [
+                'nim' => '24060121100074',
+                'status' => 'Belum',
+                'nama' => 'Samuel Harris',
+                'judul' => 'Pengembangan Sistem Informasi Geografis',
+                'id_dospem' => 4,
+                'tgl_mulai' => null,
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-17',
+            ],
+            [
+                'nim' => '24060121100075',
+                'status' => 'Belum',
+                'nama' => 'Elizabeth Young',
+                'judul' => 'Analisis dan Perancangan Basis Data',
+                'id_dospem' => 5,
+                'tgl_mulai' => null,
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-18',
+            ],
+            [
+                'nim' => '24060121100076',
+                'status' => 'Belum',
+                'nama' => 'David Scott',
+                'judul' => 'Pembuatan Aplikasi Manajemen Proyek',
+                'id_dospem' => 6,
+                'tgl_mulai' => null,
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-18',
+            ],
+            [
+                'nim' => '24060121100077',
+                'status' => 'Belum',
+                'nama' => 'Sofia Moore',
+                'judul' => 'Pengembangan Aplikasi E-Commerce',
+                'id_dospem' => 7,
+                'tgl_mulai' => null,
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-19',
+            ],
+            [
+                'nim' => '24060121100078',
+                'status' => 'Belum',
+                'nama' => 'Oliver Walker',
+                'judul' => 'Analisis dan Perancangan Sistem Informasi Geografis',
+                'id_dospem' => 8,
+                'tgl_mulai' => null,
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-19',
+            ],
+            [
+                'nim' => '24060121100079',
+                'status' => 'Belum',
+                'nama' => 'Victoria Rodriguez',
+                'judul' => 'Pembuatan Aplikasi Mobile Learning',
+                'id_dospem' => 9,
+                'tgl_mulai' => null,
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-20',
+            ],
+            [
+                'nim' => '24060121100080',
+                'status' => 'Belum',
+                'nama' => 'Lucas Martin',
+                'judul' => 'Analisis dan Perancangan Sistem Informasi Keuangan',
+                'id_dospem' => 10,
+                'tgl_mulai' => null,
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-20',
+            ],
+
+            [
                 'nim' => '24060121100081',
                 'status' => 'Belum',
                 'nama' => 'Grace Nguyen',
                 'judul' => 'Pengembangan Aplikasi Manajemen Keuangan',
                 'id_dospem' => 1,
                 'tgl_mulai' => null,
-                'tgl_selesai' => null
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-10',
             ],
             [
                 'nim' => '24060121100082',
@@ -29,7 +131,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Analisis Sistem Informasi Penjualan',
                 'id_dospem' => 1,
                 'tgl_mulai' => null,
-                'tgl_selesai' => null
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-10',
             ],
             [
                 'nim' => '24060121100083',
@@ -38,7 +141,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Pengembangan Aplikasi Mobile Banking',
                 'id_dospem' => 2,
                 'tgl_mulai' => null,
-                'tgl_selesai' => null
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-11',
             ],
             [
                 'nim' => '24060121100084',
@@ -47,7 +151,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Pengembangan Sistem Informasi Geografis',
                 'id_dospem' => 2,
                 'tgl_mulai' => null,
-                'tgl_selesai' => null
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-11',
             ],
             [
                 'nim' => '24060121100085',
@@ -56,7 +161,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Analisis dan Perancangan Sistem Informasi Persediaan',
                 'id_dospem' => 3,
                 'tgl_mulai' => null,
-                'tgl_selesai' => null
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-12',
             ],
             [
                 'nim' => '24060121100086',
@@ -65,7 +171,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Pengembangan Aplikasi E-Learning',
                 'id_dospem' => 3,
                 'tgl_mulai' => null,
-                'tgl_selesai' => null
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-12',
             ],
             [
                 'nim' => '24060121100087',
@@ -74,7 +181,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Analisis dan Perancangan Sistem Informasi Akademik',
                 'id_dospem' => 4,
                 'tgl_mulai' => null,
-                'tgl_selesai' => null
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-13',
             ],
             [
                 'nim' => '24060121100088',
@@ -83,7 +191,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Pengembangan Aplikasi Pencarian Tempat Wisata',
                 'id_dospem' => 4,
                 'tgl_mulai' => null,
-                'tgl_selesai' => null
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-13',
             ],
             [
                 'nim' => '24060121100089',
@@ -92,7 +201,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Analisis dan Perancangan Sistem Informasi Manajemen Inventaris',
                 'id_dospem' => 5,
                 'tgl_mulai' => null,
-                'tgl_selesai' => null
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-14',
             ],
             [
                 'nim' => '24060121100090',
@@ -101,7 +211,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Analisis dan Perancangan Sistem Informasi Kepegawaian',
                 'id_dospem' => 5,
                 'tgl_mulai' => null,
-                'tgl_selesai' => null
+                'tgl_selesai' => null,
+                'tgl_verif_laporan' => '2024-04-14',
             ],
 
             [
@@ -111,7 +222,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Pengembangan Aplikasi Manajemen Keuangan',
                 'id_dospem' => 1,
                 'tgl_mulai' => "2023-08-15",
-                'tgl_selesai' => "2024-01-15"
+                'tgl_selesai' => "2024-01-15",
+                'tgl_verif_laporan' => '2023-12-10',
             ],
             [
                 'nim' => '24060121100092',
@@ -120,7 +232,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Analisis Sistem Informasi Penjualan',
                 'id_dospem' => 1,
                 'tgl_mulai' => "2023-08-15",
-                'tgl_selesai' => "2024-01-15"
+                'tgl_selesai' => "2024-01-15",
+                'tgl_verif_laporan' => '2023-12-10',
             ],
             [
                 'nim' => '24060121100093',
@@ -129,7 +242,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Pengembangan Aplikasi Mobile Banking',
                 'id_dospem' => 2,
                 'tgl_mulai' => "2023-08-15",
-                'tgl_selesai' => "2024-01-15"
+                'tgl_selesai' => "2024-01-15",
+                'tgl_verif_laporan' => '2023-12-10',
             ],
             [
                 'nim' => '24060121100094',
@@ -138,7 +252,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Pengembangan Sistem Informasi Geografis',
                 'id_dospem' => 2,
                 'tgl_mulai' => "2023-08-15",
-                'tgl_selesai' => "2024-01-15"
+                'tgl_selesai' => "2024-01-15",
+                'tgl_verif_laporan' => '2023-12-10',
             ],
             [
                 'nim' => '24060121100095',
@@ -147,7 +262,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Analisis dan Perancangan Sistem Informasi Persediaan',
                 'id_dospem' => 3,
                 'tgl_mulai' => "2023-08-15",
-                'tgl_selesai' => "2024-01-15"
+                'tgl_selesai' => "2024-01-15",
+                'tgl_verif_laporan' => '2023-12-10',
             ],
             [
                 'nim' => '24060121100096',
@@ -156,7 +272,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Pengembangan Aplikasi E-Learning',
                 'id_dospem' => 3,
                 'tgl_mulai' => "2023-08-15",
-                'tgl_selesai' => "2024-01-15"
+                'tgl_selesai' => "2024-01-15",
+                'tgl_verif_laporan' => '2023-12-10',
             ],
             [
                 'nim' => '24060121100097',
@@ -165,7 +282,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Analisis dan Perancangan Sistem Informasi Akademik',
                 'id_dospem' => 4,
                 'tgl_mulai' => "2023-08-15",
-                'tgl_selesai' => "2024-01-15"
+                'tgl_selesai' => "2024-01-15",
+                'tgl_verif_laporan' => '2023-12-10',
             ],
             [
                 'nim' => '24060121100098',
@@ -174,7 +292,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Pengembangan Aplikasi Pencarian Tempat Wisata',
                 'id_dospem' => 4,
                 'tgl_mulai' => "2023-08-15",
-                'tgl_selesai' => "2024-01-15"
+                'tgl_selesai' => "2024-01-15",
+                'tgl_verif_laporan' => '2023-12-10',
             ],
             [
                 'nim' => '24060121100099',
@@ -183,7 +302,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Analisis dan Perancangan Sistem Informasi Manajemen Inventaris',
                 'id_dospem' => 5,
                 'tgl_mulai' => "2023-08-15",
-                'tgl_selesai' => "2024-01-15"
+                'tgl_selesai' => "2024-01-15",
+                'tgl_verif_laporan' => '2023-12-10',
             ],
             [
                 'nim' => '24060121100100',
@@ -192,7 +312,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Analisis dan Perancangan Sistem Informasi Kepegawaian',
                 'id_dospem' => 5,
                 'tgl_mulai' => "2023-08-15",
-                'tgl_selesai' => "2024-01-15"
+                'tgl_selesai' => "2024-01-15",
+                'tgl_verif_laporan' => '2023-12-10',
             ],
 
 
@@ -204,7 +325,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Penjualan',
                 'id_dospem' => 1,
                 'tgl_mulai' => "2023-01-15",
-                'tgl_selesai' => "2023-08-14"
+                'tgl_selesai' => "2023-08-14",
+                'tgl_verif_laporan' => '2023-08-10',
             ],
             [
                 'nim' => '24060121160002',
@@ -213,7 +335,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Keuangan',
                 'id_dospem' => 1,
                 'tgl_mulai' => "2023-01-15",
-                'tgl_selesai' => "2023-08-14"
+                'tgl_selesai' => "2023-08-14",
+                'tgl_verif_laporan' => '2023-08-10',
             ],
             [
                 'nim' => '24060121160003',
@@ -222,7 +345,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Akademik',
                 'id_dospem' => 1,
                 'tgl_mulai' => "2023-01-15",
-                'tgl_selesai' => "2023-08-14"
+                'tgl_selesai' => "2023-08-14",
+                'tgl_verif_laporan' => '2023-08-10',
             ],
             [
                 'nim' => '24060121160004',
@@ -231,7 +355,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Inventaris',
                 'id_dospem' => 2,
                 'tgl_mulai' => "2023-01-15",
-                'tgl_selesai' => "2023-08-14"
+                'tgl_selesai' => "2023-08-14",
+                'tgl_verif_laporan' => '2023-08-10',
             ],
             [
                 'nim' => '24060121160005',
@@ -240,7 +365,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Perpustakaan',
                 'id_dospem' => 2,
                 'tgl_mulai' => "2023-01-15",
-                'tgl_selesai' => "2023-08-14"
+                'tgl_selesai' => "2023-08-14",
+                'tgl_verif_laporan' => '2023-08-10',
             ],
             [
                 'nim' => '24060121160006',
@@ -249,7 +375,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Kepegawaian',
                 'id_dospem' => 2,
                 'tgl_mulai' => "2023-01-15",
-                'tgl_selesai' => "2023-08-14"
+                'tgl_selesai' => "2023-08-14",
+                'tgl_verif_laporan' => '2023-08-10',
             ],
             [
                 'nim' => '24060121160007',
@@ -258,7 +385,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Perbankan',
                 'id_dospem' => 3,
                 'tgl_mulai' => "2023-01-15",
-                'tgl_selesai' => "2023-08-14"
+                'tgl_selesai' => "2023-08-14",
+                'tgl_verif_laporan' => '2023-08-10',
             ],
             [
                 'nim' => '24060121160008',
@@ -267,7 +395,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Pergudangan',
                 'id_dospem' => 3,
                 'tgl_mulai' => "2023-01-15",
-                'tgl_selesai' => "2023-08-14"
+                'tgl_selesai' => "2023-08-14",
+                'tgl_verif_laporan' => '2023-08-10',
             ],
             [
                 'nim' => '24060121160009',
@@ -276,7 +405,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Pemerintahan',
                 'id_dospem' => 4,
                 'tgl_mulai' => "2023-01-15",
-                'tgl_selesai' => "2023-08-14"
+                'tgl_selesai' => "2023-08-14",
+                'tgl_verif_laporan' => '2023-08-10',
             ],
             [
                 'nim' => '24060121160010',
@@ -285,7 +415,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Pendidikan',
                 'id_dospem' => 4,
                 'tgl_mulai' => "2023-01-15",
-                'tgl_selesai' => "2023-08-14"
+                'tgl_selesai' => "2023-08-14",
+                'tgl_verif_laporan' => '2023-08-10',
             ],
             
             [
@@ -295,7 +426,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Kesehatan',
                 'id_dospem' => 1,
                 'tgl_mulai' => "2022-08-15",
-                'tgl_selesai' => "2023-01-14"
+                'tgl_selesai' => "2023-01-14",
+                'tgl_verif_laporan' => '2023-01-10',
             ],
             [
                 'nim' => '24060121160012',
@@ -304,7 +436,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Perhotelan',
                 'id_dospem' => 1,
                 'tgl_mulai' => "2022-08-15",
-                'tgl_selesai' => "2023-01-14"
+                'tgl_selesai' => "2023-01-14",
+                'tgl_verif_laporan' => '2023-01-10',
             ],
             [
                 'nim' => '24060121160013',
@@ -313,7 +446,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Pariwisata',
                 'id_dospem' => 1,
                 'tgl_mulai' => "2022-08-15",
-                'tgl_selesai' => "2023-01-14"
+                'tgl_selesai' => "2023-01-14",
+                'tgl_verif_laporan' => '2023-01-10',
             ],
             [
                 'nim' => '24060121160014',
@@ -322,7 +456,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Transportasi',
                 'id_dospem' => 2,
                 'tgl_mulai' => "2022-08-15",
-                'tgl_selesai' => "2023-01-14"
+                'tgl_selesai' => "2023-01-14",
+                'tgl_verif_laporan' => '2023-01-10',
             ],
             [
                 'nim' => '24060121160015',
@@ -331,7 +466,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Pertanian',
                 'id_dospem' => 2,
                 'tgl_mulai' => "2022-08-15",
-                'tgl_selesai' => "2023-01-14"
+                'tgl_selesai' => "2023-01-14",
+                'tgl_verif_laporan' => '2023-01-10',
             ],
             [
                 'nim' => '24060121160016',
@@ -340,7 +476,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Peternakan',
                 'id_dospem' => 2,
                 'tgl_mulai' => "2022-08-15",
-                'tgl_selesai' => "2023-01-14"
+                'tgl_selesai' => "2023-01-14",
+                'tgl_verif_laporan' => '2023-01-10',
             ],
             [
                 'nim' => '24060121160017',
@@ -349,7 +486,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Perikanan',
                 'id_dospem' => 3,
                 'tgl_mulai' => "2022-08-15",
-                'tgl_selesai' => "2023-01-14"
+                'tgl_selesai' => "2023-01-14",
+                'tgl_verif_laporan' => '2023-01-10',
             ],
             [
                 'nim' => '24060121160018',
@@ -358,7 +496,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Kehutanan',
                 'id_dospem' => 3,
                 'tgl_mulai' => "2022-08-15",
-                'tgl_selesai' => "2023-01-14"
+                'tgl_selesai' => "2023-01-14",
+                'tgl_verif_laporan' => '2023-01-10',
             ],
             [
                 'nim' => '24060121160019',
@@ -367,7 +506,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Kelautan',
                 'id_dospem' => 4,
                 'tgl_mulai' => "2022-08-15",
-                'tgl_selesai' => "2023-01-14"
+                'tgl_selesai' => "2023-01-14",
+                'tgl_verif_laporan' => '2023-01-10',
             ],
             [
                 'nim' => '24060121160020',
@@ -376,7 +516,8 @@ class CetakSKSeeder extends Seeder
                 'judul' => 'Sistem Informasi Energi',
                 'id_dospem' => 4,
                 'tgl_mulai' => "2022-08-15",
-                'tgl_selesai' => "2023-01-14"
+                'tgl_selesai' => "2023-01-14",
+                'tgl_verif_laporan' => '2023-01-10',
             ]
             
         ];

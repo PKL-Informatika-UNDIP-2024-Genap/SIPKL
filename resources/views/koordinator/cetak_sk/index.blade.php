@@ -73,6 +73,7 @@
 														<th>Golongan<br>Jabatan</th>
 														<th class="text-nowrap">Nama Mahasiswa<br>NIM</th>
 														<th>Judul Laporan PKL</th>
+														<th class="tanggal">Tanggal Verifikasi Laporan</th>
 												</tr>
 										</thead>
 										<tbody>
@@ -83,6 +84,7 @@
 																<td>{{ $sk->gol_dospem }}<br>{{ $sk->jabatan_dospem }}</td>
 																<td>{{ $sk->nama_mhs }}<br>{{ $sk->nim_mhs }}</td>
 																<td>{{ $sk->judul_pkl }}</td>
+																<td>{{ $sk->tgl_verif_laporan }}</td>
 														</tr>
 												@endforeach
 										</tbody>
@@ -148,6 +150,8 @@
 @endsection
 
 @push('scripts')
+<script src="/lte/plugins/moment/moment.min.js"></script>
+<script src="/lte/plugins/moment/locale/id.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		const table = new DataTable('#myTable', {
@@ -157,10 +161,47 @@
 					orderable: false,
 					targets: [0,"action"]
 				},
+				{
+					targets: 'tanggal',
+					render: function (data, type, row) {
+						// 'type' parameter specifies the purpose, 'display' for display, 'filter' for filtering,
+						// and 'type' for sorting. We will only change the display format.
+						if (type === 'display' && data) {
+							// Assuming data is in 'YYYY-MM-DD' format
+							// const dateObj = new Date(data);
+							// const options = { year: 'numeric', month: 'long', day: 'numeric' };
+							// const formattedDate = dateObj.toLocaleDateString('id-ID', options);
+							return moment(data).format('DD MMMM YYYY');
+						}
+						return data;
+					}
+        }
 			],
 			order: [[1, 'asc']],
 			lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
 			pageLength: 10,
+			"initComplete": function(settings, json) {
+				$.fn.dataTable.ext.search.push(
+				function (setting, data, index) {
+					if (setting.nTable.id !== 'myTable') {
+					  return true;
+					}
+					let tglMulai = $('#tgl_mulai').val();
+					let tglSelesai = $('#tgl_selesai').val();
+
+					if (tglMulai != "") {
+						if (data[5] < tglMulai) {
+							return false;
+						}
+					}
+					if (tglSelesai != "") {
+						if (data[5] > tglSelesai) {
+							return false;
+						}
+					}
+					return true;
+				})
+			}
 		});
 		$('#myTable_filter input').css('width', '200px');
 		table.on('order.dt search.dt', function () {
@@ -171,18 +212,11 @@
 						this.data(i++);
 				});
 		}).draw();
-	
-		// $.fn.dataTableExt.afnFiltering.push(
-		// 	function (setting, data, index) {
-		// 		var selectedStatus = $('#status').val();
-		// 		if (selectedStatus == "") {
-		// 			return true;
-		// 		}
-		// 		if (selectedStatus == data[3]) {
-		// 			return true;
-		// 		}
-		// 		return false;
-		// 	});
+
+		$('#tgl_mulai, #tgl_selesai').on('change', function() {
+			table.draw();
+		})
+		
 
 		$('#cetakBtn').on('click', function() {
 			setTimeout(() => {

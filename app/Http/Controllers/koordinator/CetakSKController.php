@@ -18,7 +18,7 @@ class CetakSKController extends Controller
      */
     public function index()
     {
-        $data_sk = CetakSK::select('dosen_pembimbing.id as id_dospem' ,'dosen_pembimbing.nama as nama_dospem', 'dosen_pembimbing.nip as nip_dospem', 'dosen_pembimbing.golongan as gol_dospem', 'dosen_pembimbing.jabatan as jabatan_dospem', 'cetak_sk.nama as nama_mhs', 'cetak_sk.nim as nim_mhs', 'judul as judul_pkl')->join('dosen_pembimbing', 'cetak_sk.id_dospem', '=', 'dosen_pembimbing.id')->where('status', 'Belum')->get();
+        $data_sk = CetakSK::select('dosen_pembimbing.id as id_dospem' ,'dosen_pembimbing.nama as nama_dospem', 'dosen_pembimbing.nip as nip_dospem', 'dosen_pembimbing.golongan as gol_dospem', 'dosen_pembimbing.jabatan as jabatan_dospem', 'cetak_sk.nama as nama_mhs', 'cetak_sk.nim as nim_mhs', 'judul as judul_pkl', 'tgl_verif_laporan')->join('dosen_pembimbing', 'cetak_sk.id_dospem', '=', 'dosen_pembimbing.id')->where('status', 'Belum')->get();
         $data_sk = $data_sk->sortBy('nama_dospem');
         $counter = $data_sk->groupBy('id_dospem')->map->count()->values();
         return view('koordinator.cetak_sk.index', [
