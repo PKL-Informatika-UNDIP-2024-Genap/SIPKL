@@ -572,7 +572,7 @@ class PKLSeeder extends Seeder
                 'keyword5' => 'Analisis',
                 'link_laporan' => 'drive.google.com',
                 'tgl_laporan' => '2024-04-01',
-                'tgl_verif_laporan' => '2024-04-15',
+                'tgl_verif_laporan' => '2024-04-16',
             ],
             [
                 'nim' => '24060121100072',
@@ -589,7 +589,7 @@ class PKLSeeder extends Seeder
                 'keyword5' => 'Keuangan',
                 'link_laporan' => 'drive.google.com',
                 'tgl_laporan' => '2024-04-01',
-                'tgl_verif_laporan' => '2024-04-15',
+                'tgl_verif_laporan' => '2024-04-16',
             ],
             [
                 'nim' => '24060121100073',
@@ -606,7 +606,7 @@ class PKLSeeder extends Seeder
                 'keyword5' => 'Sistem Informasi',
                 'link_laporan' => 'drive.google.com',
                 'tgl_laporan' => '2024-04-01',
-                'tgl_verif_laporan' => '2024-04-15',
+                'tgl_verif_laporan' => '2024-04-17',
             ],
             [
                 'nim' => '24060121100074',
@@ -623,7 +623,7 @@ class PKLSeeder extends Seeder
                 'keyword5' => 'Data',
                 'link_laporan' => 'drive.google.com',
                 'tgl_laporan' => '2024-04-01',
-                'tgl_verif_laporan' => '2024-04-15',
+                'tgl_verif_laporan' => '2024-04-17',
             ],
             [
                 'nim' => '24060121100075',
@@ -640,7 +640,7 @@ class PKLSeeder extends Seeder
                 'keyword5' => 'Sistem Informasi',
                 'link_laporan' => 'drive.google.com',
                 'tgl_laporan' => '2024-04-01',
-                'tgl_verif_laporan' => '2024-04-15',
+                'tgl_verif_laporan' => '2024-04-18',
             ],
             [
                 'nim' => '24060121100076',
@@ -657,7 +657,7 @@ class PKLSeeder extends Seeder
                 'keyword5' => 'Proyek',
                 'link_laporan' => 'drive.google.com',
                 'tgl_laporan' => '2024-04-01',
-                'tgl_verif_laporan' => '2024-04-15',
+                'tgl_verif_laporan' => '2024-04-18',
             ],
             [
                 'nim' => '24060121100077',
@@ -674,7 +674,7 @@ class PKLSeeder extends Seeder
                 'keyword5' => 'Pembuatan',
                 'link_laporan' => 'drive.google.com',
                 'tgl_laporan' => '2024-04-01',
-                'tgl_verif_laporan' => '2024-04-15',
+                'tgl_verif_laporan' => '2024-04-19',
             ],
             [
                 'nim' => '24060121100078',
@@ -691,7 +691,7 @@ class PKLSeeder extends Seeder
                 'keyword5' => 'Sistem Informasi',
                 'link_laporan' => 'drive.google.com',
                 'tgl_laporan' => '2024-04-01',
-                'tgl_verif_laporan' => '2024-04-15',
+                'tgl_verif_laporan' => '2024-04-19',
             ],
             [
                 'nim' => '24060121100079',
@@ -708,7 +708,7 @@ class PKLSeeder extends Seeder
                 'keyword5' => 'Pengembangan',
                 'link_laporan' => 'drive.google.com',
                 'tgl_laporan' => '2024-04-01',
-                'tgl_verif_laporan' => '2024-04-15',
+                'tgl_verif_laporan' => '2024-04-20',
             ],
             [
                 'nim' => '24060121100080',
@@ -725,7 +725,7 @@ class PKLSeeder extends Seeder
                 'keyword5' => 'Sistem Informasi',
                 'link_laporan' => 'drive.google.com',
                 'tgl_laporan' => '2024-04-01',
-                'tgl_verif_laporan' => '2024-04-15',
+                'tgl_verif_laporan' => '2024-04-20',
             ],
 
         ];

@@ -3,9 +3,9 @@
 @push('styles')
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
 
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 	{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" /> --}}
-	<link rel="stylesheet" href="/plugins/select2-bootstrap5-theme/select2-bootstrap5.min.css">
+	{{-- <link rel="stylesheet" href="/plugins/select2-bootstrap5-theme/select2-bootstrap5.min.css"> --}}
 @endpush
 
 @section('container')
@@ -26,12 +26,12 @@
 		<div class="container-fluid">
 			<div class="card">
 				<div class="card-body">
-					<div class="row justify-content-center">
+					{{-- <div class="row justify-content-center">
 						<div class="col-auto mb-2 d-flex align-items-center">
 							<strong class="m-0 text-lightblue">Filter:</strong>
 						</div>
 						<div class="col-auto mb-2 d-flex align-items-center flex-wrap">
-							{{-- <strong class="mr-3 text-lightblue">Filter:</strong> --}}
+							<strong class="mr-3 text-lightblue">Filter:</strong>
 							<label for="jadwal" class="my-0 mr-2 fw-normal">Jadwal:</label>
 							<div class="d-inline-block" style="width: 200px">
 								<select name="jadwal" id="jadwal" class="form-control">
@@ -41,7 +41,7 @@
 								</select>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 					<div id="tabel-jadwal" class="table-responsive pt-1">
 						<table class="table" id="myTable">
 							<thead>
@@ -91,7 +91,7 @@
 
 
 @push('scripts')
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script type="text/javascript">
     $('#jadwal').select2({
       theme: 'bootstrap-5',
@@ -100,7 +100,7 @@
       // placeholder: 'Semua',
       // width: '100%',
     });
-  </script>
+  </script> --}}
 
 	<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
@@ -123,26 +123,26 @@
         order: [[1, 'asc'],[2, 'asc']],
         lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
         pageLength: 10,
-        "initComplete": function(settings, json) {
-          $.fn.dataTable.ext.search.push(
-          function (setting, data, index) {
-            // if (setting.nTable.id !== 'myTable') {
-            //   return true;
-            // }
-            var selectedJadwal = $('#jadwal').val();
-						let dataTgl = moment(data[1], "dddd, D MMMM YYYY").format("YYYY-MM-DD");
-            if (selectedJadwal == "") {
-              return true;
-            }
-            if (selectedJadwal == "Mendatang" && dataTgl >= moment().format("YYYY-MM-DD")) {
-              return true;
-            }
-						if (selectedJadwal == "Terlewat" && dataTgl < moment().format("YYYY-MM-DD")) {
-							return true;
-						}
-            return false;
-          })
-        }
+        // "initComplete": function(settings, json) {
+        //   $.fn.dataTable.ext.search.push(
+        //   function (setting, data, index) {
+        //     // if (setting.nTable.id !== 'myTable') {
+        //     //   return true;
+        //     // }
+        //     var selectedJadwal = $('#jadwal').val();
+				// 		let dataTgl = moment(data[1], "dddd, D MMMM YYYY").format("YYYY-MM-DD");
+        //     if (selectedJadwal == "") {
+        //       return true;
+        //     }
+        //     if (selectedJadwal == "Mendatang" && dataTgl >= moment().format("YYYY-MM-DD")) {
+        //       return true;
+        //     }
+				// 		if (selectedJadwal == "Terlewat" && dataTgl < moment().format("YYYY-MM-DD")) {
+				// 			return true;
+				// 		}
+        //     return false;
+        //   })
+        // }
       });
       $('#myTable_filter input').css('width', '200px');
       table.on('order.dt search.dt', function () {
@@ -154,9 +154,9 @@
           });
       }).draw();
       
-      $('#jadwal').on('change', function() {
-        table.draw();
-      })
+      // $('#jadwal').on('change', function() {
+      //   table.draw();
+      // })
     
       // $.fn.dataTableExt.afnFiltering.push(
       // 	function (setting, data, index) {

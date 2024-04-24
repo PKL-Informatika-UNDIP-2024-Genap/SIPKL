@@ -53,7 +53,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword2' => 'Pengembangan',
                 'keyword3' => 'Banking',
                 'link_laporan' => 'drive.google.com',
-                'tgl_verif_laporan' => '2024-04-10 00:00:00',
+                'tgl_verif_laporan' => '2024-04-11 00:00:00',
                 'nilai' => 'C',
             ],
             [
@@ -67,7 +67,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword2' => 'Pengembangan',
                 'keyword3' => 'Geografis',
                 'link_laporan' => 'drive.google.com',
-                'tgl_verif_laporan' => '2024-04-10 00:00:00',
+                'tgl_verif_laporan' => '2024-04-11 00:00:00',
                 'nilai' => 'A',
             ],
             [
@@ -81,7 +81,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword2' => 'Analisis',
                 'keyword3' => 'Persediaan',
                 'link_laporan' => 'drive.google.com',
-                'tgl_verif_laporan' => '2024-04-10 00:00:00',
+                'tgl_verif_laporan' => '2024-04-12 00:00:00',
                 'nilai' => 'B',
             ],
             [
@@ -95,7 +95,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword2' => 'Pengembangan',
                 'keyword3' => 'E-Learning',
                 'link_laporan' => 'drive.google.com',
-                'tgl_verif_laporan' => '2024-04-10 00:00:00',
+                'tgl_verif_laporan' => '2024-04-12 00:00:00',
                 'nilai' => 'A',
             ],
             [
@@ -109,7 +109,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword2' => 'Analisis',
                 'keyword3' => 'Akademik',
                 'link_laporan' => 'drive.google.com',
-                'tgl_verif_laporan' => '2024-04-10 00:00:00',
+                'tgl_verif_laporan' => '2024-04-13 00:00:00',
                 'nilai' => 'B',
             ],
             [
@@ -123,7 +123,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword2' => 'Pengembangan',
                 'keyword3' => 'Wisata',
                 'link_laporan' => 'drive.google.com',
-                'tgl_verif_laporan' => '2024-04-10 00:00:00',
+                'tgl_verif_laporan' => '2024-04-13 00:00:00',
                 'nilai' => 'A',
             ],
             [
@@ -137,7 +137,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword2' => 'Analisis',
                 'keyword3' => 'Inventaris',
                 'link_laporan' => 'drive.google.com',
-                'tgl_verif_laporan' => '2024-04-10 00:00:00',
+                'tgl_verif_laporan' => '2024-04-14 00:00:00',
                 'nilai' => 'B',
             ],
             [
@@ -151,7 +151,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword2' => 'Analisis',
                 'keyword3' => 'Kepegawaian',
                 'link_laporan' => 'drive.google.com',
-                'tgl_verif_laporan' => '2024-04-10 00:00:00',
+                'tgl_verif_laporan' => '2024-04-14 00:00:00',
                 'nilai' => 'A',
             ],
 

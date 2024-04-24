@@ -31,7 +31,7 @@
 								<div class="col-auto mb-2 d-flex align-items-center flex-wrap">
 									{{-- <strong class="mr-3 text-lightblue">Input:</strong> --}}
 									<label for="periode_sk" class="my-0 mr-2 fw-normal">Periode SK:</label for="periode_sk">
-										<div class="d-inline-block" style="width: 200px">
+										<div class="d-inline-block" style="width: 300px">
 											<select name="periode_sk" id="periode_sk" class="form-control">
 												<option value="" selected>Semua</option>
 												@foreach ($periode_sk as $p_sk)
@@ -59,7 +59,7 @@
 						<div class="tab-content">
 							<div class="tab-pane fade show active pt-2" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 								<div class="table-responsive pt-1">
-									<table class="table" id="myTable">
+									<table class="table" id="myTable" style="width: 100%">
 										<thead>
 												<tr class="table-primary">
 														<th>No</th>
@@ -67,8 +67,8 @@
 														<th>Golongan<br>Jabatan</th>
 														<th class="text-nowrap">Nama Mahasiswa<br>NIM</th>
 														<th>Judul Laporan PKL</th>
-														<th class="tanggal">Tanggal Mulai</th>
-														<th class="tanggal">Tanggal Selesai</th>
+														<th class="tanggal">Periode SK</th>
+														<th class="tanggal hidden">Tanggal Selesai</th>
 												</tr>
 										</thead>
 										<tbody>
@@ -169,9 +169,20 @@
 						targets: [0]
 					},
 					{
-            target: 'tanggal',
-            render: DataTable.render.datetime("D MMMM YYYY", "id"),
-          },
+						targets: 'tanggal',
+						render: function (data, type, row) {
+							// 'type' parameter specifies the purpose, 'display' for display, 'filter' for filtering,
+							// and 'type' for sorting. We will only change the display format.
+							if (type === 'display' && data) {
+								// Assuming data is in 'YYYY-MM-DD' format
+								// const dateObj = new Date(data);
+								// const options = { year: 'numeric', month: 'long', day: 'numeric' };
+								// const formattedDate = dateObj.toLocaleDateString('id-ID', options);
+								return moment(data).format('DD MMMM YYYY') + ' - ' + moment(row[6]).format('DD MMMM YYYY');
+							}
+							return data;
+						}
+					},
           {
             target: 'hidden',
             visible: false,
@@ -191,11 +202,10 @@
 						if (selectedPeriodeSk == "") {
 							return true;
 						}
-						let dataTglMulai = moment(data[5], "D MMMM YYYY").format("YYYY-MM-DD");
 						if (selectedPeriodeSk == "") {
 							return true;
 						}
-						if (selectedPeriodeSk == dataTglMulai) {
+						if (selectedPeriodeSk == data[5]) {
 							return true;
 						}
 						return false;
@@ -215,22 +225,10 @@
 			$('#periode_sk').on('change', function() {
 				table.draw();
 			});
-		
-			// $.fn.dataTableExt.afnFiltering.push(
-			// 	function (setting, data, index) {
-			// 		var selectedPeriodeSk = $('#periode_sk').val();
-			// 		if (selectedPeriodeSk == "") {
-			// 			return true;
-			// 		}
-			// 		if (selectedPeriodeSk == data[3]) {
-			// 			return true;
-			// 		}
-			// 		return false;
-			// 	});
 
 			$('#periode_sk option').each(function() {
 				var dates = $(this).text().split(' - ');
-				$(this).text(moment(dates[0],"YYYY-MM-DD").format('D MMM YYYY') + ' - ' + moment(dates[1],"YYYY-MM-DD").format('D MMM YYYY'));
+				$(this).text(moment(dates[0],"YYYY-MM-DD").format('D MMMM YYYY') + ' - ' + moment(dates[1],"YYYY-MM-DD").format('D MMMM YYYY'));
 			});
 
 			$('#periode_sk').on('change', function() {
