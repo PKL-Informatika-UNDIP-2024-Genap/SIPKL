@@ -200,7 +200,6 @@
 				$("#data-tgl-seminar").html(tanggal_seminar);
 				$("#data-waktu-seminar").html(data_jadwal.waktu_seminar);
 				$("#data-ruang").html(data_jadwal.ruang);
-				$("#data-jenis-seminar").html(data_jadwal.status);
 				$('#data-instansi').html(data_jadwal.pkl.instansi);
 				$('#data-judul').html(data_jadwal.pkl.judul);
 

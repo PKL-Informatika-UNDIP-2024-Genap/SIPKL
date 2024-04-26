@@ -77,15 +77,15 @@
                     <a class="ud-menu-scroll" href="#dokumen">Dokumen</a>
                   </li>
                   <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#grupwa">Grup WA</a>
-                  </li>
-                  <li class="nav-item">
                     <a class="ud-menu-scroll" href="#seminar">Jadwal Seminar</a>
                   </li>
                 </ul>
               </div>
 
               <div class="navbar-btn d-sm-inline-block">
+                <a href="javascript:void(0)" class="ud-main-btn ud-login-btn">
+                  Grup WA
+                </a>
                 <a class="ud-main-btn ud-white-btn" data-bs-toggle="modal" data-bs-target="#modal_login">
                   Login
                 </a>
@@ -108,9 +108,19 @@
               <h1 class="ud-hero-title">
                 Sistem Informasi PKL Informatika Undip
               </h1>
-              <p class="ud-hero-desc">
-                Praktik Kerja Lapangan (PKL) adalah bentuk penyelenggaraan kegiatan pendidikan dan pelatihan dengan bekerja secara langsung, secara sistematik dan terarah dengan supervisi yang kompeten.
+
+              <p class="ud-hero-desc"> 
+                <em>Gabung grup WhatsApp berikut untuk mendapatkan informasi terbaru seputar PKL Informatika Undip!</em>
               </p>
+
+              <ul class="ud-hero-buttons">
+                <li>
+                  <a href="javascript:void(0)" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-white-btn">
+                    Gabung Grup WA
+                  </a>
+                </li>
+              </ul>
+
             </div>
             {{-- <div
               class="ud-hero-brands-wrapper wow fadeInUp"
@@ -199,7 +209,7 @@
     <!-- ====== dokumen End ====== -->
 
     <!-- ====== About Start ====== -->
-    <section id="grupwa" class="ud-features">
+    {{-- <section id="grupwa" class="ud-features">
       <div class="container">
         <div class="ud-about-wrapper wow fadeInUp d-flex justify-content-center text-center" data-wow-delay=".2s">
           <div class="ud-about-content-wrapper">
@@ -216,7 +226,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> --}}
     <!-- ====== About End ====== -->
 
     <!-- ====== Dokumen Start ====== -->
