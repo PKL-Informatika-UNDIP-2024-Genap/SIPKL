@@ -302,35 +302,42 @@
                   </div>
                 </a>
                 <p class="ud-widget-desc">
-                  Sistem Informasi PKL Informatika UNDIP
+                  (Sistem Informasi PKL Informatika UNDIP)
+                  <br>
+                  Departemen Informatika, Fakultas Sains dan Matematika, Universitas Diponegoro
                 </p>
                 <p class="ud-widget-desc">
                   Jl. Prof. Soedarto No.50275, Tembalang, Kec. Tembalang, Kota Semarang, Jawa Tengah 50275
                 </p>
                 <p class="ud-widget-desc">
-                  Email: sipklinformatikaundip@gmail.com
+                  Email: pkl.if@live.undip.ac.id
                 </p>
                 <ul class="ud-widget-socials">
                   <li>
-                    <a href="https://facebook.com">
-                      <i class="bi bi-facebook"></i>
+                    <a href="mailto:pkl.if@live.undip.ac.id">
+                      <i class="bi bi-envelope-fill"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="https://twitter.com">
+                    <a href="https://www.youtube.com/c/FakultasSainsdanMatematika">
+                      <i class="bi bi-youtube"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/fsm_undip">
                       <i class="bi bi-twitter-x"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="https://instagram.com">
+                    <a href="https://instagram.com/if.undip">
                       <i class="bi bi-instagram"></i>
                     </a>
                   </li>
-                  <li>
+                  {{-- <li>
                     <a href="https://linkedin.com">
                       <i class="bi bi-linkedin"></i>
                     </a>
-                  </li>
+                  </li> --}}
                 </ul>
               </div>
             </div>
@@ -340,16 +347,16 @@
                 <h5 class="ud-widget-title">Informasi</h5>
                 <ul class="ud-widget-links">
                   <li>
-                    <a class="ud-menu-scroll" href="#pengumuman">Pengumuman</a>
+                    <a class="" href="https://www.undip.ac.id/">Laman Undip</a>
                   </li>
                   <li>
-                    <a class="ud-menu-scroll" href="#dokumen">Dokumen</a>
+                    <a class="" href="https://fsm.undip.ac.id/">Laman FSM</a>
                   </li>
                   <li>
-                    <a class="ud-menu-scroll" href="#grupwa">Group WA</a>
+                    <a class="" href="https://if.fsm.undip.ac.id/">Laman IF</a>
                   </li>
                   <li>
-                    <a class="ud-menu-scroll" href="#seminar">Jadwal Seminar</a>
+                    <a class="" href="https://docs.google.com/spreadsheets/d/1JWXhY4EcisQ7dqz8yv9P9aF-dkOFxp3j">Jadwal Praktikum IF</a>
                   </li>
                 </ul>
               </div>
