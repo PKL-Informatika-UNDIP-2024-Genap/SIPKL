@@ -31,7 +31,7 @@
                 <thead>
                     <tr class="table-primary">
                         <th>No</th>
-                        <th class="hari_tanggal">Tanggal</th>
+                        <th class="tanggal">Tanggal</th>
                         <th>Deskripsi</th>
                         <th class="lampiran">Lampiran</th>
                         <th class="action">Action</th>

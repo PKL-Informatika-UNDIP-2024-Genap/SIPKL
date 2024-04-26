@@ -4,13 +4,8 @@
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <h1 class="m-0">Verifikasi Laporan PKL Mahasiswa</h1>
-      </div><!-- /.col -->
-      <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
@@ -30,7 +25,7 @@
                         <th>No</th>
                         <th>Nama Mhs</th>
                         <th>NIM</th>
-                        <th>Tanggal Kirim Laporan</th>
+                        <th class="tanggal">Tanggal Kirim Laporan</th>
                         <th class="action">Action</th>
                     </tr>
                 </thead>
@@ -69,6 +64,8 @@
 
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.6/viewer.min.js" integrity="sha512-EC3CQ+2OkM+ZKsM1dbFAB6OGEPKRxi6EDRnZW9ys8LghQRAq6cXPUgXCCujmDrXdodGXX9bqaaCRtwj4h4wgSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/lte/plugins/moment/moment.min.js"></script>
+<script src="/lte/plugins/moment/locale/id.js"></script>
 <script src="/js/ajax-verif-laporan.js"></script>
 <script src="/js/datatables-jquery.js"></script>
 <script>
