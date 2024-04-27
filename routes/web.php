@@ -20,8 +20,8 @@ use App\Http\Controllers\Koordinator\SeminarPKLController as KoordinatorSeminarP
 use App\Http\Controllers\Koordinator\RiwayatPKLController as KoordinatorRiwayatPKLController;
 
 use App\Http\Controllers\Mahasiswa\PKLController as MahasiswaPKLController ;
-use App\Http\Controllers\Mahasiswa\RiwayatPKLController as MahasiswaRiwayatPKLController;
 use App\Http\Controllers\Mahasiswa\SeminarPKLController as MahasiswaSeminarPKLController;
+use App\Http\Controllers\Mahasiswa\RiwayatPKLController as MahasiswaRiwayatPKLController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,29 +43,23 @@ route::middleware('auth')->group(function () {
     Route::middleware('data.updated')->group(function () {
         Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-        Route::put('/profile/update_password', [ProfileController::class, 'updatePassword']);
-        Route::put('/profile/update_nowa', [ProfileController::class, 'updateNoWa']);
-        Route::put('/profile/update_email', [ProfileController::class, 'updateEmail']);
+        Route::put('/profile/update_password', [ProfileController::class, 'update_password']);
+        Route::put('/profile/update_nowa', [ProfileController::class, 'update_no_wa']);
+        Route::put('/profile/update_email', [ProfileController::class, 'update_email']);
 
-        // Route::post('/tmp_upload_foto_profil', [ProfileController::class, 'tmpUploadFotoProfil']);
-        // Route::delete('/tmp_delete_foto_profil', [ProfileController::class, 'tmpDeleteFotoProfil']);
-        Route::post('/profile/update_foto_profil', [ProfileController::class, 'updateFotoProfil']);
-
-        Route::post('/tmp_upload_irs', [MahasiswaPKLController::class, 'tmpUpload']);
-        Route::delete('/tmp_delete_irs', [MahasiswaPKLController::class, 'tmpDelete']);
+        Route::post('/profile/update_foto_profil', [ProfileController::class, 'update_foto_profil']);
 
     });
 
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/preview/{filename}', [FileController::class, 'preview'])->where('filename', '.*');
-    Route::get('/download_file/{filename}', [FileController::class, 'downloadFile'])->where('filename', '.*');
-
+    Route::get('/download_file/{filename}', [FileController::class, 'download_file'])->where('filename', '.*');
 
 });
 
 Route::middleware(['auth', 'is.admin:1'])->group(function () {
-    Route::put('/profile/update_golongan', [ProfileController::class, 'updateGolongan']);
-    Route::put('/profile/update_jabatan', [ProfileController::class, 'updateJabatan']);
+    Route::put('/profile/update_golongan', [ProfileController::class, 'update_golongan']);
+    Route::put('/profile/update_jabatan', [ProfileController::class, 'update_jabatan']);
 
     Route::get('/dospem/kelola_dospem/', [DosenPembimbingController::class, 'index']);
     Route::post('/dospem/kelola_dospem/tambah', [DosenPembimbingController::class, 'store']);
@@ -138,10 +132,10 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/cetak_sk', [CetakSKController::class, 'index']);
     Route::post('/cetak_sk/export', [CetakSKController::class, 'export']);
     Route::get('/cetak_sk/riwayat', [CetakSKController::class, 'riwayat']);
-    Route::post('/cetak_sk/riwayat/export', [CetakSKController::class, 'exportRiwayat']);
+    Route::post('/cetak_sk/riwayat/export', [CetakSKController::class, 'export_riwayat']);
 
     Route::get('/riwayat_pkl', [KoordinatorRiwayatPKLController::class, 'index']);
-    Route::get('/riwayat_pkl/{nim}/get_data_riwayat', [KoordinatorRiwayatPKLController::class, 'getDataRiwayat']);
+    Route::get('/riwayat_pkl/{nim}/get_data_riwayat', [KoordinatorRiwayatPKLController::class, 'get_data_riwayat']);
 
     Route::get('/informasi/kelola_pengumuman', [PengumumanController::class, 'index']);
     Route::post('/informasi/kelola_pengumuman/tambah', [PengumumanController::class, 'store']);
@@ -158,30 +152,30 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
 
 Route::middleware(['auth', 'is.admin:0'])->group(function () {
     Route::middleware('status.mhs:Baru')->group(function () {
-        Route::get('/update_data', [AuthController::class, 'editData'])->name('update_data');
-        Route::put('/update_data', [AuthController::class, 'updateDataMahasiswa']);
+        Route::get('/update_data', [AuthController::class, 'edit_data'])->name('update_data');
+        Route::put('/update_data', [AuthController::class, 'update_data_mahasiswa']);
     });
 
-    Route::post('/dashboard/tutup_pesan', [AuthController::class, 'tutupPesan']);
+    Route::post('/dashboard/tutup_pesan', [AuthController::class, 'tutup_pesan']);
 
     Route::get('/pkl', [MahasiswaPKLController::class, 'index'])->middleware('status.mhs:Nonaktif,Aktif')->name('pkl.index');
-    Route::put('/pkl/{pkl}/update', [MahasiswaPKLController::class, 'updateData']);
+    Route::put('/pkl/{pkl}/update', [MahasiswaPKLController::class, 'update_data']);
     Route::get('/seminar', [MahasiswaSeminarPKLController::class, 'index'])->name('seminar.index');
     Route::get('/seminar/jadwal', [MahasiswaSeminarPKLController::class, 'jadwalSeminar']);
     Route::get('/riwayat', [MahasiswaRiwayatPKLController::class, 'index'])->middleware('data.updated');
 
     Route::get('/registrasi', [MahasiswaPKLController::class, 'registrasi'])->name('registrasi');
     Route::middleware(['status.mhs:Nonaktif','has.pembimbing'])->group(function () {
-        Route::post('/registrasi', [MahasiswaPKLController::class, 'submitRegistrasi'])->name('registrasi.submit');
+        Route::post('/registrasi', [MahasiswaPKLController::class, 'submit_registrasi'])->name('registrasi.submit');
     });
 
     Route::middleware('status.mhs:Aktif,Lulus')->group(function () {
-        Route::post('/seminar/daftar', [MahasiswaSeminarPKLController::class, 'daftarSeminar']);
-        Route::post('/seminar/daftar_ulang', [MahasiswaSeminarPKLController::class, 'daftarUlangSeminar']);
+        Route::post('/seminar/daftar', [MahasiswaSeminarPKLController::class, 'daftar_seminar']);
+        Route::post('/seminar/daftar_ulang', [MahasiswaSeminarPKLController::class, 'daftar_ulang_seminar']);
 
         Route::middleware('has.seminar')->group(function () {
             Route::get('/laporan', [MahasiswaPKLController::class, 'laporan']);
-            Route::post('/laporan/kirim', [MahasiswaPKLController::class, 'kirimLaporan']);
+            Route::post('/laporan/kirim', [MahasiswaPKLController::class, 'kirim_laporan']);
         });
         
     });
@@ -190,5 +184,4 @@ Route::middleware(['auth', 'is.admin:0'])->group(function () {
         Route::get('/arsip', [ArsipPKLController::class, 'index']);
     });
     
-
 });

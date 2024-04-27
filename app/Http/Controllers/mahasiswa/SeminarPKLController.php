@@ -96,7 +96,7 @@ class SeminarPKLController extends Controller
     /**
      * Daftar seminar Tak Terjadwal.
      */
-    public function daftarSeminar(StoreSeminarPKLRequest $request)
+    public function daftar_seminar(StoreSeminarPKLRequest $request)
     {
         $validator = validator($request->all(), [
             'nim' => 'required',
@@ -140,7 +140,7 @@ class SeminarPKLController extends Controller
         return redirect()->back()->with('success', 'Berhasil mendaftar seminar.');
     }
 
-    public function daftarUlangSeminar (UpdateSeminarPKLRequest $request)
+    public function daftar_ulang_seminar(UpdateSeminarPKLRequest $request)
     {
         $validator = validator($request->all(), [
             'id_dospem' => 'required',
@@ -195,7 +195,7 @@ class SeminarPKLController extends Controller
         return redirect()->back()->with('success', 'Berhasil mendaftar ulang seminar.');
     }
 
-    public function jadwalSeminar ()
+    public function jadwalSeminar()
     {
         $data_jadwal = SeminarPKL::whereRaw('tgl_seminar >= CURDATE() AND (status = "Tak Terjadwal" OR status = "Terjadwal")')->with(["mahasiswa", "dosen_pembimbing", "pkl"])->get();
         return view('mahasiswa.seminar.jadwal_seminar', [

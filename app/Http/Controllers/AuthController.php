@@ -99,18 +99,18 @@ class AuthController extends Controller
         }
     }
 
-    public function tutupPesan()
+    public function tutup_pesan()
     {
         session()->forget('buka_pesan');
         return response()->json(['success' => 'Pesan berhasil ditutup']);
     }
 
-    public function editData()
+    public function edit_data()
     {
         return view('mahasiswa.update_data');
     }
 
-    public function updateDataMahasiswa(Request $request)
+    public function update_data_mahasiswa(Request $request)
     {
         $user = auth()->user();
         $mahasiswa = $user->mahasiswa();

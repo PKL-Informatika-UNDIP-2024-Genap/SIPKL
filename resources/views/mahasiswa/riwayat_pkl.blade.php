@@ -31,8 +31,8 @@
                           <th>No</th>
                           <th>Periode</th>
                           <th>Status</th>
-                          <th>Dosen Pembimbing</th>
-                          <th>NIP Dosen Pembimbing</th>
+                          <th>Pembimbing</th>
+                          <th>NIP Pembimbing</th>
                       </tr>
                   </thead>
                   <tbody>

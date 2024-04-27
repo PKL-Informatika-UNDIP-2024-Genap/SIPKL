@@ -30,21 +30,10 @@
   </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+
   <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link py-0 px-2" data-widget="pushmenu" href="#" role="button"><i class="bi bi-list fs-3 text-black"></i></a>
-        </li>
-      </ul>
-
-      <!-- Right navbar links -->
-      <div class="navbar-nav ml-auto">
-        <a href="/logout" class="btn btn-primary" id="btn-logout">Keluar</a>
-      </div>
-    </nav>
+    @include('layouts.header')
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
@@ -58,13 +47,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-      <strong>Copyright &copy; 2024 <a href="javascript:void(0)">Under development</a>.</strong>
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0.0
-      </div>
-    </footer>
+    @include('layouts.footer')
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">

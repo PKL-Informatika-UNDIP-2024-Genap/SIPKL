@@ -127,7 +127,7 @@ class CetakSKController extends Controller
         ]);
     }
 
-    public function exportRiwayat(Request $request)
+    public function export_riwayat(Request $request)
     {
         $request->validate(
             [
