@@ -115,33 +115,15 @@ function datatableWithCustomFilter(id_filter, column_index) {
     "initComplete": function (settings, json) {
       $.fn.dataTable.ext.search.push(
         function (settings, data, index) {
-          if (settings.nTable.id !== 'myTable') {
+          // if (settings.nTable.id !== 'myTable') {
+          //   return true;
+          // }
+          var selectedFilter = $(id_filter).val();
+          if (selectedFilter == "") {
             return true;
           }
-          var selectedFilter = $(id_filter).val();
-					var selectedJadwal = $('#jadwal').val();
-					let dataTgl = moment(data[1], "dddd, D MMMM YYYY").format("YYYY-MM-DD");
-          if (selectedFilter == "") {
-						if (selectedJadwal == "") {
-            	return true;
-						}
-						if (selectedJadwal == "Mendatang" && dataTgl >= moment().format("YYYY-MM-DD")) {
-              return true;
-            }
-						if (selectedJadwal == "Terlewat" && dataTgl < moment().format("YYYY-MM-DD")) {
-							return true;
-						}
-          }
           if (selectedFilter == data[column_index]) {
-            if (selectedJadwal == "") {
-              return true;
-            }
-            if (selectedJadwal == "Mendatang" && dataTgl >= moment().format("YYYY-MM-DD")) {
-              return true;
-            }
-						if (selectedJadwal == "Terlewat" && dataTgl < moment().format("YYYY-MM-DD")) {
-							return true;
-						}
+            return true;
           }
           return false;
         }
@@ -150,9 +132,6 @@ function datatableWithCustomFilter(id_filter, column_index) {
   });
 
 	$(id_filter).on('change', function () {
-		table.draw();
-	});
-	$('#jadwal').on('change', function () {
 		table.draw();
 	});
 

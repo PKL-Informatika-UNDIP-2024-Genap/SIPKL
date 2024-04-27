@@ -170,7 +170,7 @@ class PKLSeeder extends Seeder
                 'instansi' => 'PT. JKL',
                 'judul' => 'Analisis Keamanan Jaringan Komputer',
                 'scan_irs' => '/private/template/scan_irs_example.jpg',
-                'tgl_registrasi' => '2024-01-01',
+                'tgl_registrasi' => '2023-08-15', // tidak lulus periode sebelumnya
             ],
 
             [
@@ -251,7 +251,7 @@ class PKLSeeder extends Seeder
                 'instansi' => 'PT. MNO',
                 'judul' => 'Analisis dan Perancangan Sistem Informasi',
                 'scan_irs' => '/private/template/scan_irs_example.jpg',
-                'tgl_registrasi' => '2024-01-01',
+                'tgl_registrasi' => '2024-08-15', // tidak lulus periode sebelumnya
             ],
 
             [

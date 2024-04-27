@@ -128,6 +128,7 @@ class MahasiswaSeeder extends Seeder
                 'nim' => '24060121100020',
                 'nama' => 'Putri Safitri',
                 'status' => 'Nonaktif',
+                'periode_pkl' => '2023/2024 Ganjil', // tidak lulus periode sebelumnya
                 'id_dospem' => 3,
             ],
             [
@@ -192,7 +193,7 @@ class MahasiswaSeeder extends Seeder
                 'nim' => '24060121100030',
                 'nama' => 'Ahmad Ali',
                 'status' => 'Aktif',
-                'periode_pkl' => '2023/2024 Genap',
+                'periode_pkl' => '2023/2024 Ganjil', // tidak lulus periode sebelumnya
                 'id_dospem' => 3,
             ],
             [
@@ -264,7 +265,7 @@ class MahasiswaSeeder extends Seeder
                 'nim' => '24060121100040',
                 'nama' => 'Winarti',
                 'status' => 'Aktif',
-                'periode_pkl' => '2023/2024 Genap',
+                'periode_pkl' => '2023/2024 Ganjil', // tidak lulus periode sebelumnya
                 'id_dospem' => 5,
             ],
             [

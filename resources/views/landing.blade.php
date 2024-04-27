@@ -230,7 +230,7 @@
     <!-- ====== About End ====== -->
 
     <!-- ====== Dokumen Start ====== -->
-    <section id="seminar" class="ud-about">
+    <section id="seminar" class="ud-features">
       <div class="container wow fadeInUp" data-wow-delay=".2s">
         <div class="row">
           <div class="col-lg-12">
@@ -344,7 +344,7 @@
 
             <div class="col-xl-4 col-lg-5 col-md-5 col-sm-5">
               <div class="ud-widget">
-                <h5 class="ud-widget-title">Informasi</h5>
+                <h5 class="ud-widget-title">Tautan</h5>
                 <ul class="ud-widget-links">
                   <li>
                     <a class="" href="https://www.undip.ac.id/">Laman Undip</a>
