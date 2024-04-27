@@ -35,89 +35,71 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
-<div class="wrapper">
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link py-0 px-2" data-widget="pushmenu" href="#" role="button"><i class="bi bi-list fs-3 text-black"></i></a>
-      </li>
-    </ul>
+  <div class="wrapper">
+    <!-- Navbar -->
+    @include('layouts.header')
+    <!-- /.navbar -->
 
-    <!-- Right navbar links -->
-    <div class="navbar-nav ml-auto">
-      <a href="/logout" class="btn btn-primary" id="btn-logout">Keluar</a>
+    <!-- Main Sidebar Container -->
+    @include('layouts.sidebar_mhs')
+    <!-- /.Main Sidebar Container -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      @yield('container')
     </div>
-  </nav>
-  <!-- /.navbar -->
+    <!-- /.content-wrapper -->
 
-  <!-- Main Sidebar Container -->
-  @include('layouts.sidebar_mhs')
-  <!-- /.Main Sidebar Container -->
+    @include('layouts.footer')
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    @yield('container')
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
-  <!-- /.content-wrapper -->
+  <!-- ./wrapper -->
 
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="javascript:void(0)">Under development</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0.0
-    </div>
-  </footer>
+  <!-- jQuery -->
+  <script src="/lte/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 5 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+  <!-- overlayScrollbars -->
+  <script src="/lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/lte/dist/js/adminlte.js"></script>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="/lte/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 5 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<!-- SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="/lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/lte/dist/js/adminlte.js"></script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    // Logout
-    $('#btn-logout').on('click', function (e) {
-      e.preventDefault();
-      this.innerHTML = `
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        Keluar...
-      `;
-      Swal.fire({
-        title: 'Yakin ingin keluar?',
-        text: "Anda akan diarahkan ke halaman awal.",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#007bff',
-        cancelButtonColor: '#dc3545',
-        confirmButtonText: 'Ya, keluar!',
-        cancelButtonText: 'Batal'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = "/logout";
-        } else {
-          this.innerHTML = `Keluar`;
-        }
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // Logout
+      $('#btn-logout').on('click', function (e) {
+        e.preventDefault();
+        this.innerHTML = `
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Keluar...
+        `;
+        Swal.fire({
+          title: 'Yakin ingin keluar?',
+          text: "Anda akan diarahkan ke halaman awal.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#007bff',
+          cancelButtonColor: '#dc3545',
+          confirmButtonText: 'Ya, keluar!',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "/logout";
+          } else {
+            this.innerHTML = `Keluar`;
+          }
+        })
       })
-    })
-  });
-</script>
+    });
+  </script>
 
-@stack('scripts')
+  @stack('scripts')
 </body>
 </html>

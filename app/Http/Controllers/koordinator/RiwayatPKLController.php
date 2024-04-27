@@ -35,7 +35,7 @@ class RiwayatPKLController extends Controller
         // ]);
     }
 
-    public function getDataRiwayat($nim, Request $request)
+    public function get_data_riwayat($nim, Request $request)
     {
         $data_riwayat_pkl = RiwayatPKL::select('periode_pkl','status','dosen_pembimbing.nama as nama_dospem', 'dosen_pembimbing.nip as nip_dospem')->join('dosen_pembimbing', 'dosen_pembimbing.id', '=', 'riwayat_pkl.id_dospem')->where('nim', $nim)->get();
         $data_pkl = null;

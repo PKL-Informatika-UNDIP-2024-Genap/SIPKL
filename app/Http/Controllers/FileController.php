@@ -13,7 +13,7 @@ class FileController extends Controller
         return response()->file($path);
     }
 
-    public function downloadFile($filename){
+    public function download_file($filename){
         $path = Storage::path('\\'.$filename);
         return response()->download($path);
     }

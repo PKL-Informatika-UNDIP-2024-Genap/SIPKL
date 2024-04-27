@@ -56,7 +56,7 @@ class PKLController extends Controller
     /**
      * Submit form registrasi PKL.
      */
-    public function submitRegistrasi(UpdatePKLRequest $request)
+    public function submit_registrasi(UpdatePKLRequest $request)
     {
         $validator = validator()->make($request->all(), [
             // 'periode' => 'required',
@@ -102,7 +102,7 @@ class PKLController extends Controller
     /**
      * Update data PKL.
      */
-    public function updateData(UpdatePKLRequest $request, PKL $pkl) {
+    public function update_data(UpdatePKLRequest $request, PKL $pkl) {
         $validatedData = $request->validate([
             'instansi' => 'required',
             'judul' => 'required',
@@ -147,7 +147,7 @@ class PKLController extends Controller
     /**
      * Send Laporan PKL.
      */
-    public function kirimLaporan(UpdatePKLRequest $request) {
+    public function kirim_laporan(UpdatePKLRequest $request) {
         $validator = validator($request->all(), [
             'instansi' => 'required',
             'judul' => 'required',

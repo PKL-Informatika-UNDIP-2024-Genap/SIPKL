@@ -26,7 +26,7 @@ class ProfileController extends Controller
         }
     }
 
-    public function updatePassword(Request $request)
+    public function update_password(Request $request)
     {
         $request->validate([
             'password_lama' => [
@@ -57,7 +57,7 @@ class ProfileController extends Controller
         ], 200);
     }
 
-    public function updateNoWa(Request $request)
+    public function update_no_wa(Request $request)
     {
         $request->validate([
             'no_wa' => 'required|numeric|digits_between:6,20',
@@ -75,7 +75,7 @@ class ProfileController extends Controller
         ], 200);
     }
 
-    public function updateEmail(Request $request)
+    public function update_email(Request $request)
     {
         $request->validate([
             'email' => 'required|email|unique:users,email,' . auth()->user()->username . ',username',
@@ -102,7 +102,7 @@ class ProfileController extends Controller
         ], 200);
     }
 
-    public function updateFotoProfil(Request $request)
+    public function update_foto_profil(Request $request)
     {
         $validator = validator($request->all(), [
             'foto_profil' => 'required|image|mimes:jpeg,png,jpg|max:500',
@@ -141,7 +141,7 @@ class ProfileController extends Controller
     }
 
 
-    public function updateGolongan(Request $request)
+    public function update_golongan(Request $request)
     {
         $request->validate([
             'golongan' => 'required',
@@ -157,7 +157,7 @@ class ProfileController extends Controller
         ], 200);
     }
 
-    public function updateJabatan(Request $request)
+    public function update_jabatan(Request $request)
     {
         $request->validate([
             'jabatan' => 'required',

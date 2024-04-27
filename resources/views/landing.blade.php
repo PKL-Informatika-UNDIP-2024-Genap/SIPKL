@@ -235,7 +235,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="ud-section-title">
-              <span>seminar schedule</span>
+              <span>Seminar Schedule</span>
               <h2>Jadwal Seminar</h2>
             </div>
           </div>
