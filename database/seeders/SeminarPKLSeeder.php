@@ -117,7 +117,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100040',
                 'status' => 'Pengajuan',
-                'tgl_seminar' => '2024-04-10',
+                'tgl_seminar' => '2023-12-10', // tidak lulus periode sebelumnya
                 'waktu_seminar' => '09:00-11:00',
                 'ruang' => 'J110',
                 'id_dospem' => 5,
