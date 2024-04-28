@@ -116,6 +116,73 @@
         </div>
       </div>
     </div>
+    
+    <div class="row d-flex">
+      <div class="col-3">
+        <!-- small card -->
+        <div class="small-box bg-gradient-success">
+          <div class="inner">
+            <h3>{{ isset($data_mhs_menunggu_konfirmasi["Selesai"]) ? $data_mhs_menunggu_konfirmasi["Selesai"] : "0" }}</h3>
+
+            <p>Mhs Menunggu Assign Nilai</p>
+          </div>
+          <div class="icon">
+            <i class="fas bi bi-clipboard2-check"></i>
+          </div>
+          <a href="/pkl/assign_nilai" class="small-box-footer">
+            More info <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-3">
+        <!-- small card -->
+        <div class="small-box bg-gradient-primary">
+          <div class="inner">
+            <h3>{{ isset($data_mhs_menunggu_konfirmasi["Laporan"]) ? $data_mhs_menunggu_konfirmasi["Laporan"] : "0" }}</h3>
+
+            <p>Mhs Menunggu Verif Laporan PKL</p>
+          </div>
+          <div class="icon">
+            <i class="fas bi bi-journal-text"></i>
+          </div>
+          <a href="/pkl/verifikasi_laporan" class="small-box-footer">
+            More info <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-3">
+        <!-- small card -->
+        <div class="small-box bg-gradient-warning">
+          <div class="inner">
+            <h3 class="text-white">{{ isset($data_mhs_menunggu_konfirmasi["Pengajuan"]) ? $data_mhs_menunggu_konfirmasi["Pengajuan"] : "0" }}</h3>
+
+            <p class="text-white">Mhs Menunggu Verif Pengajuan Jadwal Seminar</p>
+          </div>
+          <div class="icon">
+            <i class="fas bi-calendar2-week"></i>
+          </div>
+          <a href="/seminar/verifikasi_pengajuan" class="small-box-footer">
+            More info <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-3">
+        <!-- small card -->
+        <div class="small-box bg-gradient-danger">
+          <div class="inner">
+            <h3>{{ isset($data_mhs_menunggu_konfirmasi["Registrasi"]) ? $data_mhs_menunggu_konfirmasi["Registrasi"] : "0" }}</h3>
+
+            <p>Mhs Menunggu Verif Registrasi PKL</p>
+          </div>
+          <div class="icon">
+            <i class="fas bi-briefcase"></i>
+          </div>
+          <a href="/pkl/verifikasi_registrasi" class="small-box-footer">
+            More info <i class="fas fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-6">
