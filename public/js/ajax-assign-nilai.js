@@ -15,6 +15,16 @@ function update_tabel_nilai() {
   });
 }
 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const options = {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  };
+  return date.toLocaleDateString("id-ID", options);
+}
+
 $(document).on('click', '.btn-detail-nilai', function() {
   data_mhs = JSON.parse($(this).attr('data-mhs'));
   console.log(data_mhs);
@@ -22,7 +32,7 @@ $(document).on('click', '.btn-detail-nilai', function() {
   $("#data-nim").html(data_mhs.nim);
   $("#data-instansi").html(data_mhs.instansi);
   $("#data-judul-pkl").html(data_mhs.judul);
-  $("#data-tgl-laporan").html(data_mhs.tgl_laporan);
+  $("#data-tgl-verif-laporan").html(formatDate(data_mhs.tgl_verif_laporan));
   $("#data-dospem").html(data_mhs.nama_dospem);
   if(data_mhs.no_wa == null){
     $("#link-wa").attr("href", "#");

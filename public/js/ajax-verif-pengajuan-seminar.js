@@ -1,15 +1,14 @@
 let data_pengajuan;
 
-const options = {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  hour: 'numeric',
-  minute: 'numeric',
-  second: 'numeric',
-  timeZoneName: 'short',
-};
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const options = {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  };
+  return date.toLocaleDateString("id-ID", options);
+}
 
 function update_tabel_pengajuan() {
   $.ajax({
@@ -28,13 +27,10 @@ function update_tabel_pengajuan() {
 
 $(document).on('click', '.btn-detail-pengajuan', function() {
   data_pengajuan = JSON.parse($(this).attr('data-pengajuan'));
-  
-  let tanggal_pengajuan = new Date(data_pengajuan.created_at);
-  tanggal_pengajuan = tanggal_pengajuan.toLocaleDateString('id-ID', options);
 
   $("#data-nama").html(data_pengajuan.nama_mhs);
   $("#data-nim").html(data_pengajuan.nim);
-  $("#data-tgl-pengajuan").html(tanggal_pengajuan);
+  $("#data-tgl-pengajuan").html(formatDate(data_pengajuan.created_at));
   $("#data-dospem").html(data_pengajuan.nama_dospem || "-");
   $("#data-scan-layak-seminar").attr('src', '/preview/' + data_pengajuan.scan_layak_seminar);
   $("#data-scan-peminjaman-ruang").attr('src', '/preview/' + data_pengajuan.scan_peminjaman_ruang);

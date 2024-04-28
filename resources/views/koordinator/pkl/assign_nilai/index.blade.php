@@ -25,7 +25,7 @@
                         <th>No</th>
                         <th>Nama Mhs</th>
                         <th>NIM</th>
-                        <th class="tanggal">Tanggal Kirim Laporan</th>
+                        <th class="tanggal">Tanggal Verifikasi Laporan</th>
                         <th class="action">Action</th>
                     </tr>
                 </thead>
@@ -35,7 +35,7 @@
                             <td></td>
                             <td>{{ $mhs->nama }}</td>
                             <td>{{ $mhs->nim }}</td>
-                            <td>{{ $mhs->tgl_laporan }}</td>
+                            <td>{{ $mhs->tgl_verif_laporan }}</td>
                             <td>
                               <div class="btn btn-sm btn-primary btn-detail-nilai" data-bs-toggle="modal" data-bs-target="#modal-detail-nilai"
                               data-mhs="{{ $mhs }}">Detail</div>
