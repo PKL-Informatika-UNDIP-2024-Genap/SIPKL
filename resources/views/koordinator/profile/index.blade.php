@@ -425,6 +425,7 @@
                 timer: 1500
               });
               $("#email").removeClass("is-invalid");
+              $("#email").addClass("border-transparent");
               $("#email-err").html("");
               email_old = email;
             },

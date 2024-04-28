@@ -17,7 +17,7 @@ class DokumenController extends Controller
     public function index()
     {
         return view('koordinator.informasi.dokumen.kelola_dokumen', [
-            'arr_dokumen' => Dokumen::all()
+            'arr_dokumen' => Dokumen::get_data_dokumen(),
         ]);
     }
 

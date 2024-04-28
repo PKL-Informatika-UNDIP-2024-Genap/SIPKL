@@ -48,9 +48,7 @@ class ProfileController extends Controller
             'konfirmasi_password_baru.required' => 'Konfirmasi password baru harus diisi',
             'konfirmasi_password_baru.same' => 'Konfirmasi password baru tidak sesuai',
         ]);
-        auth()->user()->update([
-            'password' => Hash::make($request->password_baru),
-        ]);
+        auth()->user()->update_password($request->password_baru);
         return response()->json([
             'status' => 200,
             'message' => 'Request successful',
@@ -66,7 +64,7 @@ class ProfileController extends Controller
             'no_wa.numeric' => 'Nomor Whatsapp harus berupa angka',
             'no_wa.digits_between' => 'No. WA harus berisi 6-20 angka',
         ]);
-        auth()->user()->mahasiswa->update([
+        auth()->user()->mahasiswa()->update([
             'no_wa' => $request->no_wa,
         ]);
         return response()->json([
@@ -77,21 +75,22 @@ class ProfileController extends Controller
 
     public function update_email(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email|unique:users,email,' . auth()->user()->username . ',username',
-        ], [
+        $messages = [
             'email.required' => 'Email harus diisi',
             'email.email' => 'Email tidak valid',
             'email.unique' => 'Email sudah terdaftar',
-        ]);
-        auth()->user()->update([
-            'email' => $request->email,
-        ]);
+        ];
         if (auth()->user()->is_admin) {
+            $request->validate([
+                'email' => 'required|email|unique:koordinator,email' . (auth()->user()->koordinator->email == $request->email ? '' : '|unique:mahasiswa,email'),
+            ], $messages);
             auth()->user()->koordinator()->update([
                 'email' => $request->email,
             ]);
         } else {
+            $request->validate([
+                'email' => 'required|email|unique:mahasiswa,email' . (auth()->user()->mahasiswa->email == $request->email ? '' : '|unique:koordinator,email'),
+            ], $messages);
             auth()->user()->mahasiswa()->update([
                 'email' => $request->email,
             ]);

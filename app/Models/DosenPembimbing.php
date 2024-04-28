@@ -55,4 +55,8 @@ class DosenPembimbing extends Model
         return $data_dospem;
 
     }
+
+    public static function get_nama_nip_by_id($id){
+        return self::select('nama', 'nip')->where('id', $id)->first();
+    }
 }

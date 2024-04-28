@@ -15,4 +15,9 @@ class Dokumen extends Model
     // public $incrementing = false;
     public $timestamps = true;
     protected $guarded = [];
+
+    public static function get_data_dokumen(){
+        $data_dokumen = self::select(['deskripsi','lampiran','updated_at'])->get();
+        return $data_dokumen;
+    }
 }
