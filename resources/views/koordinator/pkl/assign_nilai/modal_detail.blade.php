@@ -25,9 +25,9 @@
                 <td id="data-nim"></td>
               </tr>
               <tr>
-                <td class="text-nowrap px-0" style="width: 15%"><strong>Waktu Kirim</strong></td>
+                <td class="text-nowrap px-0" style="width: 15%"><strong>Tgl Verif Laporan</strong></td>
                 <td style="white-space: nowrap; width: 1%">:</td>
-                <td id="data-tgl-laporan"></td>
+                <td id="data-tgl-verif-laporan"></td>
               </tr>
               <tr>
                 <td class="text-nowrap px-0" style="width: 15%"><strong>Pembimbing</strong></td>

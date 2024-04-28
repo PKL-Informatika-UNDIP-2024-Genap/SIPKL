@@ -15,6 +15,16 @@ function update_tabel_registrasi() {
   });
 }
 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const options = {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  };
+  return date.toLocaleDateString("id-ID", options);
+}
+
 $(document).on('click', '.btn-detail-reg', function() {
   $("#data-dospem").html('<p class="placeholder-glow m-0"><span class="placeholder col-10" style="border-radius: 5px;"></span></p>');
 
@@ -23,6 +33,7 @@ $(document).on('click', '.btn-detail-reg', function() {
   $("#data-nim").html(data_mhs.nim);
   $("#data-instansi").html(data_mhs.instansi);
   $("#data-judul-pkl").html(data_mhs.judul);
+  $("#data-tgl-registrasi").html(formatDate(data_mhs.tgl_registrasi));
   $("#myImage").attr('src','/preview/'+data_mhs.scan_irs);
   $("#data-dospem").html(data_mhs.nama_dospem || "-");
   if(data_mhs.no_wa == null){

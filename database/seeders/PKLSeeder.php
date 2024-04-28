@@ -29,6 +29,7 @@ class PKLSeeder extends Seeder
                 'keyword5' => 'PKL',
                 'link_laporan' => 'drive.google.com',
                 'tgl_laporan' => '2024-04-10',
+                'tgl_verif_laporan' => '2024-04-15',
             ],
 
             [
