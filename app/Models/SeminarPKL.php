@@ -33,6 +33,11 @@ class SeminarPKL extends Model
         return $this->hasOne(PKL::class,'nim','nim');
     }
 
+    public static function get_data_jadwal_mendatang(){
+        $data_jadwal = self::whereRaw('tgl_seminar >= CURDATE() AND (status = "Tak Terjadwal" OR status = "Terjadwal")')->with(["mahasiswa", "dosen_pembimbing", "pkl"])->get();
+        return $data_jadwal;
+    }
+
     static public function get_data_pengajuan(){
         $data_pengajuan = self::whereRaw('seminar_pkl.status = "Pengajuan" AND pesan is NULL')
         ->join('mahasiswa', 'seminar_pkl.nim', '=', 'mahasiswa.nim')
@@ -99,4 +104,5 @@ class SeminarPKL extends Model
             'error_message' => $error_message,
         ];
     }
+
 }

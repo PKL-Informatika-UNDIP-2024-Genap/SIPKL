@@ -17,7 +17,7 @@ class PengumumanController extends Controller
     public function index()
     {
         return view('koordinator.informasi.pengumuman.kelola_pengumuman', [
-            'arr_pengumuman' => Pengumuman::all()
+            'arr_pengumuman' => Pengumuman::get_data_pengumuman(),
         ]);
     }
 

@@ -22,7 +22,6 @@ class PeriodePKL extends Model
         ->orderByDesc('id_periode')
         ->pluck('id_periode')
         ->toArray();
-
         return $periode;
     }
 
@@ -30,7 +29,6 @@ class PeriodePKL extends Model
         $periode = self::orderByDesc('id_periode')
         ->pluck('id_periode')
         ->toArray();
-
         return $periode;
     }
 
@@ -41,7 +39,11 @@ class PeriodePKL extends Model
         ->whereDate('tgl_selesai', '>=', $today)
         ->orderBy('tgl_mulai', 'desc')
         ->first();
-
         return $periode_pkl;
+    }
+
+    public static function get_id_periode_sekarang(){
+        $periode_pkl = self::get_recent_periode();
+        return $periode_pkl->id_periode;
     }
 }

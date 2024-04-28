@@ -33,7 +33,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        // 'remember_token',
     ];
 
     /**
@@ -42,7 +42,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        // 'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 
@@ -55,6 +55,12 @@ class User extends Authenticatable
     public function mahasiswa()
     {
         return $this->hasOne(Mahasiswa::class,'nim','username');
+    }
+
+    public function update_password($password_baru){
+        $this->update([
+            'password' => Hash::make($password_baru),
+        ]);
     }
 
     public static function reset_password($username){

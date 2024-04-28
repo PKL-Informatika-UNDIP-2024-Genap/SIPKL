@@ -127,15 +127,9 @@
                     <td style="white-space: nowrap; width: 1%">:</td>
                     <td class="px-0 pb-0 pt-1">
                       <div class="input-group">
-                        <input type="text" class="form-control bg-transparent border-transparent" id="email" name="email" placeholder="Masukkan email" value="{{ old('email',$mahasiswa->email) }}" disabled>
-                        @if (auth()->user()->email_verified_at == null)
+                        <input type="text" class="form-control bg-transparent border-transparent" id="email" name="email" placeholder="Masukkan Email" value="{{ old('email',$mahasiswa->email) }}" disabled>
                         <button class="input-group-text btn btn-outline-primary d-none" type="button" id="saveEmailBtn"><i class="bi bi-floppy-fill"></i></button>
                         <button class="input-group-text btn btn-outline-primary" type="button" id="editEmailBtn"><i class="bi bi-pencil-fill"></i></button>
-                        @else
-                        <div class="input-group-text">
-                          <i class="bi bi-check-circle-fill text-success"></i>
-                        </div>
-                        @endif
                       </div>
                       <div id="email-err" class="invalid-feedback d-block"></div>
                     </td>
@@ -257,6 +251,7 @@
                 timer: 1500
               });
               $("#no_wa").removeClass("is-invalid");
+              $("#no_wa").addClass("border-transparent");
               $("#no_wa-err").html("");
               nowa_old = nowa;
             },
@@ -342,6 +337,7 @@
                 timer: 1500
               });
               $("#email").removeClass("is-invalid");
+              $("#email").addClass("border-transparent");
               $("#email-err").html("");
               email_old = email;
             },

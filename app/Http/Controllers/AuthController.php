@@ -19,14 +19,10 @@ class AuthController extends Controller
 {
     public function landing()
     {
-        $data_pengumuman = Pengumuman::select(['deskripsi','lampiran','updated_at'])->get();
-        $data_dokumen = Dokumen::select(['deskripsi','lampiran','updated_at'])->get();
-
-        $data_jadwal = SeminarPKL::whereRaw('tgl_seminar >= CURDATE() AND (status = "Tak Terjadwal" OR status = "Terjadwal")')->with(["mahasiswa", "dosen_pembimbing", "pkl"])->get();
         return view('landing',[
-            'data_pengumuman' => $data_pengumuman,
-            'data_dokumen' => $data_dokumen,
-            'data_jadwal' => $data_jadwal,
+            'data_pengumuman' => Pengumuman::get_data_pengumuman(),
+            'data_dokumen' => Dokumen::get_data_dokumen(),
+            'data_jadwal' => SeminarPKL::get_data_jadwal_mendatang(),
         ]);
     }
 
@@ -85,16 +81,14 @@ class AuthController extends Controller
         } else {
             $user = auth()->user();
             $mahasiswa = $user->mahasiswa;
-            $data_pengumuman = Pengumuman::select(['deskripsi','lampiran','updated_at'])->get();
-            $data_dokumen = Dokumen::select(['deskripsi','lampiran','updated_at'])->get();
 
             return view('mahasiswa.dashboard', [
                 'user' => $user,
                 'mahasiswa' => $mahasiswa,
                 'pkl' => $mahasiswa->pkl,
                 'created_at' => Carbon::parse($user->created_at)->diffForHumans(),
-                'data_pengumuman' => $data_pengumuman,
-                'data_dokumen' => $data_dokumen,
+                'data_pengumuman' => Pengumuman::get_data_pengumuman(),
+                'data_dokumen' => Dokumen::get_data_dokumen(),
             ]);
         }
     }

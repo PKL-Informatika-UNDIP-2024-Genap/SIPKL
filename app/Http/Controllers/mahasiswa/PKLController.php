@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Mahasiswa;
 use App\Http\Controllers\Controller;
 use App\Models\PKL;
 use App\Models\PeriodePKL;
-use Illuminate\Http\Request;
-use App\Models\TemporaryFile;
 use App\Http\Requests\StorePKLRequest;
 use App\Http\Requests\UpdatePKLRequest;
 use Carbon\Carbon;
@@ -44,9 +42,8 @@ class PKLController extends Controller
                 'pkl' => auth()->user()->mahasiswa->pkl,
             ]);
         }
-        $periode_sekarang = PeriodePKL::where('tgl_selesai', '>=', date('Y-m-d'))->where('tgl_mulai', '<', date('Y-m-d'))->orderBy('tgl_mulai', 'desc')->first();
         return view('mahasiswa.registrasi_pkl.index', [
-            'periode_sekarang' => $periode_sekarang->id_periode,
+            'periode_sekarang' => PeriodePKL::get_id_periode_sekarang(),
             'user' => auth()->user(),
             'mahasiswa' => auth()->user()->mahasiswa,
             'pkl' => auth()->user()->mahasiswa->pkl,
@@ -133,7 +130,7 @@ class PKLController extends Controller
             $waktu_laporan = $carbon->format('H.i');
         }
         if ($pkl->link_laporan != null && $pkl->link_laporan.substr(0, 7) != 'http://' && $pkl->link_laporan.substr(0, 8) != 'https://' && $pkl->link_laporan.substr(0, 2) != '//') {
-            $pkl->link_laporan = 'http://'.$pkl->link_laporan;
+            $pkl->link_laporan = 'https://'.$pkl->link_laporan;
         }
         return view('mahasiswa.laporan.index', [
             'user' => $user,
