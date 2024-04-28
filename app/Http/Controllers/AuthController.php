@@ -56,6 +56,8 @@ class AuthController extends Controller
             $data_mhs = null;
             $total_mhs = 0;
             $total_dospem = DosenPembimbing::count();
+            $data_mhs_menunggu_konfirmasi = null;
+
 
             if($periode_aktif != null){
                 $data_mhs = Mahasiswa::selectRaw('status, count(*) as jumlah')
@@ -63,6 +65,22 @@ class AuthController extends Controller
                 ->whereRaw("periode_pkl = '$periode_aktif->id_periode' OR periode_pkl IS NULL")
                 ->get()
                 ->pluck('jumlah', 'status');
+
+                $data_mhs_menunggu_konfirmasi = PKL::selectRaw('pkl.status, count(*) as jumlah')
+                ->join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
+                ->whereRaw("pkl.status NOT IN ('Aktif', 'Praregistrasi')")
+                ->groupBy('pkl.status')
+                ->get()
+                ->pluck('jumlah', 'status');
+
+                $data_mhs_menunggu_konfirmasi_seminar = SeminarPKL::selectRaw('seminar_pkl.status, count(*) as jumlah')
+                ->join('mahasiswa', 'seminar_pkl.nim', '=', 'mahasiswa.nim')
+                ->whereRaw("seminar_pkl.status = 'Pengajuan'")
+                ->groupBy('seminar_pkl.status')
+                ->get()
+                ->pluck('jumlah', 'status');
+
+                $data_mhs_menunggu_konfirmasi = $data_mhs_menunggu_konfirmasi->merge($data_mhs_menunggu_konfirmasi_seminar);
 
                 $total_mhs = $data_mhs->sum();
             }
@@ -77,6 +95,7 @@ class AuthController extends Controller
                 'total_dospem' => $total_dospem,
                 'mhs_blm_punya_pembimbing' => $mhs_blm_punya_pembimbing,
                 'mhs_sdh_punya_pembimbing' => $mhs_sdh_punya_pembimbing,
+                'data_mhs_menunggu_konfirmasi' => $data_mhs_menunggu_konfirmasi,
             ]);
         } else {
             $user = auth()->user();
