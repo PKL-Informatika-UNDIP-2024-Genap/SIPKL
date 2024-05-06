@@ -11,7 +11,7 @@
   <div class="container-fluid">
 		<div class="row mb-2">
       <div class="col">
-        <h1 class="m-0">Riwayat SK PKL</h1>
+        <h1 class="m-0">Riwayat Cetak SK PKL</h1>
       </div><!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->

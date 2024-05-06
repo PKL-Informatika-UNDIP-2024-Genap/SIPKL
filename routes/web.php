@@ -152,8 +152,8 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
 
 Route::middleware(['auth', 'is.admin:0'])->group(function () {
     Route::middleware('status.mhs:Baru')->group(function () {
-        Route::get('/update_data', [AuthController::class, 'edit_data'])->name('update_data');
-        Route::put('/update_data', [AuthController::class, 'update_data_mahasiswa']);
+        Route::get('/praregistrasi', [AuthController::class, 'praregistrasi'])->name('praregistrasi');
+        Route::put('/submit_praregistrasi', [AuthController::class, 'submit_praregistrasi']);
     });
 
     Route::post('/dashboard/tutup_pesan', [AuthController::class, 'tutup_pesan']);

@@ -17,12 +17,10 @@ class PKLController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        $mahasiswa = $user->mahasiswa;
         return view('mahasiswa.pkl.index', [
-            'user' => $user,
-            'mahasiswa' => $mahasiswa,
-            'pkl' => $mahasiswa->pkl,
+            'user' => auth()->user(),
+            'mahasiswa' => auth()->user()->mahasiswa,
+            'pkl' => auth()->user()->mahasiswa->pkl,
         ]);
     }
 
@@ -77,21 +75,15 @@ class PKLController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $pkl_old = PKL::where('nim', $request->nim)->select(['scan_irs'])->first();
-        if ($pkl_old->scan_irs != null){
-            Storage::delete($pkl_old->scan_irs);
+        $irs_old = PKL::get_irs_old($request->nim);
+        if ($irs_old != null){
+            Storage::delete($irs_old);
         }
 
         $extension = $request->file('scan_irs')->getClientOriginalExtension();
         $new_filename = auth()->user()->username.'-'.now()->timestamp.'-'.uniqid().'.'.$extension;
-        PKL::where('nim', $request->nim)->update([
-            'status' => 'Registrasi',
-            'instansi' => $request->instansi,
-            'judul' => $request->judul,
-            'scan_irs' => $request->file('scan_irs')->storeAs('private/scan_irs', $new_filename),
-            'tgl_registrasi' => now(),
-            'pesan' => null,
-        ]);
+
+        PKL::registrasi($request, $new_filename);
 
         return redirect()->route('pkl.index')->with('success', 'Berhasil mengajukan registrasi PKL.');
     }
@@ -107,10 +99,7 @@ class PKLController extends Controller
             'instansi.required' => 'Instansi tidak boleh kosong',
             'judul.required' => 'Judul tidak boleh kosong',
         ]);
-        $pkl->update([
-            'instansi' => $validatedData['instansi'],
-            'judul' => $validatedData['judul'],
-        ]);
+        $pkl->update($validatedData);
         return response()->json([
             'status' => 200,
             'message' => 'Request successful',
