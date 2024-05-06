@@ -85,4 +85,12 @@ class User extends Authenticatable
             'error_message' => $error_message,
         ];
     }
+
+    public static function update_foto_profil($foto_profil){
+        auth()->user()->update([
+            'foto_profil' => $foto_profil,
+        ]);
+    }
+
+    
 }

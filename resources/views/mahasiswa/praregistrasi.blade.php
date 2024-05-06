@@ -90,7 +90,7 @@
                   </div>
                   <div class="bs-stepper-content">
                     <!-- your steps content here -->
-                    <form id="form" action="/update_data" method="post" class="needs-validation" onsubmit="return false" >
+                    <form id="form" action="/submit_praregistrasi" method="post" class="needs-validation" onsubmit="return false" >
                       @csrf
                       @method('put')
                       <div id="datapribadi-part" class="content" role="tabpanel" aria-labelledby="datapribadi-part-trigger">

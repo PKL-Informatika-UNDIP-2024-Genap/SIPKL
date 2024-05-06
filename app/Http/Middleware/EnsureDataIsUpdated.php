@@ -17,7 +17,7 @@ class EnsureDataIsUpdated
     {
         if (auth()->user()->is_admin == 0){
             if (auth()->user()->mahasiswa->status == 'Baru') {
-                return redirect()->route('update_data');
+                return redirect()->route('praregistrasi');
             }
         }
         return $next($request);

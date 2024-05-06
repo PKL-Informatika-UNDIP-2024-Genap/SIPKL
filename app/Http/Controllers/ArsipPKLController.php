@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\ArsipPKLExport;
+// use App\Exports\ArsipPKLExport;
 use App\Http\Controllers\Controller;
 use App\Models\ArsipPKL;
 use App\Http\Requests\StoreArsipPKLRequest;
@@ -36,7 +36,7 @@ class ArsipPKLController extends Controller
                 ]);
             } else {
                 if ($arsip_pkl->link_laporan != null && $arsip_pkl->link_laporan.substr(0, 7) != 'http://' && $arsip_pkl->link_laporan.substr(0, 8) != 'https://' && $arsip_pkl->link_laporan.substr(0, 2) != '//') {
-                    $arsip_pkl->link_laporan = 'http://'.$arsip_pkl->link_laporan;
+                    $arsip_pkl->link_laporan = 'https://'.$arsip_pkl->link_laporan;
                 }
                 return view('mahasiswa.arsip_pkl.index', [
                     'user' => $user,

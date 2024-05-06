@@ -99,15 +99,14 @@ class AuthController extends Controller
         return response()->json(['success' => 'Pesan berhasil ditutup']);
     }
 
-    public function edit_data()
+    public function praregistrasi()
     {
-        return view('mahasiswa.update_data');
+        return view('mahasiswa.praregistrasi');
     }
 
-    public function update_data_mahasiswa(Request $request)
+    public function submit_praregistrasi(Request $request)
     {
         $user = auth()->user();
-        $mahasiswa = $user->mahasiswa();
         request()->no_wa = str_replace(['+', ' ', '_'], '', $request->no_wa);
         $request->merge(['no_wa' => request()->no_wa]);
         $request->validate([
@@ -134,23 +133,10 @@ class AuthController extends Controller
             'instansi.required' => 'Instansi harus diisi',
             'judul.required' => 'Judul PKL harus diisi',
         ]);
-        $new_password = Hash::make($request->password);
 
-        $mahasiswa->update([
-            'email' => $request->email,
-            'no_wa' => $request->no_wa,
-            'status' => 'Nonaktif',
-        ]);
-        PKL::create([
-            'nim' => $user->username,
-            'status' => 'Praregistrasi',
-            'instansi' => $request->instansi,
-            'judul' => $request->judul,
-        ]);
-        $user->update([
-            'email' => $request->email,
-            'password' => $new_password,
-        ]);
+        Mahasiswa::praregistrasi($request->email, $request->no_wa);
+        PKL::praregistrasi($user->username, $request->instansi, $request->judul);
+        $user->update_password($request->password);
 
         return redirect('/dashboard')->with('success', 'Data berhasil diperbarui. Selamat Datang di SIPKL Informatika Undip!');
     }

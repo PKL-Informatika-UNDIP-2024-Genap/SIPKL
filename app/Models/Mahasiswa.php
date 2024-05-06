@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Imports\MahasiswaImport;
+use Clockwork\Request\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -157,5 +158,24 @@ class Mahasiswa extends Model
     }
     
 
+    public static function update_no_wa($no_wa){
+        auth()->user()->mahasiswa()->update([
+            'no_wa' => $no_wa,
+        ]);
+    }
+
+    public static function update_email($email){
+        auth()->user()->mahasiswa()->update([
+            'email' => $email,
+        ]);
+    }
+
+    public static function praregistrasi($email, $no_wa){
+        auth()->user()->mahasiswa()->update([
+            'email' => $email,
+            'no_wa' => $no_wa,
+            'status' => "Nonaktif",
+        ]);
+    }
 
 }

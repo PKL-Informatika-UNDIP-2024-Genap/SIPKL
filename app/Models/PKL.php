@@ -143,4 +143,30 @@ class PKL extends Model
             $seminar_pkl->delete();
         }
     }
+
+
+    public static function praregistrasi($username, $instansi, $judul){
+        PKL::create([
+            'nim' => $username,
+            'status' => 'Praregistrasi',
+            'instansi' => $instansi,
+            'judul' => $judul,
+        ]);
+    }
+
+    public static function get_irs_old($nim){
+        return PKL::where('nim', $nim)->select(['scan_irs'])->first()->scan_irs;
+    }
+
+    public static function registrasi($request, $new_filename){
+        PKL::where('nim', $request->nim)->update([
+            'status' => 'Registrasi',
+            'instansi' => $request->instansi,
+            'judul' => $request->judul,
+            'scan_irs' => $request->file('scan_irs')->storeAs('private/scan_irs', $new_filename),
+            'tgl_registrasi' => now(),
+            'pesan' => null,
+        ]);
+    }
+
 }

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Koordinator;
+use App\Models\Mahasiswa;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\TemporaryFile;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -58,15 +59,14 @@ class ProfileController extends Controller
     public function update_no_wa(Request $request)
     {
         $request->validate([
-            'no_wa' => 'required|numeric|digits_between:6,20',
+            'no_wa' => 'required|numeric|digits_between:6,20|unique:mahasiswa,no_wa,' . auth()->user()->mahasiswa->nim . ',nim',
         ], [
             'no_wa.required' => 'Nomor Whatsapp harus diisi',
             'no_wa.numeric' => 'Nomor Whatsapp harus berupa angka',
             'no_wa.digits_between' => 'No. WA harus berisi 6-20 angka',
+            'no_wa.unique' => 'Nomor Whatsapp sudah terdaftar',
         ]);
-        auth()->user()->mahasiswa()->update([
-            'no_wa' => $request->no_wa,
-        ]);
+        Mahasiswa::update_no_wa($request->no_wa);
         return response()->json([
             'status' => 200,
             'message' => 'Request successful',
@@ -84,16 +84,12 @@ class ProfileController extends Controller
             $request->validate([
                 'email' => 'required|email|unique:koordinator,email' . (auth()->user()->koordinator->email == $request->email ? '' : '|unique:mahasiswa,email'),
             ], $messages);
-            auth()->user()->koordinator()->update([
-                'email' => $request->email,
-            ]);
+            Koordinator::update_email($request->email);
         } else {
             $request->validate([
                 'email' => 'required|email|unique:mahasiswa,email' . (auth()->user()->mahasiswa->email == $request->email ? '' : '|unique:koordinator,email'),
             ], $messages);
-            auth()->user()->mahasiswa()->update([
-                'email' => $request->email,
-            ]);
+            Mahasiswa::update_email($request->email);
         }
         return response()->json([
             'status' => 200,
@@ -128,9 +124,7 @@ class ProfileController extends Controller
         $extension = $request->file('foto_profil')->getClientOriginalExtension();
         $new_filename = auth()->user()->username.'-'.now()->timestamp.'-'.uniqid().'.'.$extension;
         $request->file('foto_profil')->move(public_path('/images/foto_profil'), $new_filename);
-        auth()->user()->update([
-            'foto_profil' => 'images/foto_profil/' . $new_filename,
-        ]);
+        User::update_foto_profil('images/foto_profil/' . $new_filename);
 
         return response()->json([
             'status' => 200,
@@ -147,9 +141,7 @@ class ProfileController extends Controller
         ], [
             'golongan.required' => 'Golongan harus diisi',
         ]);
-        auth()->user()->koordinator()->update([
-            'golongan' => $request->golongan,
-        ]);
+        Koordinator::update_golongan($request->golongan);
         return response()->json([
             'status' => 200,
             'message' => 'Request successful',
@@ -163,9 +155,7 @@ class ProfileController extends Controller
         ], [
             'jabatan.required' => 'Jabatan harus diisi',
         ]);
-        auth()->user()->koordinator()->update([
-            'jabatan' => $request->jabatan,
-        ]);
+        Koordinator::update_jabatan($request->jabatan);
         return response()->json([
             'status' => 200,
             'message' => 'Request successful',
