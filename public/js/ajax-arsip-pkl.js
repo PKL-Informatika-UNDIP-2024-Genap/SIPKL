@@ -26,7 +26,7 @@ $(document).on('click', '.btn-detail', function() {
     $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-warning'>C</span></h5>");
   }
 
-  let link = data_arsip.link_laporan;
+  let link = data_arsip.link_berkas;
   if (!link.startsWith('http://') || !link.startsWith('https://') || !link.startsWith('//')) {
     link = 'https://' + link;
   }

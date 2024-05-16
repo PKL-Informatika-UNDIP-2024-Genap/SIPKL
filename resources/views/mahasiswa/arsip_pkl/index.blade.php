@@ -100,7 +100,7 @@
 											</td>
                     </tr>
                     <tr>
-                      <td class="text-nowrap px-0" colspan="3"><strong>Link Laporan</strong> &nbsp;<a href="{{ $arsip_pkl->link_laporan }}" target="_blank" class="btn btn-outline-info btn-sm py-0 @if ($arsip_pkl->link_laporan == null) disabled @endif">Pergi ke link</a></td>
+                      <td class="text-nowrap px-0" colspan="3"><strong>Link Laporan</strong> &nbsp;<a href="{{ $arsip_pkl->link_berkas }}" target="_blank" class="btn btn-outline-info btn-sm py-0 @if ($arsip_pkl->link_berkas == null) disabled @endif">Pergi ke link</a></td>
                     </tr>
 
                   </tbody>

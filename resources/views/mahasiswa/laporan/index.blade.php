@@ -104,7 +104,7 @@
 											</td>
                     </tr>
                     <tr>
-                      <td class="text-nowrap px-0" colspan="3"><strong>Link Laporan</strong> &nbsp;<a href="{{ $pkl->link_laporan }}" target="_blank" class="btn btn-outline-info btn-sm py-0 @if ($pkl->link_laporan == null) disabled @endif">Pergi ke link</a></td>
+                      <td class="text-nowrap px-0" colspan="3"><strong>Link Berkas</strong> &nbsp;<a href="{{ $pkl->link_berkas }}" target="_blank" class="btn btn-outline-info btn-sm py-0 @if ($pkl->link_berkas == null) disabled @endif">Pergi ke link</a></td>
                     </tr>
 
                   </tbody>
@@ -216,13 +216,13 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="link_laporan">Link Laporan</label>
+											<label for="link_berkas">Link berkas</label>
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="bi bi-link"></i></span>
 												</div>
-												<input type="url" class="form-control @error('link_laporan') is-invalid @enderror" id="link_laporan" name="link_laporan" placeholder="Masukkan link laporan yang valid" value="{{ old('link_laporan',$pkl->link_laporan) }}">
-												@error('link_laporan')
+												<input type="url" class="form-control @error('link_berkas') is-invalid @enderror" id="link_berkas" name="link_berkas" placeholder="Masukkan link berkas yang valid" value="{{ old('link_berkas',$pkl->link_berkas) }}">
+												@error('link_berkas')
 													<div class="invalid-feedback">
 														{{ $message }}
 													</div>
@@ -331,7 +331,7 @@
 
                 <div class="form-check ms-1 mb-3">
                   <input type="checkbox" class="form-check-input" id="checkbox1">
-                  <label class="form-check-label" for="checkbox1"><em>Pastikan semua data sudah benar, dan link laporan valid dan dapat diakses.</em></label>
+                  <label class="form-check-label" for="checkbox1"><em>Pastikan semua data sudah benar, dan link berkas valid dan dapat diakses.</em></label>
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Kirim</button>
@@ -420,7 +420,7 @@
 			event.preventDefault();
 			Swal.fire({
 				title: 'Apakah data sudah benar?',
-				text: "Pastikan semua data sudah benar, dan link laporan valid serta dapat diakses.",
+				text: "Pastikan semua data sudah benar, dan link berkas valid serta dapat diakses.",
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#007bff',
