@@ -51,7 +51,7 @@
               <div class="row">
                 <div class="col d-flex align-items-center justify-content-between gap-1">
                   <strong class="text-lightblue my-3">Informasi Jadwal Seminar PKL Saya</strong>
-                  <button type="button" id="btn-daftar" class="btn btn-primary @if ($seminar_pkl != null && $seminar_pkl->pesan == null) d-none @endif">Daftar</button>
+                  <button type="button" id="btn-daftar" class="btn btn-primary @if ($seminar_pkl != null && $seminar_pkl->pesan == null) d-none @endif">Daftar Seminar</button>
                 </div>
               </div>
 
@@ -292,7 +292,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="scan_layak_seminar">Scan Surat Layak Seminar (Ukuran maks gambar: 500KB)</label>
+                      <label for="scan_layak_seminar">Scan Surat Layak Seminar (jpg/png maks 500KB)</label>
                       <input type="file" class="@error('scan_layak_seminar') is-invalid @enderror" id="scan_layak_seminar" name="scan_layak_seminar">
                       @error('scan_layak_seminar')
                         <div class="invalid-feedback">
@@ -303,7 +303,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="scan_peminjaman_ruang">Scan Surat Peminjaman Ruang (Ukuran maks gambar: 500KB)</label>
+                      <label for="scan_peminjaman_ruang">Scan Surat Peminjaman Ruang (jpg/png maks 500KB)</label>
                       <input type="file" class="@error('scan_peminjaman_ruang') is-invalid @enderror" id="scan_peminjaman_ruang" name="scan_peminjaman_ruang">
                       @error('scan_peminjaman_ruang')
                         <div class="invalid-feedback">
@@ -423,7 +423,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="scan_layak_seminar">Scan Surat Layak Seminar (Ukuran maks gambar: 500KB)</label>
+                      <label for="scan_layak_seminar">Scan Surat Layak Seminar (jpg/png maks 500KB)</label>
   
                       @if ($seminar_pkl->scan_layak_seminar != null)
                       <input type="text" class="form-control" id="scan_layak_seminar_old" name="scan_layak_seminar_old" value="{{ $seminar_pkl->scan_layak_seminar }}" hidden>
@@ -442,7 +442,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="scan_peminjaman_ruang">Scan Surat Peminjaman Ruang (Ukuran maks gambar: 500KB)</label>
+                      <label for="scan_peminjaman_ruang">Scan Surat Peminjaman Ruang (jpg/png maks 500KB)</label>
 
                       @if ($seminar_pkl->scan_peminjaman_ruang != null)
                       <input type="text" class="form-control" id="scan_peminjaman_ruang_old" name="scan_peminjaman_ruang_old" value="{{ $seminar_pkl->scan_peminjaman_ruang }}" hidden>

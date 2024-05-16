@@ -35,7 +35,7 @@ $(document).on('click', '.btn-detail-laporan', function() {
     $("#link-wa").attr("href", "https://wa.me/" + data_mhs.no_wa);
   }
 
-  let link = data_mhs.link_laporan;
+  let link = data_mhs.link_berkas;
   if (!link.startsWith('http://') || !link.startsWith('https://') || !link.startsWith('//')) {
     link = 'https://' + link;
   }

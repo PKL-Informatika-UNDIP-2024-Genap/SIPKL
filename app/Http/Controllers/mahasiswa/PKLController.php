@@ -113,20 +113,20 @@ class PKLController extends Controller
         $user = auth()->user();
         $mahasiswa = $user->mahasiswa;
         $pkl = $mahasiswa->pkl;
-        if ($pkl->tgl_laporan) {
-            $carbon = Carbon::parse($pkl->tgl_laporan);
-            $tgl_laporan = $carbon->isoFormat('D MMMM YYYY');
-            $waktu_laporan = $carbon->format('H.i');
-        }
-        if ($pkl->link_laporan != null && $pkl->link_laporan.substr(0, 7) != 'http://' && $pkl->link_laporan.substr(0, 8) != 'https://' && $pkl->link_laporan.substr(0, 2) != '//') {
-            $pkl->link_laporan = 'https://'.$pkl->link_laporan;
+        // if ($pkl->tgl_laporan) {
+        //     $carbon = Carbon::parse($pkl->tgl_laporan);
+        //     $tgl_laporan = $carbon->isoFormat('D MMMM YYYY');
+        //     $waktu_laporan = $carbon->format('H.i');
+        // }
+        if ($pkl->link_berkas != null && $pkl->link_berkas.substr(0, 7) != 'http://' && $pkl->link_berkas.substr(0, 8) != 'https://' && $pkl->link_berkas.substr(0, 2) != '//') {
+            $pkl->link_berkas = 'https://'.$pkl->link_berkas;
         }
         return view('mahasiswa.laporan.index', [
             'user' => $user,
             'mahasiswa' => $mahasiswa,
             'pkl' => $pkl,
-            'tgl_laporan' => $tgl_laporan ?? '',
-            'waktu_laporan' => $waktu_laporan ?? '',
+            // 'tgl_laporan' => $tgl_laporan ?? '',
+            // 'waktu_laporan' => $waktu_laporan ?? '',
         ]);
     }
 
@@ -137,7 +137,7 @@ class PKLController extends Controller
         $validator = validator($request->all(), [
             'instansi' => 'required',
             'judul' => 'required',
-            'link_laporan' => 'required|url',
+            'link_berkas' => 'required|url',
             'abstrak' => 'required',
             'keyword1' => 'required',
             'keyword2' => 'required',
@@ -148,7 +148,7 @@ class PKLController extends Controller
         ], [
             'instansi' => 'Instansi',
             'judul' => 'Judul',
-            'link_laporan' => 'Link Laporan',
+            'link_berkas' => 'Link Laporan',
             'abstrak' => 'Abstrak',
             'keyword1' => 'Kata kunci 1',
             'keyword2' => 'Kata kunci 2',
