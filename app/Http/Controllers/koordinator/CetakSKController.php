@@ -18,61 +18,13 @@ class CetakSKController extends Controller
      */
     public function index()
     {
-        $data_sk = CetakSK::select('dosen_pembimbing.id as id_dospem' ,'dosen_pembimbing.nama as nama_dospem', 'dosen_pembimbing.nip as nip_dospem', 'dosen_pembimbing.golongan as gol_dospem', 'dosen_pembimbing.jabatan as jabatan_dospem', 'cetak_sk.nama as nama_mhs', 'cetak_sk.nim as nim_mhs', 'judul as judul_pkl', 'tgl_verif_laporan')->join('dosen_pembimbing', 'cetak_sk.id_dospem', '=', 'dosen_pembimbing.id')->where('status', 'Belum')->get();
+        $data_sk = CetakSK::get_data_cetak_sk();
         $data_sk = $data_sk->sortBy('nama_dospem');
         $counter = $data_sk->groupBy('id_dospem')->map->count()->values();
         return view('koordinator.cetak_sk.index', [
             'data_sk' => $data_sk,
             'counter' => $counter,
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCetakSKRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(CetakSK $cetakSK)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(CetakSK $cetakSK)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCetakSKRequest $request, CetakSK $cetakSK)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(CetakSK $cetakSK)
-    {
-        //
     }
 
     /**
@@ -113,7 +65,7 @@ class CetakSKController extends Controller
 
     public function riwayat()
     {
-        $data_sk = CetakSK::select('dosen_pembimbing.id as id_dospem' ,'dosen_pembimbing.nama as nama_dospem', 'dosen_pembimbing.nip as nip_dospem', 'dosen_pembimbing.golongan as gol_dospem', 'dosen_pembimbing.jabatan as jabatan_dospem', 'cetak_sk.nama as nama_mhs', 'cetak_sk.nim as nim_mhs', 'judul as judul_pkl', 'tgl_mulai', 'tgl_selesai')->join('dosen_pembimbing', 'cetak_sk.id_dospem', '=', 'dosen_pembimbing.id')->where('status', 'Sudah')->get();
+        $data_sk = CetakSK::get_data_riwayat_cetak_sk();
         $periode_sk = $data_sk->map(function ($item) {
             return [$item->tgl_mulai, $item->tgl_selesai];
         })->unique()->sortByDesc(0)->values()->all();
