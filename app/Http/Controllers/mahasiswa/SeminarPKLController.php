@@ -147,7 +147,7 @@ class SeminarPKLController extends Controller
         return redirect()->back()->with('success', 'Berhasil mendaftar ulang seminar.');
     }
 
-    public function jadwalSeminar()
+    public function jadwal_seminar()
     {
         return view('mahasiswa.seminar.jadwal_seminar', [
             'user' => auth()->user(),
