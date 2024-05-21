@@ -449,6 +449,16 @@ p {
   opacity: 0.5;
 }
 
+/* group wa btn */
+@media only screen and (max-width: 480px) {
+  .navbar-btn .ud-main-btn.ud-login-btn {
+    display: none;
+  }
+  .ud-hero {
+    height: 100vh;
+  }
+}
+
 .navbar-btn .ud-white-btn {
   background: rgba(255, 255, 255, 0.2);
 }
@@ -516,6 +526,17 @@ p {
   max-width: 780px;
   margin: auto;
   margin-bottom: 30px;
+  z-index: 10;
+}
+
+/* try */
+@media only screen and (min-width: 767px) {
+  .ud-hero-buttons {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    z-index: 100;
+  }
 }
 
 .ud-hero-content .ud-hero-title {
@@ -543,14 +564,14 @@ p {
 
 .ud-hero-content .ud-hero-desc {
   font-weight: normal;
-  font-size: 20px;
-  line-height: 35px;
+  font-size: 18px;
+  line-height: 30px;
   text-align: center;
   color: var(--white);
   opacity: 0.8;
   max-width: 600px;
   margin: auto;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 767px) {

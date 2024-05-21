@@ -49,7 +49,7 @@
                       @if ($pkl->status == 'Laporan')
                         <td><strong class="bg-warning px-2 py-1 rounded-1 text-nowrap">Menunggu konfirmasi</strong></td>
                       @elseif ($pkl->status == 'Selesai')
-                        <td><strong class="bg-success px-2 py-1 rounded-1 text-nowrap">Laporan diterima</strong></td>
+                        <td><strong class="bg-success px-2 py-1 rounded-1 text-nowrap">Laporan Diterima</strong></td>
                       @else
                         @if ($pkl->status == 'Aktif' && $pkl->pesan != null)
                           <td><strong class="bg-danger px-2 py-1 rounded-1 text-nowrap">Laporan ditolak</strong></td>
@@ -163,7 +163,7 @@
 									<div class="col-md-6">
                     <input type="text" class="form-control" id="id_dospem" name="id_dospem" value="{{ $mahasiswa->id_dospem }}" hidden>
                     <div class="form-group">
-                      <label for="nama_dospem">Dosen Pembimbing</label>
+                      <label for="nama_dospem">Pembimbing</label>
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="bi bi-person-check-fill"></i></span>

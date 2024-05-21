@@ -50,7 +50,7 @@
           <div class="row">
             <div class="col-sm-5">
               <div class="form-group">
-                <label for="status">Status PKL Anda</label>
+                <label for="status">Status PKL Saya</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="bi bi-hand-index-thumb-fill"></i></span>

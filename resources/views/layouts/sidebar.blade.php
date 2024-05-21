@@ -10,14 +10,12 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img id="sidebar_fp" src="{{ (auth()->user()->foto_profil == null)?'/images/default/profile_default2.svg':'/'.auth()->user()->foto_profil }}" class="img-circle elevation-2" alt="User Image">
+        <a href="/profile">
+          <img id="sidebar_fp" src="{{ (auth()->user()->foto_profil == null)?'/images/default/profile_default2.svg':'/'.auth()->user()->foto_profil }}" class="img-circle elevation-2" alt="User Image">
+        </a>
       </div>
       <div class="info">
-        @if (auth()->user()->is_admin == 1)
-          <a href="/profile" class="d-block">{{ auth()->user()->koordinator->nama }}</a>
-        @else
-          <a href="/profile" class="d-block">{{ auth()->user()->mahasiswa->nama }}</a>
-        @endif
+        <a href="/profile" class="d-block">{{ auth()->user()->koordinator->nama }}</a>
       </div>
     </div>
 

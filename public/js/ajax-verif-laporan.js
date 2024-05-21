@@ -36,6 +36,9 @@ $(document).on('click', '.btn-detail-laporan', function() {
   }
 
   let link = data_mhs.link_berkas;
+  if (link == null) {
+    link = '';
+  }
   if (!link.startsWith('http://') || !link.startsWith('https://') || !link.startsWith('//')) {
     link = 'https://' + link;
   }

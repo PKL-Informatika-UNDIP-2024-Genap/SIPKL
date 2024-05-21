@@ -104,7 +104,7 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="nim">Username/NIM</label>
+                          <label for="nim">NIM</label>
                           <div class="input-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>

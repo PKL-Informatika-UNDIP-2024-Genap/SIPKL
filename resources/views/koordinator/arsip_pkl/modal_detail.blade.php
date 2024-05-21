@@ -40,22 +40,26 @@
                 <td id="data-judul-pkl"></td>
               </tr>
               <tr>
-                <td class="text-nowrap px-0" style="width: 15%"><strong>Abstrak</strong></td>
-                <td style="white-space: nowrap; width: 1%">:</td>
-                <td id="data-abstrak" class="collapsed"></td>
+                <td class="text-nowrap px-0" style="width: 15%; border-bottom:none"><strong>Abstrak</strong></td>
+                <td style="white-space: nowrap; width: 1%; border-bottom: none">:</td>
+                <td style="border-bottom:none"></td>
               </tr>
+              <tr>
+                <td id="data-abstrak" class="collapsed px-0" colspan="3" style="border-top:none"></td>
+              </tr>
+
               <tr>
                 <td class="text-nowrap px-0" style="width: 15%"><strong>Kata Kunci</strong></td>
                 <td style="white-space: nowrap; width: 1%">:</td>
                 <td id="data-kata-kunci"></td>
               </tr>
               <tr>
-                <td class="text-nowrap px-0" style="width: 15%"><strong>Link Laporan</strong></td>
+                <td class="text-nowrap px-0" style="width: 15%"><strong>Link Berkas</strong></td>
                 <td style="white-space: nowrap; width: 1%">:</td>
                 <td>
                   <a id="data-link-laporan" target="__blank" href="//drive.google.com" style="text-decoration: none">
                     <button class="badge text-bg-primary">
-                      Tampilkan Laporan
+                      Pergi ke link
                     </button>
                   </a>
                 </td>
