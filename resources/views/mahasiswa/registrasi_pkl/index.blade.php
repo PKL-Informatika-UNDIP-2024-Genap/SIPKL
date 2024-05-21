@@ -120,7 +120,7 @@
                   <br>*Scan IRS boleh belum maupun sudah disetujui.</em>
                 </div>
                 <div class="form-group">
-                  <label for="scan_irs">Scan/Screenshot IRS (Ukuran maks gambar: 500KB)</label>
+                  <label for="scan_irs">Scan/Screenshot IRS (jpg/png maks 500KB)</label>
                   <div class="mb-2 d-flex">
                     @if ($pkl->scan_irs != null)
                       <a href="/preview/{{ $pkl->scan_irs }}" target="_blank" class="btn btn-outline-info btn-sm py-0 btnScanIRS">Lihat Scan Lama</a>

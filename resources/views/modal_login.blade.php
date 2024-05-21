@@ -25,7 +25,7 @@
         <form action="/login" method="post">
           @csrf
           <div class="my-3">
-            <label for="username" class="form-label"><strong>Username</strong></label>
+            <label for="username" class="form-label"><strong>NIM</strong></label>
             <div class="input-group">
               <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
               <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}">

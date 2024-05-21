@@ -121,12 +121,12 @@
                         </tr>
                         @else
                         <tr>
-                          <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>NIP</strong></td>
+                          <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>Nama</strong></td>
                           <td style="white-space: nowrap; width: 1%">:</td>
                           <td>{{ $mahasiswa->dosen_pembimbing->nama }}</td>
                         </tr>
                         <tr>
-                          <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>Nama</strong></td>
+                          <td class="text-nowrap px-0" style="white-space: nowrap; width: 1%"><strong>NIP</strong></td>
                           <td style="white-space: nowrap; width: 1%">:</td>
                           <td>{{ $mahasiswa->dosen_pembimbing->nip }} </td>
                         </tr>
