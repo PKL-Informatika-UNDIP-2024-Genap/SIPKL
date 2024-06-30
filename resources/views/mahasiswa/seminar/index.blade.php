@@ -93,10 +93,10 @@
                       <td>{{ $seminar_pkl->ruang }}</td>
                     </tr>
                     <tr>
-                      <td class="text-nowrap px-0" colspan="3"><strong>Scan Surat Layak Seminar</strong> &nbsp;<a href="/preview/{{ $seminar_pkl->scan_layak_seminar }}" target="_blank" class="btn btn-outline-info btn-sm py-0 btnScanLayakSeminar">Lihat Scan</a></td>
+                      <td class="text-nowrap px-0" colspan="3"><strong>Scan Surat Layak Seminar</strong> &nbsp;<a href="/preview/{{ $seminar_pkl->scan_layak_seminar }}" target="_blank" class="btn btn-outline-info btn-sm py-0 btnScanLayakSeminar @if ($seminar_pkl->scan_layak_seminar == null) disabled @endif">Lihat Scan</a></td>
                     </tr>
                     <tr>
-                      <td class="text-nowrap px-0" colspan="3"><strong>Scan Surat Peminjaman Ruang</strong> &nbsp;<a href="/preview/{{ $seminar_pkl->scan_peminjaman_ruang }}" target="_blank" class="btn btn-outline-info btn-sm py-0 scanPeminjamanRuang">Lihat Scan</a></td>
+                      <td class="text-nowrap px-0" colspan="3"><strong>Scan Surat Peminjaman Ruang</strong> &nbsp;<a href="/preview/{{ $seminar_pkl->scan_peminjaman_ruang }}" target="_blank" class="btn btn-outline-info btn-sm py-0 scanPeminjamanRuang @if ($seminar_pkl->scan_peminjaman_ruang == null) disabled @endif">Lihat Scan</a></td>
                     </tr>
                     <tr>
                     @endif

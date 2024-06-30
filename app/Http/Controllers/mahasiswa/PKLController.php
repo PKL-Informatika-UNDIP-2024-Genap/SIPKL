@@ -118,7 +118,7 @@ class PKLController extends Controller
         //     $tgl_laporan = $carbon->isoFormat('D MMMM YYYY');
         //     $waktu_laporan = $carbon->format('H.i');
         // }
-        if ($pkl->link_berkas != null && $pkl->link_berkas.substr(0, 7) != 'http://' && $pkl->link_berkas.substr(0, 8) != 'https://' && $pkl->link_berkas.substr(0, 2) != '//') {
+        if ($pkl->link_berkas != null && substr($pkl->link_berkas, 0, 7) != 'http://' && substr($pkl->link_berkas, 0, 8) != 'https://' && substr($pkl->link_berkas, 0, 2) != '//') {
             $pkl->link_berkas = 'https://'.$pkl->link_berkas;
         }
         return view('mahasiswa.laporan.index', [

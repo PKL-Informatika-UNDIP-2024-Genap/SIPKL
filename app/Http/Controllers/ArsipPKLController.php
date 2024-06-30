@@ -35,7 +35,7 @@ class ArsipPKLController extends Controller
                     'mahasiswa' => $mahasiswa,
                 ]);
             } else {
-                if ($arsip_pkl->link_berkas != null && $arsip_pkl->link_berkas.substr(0, 7) != 'http://' && $arsip_pkl->link_berkas.substr(0, 8) != 'https://' && $arsip_pkl->link_berkas.substr(0, 2) != '//') {
+                if ($arsip_pkl->link_berkas != null && substr($arsip_pkl->link_berkas, 0, 7) != 'http://' && substr($arsip_pkl->link_berkas, 0, 8) != 'https://' && substr($arsip_pkl->link_berkas, 0, 2) != '//') {
                     $arsip_pkl->link_berkas = 'https://'.$arsip_pkl->link_berkas;
                 }
                 return view('mahasiswa.arsip_pkl.index', [
