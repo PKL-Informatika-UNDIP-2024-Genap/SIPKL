@@ -94,7 +94,7 @@ class SeminarPKLController extends Controller
 
     public function daftar_ulang_seminar(UpdateSeminarPKLRequest $request)
     {
-        $validator = validator($request->all(), [
+        $rules = [
             'id_dospem' => 'required',
             'tgl_seminar' => 'required|date',
             'waktu_seminar_mulai' => 'required',
@@ -102,7 +102,16 @@ class SeminarPKLController extends Controller
             'ruang' => 'required',
             'scan_layak_seminar' => 'sometimes|image|mimes:jpeg,png,jpg|max:500',
             'scan_peminjaman_ruang' => 'sometimes|image|mimes:jpeg,png,jpg|max:500',
-        ], [
+        ];
+
+        if ($request->scan_layak_seminar_old === null) {
+            $rules['scan_layak_seminar'] = 'required|image|mimes:jpeg,png,jpg|max:500';
+        }
+        if ($request->scan_peminjaman_ruang_old === null) {
+            $rules['scan_peminjaman_ruang'] = 'required|image|mimes:jpeg,png,jpg|max:500';
+        }
+
+        $validator = validator($request->all(), $rules, [
             'required' => ':attribute harus diisi.',
             'date' => ':attribute harus berupa tanggal.',
             'mimes' => ':attribute harus berupa file gambar jpeg, jpg, atau png.',

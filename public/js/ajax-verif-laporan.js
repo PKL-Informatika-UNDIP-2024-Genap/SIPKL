@@ -39,7 +39,7 @@ $(document).on('click', '.btn-detail-laporan', function() {
   if (link == null) {
     link = '';
   }
-  if (!link.startsWith('http://') || !link.startsWith('https://') || !link.startsWith('//')) {
+  if (!link.startsWith('http://') && !link.startsWith('https://') && !link.startsWith('//')) {
     link = 'https://' + link;
   }
   $("#data-link-laporan").attr("href", link);

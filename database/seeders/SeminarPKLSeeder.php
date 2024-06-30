@@ -128,7 +128,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100041',
                 'status' => 'Tak Terjadwal',
-                'tgl_seminar' => '2024-05-01',
+                'tgl_seminar' => '2024-07-01',
                 'waktu_seminar' => '10:00-12:00',
                 'ruang' => 'A101',
                 'id_dospem' => 1,
@@ -138,7 +138,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100042',
                 'status' => 'Tak Terjadwal',
-                'tgl_seminar' => '2024-05-01',
+                'tgl_seminar' => '2024-07-01',
                 'waktu_seminar' => '13:00-15:00',
                 'ruang' => 'B102',
                 'id_dospem' => 1,
@@ -148,7 +148,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100043',
                 'status' => 'Tak Terjadwal',
-                'tgl_seminar' => '2024-05-02',
+                'tgl_seminar' => '2024-07-02',
                 'waktu_seminar' => '09:00-11:00',
                 'ruang' => 'C103',
                 'id_dospem' => 2,
@@ -158,7 +158,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100044',
                 'status' => 'Tak Terjadwal',
-                'tgl_seminar' => '2024-05-02',
+                'tgl_seminar' => '2024-07-02',
                 'waktu_seminar' => '14:00-16:00',
                 'ruang' => 'D104',
                 'id_dospem' => 2,
@@ -168,7 +168,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100045',
                 'status' => 'Tak Terjadwal',
-                'tgl_seminar' => '2024-05-03',
+                'tgl_seminar' => '2024-07-03',
                 'waktu_seminar' => '11:00-13:00',
                 'ruang' => 'E105',
                 'id_dospem' => 3,
@@ -178,7 +178,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100046',
                 'status' => 'Tak Terjadwal',
-                'tgl_seminar' => '2024-05-03',
+                'tgl_seminar' => '2024-07-03',
                 'waktu_seminar' => '08:00-10:00',
                 'ruang' => 'F106',
                 'id_dospem' => 3,
@@ -188,7 +188,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100047',
                 'status' => 'Tak Terjadwal',
-                'tgl_seminar' => '2024-05-04',
+                'tgl_seminar' => '2024-07-04',
                 'waktu_seminar' => '13:00-15:00',
                 'ruang' => 'G107',
                 'id_dospem' => 4,
@@ -198,7 +198,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100048',
                 'status' => 'Tak Terjadwal',
-                'tgl_seminar' => '2024-05-04',
+                'tgl_seminar' => '2024-07-04',
                 'waktu_seminar' => '10:00-12:00',
                 'ruang' => 'H108',
                 'id_dospem' => 4,
@@ -208,7 +208,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100049',
                 'status' => 'Tak Terjadwal',
-                'tgl_seminar' => '2024-05-05',
+                'tgl_seminar' => '2024-07-05',
                 'waktu_seminar' => '14:00-16:00',
                 'ruang' => 'I109',
                 'id_dospem' => 5,
@@ -218,7 +218,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100050',
                 'status' => 'Tak Terjadwal',
-                'tgl_seminar' => '2024-05-15',
+                'tgl_seminar' => '2024-07-15',
                 'waktu_seminar' => '09:00-11:00',
                 'ruang' => 'J110',
                 'id_dospem' => 5,
@@ -229,7 +229,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100051',
                 'status' => 'Terjadwal',
-                'tgl_seminar' => '2024-05-10',
+                'tgl_seminar' => '2024-07-10',
                 'waktu_seminar' => '10:00-12:00',
                 'ruang' => 'A101',
                 'id_dospem' => 6,
@@ -239,7 +239,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100052',
                 'status' => 'Terjadwal',
-                'tgl_seminar' => '2024-05-10',
+                'tgl_seminar' => '2024-07-10',
                 'waktu_seminar' => '13:00-15:00',
                 'ruang' => 'B102',
                 'id_dospem' => 6,
@@ -249,7 +249,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100053',
                 'status' => 'Terjadwal',
-                'tgl_seminar' => '2024-05-11',
+                'tgl_seminar' => '2024-07-11',
                 'waktu_seminar' => '09:00-11:00',
                 'ruang' => 'C103',
                 'id_dospem' => 7,
@@ -259,7 +259,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100054',
                 'status' => 'Terjadwal',
-                'tgl_seminar' => '2024-05-11',
+                'tgl_seminar' => '2024-07-11',
                 'waktu_seminar' => '14:00-16:00',
                 'ruang' => 'D104',
                 'id_dospem' => 7,
@@ -269,7 +269,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100055',
                 'status' => 'Terjadwal',
-                'tgl_seminar' => '2024-05-12',
+                'tgl_seminar' => '2024-07-12',
                 'waktu_seminar' => '11:00-13:00',
                 'ruang' => 'E105',
                 'id_dospem' => 8,
@@ -279,7 +279,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100056',
                 'status' => 'Terjadwal',
-                'tgl_seminar' => '2024-05-12',
+                'tgl_seminar' => '2024-07-12',
                 'waktu_seminar' => '08:00-10:00',
                 'ruang' => 'F106',
                 'id_dospem' => 8,
@@ -289,7 +289,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100057',
                 'status' => 'Terjadwal',
-                'tgl_seminar' => '2024-05-13',
+                'tgl_seminar' => '2024-07-13',
                 'waktu_seminar' => '13:00-15:00',
                 'ruang' => 'G107',
                 'id_dospem' => 9,
@@ -299,7 +299,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100058',
                 'status' => 'Terjadwal',
-                'tgl_seminar' => '2024-05-13',
+                'tgl_seminar' => '2024-07-13',
                 'waktu_seminar' => '10:00-12:00',
                 'ruang' => 'H108',
                 'id_dospem' => 9,
@@ -309,7 +309,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100059',
                 'status' => 'Terjadwal',
-                'tgl_seminar' => '2024-05-14',
+                'tgl_seminar' => '2024-07-14',
                 'waktu_seminar' => '14:00-16:00',
                 'ruang' => 'I109',
                 'id_dospem' => 10,
@@ -319,7 +319,7 @@ class SeminarPKLSeeder extends Seeder
             [
                 'nim' => '24060121100060',
                 'status' => 'Terjadwal',
-                'tgl_seminar' => '2024-05-14',
+                'tgl_seminar' => '2024-07-14',
                 'waktu_seminar' => '09:00-11:00',
                 'ruang' => 'J110',
                 'id_dospem' => 10,

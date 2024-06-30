@@ -111,7 +111,7 @@ class PKL extends Model
             'keyword3' => $pkl->keyword3,
             'keyword4' => $pkl->keyword4,
             'keyword5' => $pkl->keyword5,
-            'link_laporan' => $pkl->link_laporan,
+            'link_berkas' => $pkl->link_berkas,
             'tgl_verif_laporan' => $pkl->tgl_verif_laporan,
             'nilai' => $nilai,
             'periode_pkl' => $pkl->mahasiswa->periode_pkl,

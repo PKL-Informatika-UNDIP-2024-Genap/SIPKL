@@ -14,12 +14,12 @@ class RiwayatPKLSeeder extends Seeder
     public function run(): void
     {
         $riwayat_pkl = [
-            [
-                'nim' => '24060121130086',
-                'periode_pkl' => '2023/2024 Genap',
-                'status' => 'Lulus',
-                'id_dospem' => 1,
-            ],
+            // [
+            //     'nim' => '24060121130086',
+            //     'periode_pkl' => '2023/2024 Genap',
+            //     'status' => 'Lulus',
+            //     'id_dospem' => 1,
+            // ],
 
             [
                 'nim' => '24060121100019',

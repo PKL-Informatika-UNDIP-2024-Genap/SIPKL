@@ -44,7 +44,7 @@ $(document).on('click', '.btn-detail-nilai', function() {
 
 
   let link = data_mhs.link_berkas;
-  if (!link.startsWith('http://') || !link.startsWith('https://') || !link.startsWith('//')) {
+  if (!link.startsWith('http://') && !link.startsWith('https://') && !link.startsWith('//')) {
     link = 'https://' + link;
   }
   $("#data-link-laporan").attr("href", link);

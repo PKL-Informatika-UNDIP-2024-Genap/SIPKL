@@ -142,7 +142,7 @@
               <!-- END timeline item -->
 
               <!-- timeline item -->
-              @if (($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus') && $mahasiswa->seminar_pkl != null)
+              @if (($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus') && $mahasiswa->seminar_pkl != null && ($mahasiswa->seminar_pkl->status == 'Terjadwal' || $mahasiswa->seminar_pkl->status == 'Tak Terjadwal'))
               <div>
                 <i class="fas bi bi-info-circle-fill bg-info"></i>
                 <div class="timeline-item">
@@ -152,7 +152,7 @@
                     Buat dan kirim laporan PKL Anda sebelum periode PKL berakhir.
                   </div>
                   <div class="timeline-footer">
-                    <a href="/laporan" class="btn btn-primary btn-sm">Buat Laporan</a>
+                    <a href="/laporan" class="btn btn-primary btn-sm">Kirim Laporan</a>
                   </div>
                 </div>
               </div>
@@ -171,7 +171,7 @@
               @endif
               <!-- END timeline item -->
               <!-- timeline item -->
-              @if (($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus') && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'TakTerjadwal')
+              @if (($mahasiswa->status == 'Aktif' || $mahasiswa->status == 'Lulus') && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'Tak Terjadwal')
               <div>
                 <i class="fas bi bi-check-circle-fill bg-green"></i>
                 <div class="timeline-item">
@@ -201,7 +201,7 @@
               <!-- END timeline item -->
 
               <!-- timeline item -->
-              @if ($mahasiswa->seminar_pkl != null && ($mahasiswa->seminar_pkl->status == 'Pengajuan' || $mahasiswa->seminar_pkl->status == 'TakTerjadwal'))
+              @if ($mahasiswa->seminar_pkl != null && ($mahasiswa->seminar_pkl->status == 'Pengajuan' || $mahasiswa->seminar_pkl->status == 'Tak Terjadwal'))
               <div>
                 <i class="fas bi bi-send-check-fill bg-blue"></i>
                 <div class="timeline-item">
@@ -525,11 +525,11 @@
         $pesan = "Koordinator telah menolak Laporan PKL Anda. Pesan: “".$pkl->pesan."”";
       } elseif (($mahasiswa->status == 'Aktif' ) && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'Terjadwal') {
         $pesan = "Koordinator telah memasukkan Anda ke dalam Jadwal Seminar PKL.";
-      } elseif (($mahasiswa->status == 'Aktif' ) && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'TakTerjadwal') {
+      } elseif (($mahasiswa->status == 'Aktif' ) && $mahasiswa->seminar_pkl != null && $mahasiswa->seminar_pkl->status == 'Tak Terjadwal') {
         $pesan = "Koordinator telah menerima Pengajuan Seminar PKL Anda.";
       } elseif ($mahasiswa->seminar_pkl != null && ($mahasiswa->seminar_pkl->status == 'Pengajuan' && $mahasiswa->seminar_pkl->pesan != null)) {
         $pesan = "Koordinator telah menolak Pengajuan Seminar PKL Anda. Pesan: “".$mahasiswa->seminar_pkl->pesan."”";
-      } elseif ($mahasiswa->status == 'Aktif' ) {
+      } elseif ($mahasiswa->status == 'Aktif' && $pkl->status != 'Laporan') {
         $pesan = "Koordinator telah menerima Registrasi PKL Anda.";
       } elseif ($mahasiswa->status == 'Nonaktif' && $pkl->status == 'Praregistrasi' && $pkl->pesan != null) {
         $pesan = "Koordinator telah menolak Registrasi PKL Anda. Pesan: “".$pkl->pesan."”";

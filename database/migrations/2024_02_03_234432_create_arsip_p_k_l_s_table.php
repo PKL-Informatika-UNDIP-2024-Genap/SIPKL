@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('keyword3',50)->nullable();
             $table->string('keyword4',50)->nullable();
             $table->string('keyword5',50)->nullable();
-            $table->string('link_laporan')->nullable();
+            $table->string('link_berkas')->nullable();
             $table->dateTime('tgl_verif_laporan')->nullable();
             $table->char('nilai',1)->nullable();
         });
