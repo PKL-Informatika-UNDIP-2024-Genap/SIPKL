@@ -17,7 +17,7 @@ class Dokumen extends Model
     protected $guarded = [];
 
     public static function get_data_dokumen(){
-        $data_dokumen = self::select(['deskripsi','lampiran','updated_at'])->get();
+        $data_dokumen = self::select(['id','deskripsi','lampiran','updated_at'])->get();
         return $data_dokumen;
     }
 }

@@ -76,7 +76,7 @@
                                 <div class="mb-1 btn btn-sm btn-warning btn-reset-pass" data-nim="{{ $mhs->nim }}">
                                   Reset Password
                                 </div>
-                                <div class="mb-1 btn btn-sm btn-danger btn-delete-mhs" data-nim="{{ $mhs->nim }}">
+                                <div class="mb-1 btn btn-sm btn-danger btn-delete-mhs {{ $mhs->status == "Lulus" ? "disabled" : "" }}" data-nim="{{ $mhs->nim }}">
                                   Delete
                                 </div>
                                 <button class="mb-1 btn btn-sm btn-success btn-wa" data-nim="{{ $mhs->nim }}" {{ $mhs->no_wa ? "" : "disabled" }}>

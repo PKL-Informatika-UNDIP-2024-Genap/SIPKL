@@ -87,7 +87,7 @@ class Mahasiswa extends Model
     public static function get_mhs_blm_selesai(){
         $arr_mhs = self::join('periode_pkl', 'periode_pkl.id_periode', '=', 'mahasiswa.periode_pkl')
         ->where("tgl_selesai", "<", date('Y-m-d'))
-        ->whereRaw("mahasiswa.status = 'Aktif' OR mahasiswa.status = 'Nonaktif'")
+        ->whereRaw("mahasiswa.status = 'Aktif'")
         ->leftJoin("dosen_pembimbing", "dosen_pembimbing.id", "=", "mahasiswa.id_dospem")
         ->leftJoin("pkl", "pkl.nim", "=", "mahasiswa.nim")
         ->select('mahasiswa.*', 'dosen_pembimbing.nama as nama_dospem', 'pkl.judul', 'pkl.instansi', 'pkl.status as status_pkl')
