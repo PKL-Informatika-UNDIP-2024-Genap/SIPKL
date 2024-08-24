@@ -50,12 +50,12 @@
                       <td class="text-nowrap px-0"><strong>Nilai</strong></td>
                       <td style="white-space: nowrap; width: 1%">:</td>
                       <td>
-												@if ($arsip_pkl->nilai == "A")
-													<strong class="bg-success px-2 py-1 rounded-1">A</strong>
-												@elseif($arsip_pkl->nilai == "B")
-													<h4><span class="bg-primary px-2 py-1 rounded-1">B</span></h4>
+												@if ($arsip_pkl->nilai_angka >= 80)
+													<strong class="bg-success px-2 py-1 rounded-1">{{ $arsip_pkl->nilai_angka }}</strong>
+												@elseif($arsip_pkl->nilai_angka >= 70)
+													<h4><span class="bg-primary px-2 py-1 rounded-1">{{ $arsip_pkl->nilai_angka }}</span></h4>
 												@else
-													<h4><span class="bg-warning px-2 py-1 rounded-1">C</span></h4>
+													<h4><span class="bg-warning px-2 py-1 rounded-1">{{ $arsip_pkl->nilai_angka }}</span></h4>
 												@endif
 											</td>
                     </tr>

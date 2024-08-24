@@ -110,7 +110,7 @@ class PKLController extends Controller
 
   public function assign_nilai(PKL $pkl, Request $request)
   {
-    PKL::assign_nilai($pkl, $request->nilai);
+    PKL::assign_nilai($pkl, $request->nilai_angka);
 
     return response()->json([
       'message' => 'Berhasil menyimpan nilai',

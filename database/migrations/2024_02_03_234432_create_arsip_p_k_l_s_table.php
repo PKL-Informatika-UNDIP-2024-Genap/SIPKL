@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('keyword5',50)->nullable();
             $table->string('link_berkas')->nullable();
             $table->dateTime('tgl_verif_laporan')->nullable();
+            $table->decimal('nilai_angka',5,2)->nullable();
             $table->char('nilai',1)->nullable();
         });
     }
