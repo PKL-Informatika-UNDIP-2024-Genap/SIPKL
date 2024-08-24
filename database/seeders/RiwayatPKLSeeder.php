@@ -27,12 +27,12 @@ class RiwayatPKLSeeder extends Seeder
                 'status' => 'Tidak Lulus',
                 'id_dospem' => 2,
             ],
-            [
-                'nim' => '24060121100020',
-                'periode_pkl' => '2023/2024 Ganjil',
-                'status' => 'Tidak Lulus',
-                'id_dospem' => 3,
-            ],
+            // [
+            //     'nim' => '24060121100020',
+            //     'periode_pkl' => '2023/2024 Ganjil',
+            //     'status' => 'Tidak Lulus',
+            //     'id_dospem' => 3,
+            // ],
             [
                 'nim' => '24060121100020',
                 'periode_pkl' => '2022/2023 Genap',
@@ -40,18 +40,18 @@ class RiwayatPKLSeeder extends Seeder
                 'id_dospem' => 3,
             ],
 
-            [
-                'nim' => '24060121100030',
-                'periode_pkl' => '2023/2024 Ganjil',
-                'status' => 'Tidak Lulus',
-                'id_dospem' => 3,
-            ],
-            [
-                'nim' => '24060121100040',
-                'periode_pkl' => '2023/2024 Ganjil',
-                'status' => 'Tidak Lulus',
-                'id_dospem' => 5,
-            ],
+            // [
+            //     'nim' => '24060121100030',
+            //     'periode_pkl' => '2023/2024 Ganjil',
+            //     'status' => 'Tidak Lulus',
+            //     'id_dospem' => 3,
+            // ],
+            // [
+            //     'nim' => '24060121100040',
+            //     'periode_pkl' => '2023/2024 Ganjil',
+            //     'status' => 'Tidak Lulus',
+            //     'id_dospem' => 5,
+            // ],
             [
                 'nim' => '24060121100050',
                 'periode_pkl' => '2023/2024 Ganjil',

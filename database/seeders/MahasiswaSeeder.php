@@ -19,6 +19,7 @@ class MahasiswaSeeder extends Seeder
                 'status' => 'Lulus',
                 'periode_pkl' => '2023/2024 Genap',
                 'id_dospem' => 1,
+                'no_wa' => '6285711065278'
             ],
             [
                 'nim' => '24060121130050',

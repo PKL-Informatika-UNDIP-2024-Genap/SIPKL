@@ -17,7 +17,7 @@ class Pengumuman extends Model
     protected $guarded = [];
 
     public static function get_data_pengumuman(){
-        $data_pengumuman = self::select(['deskripsi','lampiran','updated_at'])->get();
+        $data_pengumuman = self::select(['id','deskripsi','lampiran','updated_at'])->get();
         return $data_pengumuman;
     }
 }
