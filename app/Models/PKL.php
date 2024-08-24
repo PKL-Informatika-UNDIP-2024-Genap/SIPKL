@@ -99,7 +99,7 @@ class PKL extends Model
         $pkl->save();
     }
 
-    public static function assign_nilai($pkl, $nilai){
+    public static function assign_nilai($pkl, $nilai_angka){
         ArsipPKL::create([
             'nim' => $pkl->nim,
             'nama' => $pkl->mahasiswa->nama,
@@ -113,7 +113,7 @@ class PKL extends Model
             'keyword5' => $pkl->keyword5,
             'link_berkas' => $pkl->link_berkas,
             'tgl_verif_laporan' => $pkl->tgl_verif_laporan,
-            'nilai' => $nilai,
+            'nilai_angka' => $nilai_angka,
             'periode_pkl' => $pkl->mahasiswa->periode_pkl,
         ]);
     
@@ -122,7 +122,6 @@ class PKL extends Model
             'periode_pkl' => $pkl->mahasiswa->periode_pkl,
             'status' => 'Lulus',
             'id_dospem' => $pkl->mahasiswa->id_dospem,
-            'nilai' => $nilai,
         ]);
     
         if ($pkl->scan_irs != null){

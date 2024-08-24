@@ -101,7 +101,10 @@ $(document).on('click', '.btn-simpan', function() {
       $.ajax({
         url: '/pkl/assign_nilai/'+ data_mhs.nim +'/assign',
         type: 'POST',
-        data: { nilai : $('input[name="nilai"]:checked').val() },
+        data: { 
+          // nilai : $('input[name="nilai"]:checked').val(),
+          nilai_angka : $('input[name="nilai-angka"]').val(),
+         },
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
         },

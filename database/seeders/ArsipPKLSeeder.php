@@ -26,7 +26,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Keuangan',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2024-04-10 00:00:00',
-                'nilai' => 'A',
+                'nilai_angka' => 100,
             ],
             [
                 'nim' => '24060121100082',
@@ -40,7 +40,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Penjualan',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2024-04-10 00:00:00',
-                'nilai' => 'B',
+                'nilai_angka' => 80,
             ],
             [
                 'nim' => '24060121100083',
@@ -54,7 +54,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Banking',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2024-04-11 00:00:00',
-                'nilai' => 'C',
+                'nilai_angka' => 70,
             ],
             [
                 'nim' => '24060121100084',
@@ -68,7 +68,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Geografis',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2024-04-11 00:00:00',
-                'nilai' => 'A',
+                'nilai_angka' => 90,
             ],
             [
                 'nim' => '24060121100085',
@@ -82,7 +82,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Persediaan',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2024-04-12 00:00:00',
-                'nilai' => 'B',
+                'nilai_angka' => 85,
             ],
             [
                 'nim' => '24060121100086',
@@ -96,7 +96,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'E-Learning',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2024-04-12 00:00:00',
-                'nilai' => 'A',
+                'nilai_angka' => 95,
             ],
             [
                 'nim' => '24060121100087',
@@ -110,7 +110,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Akademik',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2024-04-13 00:00:00',
-                'nilai' => 'B',
+                'nilai_angka' => 75,
             ],
             [
                 'nim' => '24060121100088',
@@ -124,7 +124,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Wisata',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2024-04-13 00:00:00',
-                'nilai' => 'A',
+                'nilai_angka' => 85,
             ],
             [
                 'nim' => '24060121100089',
@@ -138,7 +138,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Inventaris',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2024-04-14 00:00:00',
-                'nilai' => 'B',
+                'nilai_angka' => 90,
             ],
             [
                 'nim' => '24060121100090',
@@ -152,7 +152,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Kepegawaian',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2024-04-14 00:00:00',
-                'nilai' => 'A',
+                'nilai_angka' => 80,
             ],
 
             [
@@ -167,7 +167,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Keuangan',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2023-12-10 00:00:00',
-                'nilai' => 'A',
+                'nilai_angka' => 90,
             ],
             [
                 'nim' => '24060121100092',
@@ -181,7 +181,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Penjualan',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2023-12-10 00:00:00',
-                'nilai' => 'B',
+                'nilai_angka' => 80,
             ],
             [
                 'nim' => '24060121100093',
@@ -195,7 +195,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Banking',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2023-12-10 00:00:00',
-                'nilai' => 'C',
+                'nilai_angka' => 75,
             ],
             [
                 'nim' => '24060121100094',
@@ -209,7 +209,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Geografis',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2023-12-10 00:00:00',
-                'nilai' => 'A',
+                'nilai_angka' => 90,
             ],
             [
                 'nim' => '24060121100095',
@@ -223,7 +223,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Persediaan',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2023-12-10 00:00:00',
-                'nilai' => 'B',
+                'nilai_angka' => 92,
             ],
             [
                 'nim' => '24060121100096',
@@ -237,7 +237,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'E-Learning',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2023-12-10 00:00:00',
-                'nilai' => 'A',
+                'nilai_angka' => 100,
             ],
             [
                 'nim' => '24060121100097',
@@ -251,7 +251,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Akademik',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2023-12-10 00:00:00',
-                'nilai' => 'B',
+                'nilai_angka' => 75,
             ],
             [
                 'nim' => '24060121100098',
@@ -265,7 +265,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Wisata',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2023-12-10 00:00:00',
-                'nilai' => 'A',
+                'nilai_angka' => 99,
             ],
             [
                 'nim' => '24060121100099',
@@ -279,7 +279,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Inventaris',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2023-12-10 00:00:00',
-                'nilai' => 'B',
+                'nilai_angka' => 92,
             ],
             [
                 'nim' => '24060121100100',
@@ -293,7 +293,7 @@ class ArsipPKLSeeder extends Seeder
                 'keyword3' => 'Kepegawaian',
                 'link_berkas' => 'drive.google.com',
                 'tgl_verif_laporan' => '2023-12-10 00:00:00',
-                'nilai' => 'A',
+                'nilai_angka' => 90,
             ],
 
      

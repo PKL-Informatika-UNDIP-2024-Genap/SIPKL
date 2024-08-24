@@ -28,7 +28,7 @@ return new class extends Migration
             $table->dateTime('tgl_laporan')->nullable();
             $table->dateTime('tgl_verif_laporan')->nullable();
             $table->string('pesan')->nullable();
-            $table->char('nilai',1)->nullable();
+            // $table->char('nilai',1)->nullable();
         });
     }
 

@@ -58,12 +58,12 @@
                       <td>{{ $arsip->nim }}</td>
                       <td>{{ $arsip->periode_pkl }}</td>
                       <td>
-                        @if ($arsip->nilai == "A")
-                          <h4><span class="badge bg-success">A</span></h4>
-                        @elseif($arsip->nilai == "B")
-                          <h4><span class="badge bg-primary">B</span></h4>
+                        @if ($arsip->nilai_angka >= 80)
+                          <h4><span class="badge bg-success">{{ $arsip->nilai_angka }}</span></h4>
+                        @elseif($arsip->nilai_angka >= 70)
+                          <h4><span class="badge bg-primary">{{ $arsip->nilai_angka }}</span></h4>
                         @else
-                          <h4><span class="badge bg-warning">C</span></h4>
+                          <h4><span class="badge bg-warning">{{ $arsip->nilai_angka }}</span></h4>
                         @endif
                       </td>
                       <td class="py-0 align-middle">
@@ -97,7 +97,7 @@
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-{{-- <script src="/js/ajax-arsip-pkl.js"></script> --}}
+
 <script type="text/javascript">
   let periode_pkl = $('#periode-pkl').val();
   var arr_periode = $('#periode-pkl').find('option').map(function() {
@@ -118,13 +118,13 @@
     $("#data-judul-pkl").html(data_arsip.judul);
     $("#data-periode-pkl").html(data_arsip.periode_pkl);
 
-    let nilai = data_arsip.nilai;
-    if(nilai == "A"){
-      $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-success'>A</span></h5>");
-    } else if(nilai == "B"){
-      $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-primary'>B</span></h5>");
-    } else if(nilai == "C"){
-      $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-warning'>C</span></h5>");
+    let nilai_angka = data_arsip.nilai_angka;
+    if(nilai_angka >= 80){
+      $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-success'>"+nilai_angka+"</span></h5>");
+    } else if(nilai_angka >= 70){
+      $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-primary'>"+nilai_angka+"</span></h5>");
+    } else {
+      $("#data-nilai").html("<h5 class='p-0 m-0'><span class='badge bg-warning'>"+nilai_angka+"</span></h5>");
     }
 
     let link = data_arsip.link_berkas;
