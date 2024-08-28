@@ -110,6 +110,12 @@ class PKLController extends Controller
 
   public function assign_nilai(PKL $pkl, Request $request)
   {
+    if ($request->nilai_angka < 0 || $request->nilai_angka > 100) {
+      return response()->json([
+        'message' => 'Nilai harus berada di antara 0 hingga 100',
+      ], 400);
+    }
+
     PKL::assign_nilai($pkl, $request->nilai_angka);
 
     return response()->json([
