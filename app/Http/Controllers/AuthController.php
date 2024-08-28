@@ -59,7 +59,8 @@ class AuthController extends Controller
             $total_mhs = 0;
             $total_dospem = DosenPembimbing::count();
             $data_mhs_menunggu_konfirmasi = null;
-
+            $mhs_blm_punya_pembimbing = 0;
+            $mhs_sdh_punya_pembimbing = 0;
 
             if($periode_aktif != null){
                 $data_mhs = Mahasiswa::selectRaw('status, count(*) as jumlah')
@@ -85,9 +86,9 @@ class AuthController extends Controller
                 $data_mhs_menunggu_konfirmasi = $data_mhs_menunggu_konfirmasi->merge($data_mhs_menunggu_konfirmasi_seminar);
 
                 $total_mhs = $data_mhs->sum();
+                $mhs_blm_punya_pembimbing = Mahasiswa::whereNull('id_dospem')->count();
+                $mhs_sdh_punya_pembimbing = $total_mhs - $mhs_blm_punya_pembimbing;
             }
-            $mhs_blm_punya_pembimbing = Mahasiswa::whereNull('id_dospem')->count();
-            $mhs_sdh_punya_pembimbing = $total_mhs - $mhs_blm_punya_pembimbing;
 
             return view('koordinator.dashboard', [
                 'periode_aktif' => $periode_aktif,
