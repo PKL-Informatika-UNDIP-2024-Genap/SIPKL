@@ -231,6 +231,12 @@
                 <p>Dokumen</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="/informasi/kelola_informasi_lain" class="nav-link {{ Request::is('informasi/kelola_informasi_lain') ? 'active' : '' }}">
+                <i class="far nav-icon bi bi-circle"></i>
+                <p>Informasi Lain</p>
+              </a>
+            </li>
           </ul>
         </li>
 
