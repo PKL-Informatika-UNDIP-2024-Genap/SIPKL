@@ -50,13 +50,41 @@ class SeminarPKLController extends Controller
      */
     public function daftar_seminar(StoreSeminarPKLRequest $request)
     {
+        $waktu_mulai = substr($request->waktu_seminar_mulai, 0, 2)*60 + substr($request->waktu_seminar_mulai, 3, 2);
         $validator = validator($request->all(), [
             'nim' => 'required',
             'id_dospem' => 'required',
-            'tgl_seminar' => 'required|date',
-            'waktu_seminar_mulai' => 'required',
-            'waktu_seminar_selesai' => 'required',
-            'ruang' => 'required',
+            'tgl_seminar' => 'required|date|after_or_equal:today',
+            'waktu_seminar_mulai' => ['required',
+                function ($attribute, $value, $fail) use ($request, $waktu_mulai) {
+                    if ($request->tgl_seminar == now()->format('Y-m-d')) {
+                        $waktu_sekarang = now()->format('H:i');
+                        $waktu_sekarang = substr($waktu_sekarang, 0, 2)*60 + substr($waktu_sekarang, 3, 2);
+                        if ($waktu_mulai <= $waktu_sekarang) {
+                            $fail(':attribute harus setelah waktu sekarang.');
+                        }
+                    }
+                }
+            ],
+            'waktu_seminar_selesai' => ['required',
+                function ($attribute, $value, $fail) use ($waktu_mulai) {
+                    $waktu_selesai = substr($value, 0, 2)*60 + substr($value, 3, 2);
+                    // minimal 30 menit durasi
+                    if ($waktu_selesai <= $waktu_mulai) {
+                        $fail(':attribute harus setelah waktu mulai seminar.');
+                    }
+                    if ($waktu_selesai - $waktu_mulai < 30) {
+                        $fail(':attribute minimal 30 menit setelah waktu mulai seminar.');
+                    }
+                }
+            ],
+            'ruang' => ['required',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 10) {
+                        $fail(':attribute maksimal 10 karakter.');
+                    }
+                }
+            ],
             'scan_layak_seminar' => 'required|image|mimes:jpeg,png,jpg|max:500',
             'scan_peminjaman_ruang' => 'required|image|mimes:jpeg,png,jpg|max:500',
         ], [
@@ -64,12 +92,13 @@ class SeminarPKLController extends Controller
             'date' => ':attribute harus berupa tanggal.',
             'mimes' => ':attribute harus berupa file gambar jpeg, jpg, atau png.',
             'max' => ':attribute maksimal 0.5MB.',
+            'after_or_equal' => ':attribute harus tanggal hari ini atau setelahnya.',
         ], [
             'nim' => 'NIM',
             'id_dospem' => 'ID Dosen Pembimbing',
             'tgl_seminar' => 'Tanggal Seminar',
-            'waktu_seminar_mulai' => 'Waktu Seminar Awal',
-            'waktu_seminar_selesai' => 'Waktu Seminar Akhir',
+            'waktu_seminar_mulai' => 'Waktu Mulai Seminar',
+            'waktu_seminar_selesai' => 'Waktu Selesai Seminar',
             'ruang' => 'Ruang Seminar',
             'scan_layak_seminar' => 'Scan Surat Keterangan Layak Seminar',
             'scan_peminjaman_ruang' => 'Scan Surat Peminjaman Ruang',
@@ -94,12 +123,40 @@ class SeminarPKLController extends Controller
 
     public function daftar_ulang_seminar(UpdateSeminarPKLRequest $request)
     {
+        $waktu_mulai = substr($request->waktu_seminar_mulai, 0, 2)*60 + substr($request->waktu_seminar_mulai, 3, 2);
         $rules = [
             'id_dospem' => 'required',
-            'tgl_seminar' => 'required|date',
-            'waktu_seminar_mulai' => 'required',
-            'waktu_seminar_selesai' => 'required',
-            'ruang' => 'required',
+            'tgl_seminar' => 'required|date|after_or_equal:today',
+            'waktu_seminar_mulai' => ['required',
+                function ($attribute, $value, $fail) use ($request, $waktu_mulai) {
+                    if ($request->tgl_seminar == now()->format('Y-m-d')) {
+                        $waktu_sekarang = now()->format('H:i');
+                        $waktu_sekarang = substr($waktu_sekarang, 0, 2)*60 + substr($waktu_sekarang, 3, 2);
+                        if ($waktu_mulai <= $waktu_sekarang) {
+                            $fail(':attribute harus setelah waktu sekarang.');
+                        }
+                    }
+                }
+            ],
+            'waktu_seminar_selesai' => ['required',
+                function ($attribute, $value, $fail) use ($waktu_mulai) {
+                    $waktu_selesai = substr($value, 0, 2)*60 + substr($value, 3, 2);
+                    // minimal 30 menit durasi
+                    if ($waktu_selesai <= $waktu_mulai) {
+                        $fail(':attribute harus setelah waktu mulai seminar.');
+                    }
+                    if ($waktu_selesai - $waktu_mulai < 30) {
+                        $fail(':attribute minimal 30 menit setelah waktu mulai seminar.');
+                    }
+                }
+            ],
+            'ruang' => ['required',
+                function ($attribute, $value, $fail) {
+                    if (strlen($value) > 10) {
+                        $fail(':attribute maksimal 10 karakter.');
+                    }
+                }
+            ],
             'scan_layak_seminar' => 'sometimes|image|mimes:jpeg,png,jpg|max:500',
             'scan_peminjaman_ruang' => 'sometimes|image|mimes:jpeg,png,jpg|max:500',
         ];
@@ -116,11 +173,12 @@ class SeminarPKLController extends Controller
             'date' => ':attribute harus berupa tanggal.',
             'mimes' => ':attribute harus berupa file gambar jpeg, jpg, atau png.',
             'max' => ':attribute maksimal 0.5MB.',
+            'after_or_equal' => ':attribute harus tanggal hari ini atau setelahnya.',
         ], [
             'id_dospem' => 'ID Dosen Pembimbing',
             'tgl_seminar' => 'Tanggal Seminar',
-            'waktu_seminar_mulai' => 'Waktu Seminar Awal',
-            'waktu_seminar_selesai' => 'Waktu Seminar Akhir',
+            'waktu_seminar_mulai' => 'Waktu Mulai Seminar',
+            'waktu_seminar_selesai' => 'Waktu Selesai Seminar',
             'ruang' => 'Ruang Seminar',
             'scan_layak_seminar' => 'Scan Surat Keterangan Layak Seminar',
             'scan_peminjaman_ruang' => 'Scan Surat Peminjaman Ruang',
