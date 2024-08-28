@@ -48,7 +48,7 @@
                             </td>
                             <td class="py-0 align-middle">
                                 <div class="btn btn-sm btn-primary btn-edit-dokumen" data-bs-toggle="modal" data-bs-target="#modal_edit_dokumen" 
-                                data-id="{{ $dokumen->id }}" data-deskripsi="{{ $dokumen->deskripsi }}" data-lampiran="lampiran">Edit</div>
+                                data-id="{{ $dokumen->id }}" data-deskripsi="{{ $dokumen->deskripsi }}" data-lampiran="{{ $dokumen->lampiran }}">Edit</div>
                                 <div class="btn btn-sm btn-danger btn-delete-dokumen" data-id="{{ $dokumen->id }}" data-deskripsi="{{ $dokumen->deskripsi }}">
                                   Delete
                                 </div>
