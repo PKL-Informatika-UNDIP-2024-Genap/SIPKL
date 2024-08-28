@@ -45,6 +45,7 @@ class DatabaseSeeder extends Seeder
             ArsipPKLSeeder::class,
             RiwayatPKLSeeder::class,
             CetakSKSeeder::class,
+            InformasiLainSeeder::class,
         ]);
     }
 }

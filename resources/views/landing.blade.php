@@ -83,7 +83,7 @@
               </div>
 
               <div class="navbar-btn d-sm-inline-block">
-                <a href="javascript:void(0)" class="ud-main-btn ud-login-btn">
+                <a href="{{ $data_informasi_lain[0]->value }}" class="ud-main-btn ud-login-btn">
                   Grup WA
                 </a>
                 <a class="ud-main-btn ud-white-btn" data-bs-toggle="modal" data-bs-target="#modal_login">
@@ -115,7 +115,7 @@
 
               <ul class="ud-hero-buttons">
                 <li>
-                  <a href="javascript:void(0)" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-white-btn">
+                  <a href="{{ $data_informasi_lain[0]->value }}" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-white-btn">
                     Gabung Grup WA
                   </a>
                 </li>
@@ -303,29 +303,29 @@
                   Departemen Informatika, Fakultas Sains dan Matematika, Universitas Diponegoro
                 </p>
                 <p class="ud-widget-desc">
-                  Jl. Prof. Soedarto No.50275, Tembalang, Kec. Tembalang, Kota Semarang, Jawa Tengah 50275
+                  {{ $data_informasi_lain[1]->value }}
                 </p>
                 <p class="ud-widget-desc">
-                  Email: pkl.if@live.undip.ac.id
+                  {{ $data_informasi_lain[2]->value }}
                 </p>
                 <ul class="ud-widget-socials">
                   <li>
-                    <a href="mailto:pkl.if@live.undip.ac.id">
+                    <a href="{{ $data_informasi_lain[2]->value }}">
                       <i class="bi bi-envelope-fill"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.youtube.com/c/FakultasSainsdanMatematika">
+                    <a href="{{ $data_informasi_lain[3]->value }}">
                       <i class="bi bi-youtube"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="https://twitter.com/fsm_undip">
+                    <a href="{{ $data_informasi_lain[4]->value }}">
                       <i class="bi bi-twitter-x"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="https://instagram.com/if.undip">
+                    <a href="{{ $data_informasi_lain[5]->value }}">
                       <i class="bi bi-instagram"></i>
                     </a>
                   </li>
@@ -343,16 +343,16 @@
                 <h5 class="ud-widget-title">Tautan</h5>
                 <ul class="ud-widget-links">
                   <li>
-                    <a class="" href="https://www.undip.ac.id/">Laman Undip</a>
+                    <a class="" href="{{ $data_informasi_lain[6]->value }}">Laman Undip</a>
                   </li>
                   <li>
-                    <a class="" href="https://fsm.undip.ac.id/">Laman FSM</a>
+                    <a class="" href="{{ $data_informasi_lain[7]->value }}">Laman FSM</a>
                   </li>
                   <li>
-                    <a class="" href="https://if.fsm.undip.ac.id/">Laman IF</a>
+                    <a class="" href="{{ $data_informasi_lain[8]->value }}">Laman IF</a>
                   </li>
                   <li>
-                    <a class="" href="https://docs.google.com/spreadsheets/d/1JWXhY4EcisQ7dqz8yv9P9aF-dkOFxp3j">Jadwal Praktikum IF</a>
+                    <a class="" href="{{ $data_informasi_lain[9]->value }}">Jadwal Praktikum IF</a>
                   </li>
                 </ul>
               </div>

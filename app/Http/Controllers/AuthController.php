@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dokumen;
 use App\Models\DosenPembimbing;
+use App\Models\InformasiLain;
 use App\Models\Mahasiswa;
 use App\Models\Pengumuman;
 use App\Models\PeriodePKL;
@@ -23,6 +24,7 @@ class AuthController extends Controller
             'data_pengumuman' => Pengumuman::get_data_pengumuman(),
             'data_dokumen' => Dokumen::get_data_dokumen(),
             'data_jadwal' => SeminarPKL::get_data_jadwal_mendatang(),
+            'data_informasi_lain' => InformasiLain::get_data_informasi_lain(),
         ]);
     }
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\ArsipPKLController;
 use App\Http\Controllers\Koordinator\AssignDospemController;
 use App\Http\Controllers\Koordinator\DokumenController;
 use App\Http\Controllers\Koordinator\PengumumanController;
+use App\Http\Controllers\Koordinator\InformasiLainController;
 use App\Http\Controllers\Koordinator\DosenPembimbingController;
 use App\Http\Controllers\Koordinator\AssignMhsBimbinganController;
 use App\Http\Controllers\Koordinator\BebanBimbinganController;
@@ -148,6 +149,9 @@ Route::middleware(['auth', 'is.admin:1'])->group(function () {
     Route::get('/informasi/update_tabel_dokumen', [DokumenController::class, 'update_tabel_dokumen']);
     Route::put('/informasi/kelola_dokumen/{dokumen}/update', [DokumenController::class, 'update']);
     Route::delete('/informasi/kelola_dokumen/{dokumen}/delete', [DokumenController::class, 'destroy']);
+
+    Route::get('/informasi/kelola_informasi_lain', [InformasiLainController::class, 'index']);
+    Route::put('/informasi/kelola_informasi_lain/{informasiLain}/update', [InformasiLainController::class, 'update']);
 });
 
 Route::middleware(['auth', 'is.admin:0'])->group(function () {
