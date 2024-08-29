@@ -25,7 +25,7 @@
                 <td id="data-nim"></td>
               </tr>
               <tr>
-                <td class="text-nowrap px-0" style="width: 15%"><strong>Waktu Kirim</strong></td>
+                <td class="text-nowrap px-0" style="width: 15%"><strong>Tanggal Pengajuan</strong></td>
                 <td style="white-space: nowrap; width: 1%">:</td>
                 <td id="data-tgl-pengajuan"></td>
               </tr>
@@ -33,6 +33,16 @@
                 <td class="text-nowrap px-0" style="width: 15%"><strong>Pembimbing</strong></td>
                 <td style="white-space: nowrap; width: 1%">:</td>
                 <td id="data-dospem"></td>
+              </tr>
+              <tr>
+                <td class="text-nowrap px-0" style="width: 15%"><strong>Waktu Seminar</strong></td>
+                <td style="white-space: nowrap; width: 1%">:</td>
+                <td id="data-waktu-seminar"></td>
+              </tr>
+              <tr>
+                <td class="text-nowrap px-0" style="width: 15%"><strong>Tanggal Seminar</strong></td>
+                <td style="white-space: nowrap; width: 1%">:</td>
+                <td id="data-tgl-seminar"></td>
               </tr>
               <tr>
                 <td class="text-nowrap px-0" style="width: 15%; border-bottom:none"><strong>Scan Layak Seminar</strong></td>

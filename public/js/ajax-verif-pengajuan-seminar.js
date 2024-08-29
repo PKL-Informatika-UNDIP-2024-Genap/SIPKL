@@ -32,6 +32,9 @@ $(document).on('click', '.btn-detail-pengajuan', function() {
   $("#data-nim").html(data_pengajuan.nim);
   $("#data-tgl-pengajuan").html(formatDate(data_pengajuan.created_at));
   $("#data-dospem").html(data_pengajuan.nama_dospem || "-");
+  $("#data-waktu-seminar").html(data_pengajuan.waktu_seminar || "-");
+  $("#data-tgl-seminar").html(formatDate(data_pengajuan.tgl_seminar) || "-");
+  $("#data-ruang").html(data_pengajuan.ruang || "-");
   $("#data-scan-layak-seminar").attr('src', '/preview/' + data_pengajuan.scan_layak_seminar);
   $("#data-scan-peminjaman-ruang").attr('src', '/preview/' + data_pengajuan.scan_peminjaman_ruang);
 });
