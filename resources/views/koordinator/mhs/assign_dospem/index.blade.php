@@ -19,7 +19,7 @@
         <div class="card">
           <div class="card-body">
             <div id="tabel-mhs" class="table-responsive pt-1">
-              <table class="table" id="myTable2">
+              <table class="table" id="myTable2" style="width: 100%">
                 <thead>
                   <tr class="table-primary">
                       <th>No</th>
