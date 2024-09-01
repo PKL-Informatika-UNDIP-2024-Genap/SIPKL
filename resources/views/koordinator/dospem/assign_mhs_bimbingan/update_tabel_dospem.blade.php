@@ -1,4 +1,4 @@
-<table class="table" id="myTable">
+<table class="table" id="myTable" style="width: 100%">
   <thead>
     <tr class="table-primary">
       <th>No</th>

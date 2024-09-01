@@ -13,7 +13,7 @@
         </div>
         <div class="content-modal mt-0">
           <div class="row mb-3">
-            <div class="col-3">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-3">
               <div class="row">
                 <div class="col-auto">
                   <label for="input-tgl-seminar" class="col-form-label">Tanggal Seminar</label>
@@ -22,7 +22,7 @@
               </div>
             </div>
 
-            <div class="col-4 me-4">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 me-4">
               <div class="row">
                 <div class="col-auto">
                   <label for="input-waktu-mulai" class="col-form-label">Waktu Seminar</label>
@@ -41,7 +41,7 @@
               </div>
             </div>
 
-            <div class="col-3">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-3">
               <div class="row">
                 <div class="col-auto">
                   <label for="input-ruang" class="col-form-label">Ruang Seminar</label>
