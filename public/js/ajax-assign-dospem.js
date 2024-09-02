@@ -92,9 +92,12 @@ $(document).ready(function() {
     }
   });
   
-  $('.select2bs4').select2({
-    theme: 'bootstrap4',
-    dropdownParent: "#modal-assign-dospem"
-  })
+  $('#dosen-pembimbing').select2({
+    theme: 'bootstrap-5',
+    dropdownParent: "#modal-assign-dospem",
+    // allowClear: true,
+    placeholder: 'Pilih Pembimbing',
+    // width: '100%',
+  });
 
 });

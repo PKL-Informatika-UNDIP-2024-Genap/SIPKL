@@ -33,7 +33,7 @@
   </style>
   @stack('styles')
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed {{ (session()->get('dark_mode'))?"dark-mode":"" }}" data-bs-theme="{{ (session()->get('dark_mode'))?"dark":"light" }}">
 
   <div class="wrapper">
     <!-- Navbar -->
@@ -71,34 +71,7 @@
   <!-- AdminLTE App -->
   <script src="/lte/dist/js/adminlte.js"></script>
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-      // Logout
-      $('#btn-logout').on('click', function (e) {
-        e.preventDefault();
-        this.innerHTML = `
-          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-          Keluar...
-        `;
-        Swal.fire({
-          title: 'Yakin ingin keluar?',
-          text: "Anda akan diarahkan ke halaman awal.",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#007bff',
-          cancelButtonColor: '#dc3545',
-          confirmButtonText: 'Ya, keluar!',
-          cancelButtonText: 'Batal'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.href = "/logout";
-          } else {
-            this.innerHTML = `Keluar`;
-          }
-        })
-      })
-    });
-  </script>
+  <script src='/js/main.js'></script>
 
   @stack('scripts')
 </body>

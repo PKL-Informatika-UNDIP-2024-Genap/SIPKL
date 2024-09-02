@@ -17,8 +17,8 @@ select+.select2-container--bootstrap-5 {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
+    /* color: #212529; */
+    /* background-color: #fff; */
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
@@ -74,8 +74,8 @@ select+.select2-container--bootstrap-5 {
 .select2-container--bootstrap-5 .select2-dropdown {
     z-index: 1056;
     overflow: hidden;
-    color: #212529;
-    background-color: #fff;
+    /* color: #212529; */
+    /* background-color: #fff; */
     border-color: #86b7fe;
     border-radius: .25rem;
 }
@@ -100,8 +100,8 @@ select+.select2-container--bootstrap-5 {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
+    /* color: #212529; */
+    /* background-color: #fff; */
     background-clip: padding-box;
     border: 1px solid #ced4da;
     -webkit-appearance: none;
@@ -132,7 +132,7 @@ select+.select2-container--bootstrap-5 {
     color: #6c757d;
 }
 .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option.select2-results__option--highlighted {
-    color: #000;
+    /* color: #000; */
     background-color: #e9ecef;
 }
 .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option.select2-results__option--selected, .select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option[aria-selected=true]:not(.select2-results__option--highlighted) {
@@ -165,7 +165,7 @@ select+.select2-container--bootstrap-5 {
     padding: 0;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    /* color: #212529; */
 }
 .select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered .select2-selection__placeholder {
     font-weight: 400;
@@ -191,7 +191,7 @@ select+.select2-container--bootstrap-5 {
     margin-right: .375rem;
     margin-bottom: .375rem;
     font-size: 1rem;
-    color: #212529;
+    /* color: #212529; */
     cursor: auto;
     border: 1px solid #ced4da;
     border-radius: .25rem;

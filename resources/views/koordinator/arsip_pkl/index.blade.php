@@ -191,11 +191,11 @@
   })
 
   $('#periode-pkl').select2({
-			theme: 'bootstrap-5',
-			// allowClear: true,
-			minimumResultsForSearch: Infinity,
-			// placeholder: 'Semua',
-			// width: '100%',
-		});
+    theme: 'bootstrap-5',
+    // allowClear: true,
+    minimumResultsForSearch: Infinity,
+    // placeholder: 'Semua',
+    // width: '100%',
+  });
 </script>
 @endpush

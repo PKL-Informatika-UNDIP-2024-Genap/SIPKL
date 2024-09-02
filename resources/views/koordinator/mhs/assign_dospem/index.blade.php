@@ -66,13 +66,12 @@
 
 @push('styles')
   <!-- Select2 -->
-  <link rel="stylesheet" href="/lte/plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="/lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/plugins/select2-bootstrap5-theme/select2-bootstrap5.min.css">
 @endpush
 
 @push('scripts')
 <script src="/js/ajax-assign-dospem.js"></script>
 <script src="/js/datatables-jquery.js"></script>
-<!-- Select2 -->
-<script src="/lte/plugins/select2/js/select2.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endpush

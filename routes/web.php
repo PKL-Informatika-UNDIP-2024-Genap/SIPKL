@@ -55,6 +55,7 @@ route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/preview/{filename}', [FileController::class, 'preview'])->where('filename', '.*');
     Route::get('/download_file/{filename}', [FileController::class, 'download_file'])->where('filename', '.*');
+    Route::post('/dark-mode', [AuthController::class, 'dark_mode']);
 
 });
 

@@ -32,22 +32,26 @@
     }
   </style>
 </head>
-<body class="hold-transition layout-top-nav">
+<body class="hold-transition layout-top-nav {{ (session()->get('dark_mode'))?"dark-mode":"" }}" data-bs-theme="{{ (session()->get('dark_mode'))?"dark":"light" }}">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+  <nav class="main-header navbar navbar-expand-md {{ (session()->get('dark_mode'))?"navbar-dark":"navbar-white navbar-light" }}">
     <div class="container">
       <a href="{{ request()->fullUrl() }}" class="navbar-brand">
-        <img src="/images/logo_if.png" alt="Logo IF" class="brand-image elevation-3" style="opacity: .8">
+        <img src="/images/logo_if.png" alt="Logo IF" class="brand-image" style="opacity: .8">
         <span class="brand-text font-weight-light">SIPKL Informatika</span>
       </a>
 
       <!-- Right navbar links -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-        <li class="nav-item">
-          <a href="" class="btn btn-primary" id="btn-logout">Keluar</a>
-        </li>
+        {{-- <li class="nav-item"> --}}
+        <div class="custom-switch my-auto mr-2">
+          <input type="checkbox" class="custom-control-input" id="dark-mode-switcher" {{ (session()->get('dark_mode'))?"checked":"" }}>
+          <label class="custom-control-label" for="dark-mode-switcher"></label>
+        </div>
+        <a href="" class="btn btn-primary" id="btn-logout">Keluar</a>
+        {{-- </li> --}}
       </ul>
     </div>
   </nav>
@@ -249,6 +253,7 @@
 <script src="/lte/plugins/inputmask/jquery.inputmask.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/lte/dist/js/adminlte.min.js"></script>
+<script src='/js/main.js'></script>
 
 <script type="text/javascript">
   // BS-Stepper Init
@@ -293,31 +298,6 @@
     var form = document.getElementById('form');
     form.submit();
   });
-
-  // Logout
-  $('#btn-logout').on('click', function (e) {
-    e.preventDefault();
-    this.innerHTML = `
-      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      Keluar...
-    `;
-    Swal.fire({
-      title: 'Yakin ingin keluar?',
-      text: "Anda akan diarahkan ke halaman awal.",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#007bff',
-      cancelButtonColor: '#dc3545',
-      confirmButtonText: 'Ya, keluar!',
-      cancelButtonText: 'Batal'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = "/logout";
-      } else {
-        this.innerHTML = `Keluar`;
-      }
-    })
-  })
 </script>
 
 </body>

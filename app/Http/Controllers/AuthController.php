@@ -174,4 +174,9 @@ class AuthController extends Controller
         return redirect('/');
     }
 
+    public function dark_mode(Request $request)
+    {
+        $request->session()->put('dark_mode', $request->dark_mode);
+        return response()->json(['success' => 'Darkmode berhasil diubah']);
+    }
 }

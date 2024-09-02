@@ -11,8 +11,7 @@
               <form id="form-assign-dospem" action="" method="post">
                 @csrf
               <label for="dosen-pembimbing" class="form-label">Pembimbing</label>
-              <select name="dosen-pembimbing" class="form-control select2bs4" style="width: 100%;" id="dosen-pembimbing">
-                <option value="" disabled selected>--Pilih Pembimbing--</option>
+              <select name="dosen-pembimbing" class="form-control" style="width: 100%;" id="dosen-pembimbing">
                 @foreach ($data_dospem as $dospem)
                   <option value="{{ $dospem->id }}">{{ $dospem->nama }}</option>
                 @endforeach
