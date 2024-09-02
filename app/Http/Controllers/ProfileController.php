@@ -118,21 +118,21 @@ class ProfileController extends Controller
         if (auth()->user()->foto_profil != null){
             $old_foto_profil = auth()->user()->foto_profil;
             // Development
-            if (file_exists(public_path('/'.$old_foto_profil))) {
-                unlink(public_path('/'.$old_foto_profil));
-            }
-            // Stage & Production
-            // if (file_exists(base_path('../public_html/'.$old_foto_profil))) {
-            //     unlink(base_path('../public_html/'.$old_foto_profil));
+            // if (file_exists(public_path('/'.$old_foto_profil))) {
+            //     unlink(public_path('/'.$old_foto_profil));
             // }
+            // Stage & Production
+            if (file_exists(base_path('../public_html/'.$old_foto_profil))) {
+                unlink(base_path('../public_html/'.$old_foto_profil));
+            }
             // end
         }
         $extension = $request->file('foto_profil')->getClientOriginalExtension();
         $new_filename = auth()->user()->username.'-'.now()->timestamp.'-'.uniqid().'.'.$extension;
         // Development
-        $request->file('foto_profil')->move(public_path('/images/foto_profil'), $new_filename);
+        // $request->file('foto_profil')->move(public_path('/images/foto_profil'), $new_filename);
         // Stage & Production
-        // $request->file('foto_profil')->move(base_path('../public_html/images/foto_profil'), $new_filename);
+        $request->file('foto_profil')->move(base_path('../public_html/images/foto_profil'), $new_filename);
         // end
         User::update_foto_profil('images/foto_profil/' . $new_filename);
 
