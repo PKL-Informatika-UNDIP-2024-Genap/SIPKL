@@ -216,12 +216,35 @@
 		$('#tgl_mulai, #tgl_selesai').on('change', function() {
 			table.draw();
 		})
-		
 
-		$('#cetakBtn').on('click', function() {
-			setTimeout(() => {
-				location.reload();
-			}, 3000);
+		// Konfirmasi sebelum cetak SK PKL
+		$('#cetakBtn').on('click', function(e) {
+			e.preventDefault();
+			if (table.rows().count() == 0) {
+				Swal.fire({
+					title: 'Peringatan',
+					text: 'Tidak ada data yang akan dicetak.',
+					icon: 'warning'
+				});
+			} else {
+				Swal.fire({
+					title: 'Cetak SK PKL',
+					text: 'Apakah Anda yakin ingin mencetak SK PKL? Terdapat ' + table.rows().count() + ' data yang akan dicetak.',
+					icon: 'question',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Ya, Cetak!',
+					cancelButtonText: 'Batal'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						$(this).off('click').click();
+						setTimeout(() => {
+							location.reload();
+						}, 3000);
+					}
+				})
+			}
 		})
 	});
 </script>

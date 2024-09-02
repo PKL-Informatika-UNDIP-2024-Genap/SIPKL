@@ -74,7 +74,7 @@
 
           <div class="row justify-content-center d-flex mt-3">
             <div class="col-auto">
-              <h5>Input Nilai PKL:</h5>
+              <h5>Input Nilai PKL (0-100):</h5>
             </div>
           </div>
           {{-- <div class="row justify-content-center d-flex mt-2">

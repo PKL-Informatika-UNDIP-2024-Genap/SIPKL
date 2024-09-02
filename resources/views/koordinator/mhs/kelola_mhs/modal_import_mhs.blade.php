@@ -3,6 +3,7 @@
   /* .filepond--root, */
   .filepond--root .filepond--drop-label {
     height: 150px;
+    color: inherit;
   }
   /* bordered drop area */
   .filepond--panel-root {
