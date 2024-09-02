@@ -69,6 +69,9 @@ $(document).ready(function() {
 			cancelButtonText: 'Batal'
 		}).then((result) => {
 			if (result.isConfirmed) {
+				this.innerHTML = `
+					Keluar
+				`
 				window.location.href = "/logout";
 			} else {
 				this.innerHTML = `Keluar`;
