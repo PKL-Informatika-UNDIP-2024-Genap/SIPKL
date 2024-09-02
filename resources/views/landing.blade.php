@@ -310,7 +310,7 @@
                 </p>
                 <ul class="ud-widget-socials">
                   <li>
-                    <a href="{{ $data_informasi_lain[2]->value }}">
+                    <a href="mailto:{{ $data_informasi_lain[2]->value }}">
                       <i class="bi bi-envelope-fill"></i>
                     </a>
                   </li>
