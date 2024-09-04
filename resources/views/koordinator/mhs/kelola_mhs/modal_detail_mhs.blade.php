@@ -13,6 +13,11 @@
         </div>
         <div class="content-modal">
           <div class="row">
+            <img id="foto-profil" class="profile-user-img img-fluid img-circle"
+                src=""
+                alt="User profile picture" style="width: 170px">
+          </div>
+          <div class="row">
             <div class="col">
               <p class="p-0 m-0" style="font-weight: bold">Biodata Mahasiswa</p>
             </div>

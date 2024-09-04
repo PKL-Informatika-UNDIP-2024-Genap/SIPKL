@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class MahasiswaController extends Controller
 {
@@ -23,8 +24,15 @@ class MahasiswaController extends Controller
             $status = $_GET['status'];
         }
 
+        $arr_mhs_user = DB::table('mahasiswa')
+            ->join('users', 'mahasiswa.nim', '=', 'users.username')
+            ->select('mahasiswa.*', 'users.foto_profil')
+            ->get();
+
+        $arr_mhs_user = Mahasiswa::hydrate($arr_mhs_user->toArray());
+
         return view('koordinator.mhs.kelola_mhs.index', [
-            'arr_mhs' => Mahasiswa::all(),
+            'arr_mhs' => $arr_mhs_user,
             'status' => $status,
         ]);
     }
