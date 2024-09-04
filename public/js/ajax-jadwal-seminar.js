@@ -267,15 +267,28 @@ $(document).on('click', '#btn-submit', function() {
   let input_ruang = $("#input-ruang").val();
   let validation = true;
   let error_message = "";
-  console.log(input_waktu_seminar);
 
+  const regex = /^([01]\d|2[0-3]):[0-5]\d-([01]\d|2[0-3]):[0-5]\d$/; // Regex to validate "hh:mm-hh:mm" format
+
+  if (!regex.test(input_waktu_seminar)) {
+    validation = false;
+    error_message += "<p>Format waktu seminar harus 'hh:mm-hh:mm'</p>";
+  } else {
+    const [startTime, endTime] = input_waktu_seminar.split('-');
+    const [startHour, startMinute] = startTime.split(':').map(Number);
+    const [endHour, endMinute] = endTime.split(':').map(Number);
+
+    const startDate = new Date(0, 0, 0, startHour, startMinute);
+    const endDate = new Date(0, 0, 0, endHour, endMinute);
+
+    if (endDate <= startDate) {
+      validation = false;
+      error_message += "<p>Waktu selesai harus setelah waktu mulai</p>";
+    }
+  }
   if(input_tgl_seminar == undefined || input_tgl_seminar == ""){
     validation = false;
     error_message += "<p>Tanggal seminar tidak boleh kosong</p>";
-  }
-  if(input_waktu_seminar == "-"){
-    validation = false;
-    error_message += "<p>Waktu seminar tidak boleh kosong</p>";
   }
   if(input_ruang == undefined || input_ruang == ""){
     validation = false;
