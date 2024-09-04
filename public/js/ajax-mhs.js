@@ -256,7 +256,7 @@ $(document).on("click", ".btn-detail-mhs", function(e){
   let email = data_mhs.email || "-";
   let id_dospem = data_mhs.id_dospem || "-";
   let periode_pkl = data_mhs.periode_pkl || "-";
-
+  let foto_profil = data_mhs.foto_profil || "/images/default/profile_default2.svg";
   let dospem = "-";
   let judul_pkl = "-";
   let instansi = "-";
@@ -270,6 +270,7 @@ $(document).on("click", ".btn-detail-mhs", function(e){
   $("#data-instansi").html(": " + instansi);
   $("#data-judul").html(": " + judul_pkl);
   $("#data-dospem").html(": " + dospem);
+  $("#foto-profil").attr("src", foto_profil);
 
   if(status != "Baru" || id_dospem != "-"){
     $(".spinner").removeClass("d-none");
