@@ -20,7 +20,7 @@ function update_tabel_jadwal() {
     url: '/seminar/jadwal_seminar/update_tabel_jadwal',
     success: function(response) {
       $('#tabel-jadwal').html(response.view);
-      let tabel = datatableWithCustomFilter("#status", 6);
+      let tabel = datatableInit("#status", 6);
       tabel.order([[1, 'asc'], [2, 'asc'], [7, 'asc']]).draw();
     },
     error: function(response) {
