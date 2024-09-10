@@ -124,7 +124,7 @@ $(document).on('click', '#btn-edit', function() {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
-          console.log(response);
+          // console.log(response);
           Swal.fire({
             title: "Success",
             text: "Jadwal Seminar mahasiswa dengan nim " + data_nim + " Berhasil Diupdate",
@@ -256,7 +256,7 @@ $(document).on('click', '.form-check-input', function (e) {
       arr_mhs_tambah_jadwal.splice(arr_mhs_tambah_jadwal.indexOf(data), 1);
     }
 
-    console.log(arr_mhs_tambah_jadwal);
+    // console.log(arr_mhs_tambah_jadwal);
   }
 
 });
@@ -327,7 +327,7 @@ $(document).on('click', '#btn-submit', function() {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       success: function (response) {
-        console.log(response);
+        // console.log(response);
         Swal.fire({
           title: "Success",
           text: "Jadwal Seminar mahasiswa Berhasil Ditambahkan",
@@ -366,7 +366,7 @@ $(document).on('click', '#btn-submit-import', function(){
   let file_input = $('#form-import')[0];
 
   let file = new FormData(file_input);
-  console.log(file_input);
+  // console.log(file_input);
 
   $.ajax({
     url: "/seminar/jadwal_seminar/import",
@@ -447,7 +447,7 @@ $(document).on('click', '.btn-delete-jadwal', function(){
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
-          console.log(response);
+          // console.log(response);
           Swal.fire({
             title: "Success",
             text: "Jadwal Seminar mahasiswa dengan nim " + nim + " Berhasil Dihapus",
