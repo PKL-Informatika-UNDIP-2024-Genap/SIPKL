@@ -76,24 +76,46 @@ $(document).on('click', '#btn-edit', function() {
     $("#btn-batal").removeClass('d-none');
   } else {
     let validation = true;
+    const regex = /^([01]\d|2[0-3]):[0-5]\d-([01]\d|2[0-3]):[0-5]\d$/; // Regex to validate "hh:mm-hh:mm" format
+    let today = new Date();
+    let tgl_seminar = new Date($("#edit-tgl-seminar").val());
 
     if($("#edit-tgl-seminar").val() == ""){
       validation = false;
       $("#edit-tgl-seminar").addClass('is-invalid');
       $("#edit-tgl-err").html("Tanggal seminar tidak boleh kosong");
-    }else{
+    } else if (tgl_seminar < today) {
+      validation = false;
+      $("#edit-tgl-seminar").addClass('is-invalid');
+      $("#edit-tgl-err").html("Tanggal seminar tidak boleh kurang dari hari ini");
+    } else{
       $("#edit-tgl-seminar").removeClass('is-invalid');
       $("#edit-tgl-err").html("");
     }
-    if($("#edit-waktu-mulai").val() == "" || $("#edit-waktu-selesai").val() == ""){
+    if (!regex.test($("#edit-waktu-mulai").val() + '-' + $("#edit-waktu-selesai").val())) {
       validation = false;
       $("#edit-waktu-mulai").addClass('is-invalid');
       $("#edit-waktu-selesai").addClass('is-invalid');
-      $("#edit-waktu-err").html("Waktu seminar tidak boleh kosong");
-    } else{
-      $("#edit-waktu-mulai").removeClass('is-invalid');
-      $("#edit-waktu-selesai").removeClass('is-invalid');
-      $("#edit-waktu-err").html("");
+      $("#edit-waktu-err").html("Format waktu seminar harus 'hh:mm-hh:mm'");
+    } else {
+      const startTime = $("#edit-waktu-mulai").val();
+      const endTime = $("#edit-waktu-selesai").val();
+      const [startHour, startMinute] = startTime.split(':').map(Number);
+      const [endHour, endMinute] = endTime.split(':').map(Number);
+
+      const startDate = new Date(0, 0, 0, startHour, startMinute);
+      const endDate = new Date(0, 0, 0, endHour, endMinute);
+
+      if (endDate <= startDate) {
+        validation = false;
+        $("#edit-waktu-mulai").addClass('is-invalid');
+        $("#edit-waktu-selesai").addClass('is-invalid');
+        $("#edit-waktu-err").html("Waktu selesai harus setelah waktu mulai");
+      } else {
+        $("#edit-waktu-mulai").removeClass('is-invalid');
+        $("#edit-waktu-selesai").removeClass('is-invalid');
+        $("#edit-waktu-err").html("");
+      }
     }
 
     if($("#edit-ruang").val() == ""){
@@ -109,9 +131,6 @@ $(document).on('click', '#btn-edit', function() {
       let tgl_seminar = $("#edit-tgl-seminar").val();
       let waktu_seminar = $("#edit-waktu-mulai").val() + '-' + $("#edit-waktu-selesai").val();
       let ruang = $("#edit-ruang").val();
-      console.log(tgl_seminar);
-      console.log(waktu_seminar);
-      console.log(ruang);
       $.ajax({
         type: "PUT",
         url: "/seminar/jadwal_seminar/" + data_nim + "/update",
@@ -269,6 +288,8 @@ $(document).on('click', '#btn-submit', function() {
   let error_message = "";
 
   const regex = /^([01]\d|2[0-3]):[0-5]\d-([01]\d|2[0-3]):[0-5]\d$/; // Regex to validate "hh:mm-hh:mm" format
+  let today = new Date();
+  let tgl_seminar = new Date(input_tgl_seminar);
 
   if (!regex.test(input_waktu_seminar)) {
     validation = false;
@@ -289,6 +310,10 @@ $(document).on('click', '#btn-submit', function() {
   if(input_tgl_seminar == undefined || input_tgl_seminar == ""){
     validation = false;
     error_message += "<p>Tanggal seminar tidak boleh kosong</p>";
+  }
+  if (tgl_seminar < today) {
+    validation = false;
+    error_message += "<p>Tanggal seminar tidak boleh kurang dari hari ini</p>";
   }
   if(input_ruang == undefined || input_ruang == ""){
     validation = false;
