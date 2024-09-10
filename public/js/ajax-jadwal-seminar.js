@@ -97,25 +97,6 @@ $(document).on('click', '#btn-edit', function() {
       $("#edit-waktu-mulai").addClass('is-invalid');
       $("#edit-waktu-selesai").addClass('is-invalid');
       $("#edit-waktu-err").html("Format waktu seminar harus 'hh:mm-hh:mm'");
-    } else {
-      const startTime = $("#edit-waktu-mulai").val();
-      const endTime = $("#edit-waktu-selesai").val();
-      const [startHour, startMinute] = startTime.split(':').map(Number);
-      const [endHour, endMinute] = endTime.split(':').map(Number);
-
-      const startDate = new Date(0, 0, 0, startHour, startMinute);
-      const endDate = new Date(0, 0, 0, endHour, endMinute);
-
-      if (endDate <= startDate) {
-        validation = false;
-        $("#edit-waktu-mulai").addClass('is-invalid');
-        $("#edit-waktu-selesai").addClass('is-invalid');
-        $("#edit-waktu-err").html("Waktu selesai harus setelah waktu mulai");
-      } else {
-        $("#edit-waktu-mulai").removeClass('is-invalid');
-        $("#edit-waktu-selesai").removeClass('is-invalid');
-        $("#edit-waktu-err").html("");
-      }
     }
 
     if($("#edit-ruang").val() == ""){

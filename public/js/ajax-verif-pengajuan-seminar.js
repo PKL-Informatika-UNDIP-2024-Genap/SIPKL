@@ -37,6 +37,26 @@ $(document).on('click', '.btn-detail-pengajuan', function() {
   $("#data-ruang").html(data_pengajuan.ruang || "-");
   $("#data-scan-layak-seminar").attr('src', '/preview/' + data_pengajuan.scan_layak_seminar);
   $("#data-scan-peminjaman-ruang").attr('src', '/preview/' + data_pengajuan.scan_peminjaman_ruang);
+
+  let today = new Date();
+
+  // split waktu seminar
+  const [startTime, endTime] = data_pengajuan.waktu_seminar.split('-');
+  const [startHour, startMinute] = startTime.split(':');
+
+  // create date object from tgl_seminar and start time
+  const seminarDate = new Date(data_pengajuan.tgl_seminar);
+  seminarDate.setHours(startHour);
+  seminarDate.setMinutes(startMinute);
+
+  if (today > seminarDate) {
+    $(".btn-terima").prop('disabled', true);
+    $(".btn-terima").addClass('disabled');
+  } else {
+    $(".btn-terima").prop('disabled', false);
+    $(".btn-terima").removeClass('disabled');
+  }
+
 });
 
 $(document).on('click', '.btn-terima', function() {
