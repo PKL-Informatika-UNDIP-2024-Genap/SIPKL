@@ -39,5 +39,10 @@ class PeriodePKLSeeder extends Seeder
             'tgl_mulai' => Carbon::parse('2024-01-01'),
             'tgl_selesai' => Carbon::parse('2024-08-15'),
         ]);
+        PeriodePKL::create([
+            'id_periode' => "2024/2025 Ganjil",
+            'tgl_mulai' => Carbon::parse('2024-08-01'),
+            'tgl_selesai' => Carbon::parse('2025-01-15'),
+        ]);
     }
 }
